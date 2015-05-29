@@ -1,0 +1,422 @@
+<?
+
+# function that makes the registration email text, for different receiver groups
+# NEEDS correct $tutorials array, $banquet and $timestamp variable!
+
+# 09.06.2003 makeregistrationconfirmation() taken out of registration.phtml (Victor Burwitz)
+# 10.06.2003 implemented sendmail() function (Victor Burwitz)
+
+# $use: defines for which output the generated confirmation is generated
+#       "payment":	for display on payment page
+#       "confirmation":	for display after payment on last page (for printout) and email confirmation
+#       "admin":	for administrative email notification about a new registration
+# $partid: the ID for the participants registration, won't be used for $use=="payment" of course
+# $totalprice: this parameter is call by reference and is used to give the $totalprice calculated here back
+#              to the caller, this is done that there must not be multiple calculation routines for the price
+function makeregistrationconfirmation ($use,$partid,$reservationtime,&$totalprice) {
+	global	$db, $bt, $regtypename, $activityname,
+		$priceformat, $dateformat, $hotelsafetill, $hotelensuite, $hotelstandard, $banquetprice,
+		$f, $banquet, $tutorials, $timestamp, $confname, $confyear, $accommodationnames,
+		$lunchdates,$lunchprice,$faxnumber;
+
+	$tabletitles	=array("payment"=>"Registration Summary",
+			       "confirmation"=>"$confname $confyear Registration Confirmation",
+			       "admin"=>"New $confname $confyear Registration");
+	$text  ="<p>\n".						# make confirmation page and return it to the caller
+		"<table class=\"entry\" width=\"600\">\n".
+		"<tr>\n".
+		" <td class=\"head\">".htmlentities($tabletitles[$use])."</td>\n".
+		"</tr>\n".
+		"<tr>\n".
+		" <td class=\"body\">\n".
+		"\n";
+
+	####################################################
+	# Header 
+	####################################################
+	# output a nice header text, which depends on the use
+	if ($use=="payment") {
+		$text .=
+			"  <p>Dear ".htmlentities($f["title"])." ".htmlentities($f["fname"])." ".htmlentities($f["lname"]).",</p>".
+			"  <p>Please check your registration.\n".
+			"  You can go back and change it if needed.";
+			
+			if ($f["paymentmethod"] != "none") {
+				$text .= "  Please note the registration is valid only after we receive payment - you ".
+				         "  will be sent an email confirming payment has been received.</p>\n";
+			}
+	} # if
+	if ($use=="confirmation") {
+		$text .="\n".
+			"   <p><b>Dear ".htmlentities($f["title"])." ".htmlentities($f["fname"])." ".
+			htmlentities($f["lname"]).",</p><p>Thank you for your registration. Your registration ID is ".htmlentities($partid).".</b><br>\n";
+
+			if ($f["paymentmethod"] != "none") {
+				$text .= " Please note the registration is valid only after we receive payment - you ".
+				         " will be sent an email confirming payment has been received. ";
+			}
+		
+		$text .= " <b>Please print out this page for your documents.</b></p>\n";
+	} # if
+	if ($use=="admin") {
+		$text .="  <table border=\"0\" width=\"100%\">".
+			"  <tr>\n".
+			"   <td>ID:</td><td>".htmlentities($partid)."</td>\n".
+			"   <td>Title:</td><td>".htmlentities($f["title"])."</td>\n".
+			"  </tr>\n".
+			"  <tr>\n".
+			"   <td>First&nbsp;Name:</td><td>".htmlentities($f["fname"])."</td>\n".
+			"   <td>Last&nbsp;Name:</td><td>".htmlentities($f["lname"])."</td>\n".
+			"  </tr>\n".
+			"  <tr>\n".
+			"   <td>Affiliation:</td><td>".htmlentities($f["affiliation"])."</td>\n".
+			"   <td>Address:</td><td>".htmlentities($f["address"])."</td>\n".
+			"  </tr>\n".
+			"  <tr>\n".
+			"   <td>Postal&nbsp;Code:</td><td>".htmlentities($f["postalcode"])."</td>\n".
+			"   <td>City:</td><td>".htmlentities($f["city"])."</td>\n".
+			"  </tr>\n".
+			"  <tr>\n".
+			"   <td>Email:</td><td><a href=\"mailto:".urlencode($f["email"])."\">".htmlentities($f["email"])."</a></td>\n".
+			"   <td>Country:</td><td>".htmlentities($f["country"])."</td>\n".
+			"  </tr>\n";
+		if (strlen($f["phone"])>0 || strlen($f["fax"])>0) {	# just output row if it has at least one entry
+			$text .="  <tr>\n";
+			if (strlen($f["phone"])>0) {
+				$text .="   <td>Phone:</td><td>".htmlentities($f["phone"])."</td>\n";
+			} # if
+			if (strlen($f["fax"])>0) {
+				$text .="   <td>Fax:</td><td>".htmlentities($f["fax"])."</td>\n";
+			} # if
+			$text .="  </tr>\n";
+		} # if
+		if (strlen($f["specialneeds"])>0) {			# just output row if it has some informations
+			$text .="  <tr>\n".
+				"   <td>Special&nbsp;Needs:</td><td colspan=\"3\">".htmlentities($f["specialneeds"])."</td>\n".
+				"  </tr>\n";
+		} # if
+		if (strlen($f["apspecialneeds"])>0) {			# just output row if it has some informations
+			$text .="  <tr>\n".
+				"   <td nowrap>Accompanying Person<br>Special Needs:</td><td colspan=\"3\">".htmlentities($f["apspecialneeds"])."</td>\n".
+				"  </tr>\n";
+		} # if
+		$text .="  </table>\n";
+	} # if
+
+	####################################################
+	# Tutorials 
+	####################################################
+
+	$tutorialunits	=0;						# count the ordered units
+	foreach ($tutorials as $id=>$units) {
+		$tutorialunits	+=$units;
+	} # foreach
+
+	# select total price for the participants registration
+	$totalprice	=0.0;
+	$baseprice	=0.0;
+	$sql		="SELECT * FROM fee WHERE regtype='".$db->quote($f["regtype"])."' ".
+			 "AND activity='".$db->quote($f["activity"])."' ".
+			 "AND reservationtime='".$db->quote($reservationtime)."' ".
+			 "AND (tutorialunits=0 OR tutorialunits=$tutorialunits)";
+	$result		=$db->query($sql);
+	while ($row=$result->fetchhash()) {				# select base price and totalprice
+		if ($row["tutorialunits"]==0) {
+			$baseprice	=$row["price"];
+			if ($tutorialunits==0) $totalprice=$row["price"];
+		}
+		else {
+			$totalprice	=$row["price"];
+		} # if
+	} # while
+	$tutorialprice	=$totalprice-$baseprice;
+
+	$text .="  <p>\n".
+		"  <table border=\"0\" width=\"100%\">\n".
+		"  <tr>\n".
+		"   <td colspan=\"2\"><b>Item</b></td>\n".
+		"   <td align=\"center\"><b>Price</b></td>\n".
+		"  </tr>\n".
+		"  <tr>\n".
+		"   <td colspan=\"3\"><div class=\"hline\">&nbsp;</div></td>\n".
+		"  </tr>\n".
+		"  <tr>\n".
+		"   <td colspan=\"2\"><b>Registration</b></td>\n".
+		"   <td></td>\n".
+		"  </tr>\n".
+		"  <tr>\n".
+		"   <td width=\"10\"></td>\n".
+		"   <td>\n";
+	if ($f["regtype"]=="banquet") {
+		$text .="    &nbsp;registration for ".htmlentities(strtolower($regtypename[$f["regtype"]]))."\n";
+	}
+	else {
+		$text .="    &nbsp;registration as ".htmlentities(strtolower($regtypename[$f["regtype"]]))."\n";
+	}
+	if (strlen($activityname[$f["activity"]])>0) {
+		$text .="    for ".htmlentities(strtolower($activityname[$f["activity"]]))."\n";
+	} # if
+	$text .="    <br>\n";
+	if ($banquet==1 && $f["regtype"]!="banquet") $text.="&nbsp;including banquet ticket<br>\n";
+	$text .="    <br>\n".
+		"   </td>\n".
+		"   <td align=\"right\">".price($baseprice)."</td>\n".
+		"  </tr>\n";
+
+	if ($f["regtype"]!="accperson" && $f["regtype"]!="banquet") {	# do not output if tutorials are not possible
+		$text .="  <tr>\n".					# the tutorials will not be outputed if they are not possible,
+			"   <td colspan=\"2\"><b>Tutorials</b></td>\n".	# since the $tutorials array will not be set then!
+			"   <td></td>\n".
+			"  </tr>\n".
+			"  <tr>\n".
+			"   <td></td>\n".
+			"   <td>\n";
+		$sessionnames	=array("am"=>"morning session","pm"=>"afternoon session","allday"=>"full day","midday"=>"mid-day session");
+		$sql	="SELECT * FROM tutorial ORDER BY date,session,id";
+		$result	=$db->query($sql);
+		$text .="  <table border=\"0\" cellspacing=\"0\" cellpadding=\"3\" width=\"95%\">\n";
+		# output tutorials
+		while ($row=$result->fetchhash()) {
+			if (strlen($tutorials[$row["id"]])>0) {
+				$text .="<tr>\n".
+					" <td width=\"1%\">".tutorial_number($row["id"])."</td>\n";
+				#if (strlen($row["id"])==1) $text.="0";
+				$text .= 
+					" <td>\n".
+					"  ".htmlentities($row["title"])."<br>\n".
+					"  ".htmlentities($row["authors"])."<br>\n".
+					"  ".str_replace(" ","&nbsp;",date($dateformat,strtotime($row["date"]))).
+					"  (".htmlentities($sessionnames[$row["session"]]).")".
+					" </td>\n".
+					" <td width=\"1%\">".htmlentities($row["units"])."&nbsp;unit";
+				if ($row["units"]!=1) $text.="s";
+				$text .="</td>\n".
+					" <td>&nbsp;</td>\n".
+					"</tr>\n";
+			} # if
+		} # while
+		if ($tutorialunits==0) {
+			$text .="  <tr>\n".
+				"   <td>no tutorials booked</td>\n".
+				"  </tr>\n";
+		}
+		elseif ($tutorialunits>1) {
+
+			$text .="  <tr>\n".
+				"   <td colspan=\"2\">total no. of tutorial units</td>\n".
+				"   <td width=\"1%\" align=\"center\">$tutorialunits&nbsp;units</td>\n".
+				"  </tr>\n";
+		} # if
+		$text .="  </table>\n".
+
+			"    <br>\n".
+			"   </td>\n".					# the style attributes simulate the missing table!
+			"   <td align=\"right\" style=\"vertical-align:bottom;padding-bottom:4px;\">".
+			price($tutorialprice)."<br>&nbsp;</td>\n".
+			"  </tr>\n";
+	} # if
+
+
+	####################################################
+	# Banquet 
+	####################################################
+
+	if ($banquet==0 || ($banquet==1 && $f["banquetadd"]>=1)) {
+		$banquetaddprice=$banquetprice*$f["banquetadd"];
+		$totalprice	+=$banquetaddprice;			# add banquets to total price
+		$text .="  <tr>\n".
+			"   <td colspan=\"2\"><br>&nbsp;<b>";
+		if ($banquet==1) {
+			$text .="Additional banquet ticket";
+		}
+		else {
+			$text .="Banquet ticket";
+		} # if
+		if ($f["banquetadd"]>=2) $text.="s";			# make the text really nice
+		$text .="</b></td>\n".
+			"   <td></td>\n".
+			"  </tr>\n".
+			"  <tr>\n".
+			"   <td></td>\n".
+			"   <td>\n";
+		if ($f["banquetadd"]>=2) {				# make the text really nice
+			$text .="    &nbsp;".htmlentities($f["banquetadd"])." banquet tickets for ".
+				price($banquetprice)." each<br>\n";
+		}
+		else {
+			$text .="    &nbsp;".htmlentities($f["banquetadd"])." banquet ticket<br>\n";
+		} # if
+		$text .="    <br>\n".
+			"   </td>\n".
+			"   <td align=\"right\">".price($banquetaddprice)."</td>\n".
+			"  </tr>\n";
+	} # if
+
+
+	####################################################
+	# Total
+	####################################################
+
+	$text .="  <tr>\n".
+		"   <td colspan=\"3\"><div class=\"hline\">&nbsp;</div></td>\n".
+		"  </tr>\n";
+# hotel price payed at the hotel directly!
+	$totalprice	+=$hotelprice;
+	$text .="  <tr>\n".
+		"   <td colspan=\"2\"><b>Total Price (inclusive)</b></td>\n".
+		"   <td align=\"right\"  style=\"vertical-align:bottom;padding-bottom:4px;\"><b>".price($totalprice)."</b></td>\n".
+		"  </tr>\n".
+		"  </table>\n".
+		"  <p>\n";
+
+	####################################################
+	# Special needs 
+	####################################################
+
+	if ($use!="admin" && strlen($f["specialneeds"])>0) {		# for information for the user, then show special needs
+		$text .="  You mentioned the following special needs: ".htmlentities($f["specialneeds"])."<p>\n";
+	} # if
+
+	####################################################
+	# Accompanying person Special needs 
+	####################################################
+
+	if ($use!="admin" && strlen($f["apspecialneeds"])>0) {		# for information for the user, then show special needs
+		$text .="  You mentioned the following special needs for accompanying persons: ".htmlentities($f["apspecialneeds"])."<p>\n";
+	} # if
+
+#	if ($timestamp>strtotime($hotelsafetill) && $use!="admin") {	# if hotel reservation is not safe, then say this
+#		$text .="  For hotel reservations after ".date("F j", strtotime($hotelsafetill))." we\n".
+#			"  do not guarantee that you will get a room in one of the Maritim Hotels.\n".
+#			"  After ".date("F j", strtotime($hotelsafetill)).", you'll get an extra\n".
+#			"  confirmation whether or not we were able to reserve a room for you.\n".
+#			"  If we can book a room for you, you'll get it for the price &amp; period mentioned\n".
+#			"  on your registration.\n".
+#			"  <p>\n";
+#	} # if
+
+	####################################################
+	# Hotel instructions
+	####################################################
+
+	if ($use != "admin") {		
+	
+	$text .="<p><b>Hotel Booking</b><br>".
+		"  If you want hotel accommodation, please book the hotel accommodation yourself.\n".
+		"  Special rates are available by \n".
+		'  <a href="http://www.ichotelsgroup.com/redirect?path=rates&amp;brandCode=ic&amp;hotelCode=ordha&amp;GPC=a09&amp;_IATAno=99503740" target="_blank">'.
+		"  booking online at the InterContinental hotel</a>.".
+		"  The special rate is available for the dates March 12-20, 2005.".
+		"  If you wish to extend your stay outside of these dates you will need to book a".
+		"  separate reservation on the web or contact the hotel directly at (+1) (312) 321-8753.".
+		"  Please be advised to make your reservation as soon as possible.".
+		"  The special rate will be available as long as rooms are available, up to and including February 22, 2005.".
+		" </p>\n";
+	}
+	
+	####################################################
+	# Note for students 
+	####################################################
+
+	if ($f["regtype"]=="student" && $use!="admin") {		# tell student on last page and email to send enrollment
+		$text .="<p><b>Student Registration Special Rate</b><br>".
+			" In order to give you the student's rate, we need a proof of your student\n".
+			" status. The proof can be either your student id card, or a confirmation from\n".
+			" the dean of the faculty, or from the university administration (confirmation\n".
+			" of registration / enrolment), where you are officially registered as a\n".
+			" regular student. In short, you should have a valid matriculation number with\n".
+			" a university. You will be required to present the proof of your student\n".
+			" status when you register at the conference registration desk. Please make\n".
+			" sure that you have it, otherwise you will not be able to register as a\n".
+			" student.</p>\n";
+
+	} # if
+
+	####################################################
+	# Payment summary 
+	####################################################
+
+	$paymentnames	=array("visa"=>"VISA","mastercard"=>"Mastercard",
+			       "banktransfer"=>"bank transfer","cardbyfax"=>"credit card by fax or mail");
+	if ($use=="confirmation") {					# just output payment informations on the last page
+		
+		if ($f["paymentmethod"]!="none") {
+		   $text .="  You have choosen &quot;".htmlentities($paymentnames[$f["paymentmethod"]])."&quot; for the payment.\n";
+		}
+		if ($f["paymentmethod"]=="cardbyfax") {
+			$text .="  You will receive a credit card payment form by email.\n".
+				"  Please make sure to print it out and fax or mail it.\n".
+				"  Please note that the registration is valid only after we receive the payment.\n";
+		} # if
+		$text .="  <br>\n";
+	} # if
+	if ($use=="admin") {						# the administration people need all payment informations
+		$text .="  <br>\n";
+		
+		if ($f["paymentmethod"]!="none") {
+			$text .= "  The chosen payment method is <b>".htmlentities($paymentnames[$f["paymentmethod"]])."</b>";
+		}
+		if ($f["paymentmethod"]=="cardbyfax") {
+			$text .=", please check that a fax with the credit card data arrives.\n";
+		}
+		else {							# if a credit card payment, then card data important
+#			$text .="  <table>\n".
+#				"  <tr>\n".
+#				"   <td>Card number:</td>\n".
+#				"   <td>".htmlentities($f["cardnumber"])."</td>\n".
+#				"  </tr>\n".
+#				"  <tr>\n".
+#				"   <td>Expiration Date (MM/YY):</td>\n".
+#				"   <td>".htmlentities($f["cardvalidmonth"]."/".$f["cardvalidyear"])."</td>\n".
+#				"  </tr>\n".
+#				"  </table>";
+		} # if
+	} # if
+
+	$text .=" </td>\n".
+		"</tr>\n".
+		"</table>\n";
+
+	return $text;
+} # makeregistrationconfirmation
+
+
+
+# sends mail with the specified data and already includes CSS formating and body tag
+# returns true on success and false otherwise
+#
+# $mailto: the email address of the receiver
+# $mailfrom: the email address of the sender
+# $subject: the subject of the mail
+# $mailmsg: HTML body of the mail (HTML head, CSS and HTML body tag are implemented here!)
+function sendmail ($mailto,$mailfrom,$subject,$mailmsg) {		# send mail to the specified receiver
+	$addedheaders  ="From: $mailfrom\r\n".
+#			"Subject: $subject\r\n".
+			"Reply-to: $mailfrom\r\n".
+			"MIME-Version: 1.0\r\n".			# iso-8859-15 would be nicer but EUR symbol in HTML anyhow
+			"Content-type: text/html; charset=\"iso-8859-1\"\r\n".
+			"Content-transfer-encoding: 8bit";
+	$msg	       ="<html>\n".
+			"<head>\n".
+			"<style type=\"text/css\">\n".
+			"<!--\n";
+	$cssfilearray	=file("registration.css", 1);			# read the stylesheet and copy it into the HTML mail
+	foreach ($cssfilearray as $line) {
+		$msg	.=$line;
+	} # foreach
+	$msg	      .="-->\n".
+			"</style>\n".
+			"</head>\n".
+			"<body class=\"registration\">\n".
+			$mailmsg.
+			"</body>\n".
+			"</html>\n";
+
+	if (mail($mailto,$subject,$msg,$addedheaders)!=true) {
+		return false;
+	} # if
+
+	return true;
+} # sendmail
+
+?>

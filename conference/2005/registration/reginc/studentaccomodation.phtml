@@ -1,0 +1,117 @@
+<?
+	if (!array_key_exists("accommodation", $f)) {
+		if ($f["regtype"] == "epsrc") {
+			$f["accommodation"] = "ensuite";
+			$f["arrival"]="2004-03-21";
+			$f["departure"]="2004-03-26";
+		}
+		else {
+			$f["accommodation"] = "none";
+		}
+	}
+?>
+
+<p>
+<table class="entry" width="600">
+<tr>
+ <td class="head">Student On-campus Accommodation</td>
+</tr>
+<tr>
+ <td class="body">
+
+<?php
+if ($f["regtype"] == "epsrc") {
+	echo "<p>EPSRC Bursary registration includes 5 nights free Student On-campus ".
+		"Accommodation (en suite) from 21 March to 25 March 2004 (inclusive). ".
+		"Please check the arrival date and departure date below are correct.  You ".
+		"will be responsible for payment of accommodation for any extra nights.";
+} 
+?>
+<p>You can book student on-campus accommodation <b>ONLY</b> by completing and 
+submitting this form.</p>
+  
+<p class="alert">Note: Student accommodation for the night of 
+March 21<sup>st</sup> is now full.</p>
+
+  	<p>
+	<table border="0" width="100%">
+	
+	<tr align="center">
+	<td></td>
+	<td>Single Room<br>(en suite)</td>
+	<td>Single Room<br>(standard)</td>
+	<td style="vertical-align:bottom;"><b>None</b></td>
+	</tr>
+	
+	<tr align="center">
+	<td align="left" valign="top">
+    Lancaster University Student Accommodation
+    </td>
+    
+    
+<?
+	echo " <td><input type=\"radio\" name=\"f[accommodation]\" value=\"ensuite\"";
+	if ($f["accommodation"]=="ensuite") echo " checked";
+	echo ">$hotelensuite $currency</td>\n";
+
+	echo " <td><input type=\"radio\" name=\"f[accommodation]\" value=\"standard\"";
+	if ($f["accommodation"]=="standard") echo " checked";
+	echo ">$hotelstandard $currency</td>\n";
+
+	echo " <td><input type=\"radio\" name=\"f[accommodation]\" value=\"none\"";
+	if ($f["accommodation"]=="none") echo " checked";
+	echo "></td>\n";
+
+	echo "</tr>\n";
+?>
+
+
+    </table>
+	</p>
+    
+    
+    <p>
+	<table border="0" width="100%">
+	<tr align="center">
+
+	<td>
+    <font<? if ($e["arrival"]===true || $e["dateillogical"]===true || $e["datesimilar"]===true) echo " class=\"error\""; ?>>Date of arrival:</font>
+    &nbsp;&nbsp;
+    <select name="f[arrival]">
+     <option value="">select your arrival</option>
+<?
+# generate arrival drop down list
+foreach ($arrivaldates as $arrival) {
+	
+	if (!in_array($arrival, $fulldates)) {
+		echo "     <option value=\"".htmlentities($arrival)."\"";
+		if ($f["arrival"]==$arrival) { echo " selected"; }
+		echo ">".date($dateformat, strtotime($arrival))."</option>\n";
+	}
+} # foreach
+?>
+    </select>
+    
+   </td>
+   <td><font<? if ($e["departure"]===true || $e["dateillogical"]===true || $e["datesimilar"]===true) echo " class=\"error\""; ?>>Date of departure:</font>
+    &nbsp;&nbsp;
+    <select name="f[departure]">
+     <option value="">select your departure</option>
+<?
+# generate departure drop down list
+foreach ($departuredates as $departure) {
+	echo "     <option value=\"".htmlentities($departure)."\"";
+	if ($f["departure"]==$departure) { echo " selected"; }
+	echo ">".date($dateformat, strtotime($departure))."</option>\n";
+} # foreach
+?>
+    </select>
+     
+	</td>
+	</tr>
+	</table>
+	</p>
+
+ </td>
+</tr>
+</table>

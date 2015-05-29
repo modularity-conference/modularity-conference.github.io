@@ -1,0 +1,63 @@
+#absolute {
+	Z-INDEX: 1; LEFT: 0px; POSITION: absolute; TOP: 0px
+}
+BODY {
+	FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000099; LINE-HEIGHT: normal; FONT-STYLE: normal; FONT-FAMILY: Ariel, Helvetica, Geneva, Swiss, SunSans-Regular
+}
+H1 {
+	FONT-WEIGHT: bold; FONT-SIZE: 16pt; COLOR: #000099; LINE-HEIGHT: normal; FONT-STYLE: normal; FONT-FAMILY: Ariel, Helvetica, Geneva, Swiss, SunSans-Regular
+}
+H1.name {
+	FONT-WEIGHT: bold; FONT-SIZE: 16pt; COLOR: #ffffff; LINE-HEIGHT: normal; FONT-STYLE: normal; FONT-FAMILY: Ariel, Helvetica, Geneva, Swiss, SunSans-Regular
+}
+H2 {
+	FONT-WEIGHT: bold; FONT-SIZE: 14pt; COLOR: #000099; LINE-HEIGHT: normal; FONT-STYLE: normal; FONT-FAMILY: Ariel, Helvetica, Geneva, Swiss, SunSans-Regular
+}
+H3 {
+	FONT-WEIGHT: bold; FONT-SIZE: 12pt; COLOR: #000099; LINE-HEIGHT: normal; FONT-STYLE: normal; FONT-FAMILY: Ariel, Helvetica, Geneva, Swiss, SunSans-Regular
+}
+H4 {
+	FONT-WEIGHT: bold; FONT-SIZE: 11pt; COLOR: #000099; LINE-HEIGHT: normal; FONT-STYLE: normal; FONT-FAMILY: Ariel, Helvetica, Geneva, Swiss, SunSans-Regular
+}
+H5 {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #000099; LINE-HEIGHT: normal; FONT-STYLE: normal; FONT-FAMILY: Ariel, Helvetica, Geneva, Swiss, SunSans-Regular
+}
+H5.prof_title {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #000099; LINE-HEIGHT: 0.5; FONT-STYLE: normal; FONT-FAMILY: Ariel, Helvetica, Geneva, Swiss, SunSans-Regular
+}
+H6 {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000099; LINE-HEIGHT: normal; FONT-STYLE: normal; FONT-FAMILY: Ariel, Helvetica, Geneva, Swiss, SunSans-Regular
+}
+P {
+	FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000099; LINE-HEIGHT: normal; FONT-STYLE: normal; FONT-FAMILY: Ariel, Helvetica, Geneva, Swiss, SunSans-Regular
+}
+FONT.prof_title {
+	FONT-WEIGHT: bold; FONT-SIZE: 14pt; COLOR: #000099; FONT-FAMILY: Ariel, Helvetica, Geneva, Swiss, SunSans-Regular
+}
+FONT.prof_title2 {
+	FONT-WEIGHT: bold; FONT-SIZE: 12pt; COLOR: #000099; FONT-FAMILY: Ariel, Helvetica, Geneva, Swiss, SunSans-Regular
+}
+FONT.prof_title3 {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #000099; FONT-FAMILY: Ariel, Helvetica, Geneva, Swiss, SunSans-Regular
+}
+FONT.updated {
+	FONT-WEIGHT: normal; FONT-SIZE: 6pt; COLOR: #000099; FONT-FAMILY: Ariel, Helvetica, Geneva, Swiss, SunSans-Regular
+}
+FONT.updated2 {
+	FONT-WEIGHT: normal; FONT-SIZE: 6pt; COLOR: #ffcc33; FONT-FAMILY: Ariel, Helvetica, Geneva, Swiss, SunSans-Regular
+}
+FONT.list {
+	FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #000099; LINE-HEIGHT: normal; FONT-STYLE: normal; FONT-FAMILY: Ariel, Helvetica, Geneva, Swiss, SunSans-Regular
+}
+LI.spaced {
+	LINE-HEIGHT: 1.5em
+}
+A:link {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #000099; TEXT-DECORATION: none
+}
+A:visited {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #cd5555; TEXT-DECORATION: none
+}
+A:hover {
+	BACKGROUND: #cccccc; COLOR: #000099; TEXT-DECORATION: none
+}

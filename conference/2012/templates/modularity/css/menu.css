@@ -1,0 +1,90 @@
+/* @override http://aosd.net/2012/templates/modularity/css/menu.css */
+
+/* Default Joomla! Menu */
+#ja-container2 ul.menu {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#ja-container2 ul.menu li {
+	margin: 0 !important;
+	padding: 0 !important;
+	background: none;
+}
+
+#ja-container2 ul.menu li a {
+	padding: 2px 0;
+	display: block;
+	color: #1a171b;
+	text-decoration: none;
+	outline: none;
+	background: transparent;
+	font-weight: normal;
+	border: none;
+	height: 26px;
+	line-height: 26px;
+	-moz-border-bottom-right-radius: 8px;
+	-moz-border-top-right-radius: 8px;
+	-webkit-border-bottom-right-radius: 8px;
+	-webkit-border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+	border-top-right-radius: 8px;
+
+}
+
+#ja-container2 ul.menu li a span {
+	padding-left: 25px;
+	background: transparent;
+}
+
+#ja-container2 ul.menu li a:hover,
+#ja-container2 ul.menu li a:active,
+#ja-container2 ul.menu li a:focus {
+	text-decoration: none;
+	background-color: #c2bbb2 !important;
+}
+
+#ja-container2 ul.menu li.active > a:first-child {
+	background: #1a171b !important;
+	color: #f7941d;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#ja-container2 ul.menu li ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#ja-container2 ul.menu li li {
+	padding: 0 0 0 10px !important;
+	list-style: none;
+}
+
+#ja-container2 ul.menu li li a {
+	/*background: none !important;*/
+	margin-left: -10px;
+	padding-left: 10px;
+	font-size: 92%;
+	font-weight: normal;
+}
+
+#ja-container2 ul.menu li li a:hover,
+#ja-container2 ul.menu li li a:active,
+#ja-container2 ul.menu li li a:focus {
+	margin-left: -10px;
+	padding-left: 10px;
+	background-color: #c2bbb2 !important;
+}
+
+#ja-container2 ul.menu li.parent a {
+	background: transparent;
+	color: #1a171b;
+}
+
+#ja-container2 ul.menu li.parent.active > a {
+	background: #1a171b !important;
+	color: #f7941d;
+}

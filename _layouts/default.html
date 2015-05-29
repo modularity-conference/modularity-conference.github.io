@@ -1,0 +1,142 @@
+---
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if page.title %}{{ page.title }} - {% endif %}{{site.title}}</title>
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500,400italic,500italic%7CFira+Mono:400,500" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{ site.baseurl }}assets/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}assets/stylesheets/pygment_trac.css">
+    <link rel="icon" type="image/vnd.microsoft.icon" href="{{ site.baseurl }}favicon.ico" />
+    <style type="text/css">
+      h1 {font-weight: 300}
+      .sc {font-variant: small-caps;} .bold {font-weight:bold;}
+      body { padding-top: 70px;} .externalLink::after { content: ' ⇗'; }
+      nav .featured {font-weight: bold;} nav#mainnav .active { font-style: italic }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    {% assign home = site.pages | where:'menutitle', 'About' | first %}
+    {% assign responsible = site.pages | where:'responsible', true | first %}
+    {% assign pages = site.pages | where: 'name', 'index.markdown' | sort:"order" %}
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-12">
+          <div class="visible-md pull-right">
+            <img src="{{ site.baseurl }}assets/modularity.svg" style="height: 10em; padding: 0 1em;" alt="" title="Modularity">
+          </div>
+          <header id="navbarheader" class="visible-sm visible-xs">
+            <nav class="navbar navbar-default navbar-fixed-top">
+              <div class="container">
+                <div class="navbar-header">
+                  {% assign murl = home.url|remove:'index.html' %}
+                  <a id="modularity-navbar-mobile" class="pull-left" href="{{ murl }}">
+                    <img style="height: 3em; padding: .5ex 1em" alt="{{ home.title }}" src="{{ site.baseurl }}assets/modularity.svg">
+                  </a>
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                  <ul class="nav navbar-nav">
+                    {% for menuitem in pages %}
+                      {% assign liclass = '' %}
+                      {% if menuitem.title == page.title %}
+                        {% capture liclass %}{{ liclass }} active{% endcapture %}
+                      {% endif %}
+                      {% if menuitem.featured %}
+                        {% capture liclass %}{{ liclass }} featured{% endcapture %}
+                      {% endif %}
+                      <li class="{{ liclass }}">
+                        {% assign murl = menuitem.url|remove:'index.html' %}
+                        <a href="{{murl}}">
+                          {% if menuitem.short %}
+                            {{menuitem.short }}
+                          {% elsif menuitem.menutitle %}
+                            {{menuitem.menutitle }}
+                          {% else %}
+                            {{menuitem.title}}
+                          {% endif %}
+                      </a></li>
+                    {% endfor %}
+                  </ul>
+                </div><!--/.nav-collapse -->
+              </div>
+            </nav>
+          </header>
+          <header id="mainheader" class="hidden-sm hidden-xs">
+            <div class="h1"><span class="sc">{{site.title}}</span>
+              <small>formerly aosd.net</small></div>
+            <nav id="mainnav">
+              <ul>
+                {% for menuitem in pages %}
+                  {% assign liclass = '' %}
+                  {% if menuitem.title == page.title %}
+                    {% capture liclass %}{{ liclass }} active{% endcapture %}
+                  {% endif %}
+                  {% if menuitem.featured %}
+                    {% capture liclass %}{{ liclass }} featured{% endcapture %}
+                  {% endif %}
+                  <li class="{{ liclass }}">
+                  {% assign murl = menuitem.url|remove:'index.html' %}
+                  <a href="{{murl}}">
+                    {% if menuitem.menutitle %}
+                    {{menuitem.menutitle}}
+                    {% else %}
+                    {{menuitem.title}}
+                    {% endif %}
+                </a></li>
+                {% endfor %}
+              </ul>
+            </nav>
+            <div class="hidden-xs hidden-sm hidden-md">
+              <img src="{{ site.baseurl }}assets/modularity.svg" style="width: 75%; padding: 1em;" alt="" title="Modularity">
+            </div>
+          </header>
+        </div>
+        <div class="col-lg-9 col-md-12">
+          {% assign fpages = pages | group_by: 'featured' | sort: "name" | shift %}
+          {% if fpages | size > 0 %}
+              <div class="well">
+                {% for feature in pages %}
+                    {% if feature.featured %}
+                <a href="{{ feature.url | remove: "index.html" }}">
+                  <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                  &nbsp;{{ feature.featured }}
+                </a><br>
+                    {% endif %}
+                {% endfor %}
+              </div>
+           {% endif %}
+          <section>
+            <h1>{{page.title}}</h1>
+            {% include submenu.html %}
+            {% if page.lead %}<div class="lead">{{page.lead}}</div>{% endif %}
+            {{content}}
+          </section>
+        </div>
+      </div>
+      <footer>
+      <p>© 2002–{{ 'now' | date: '%Y'}} <a href="{{ responsible.url }}">
+      {% if responsible.short %}{{ responsible.short }}
+      {% else %}{{ responsible.title}}
+      {% endif %}
+      </a></p>
+      </footer>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="{{ site.baseurl }}assets/javascripts/bootstrap.min.js"></script>
+    <script src="{{ site.baseurl }}assets/javascripts/custom.js"></script>
+  </body>
+</html>

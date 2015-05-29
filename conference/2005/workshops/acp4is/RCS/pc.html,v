@@ -1,0 +1,147 @@
+head	1.6;
+access;
+symbols;
+locks
+	lorenz:1.6; strict;
+comment	@# @;
+
+
+1.6
+date	2004.12.17.05.03.01;	author lorenz;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2004.12.02.05.03.01;	author lorenz;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2004.12.01.10.44.35;	author lorenz;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2004.11.30.05.03.01;	author lorenz;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2004.11.30.01.57.40;	author lorenz;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.11.25.15.36.55;	author lorenz;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.6
+log
+@AutoRCS
+@
+text
+@<h2>The 4th AOSD Workshop on Aspects, Components, and Patterns for
+Infrastructure Software (ACP4IS)</h2>
+
+<li>       Yvonne Coady,           University of Victoria
+<li>       Adrian Colyer,          IBM UK
+<li>       Krzysztof Czarnecki,    University of Waterloo
+<li>       R&eacute;mi Douence,    Ecole des Mines de Nantes
+<li>       Eric Eide,              University of Utah
+<li>       Marc E. Fiuczynski,     Princeton University
+<li>       Erik Hilsdale,          Google
+<li>       Hans-Arno Jacobsen,     University of Toronto
+<li>       Ray Klefstad,           University of Califonia, Irvine
+<li>       Julia Lawall,           DIKU
+<li>       David H. Lorenz,        Northeastern University
+<li>       Martin Robillard,       McGill University
+<li>       Christa Schwanninger,   Siemens AG
+<li>       Yannis Smaragdakis,     Georgia Tech
+<li>       Olaf Spinczyk,          University of Erlangen-Nuremberg
+<li>       Rob van Ommering,       Philips
+@
+
+
+1.5
+log
+@AutoRCS
+@
+text
+@d7 1
+a7 1
+<!--       R&eacute;mi Douence,    Ecole des Mines de Nantes -->
+a19 1
+<li><em>   Additional members pending.</em>@
+
+
+1.4
+log
+@AutoRCS
+@
+text
+@d6 1
+a6 1
+<!--       Krzysztof Czarnecki,    University of Waterloo -->
+d20 1
+a20 1
+<li><em>   Additional members pending.</em>
+@
+
+
+1.3
+log
+@AutoRCS
+@
+text
+@d9 1
+a9 1
+<!--       Marc E. Fiuczynski,     Princeton University -->
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d4 1
+a4 1
+<li>       Yvonne Coady,           U. Victoria
+d6 4
+a9 7
+<li><em>       Krzysztof Czarnecki,    U. Waterloo
+</em>
+<li><em>       Remi Douence,           EMN
+</em>
+<li>       Eric Eide,              U. Utah
+<li><em>       Marc Fiuczynski,        Princeton
+</em>
+d11 2
+a12 2
+<li>       Hans-Arno Jacobsen,     U. Toronto
+<li>       Ray Klefstad,           UC Irvine
+d14 3
+a16 2
+<li>       David H. Lorenz,        Northeastern U.
+<li>       Christa Schwanninger,   Siemens
+d18 3
+a20 3
+<li>       Olaf Spinczyk,          U. Erlangen-Nuremberg
+<li>       Martin Robillard,       McGill
+<li>       Rob van Ommering,       Philips@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d4 19
+a22 1
+Coming soon...@

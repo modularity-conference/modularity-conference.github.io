@@ -1,0 +1,91 @@
+<p>
+<table class="entry" width="600">
+<tr>
+ <td class="head">Tutorials</td>
+</tr>
+<tr>
+ <td class="body">
+  
+  
+<?php
+  if ($f["regtype"] == "epsrc") {
+  	echo "<p>EPSRC bursary covers up to 2 tutorials free of charge.  Note: You ".
+		"will be responsible for payment of any extra tutorials selected (30GBP per tutorial).</p>";
+  }
+  else if ($f["regtype"] == "volunteer") {
+  	echo "<p>Student Volunteers are eligible to attend tutorials (any number) free of charge,".
+  		" subject to duty allocation.</p>";
+  }
+  else if ($f["regtype"] == "comp") {
+  	echo "<p>Complimentary registrants are eligible to attend tutorials (any number) free of ".
+  		" charge, subject to duty allocation.</p>";
+  }
+  else {
+?>
+  Tutorial unit prices are shown in the following table.  The price
+  you pay is in bold.
+  
+  <p>
+  <center>
+  <table border="0" cellspacing="0" cellpadding="3" width="400">
+   
+  <tr bgcolor="#CCCCCC">
+  <td></td>
+  <td align="right"><b>Early</b></td>
+  <td align="right"><b>Late</b></td>
+  <td align="right"><b>On-site</b></td>
+  </tr>
+  
+  <tr>
+  <td align="right" bgcolor="#CCCCCC"><b>Regular</b></td>
+  <td align="right"><? 
+     if ($f["regtype"]=="regular" && $reservationtime=="early") 
+        echo "<b>".price(220)."</b>";
+     else  
+        echo price(220);
+     ?>
+  </td>
+  <td align="right"><? 
+     if ($f["regtype"]=="regular" && $reservationtime=="late") 
+        echo "<b>".price(270)."</b>";
+     else  
+        echo price(270);
+     ?>
+  </td>
+  <td align="right"><? echo price(320); ?></td>
+  </tr>
+    
+  <tr>
+  <td align="right" bgcolor="#CCCCCC"><b>Student</b></td>
+  <td align="right"><? 
+     if ($f["regtype"]=="student" && $reservationtime=="early") 
+        echo "<b>".price(80)."</b>";
+     else  
+        echo price(80);
+     ?>
+  </td>
+  <td align="right"><? 
+     if ($f["regtype"]=="student" && $reservationtime=="late") 
+        echo "<b>".price(120)."</b>";
+     else  
+        echo price(120);
+     ?>
+  </td>
+  <td align="right"><? echo price(120); ?></td>
+  </tr>
+  </table>
+  </center>
+<?php
+}
+		echo "<p>Please choose the tutorials you would like to attend.</p>";
+		
+		showtutorials("2005-03-14","am");
+		showtutorials("2005-03-14","pm");
+		showtutorials("2005-03-15","am");
+		showtutorials("2005-03-15","pm");
+		
+		echo "  <input type=\"hidden\" name=\"ftutorialsubmit\" value=\"1\">\n";
+?>
+ </td>
+</tr>
+</table>

@@ -1,0 +1,441 @@
+<?
+# $use: defines for which purpose the form is used
+#       "new":		for entering a new participant
+#       "change":	for modifying a existing participant
+# $f: array that carries the participants data (similar to the registration frontend)
+# $e: array that has all error codes of the submited data of the $f array
+# $errmsg: the error message as text for the display to the user
+function showparticipantchange ($use,$f,$e=array(),$errmsg="") {	# shows form to modify a existing participant
+	global	$db, $titles, $countries, $regtypes, $regtypename,
+		$activities, $activityname, $hotels, $hotelname,
+		$arrivaldates, $departuredates,
+		$dateformatadmin, $dateformat, $timeformatadmin, $priceformatadmin,
+		$submitvaluenewsave, $submitvaluenewcancel,
+		$submitvaluechangesave, $submitvaluechangecancel,
+		$maxtitle, $maxfname, $maxlname, $maxaffiliation,
+		$maxaddress, $maxcity, $maxpostalcode, $maxemail,
+		$maxphone, $maxfax, $maxspecialneeds, $maxcardholder,
+		$maxcardnumber, $maxcardvalidmonth, $maxcardvalidyear,
+		$maxbanquetadd, $maxroommate,
+		$lunchdates;
+
+	$banquet		=0;
+	if ( $f["regtype"]=="regular" || $f["regtype"]=="comp") {	# find out if banquet is included
+		$banquet	=1;
+	} # if
+
+
+	$formtitle	=array("new"=>"Create New Participant","change"=>"Change Participant's Details");
+	echo "<form method=\"post\">\n";
+	echo "<table class=\"adminentry\" width=\"870\" align=\"center\">\n";
+	echo "<tr>\n";
+	echo " <td class=\"adminhead\">".htmlentities($formtitle[$use])."</td>\n";
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo " <td class=\"adminbody\" align=\"center\">\n";
+	echo "\n";
+	if (strlen($errmsg)>0) {
+		echo "\n";
+		echo "<font class=\"error\">$errmsg</font>\n";
+		echo "<p>\n";
+	} # if
+	echo "<table border=\"0\">\n";
+	echo "<tr>\n";
+	echo " <td>\n";
+	echo "  <table border=\"0\" width=\"100%\">\n";
+	echo "  <tr>\n";
+	echo "   <td colspan=\"2\" bgcolor=\"#E8ECF8\"><b>Registration Details</b></td>\n";
+	echo "  </tr>\n";
+	if ($use=="change") {
+		echo "  <tr>\n";
+		echo "   <td>ID:</td>\n";
+		echo "   <td>".htmlentities($f["id"])."</td>\n";
+		echo "  </tr>\n";
+		echo "  <tr>\n";
+		echo "   <td>Registration:</td>\n";
+		echo "   <td>".htmlentities(date($dateformatadmin,strtotime($f["regdate"])))." ";
+		echo htmlentities(date($timeformatadmin,strtotime($f["regdate"])))."</td>\n";
+		echo "  </tr>\n";
+	} # if
+	echo "  <tr>\n";
+	echo "   <td><font";
+	if ($e["regtype"]===true) echo " class=\"error\"";
+	echo ">Type:</font></td>\n";
+	echo "   <td>\n";
+	echo "    <select name=\"f[regtype]\">\n";
+	foreach ($regtypes as $regtype) {
+		echo "     <option value=\"".htmlentities($regtype)."\"";
+		if ($f["regtype"]==$regtype) { echo " selected"; }
+		echo ">".htmlentities($regtypename[$regtype])."</option>\n";
+	} # foreach
+	echo "    </select>\n";
+	echo "   </td>\n";
+	echo "  </tr>\n";
+#	echo "  <tr>\n";
+#	echo "   <td><font";
+#	if ($e["activity"]===true) echo " class=\"error\"";
+#	echo ">Activity:</font></td>\n";
+#	echo "   <td>\n";
+#	echo "    <select name=\"f[activity]\">\n";
+#	foreach ($activities as $activity) {
+#		echo "     <option value=\"".htmlentities($activity)."\"";
+#		if ($f["activity"]==$activity) { echo " selected"; }
+#		echo ">".htmlentities($activityname[$activity])."</option>\n";
+#	} # foreach
+#	echo "     <option value=\"\"";
+#	if ($f["activity"]=="") { echo " selected"; }
+#	echo ">Acc. Person / Banquet</option>\n";
+#	echo "    </select>\n";
+#	echo "   </td>\n";
+#	echo "  </tr>\n";
+	echo "  <tr>\n";
+	echo "   <td>Booking:</td>\n";
+	echo "   <td>\n";
+	echo "    <select name=\"f[reservationtime]\">\n";
+	echo "     <option value=\"early\"";
+	if ($f["reservationtime"]=="early") { echo " selected"; }
+	echo ">early</option>\n";
+	echo "     <option value=\"late\"";
+	if ($f["reservationtime"]=="late") { echo " selected"; }
+	echo ">late</option>\n";
+	echo "     <option value=\"onsite\"";
+	if ($f["reservationtime"]=="onsite") { echo " selected"; }
+	echo ">onsite</option>\n";
+	echo "    </select>\n";
+	echo "   </td>\n";
+	echo "  </tr>\n";
+#	echo "  </table>\n";
+
+#	echo "  <table border=\"0\">\n";
+	echo "  <tr>\n";
+	echo "   <td colspan=\"2\" bgcolor=\"#E8ECF8\"><b>Personal Information</b></td>\n";
+	echo "  </tr>\n";
+?>
+  <tr>
+   <td><font<? if ($e["title"]===true) echo " class=\"error\""; ?>>Title: </font></td>
+   <td>
+    <select name="f[title]">
+<?
+foreach ($titles as $titleentry) {
+	echo "   <option value=\"".htmlentities($titleentry)."\"";
+	if ($f["title"]==$titleentry) { echo " selected"; }
+	echo ">".htmlentities($titleentry)."</option>\n";
+} # foreach
+?>
+    </select>
+   </td>
+  </tr>
+  <tr>
+   <td><font<? if ($e["fname"]===true) echo " class=\"error\""; ?>>First name: </font></td>
+   <td><input type="text" name="f[fname]" maxlength="<? echo $maxfname; ?>" size="30" value="<? echo htmlentities($f["fname"]); ?>"></td>
+  </tr>
+  <tr>
+   <td><font<? if ($e["lname"]===true) echo " class=\"error\""; ?>>Last name: </font></td>
+   <td><input type="text" name="f[lname]" maxlength="<? echo $maxlname; ?>" size="30" value="<? echo htmlentities($f["lname"]); ?>"></td>
+  </tr>
+  <tr>
+   <td><font<? if ($e["affiliation"]===true) echo " class=\"error\""; ?>>Affiliation: </font></td>
+   <td><input type="text" name="f[affiliation]" maxlength="<? echo $maxaffiliation; ?>" size="30" value="<? echo htmlentities($f["affiliation"]); ?>"></td>
+  </tr>
+  <tr>
+   <td valign="top"><font<? if ($e["address"]===true) echo " class=\"error\""; ?>>Address: </font></td>
+   <td><textarea rows="2" cols="30" name="f[address]"><? echo htmlentities($f["address"]); ?></textarea></td>
+  </tr>
+  <tr>
+   <td><font<? if ($e["city"]===true) echo " class=\"error\""; ?>>City: </font></td>
+   <td><input type="text" name="f[city]" maxlength="<? echo $maxcity; ?>" size="30" value="<? echo htmlentities($f["city"]); ?>"></td>
+  </tr>
+  <tr>
+   <td><font<? if ($e["postalcode"]===true) echo " class=\"error\""; ?>>Postalcode: </font></td>
+   <td><input type="text" name="f[postalcode]" maxlength="<? echo $maxpostalcode; ?>" size="6" value="<? echo htmlentities($f["postalcode"]); ?>"></td>
+  </tr>
+  <tr>
+   <td><font<? if ($e["country"]===true) echo " class=\"error\""; ?>>Country: </font></td>
+   <td>
+    <select name="f[country]">
+     <option value="nocountry">select your country</option>
+<?
+# generate country drop down list
+foreach ($countries as $countryentry) {
+	echo "   <option value=\"".htmlentities($countryentry)."\"";
+	if ($f["country"]==$countryentry) { echo " selected"; }
+	echo ">".htmlentities($countryentry)."</option>\n";
+} # foreach
+?>        
+    </select>
+   </td>
+  </tr>
+  <tr>
+   <td><font<? if ($e["email"]===true || $e["emailformat"]===true) echo " class=\"error\""; ?>>Email: </font></td>
+   <td><input type="text" name="f[email]" maxlength="<? echo $maxemail; ?>" size="30" value="<? echo htmlentities($f["email"]); ?>"></td>
+  </tr>
+  <tr>
+   <td><font<? if ($e["phone"]===true) echo " class=\"error\""; ?>>Phone: </font></td>
+   <td><input type="text" name="f[phone]" maxlength="<? echo $maxphone; ?>" size="20" value="<? echo htmlentities($f["phone"]); ?>"></td>
+  </tr>
+  <tr>
+   <td><font<? if ($e["fax"]===true) echo " class=\"error\""; ?>>Fax: </font></td>
+   <td><input type="text" name="f[fax]" maxlength="<? echo $maxfax; ?>" size="20" value="<? echo htmlentities($f["fax"]); ?>"></td>
+  </tr>
+  <tr>
+   <td valign="top"><font<? if ($e["specialneeds"]===true) echo " class=\"error\""; ?>>Special Needs: </font></td>
+   <td><textarea rows="2" cols="30" name="f[specialneeds]"><? echo htmlentities($f["specialneeds"]); ?></textarea></td>
+  </tr>
+  </table>
+
+ </td>
+ <td>
+
+  <table border="0" width="100%">
+<?
+	echo "  <tr>\n";
+	echo "   <td colspan=\"3\" bgcolor=\"#E8ECF8\"><b>Payment</b></td>\n";
+	echo "  </tr>\n";
+?>
+  <tr>
+   <td>
+    <input type="radio" name="f[paymentmethod]" value="visa"<? if ($f["paymentmethod"]=="visa") echo " checked"; ?>>
+   </td>
+   <td colspan="2">VISA</td>
+  </tr>
+  <tr>
+   <td>
+    <input type="radio" name="f[paymentmethod]" value="mastercard"<? if ($f["paymentmethod"]=="mastercard") echo " checked"; ?>>
+   </td>
+   <td colspan="2">Mastercard</td>
+  </tr>
+  <tr>
+   <td></td>
+   <td><font<? if ($e["cardholder"]===true) echo " class=\"error\""; ?>>Card Holder: </font></td>
+   <td><input type="text" name="f[cardholder]" maxlength="<? echo $maxcardholder; ?>" size="16" value="<? echo htmlentities($f["cardholder"]); ?>"></td>
+  </tr>
+  <tr>
+   <td></td>
+   <td><font<? if ($e["cardnumber"]===true) echo " class=\"error\""; ?>>Card number: </font></td>
+   <td><input type="text" name="f[cardnumber]" maxlength="<? echo $maxcardnumber; ?>" size="16" value="<? echo htmlentities($f["cardnumber"]); ?>"></td>
+  </tr>
+  <tr>
+   <td></td>
+   <td>
+    <font<? if ($e["cardvalidmonth"]===true || $e["cardvalidyear"]===true) echo " class=\"error\""; ?>>Expiration Date (MM/YY): </font>
+   </td>
+   <td>
+    <input type="text" name="f[cardvalidmonth]" maxlength="<? echo $maxcardvalidmonth; ?>" size="2" value="<? echo htmlentities($f["cardvalidmonth"]); ?>">
+    /
+    <input type="text" name="f[cardvalidyear]" maxlength="<? echo $maxcardvalidyear; ?>" size="2" value="<? echo htmlentities($f["cardvalidyear"]); ?>">
+   </td>
+  </tr>
+
+  <tr>
+   <td></td>
+   <td>
+    <font<? if ($e["cardverification"]===true) echo " class=\"error\""; ?>>Verification: </font>
+   </td>
+   <td>
+    <input type="text" name="f[cardverification]" maxlength="<? echo $maxcardverification; ?>" size="3" value="<? echo htmlentities($f["cardverification"]); ?>">
+   </td>
+  </tr>
+  
+  <tr>
+   <td>
+    <input type="radio" name="f[paymentmethod]" value="cardbyfax"<? if ($f["paymentmethod"]=="cardbyfax") echo " checked"; ?>>
+   </td>
+   <td colspan="2">Credit card by fax</td>
+  </tr>
+
+  <tr>
+   <td>
+    <input type="radio" name="f[paymentmethod]" value="none"<? if ($f["paymentmethod"]=="none") echo " checked"; ?>>
+   </td>
+   <td colspan="2">None</td>
+  </tr>
+
+  </table>
+
+  <table border="0" width="100%">
+<?
+	echo "  <tr>\n";
+	echo "   <td colspan=\"2\" bgcolor=\"#E8ECF8\"><b>Accommodation</b></td>\n";
+	echo "  </tr>\n";
+	echo "  <tr>\n";
+	echo "   <td><input type=\"radio\" name=\"f[accommodation]\" value=\"ensuite\"";
+	if ($f["accommodation"]=="ensuite") echo " checked";
+	echo "></td>\n";
+	echo "   <td>Single (en suite)</td>\n";
+	echo "  </tr>\n";
+	echo "  <tr>\n";
+	echo "   <td><input type=\"radio\" name=\"f[accommodation]\" value=\"standard\"";
+	if ($f["accommodation"]=="standard") echo " checked";
+	echo "></td>\n";
+	echo "   <td>Single (standard)</td>\n";
+	echo "  </tr>\n";
+?>
+  <tr>
+   <td></td>
+   <td>
+    <table border="0" width="100%">
+    <tr>
+     <td>
+      <font<? if ($e["arrival"]===true || $e["dateillogical"]===true || $e["datesimilar"]===true) echo " class=\"error\""; ?>>Arrival:</font>
+     </td>
+     <td>
+      <select name="f[arrival]">
+       <option value="">select arrival date</option>
+<?
+# generate arrival drop down list
+foreach ($arrivaldates as $arrival) {
+	echo "       <option value=\"".htmlentities($arrival)."\"";
+	if ($f["arrival"]==$arrival) { echo " selected"; }
+	echo ">".date($dateformat, strtotime($arrival))."</option>\n";
+} # foreach
+?>
+      </select>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <font<? if ($e["departure"]===true || $e["dateillogical"]===true || $e["datesimilar"]===true) echo " class=\"error\""; ?>>Departure:</font>
+     </td>
+     <td>
+      <select name="f[departure]">
+       <option value="">select your departure</option>
+<?
+# generate departure drop down list
+foreach ($departuredates as $departure) {
+	echo "       <option value=\"".htmlentities($departure)."\"";
+	if ($f["departure"]==$departure) { echo " selected"; }
+	echo ">".date($dateformat, strtotime($departure))."</option>\n";
+} # foreach
+?>
+      </select>
+     </td>
+    </tr>
+    </table>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <input type="radio" name="f[accommodation]" value="none"<? if ($f["accommodation"]=="none") echo " checked"; ?>>
+   </td>
+   <td>No hotel room reservation</td>
+  </tr>
+  </table>
+
+  <table border="0" width="100%">
+<?
+	echo "  <tr>\n";
+	echo "   <td colspan=\"2\" bgcolor=\"#E8ECF8\"><b>Additional Banquet Ticket</b></td>\n";
+	echo "  </tr>\n";
+?>
+  <tr>
+   <td>Included tickets:</td>
+   <td><? echo htmlentities($banquet); ?></td>
+  </tr>
+  <tr>
+   <td>Additional tickets:</td>
+   <td>
+    <input type="text" name="f[banquetadd]" maxlength="<? echo $maxbanquetadd; ?>" size="4" value="<? echo htmlentities($f["banquetadd"]); ?>">
+   </td>
+  </tr>
+  <tr>
+   <td>Accompanying Person Special Needs:</td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td colspan="2">
+    <textarea rows="4" cols="30" name="f[apspecialneeds]"><? echo htmlentities($f["apspecialneeds"]); ?></textarea></td>
+   </td>
+  </tr>
+
+  </table>
+
+ </td>
+ <td>
+<?
+	echo "  <table border=\"0\" width=\"100%\">\n";
+	echo "  <tr>\n";
+	echo "   <td colspan=\"2\" bgcolor=\"#E8ECF8\"><b>Tutorials</b></td>\n";
+	echo "  </tr>\n";
+	echo "  <tr>\n";
+	echo "   <td>\n";
+		showtutorials("2004-03-22","am");
+		showtutorials("2004-03-22","pm");
+		showtutorials("2004-03-23","am");
+		showtutorials("2004-03-23","pm");
+		showtutorials("2004-03-25","midday");
+	
+	echo "   </td>\n";
+	echo "   <td>\n";
+	echo "   </td>\n";
+	echo "  </tr>\n";
+
+	echo "  <tr>\n";
+	echo "   <td colspan=\"2\" bgcolor=\"#E8ECF8\"><b>Lunches</b></td>\n";
+	echo "  </tr>\n";
+	echo "   <td colspan=\"2\">\n";
+
+foreach ($lunchdates as $lunchdate) {
+	$idx = "lunch".strtotime($lunchdate);
+?>
+	<select name="f[<? echo $idx; ?>]">
+	<option value="0"<? if ($f[$idx]==0) echo " selected";?>>0</option>
+	<option value="1"<? if ($f[$idx]==1) echo " selected";?>>1</option>
+	<option value="2"<? if ($f[$idx]==2) echo " selected";?>>2</option>
+	</select>
+<? 
+	echo date("D, F j", strtotime($lunchdate))."<br>";
+} 
+	echo "   </td>\n";
+	echo "  <tr>\n";
+	echo "   <td colspan=\"2\" bgcolor=\"#E8ECF8\"><b>Roles</b></td>\n";
+	echo "  </tr>\n";
+	echo "  <tr>\n";
+	echo "   <td colspan=\"2\">\n";
+
+	$sql	="SELECT * FROM role ORDER BY name";
+	$result	=$db->query($sql);
+	echo "  <table border=\"0\" width=\"100%\">\n";
+	while ($row=$result->fetchhash()) {				# output roles
+		$id	=$row["id"];
+		$name	=htmlentities($row["name"]);
+		echo "<tr>\n";
+		echo " <td width=\"1%\"><input type=\"checkbox\" name=\"f[role($id)]\" value=\"1\"";
+		if ($f["role(".$id.")"]==1) echo " checked";		# preselect field if it was selected previously
+		echo "></td>";
+		echo " <td><font";
+		if (   $e["role(".$id.")"]
+		    && $f["role(".$id.")"]==1) echo " class=\"error\"";
+		echo ">$name</font></td>\n";
+		echo "</tr>\n";
+	} # while
+	echo "  </table>\n";
+
+
+	echo "   </td>\n";
+	echo "  </tr>\n";
+	echo "  </table>\n";
+	echo "  <input type=\"hidden\" name=\"ftutorialsubmit\" value=\"1\">\n";
+
+	echo " </td>\n";
+	echo "</tr>\n";
+	echo "</table>\n";
+
+	if ($use=="new") {
+		echo "  <input type=\"submit\" name=\"faction\" value=\"".htmlentities($submitvaluenewsave)."\">\n";
+		echo "  <input type=\"submit\" name=\"faction\" value=\"".htmlentities($submitvaluenewcancel)."\">\n";
+	} # if
+	if ($use=="change") {
+		echo "  <input type=\"hidden\" name=\"f[id]\" value=\"".htmlentities($f["id"])."\">\n";
+		echo "  <input type=\"hidden\" name=\"f[paymentreceived]\" value=\"".htmlentities($f["paymentreceived"])."\">\n";
+		echo "  <input type=\"hidden\" name=\"fparticipantid\" value=\"".htmlentities($f["id"])."\">\n";
+		echo "  <input type=\"hidden\" name=\"f[oldtotalprice]\" value=\"".htmlentities($f["oldtotalprice"])."\">\n";
+		echo "  <input type=\"submit\" name=\"faction\" value=\"".htmlentities($submitvaluechangesave)."\">\n";
+		echo "  <input type=\"submit\" name=\"faction\" value=\"".htmlentities($submitvaluechangecancel)."\">\n";
+	} # if
+	echo " </td>\n";
+	echo "</tr>\n";
+	echo "</table>\n";
+	echo "</form>\n";
+} # showparticipantchange
+?>

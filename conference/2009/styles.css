@@ -1,0 +1,742 @@
+/*
+ ============================================================
+ STANDARD HTML TAGS
+ ============================================================
+*/
+
+body {
+	background: #DFDFDF;
+/*	background: #325A89; */
+/* 	background: #FFFFFF url(img/theme/img1.gif) repeat-x; */
+/* 	color: #8F8F8F; */
+	font-family: "Verdana", Arial, Helvetica, sans-serif;
+	font-size: 0.9em;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+/* 	text-align: justify; */
+}
+
+h1 {
+	color: #325A89;
+	font-size: 1.4em;
+	font-weight: normal;
+	letter-spacing: -1px;
+	padding-top: 10px;
+}
+
+h2, h3, h4, h5, h6 {
+	margin: 0;
+}
+
+h2 {
+	color: #325A89;
+	font-size: 1.3em;
+	font-weight: normal;
+	padding-top: 20px;
+}
+
+h3 {
+	color: #325A89;
+	font-size: 1.2em;
+	font-weight: normal;
+	padding-top: 10px;
+}
+
+h4 {
+	color: #325A89;
+	font-size: 1em;
+	font-weight: normal;
+	padding-top: 10px;
+}
+
+a {
+	color: #325A89;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a img {
+	border: none;
+}
+
+p {
+	text-align: justify;
+}
+
+p.ctr {
+	text-align: center;
+}
+
+ul {
+/*	list-style-position: inside;*/
+	margin-left: 2em;
+	padding-left: 1em;
+	text-indent: 0em;
+}
+
+ul ul li {
+	list-style-position: inside;
+	margin-left: 0;
+	padding-left: 2em;
+}
+
+.smallnote {
+	background: #CC6600;
+	color: #FFFFFF;
+	font-size: 0.8em;
+	font-weight: normal;
+	margin-top: 2px;
+	padding: 2px;
+}
+
+.smallnote_past {
+	background: #DFDFDF;
+	color: #FFFFFF;
+	font-size: 0.8em;
+	font-weight: normal;
+	margin-top: 2px;
+	padding: 2px;
+}
+
+.maroon {
+	color: #800000;
+}
+
+.smalltext {
+	font-size: 0.8em;
+}
+
+/*
+ ============================================================
+ HEADER
+ ============================================================
+*/
+
+#header0 {
+	width: 980px;
+	height: 320px;
+/*	height: 179px; */
+	margin: 0 auto;
+	background: url("img/header-back0.jpg") no-repeat;
+	background-color: #0A376C;
+}
+
+#header1 {
+	width: 980px;
+	height: 320px;
+/*	height: 179px; */
+	margin: 0 auto;
+	background: url("img/header-back1.jpg") no-repeat;
+	background-color: #0A376C;
+}
+
+#header * {
+	color: #FFFFFF;
+	margin: 0;
+	padding: 0;
+}
+
+#header h1 {
+	float: left;
+	font-size: 33px;
+	padding: 70px 0 0 10px;
+}
+
+#header h2 {
+	float: left;
+	font-size: 11px;
+	font-weight: normal;
+	padding: 91px 0 0 10px;
+}
+
+#header_print {
+	display: none;
+}
+
+/*
+ ============================================================
+ MAIN CONTENT
+ ============================================================
+*/
+
+#content {
+	background-color: #FFFFFF;
+	margin: 0 auto;
+	width: 980px;
+}
+
+.bg1 {
+	background: #FFFFFF url(img/theme/img4.gif) repeat-x;
+	border-top: 1px solid #e4f1fa;
+	padding: 0px 10px 10px 10px;
+}
+
+.bg2 {
+/*	background: #FFFFFF url(img/theme/img4.gif) repeat-x; */
+/*	border-top: 1px solid #CBE1EF; */
+	padding: 0px 20px 0px 20px;
+}
+
+/*
+ ============================================================
+ LEFT COLUMN OF CONTENT
+ ============================================================
+*/
+
+#colOne {
+	background: #FFFFFF;
+	float: left;
+	width: 210px;
+}
+
+#colOne ul {
+	list-style: none none outside;
+	margin-left: 0;
+	padding-left: 0;
+}
+
+#colOne li {
+	background: url(img/theme/img6.gif) repeat-x;
+	padding: 5px 0 0 0;
+}
+
+#colOne li.first {
+	background: none;
+}
+
+#colOne li.current {
+	font-weight: bold;
+}
+
+#colOne.snav.current li {
+	font-size: 0.6em;
+}
+#colOne li.snav {
+	font-size: 0.75em;
+	padding: 3px 0px 3px 0px;
+}
+
+#colOne h3  {
+	background: #e4f1fa;
+/*	background: #0077A7 url(img/theme/img3.gif) repeat-x left bottom; */
+/*	border-bottom: 1px #325a89 solid; */
+	color: #325a89;
+	padding-left: 8px;
+	padding-top: 10px;
+}
+
+#colOne.submit input {
+	background: #ffa20f;
+	border: 2px outset #d7b9c9;
+	color: #000;
+}
+
+#colOne textarea {
+	background: #FFFFFF url(img/theme/img4.gif) repeat-x;
+	padding-left: 0;
+}
+
+/*
+ ============================================================
+ RIGHT COLUMN OF CONTENT
+ ============================================================
+*/
+
+#colTwo {
+	background: #FFFFFF;
+	float: right;
+	width: 770px;
+}
+
+#colTwo h3 {
+	padding-left: 0;
+}
+
+/*
+ ============================================================
+ NAVIGATION MENU
+ ============================================================
+*/
+
+ul#tabnav {
+	/* general settings */
+	
+	background: url(img/gradient.jpg) no-repeat;
+	
+/*	border-bottom: 1px solid #0A376C; */
+	background-color: #325A89;
+	font-size: 0.75em;
+	list-style-type: none;
+	margin: 0em 0em 0em 0px;
+	padding: 3px 10px 3px 10px; /* THIRD number must change with respect to padding-top (X) below */
+/*	position: relative; */
+	text-align: right;
+/*	top: 5px; */ /* CHRIS -- was 102?  */
+}
+
+ul#tabnav li {
+	/* do not change */
+	
+	display: inline;
+}
+
+
+body#Home li.Home, body#Conference li.Conference, body#News li.News, body#Wiki li.Wiki {
+	/* settings for selected tab */
+	
+	background-color: #FFFFFF; /* set background color to match above border color */
+/*	border-bottom: 1px solid #FFFFFF; */ /* set border color to page background color */
+	width: 300px;
+}
+
+body#Home li.Home a, body#News li.News a, body#Conference li.Conference a, body#Wiki li.Wiki a {
+	/* settings for selected tab link */
+	
+	background-color: #E4F1FA; /* set selected tab background color as desired */
+	color: #000; /* set selected tab link color as desired */
+/*	font-weight: bold; */
+	padding-top: 0px; /* must change with respect to padding (X) above and below */
+	position: relative;
+	top: 0px;
+}
+
+ul#tabnav li a {
+	/* settings for all tab links */
+	
+	background-color: #325A89; /* set unselected tab background color as desired */	
+/*	border: 1px solid #000000; */ /* set border COLOR as desired; usually matches border color specified in #tabnav */
+/*	border-bottom: none; */
+	color: #FFFFFF; /* set unselected tab link color as desired */
+/*	font-weight: bold; */
+	margin-left: 10px; /* set additional spacing between tabs as desired */
+	padding: 0px 6px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
+/*	text-decoration: none; */
+}
+
+ul#tabnav a {
+	text-decoration: none;
+}
+
+ul#tabnav a:hover { /* settings for hover effect */
+	background: #F5F2DA; /* set desired hover color */
+	color:#000000
+}
+
+/*
+ ============================================================
+ SPONSORS
+ ============================================================
+*/
+
+.bigsig a { 
+	color: #6666cc;
+	display: inline;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 14pt;
+	font-style: italic;
+	font-weight: bold; 
+	text-decoration: none;
+}
+
+.bigsig a img {
+	display: inline;
+	vertical-align: middle;
+}
+
+a.sponsor {
+	text-decoration: none;
+}
+
+/*
+ ============================================================
+ FEEDBACK
+ ============================================================
+*/
+
+.feedback {
+	background: #FFFFFF url(img/theme/img4.gif) repeat-x;
+	border-top: 1px solid #e4f1fa;
+	margin-top: 0px;
+	padding: 0 10px 10px 10px;
+}
+
+/*
+ ============================================================
+ NEWS
+ ============================================================
+*/
+ 
+.moreNews {
+	text-align: right;
+	font-size: small;
+	
+}
+
+.title {
+	text-align:center;
+}
+
+.smallnewsitem {
+	display: block;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	text-align: left;
+}
+
+.smallnewsitem .date {
+	   display: inline;
+	font-style: italic;
+}
+
+.smallnewsitem .title {
+	display: inline;
+}
+
+.newsdesc {
+	padding-bottom: 10px;
+	text-align: justify;
+}
+
+.newstitle {
+	border-bottom: 1px solid #325A89;
+	color: #325A89;
+	font-weight: bold;
+	text-align: left;
+}
+
+.newsdate {
+	color: #696969;
+	font-size: 0.7em;
+}
+
+/*
+ ============================================================
+ TABLE
+ ============================================================
+*/
+
+table {
+	border: 0px;
+	margin: 6px 0px 6px 0px;
+	padding: 0px;
+}
+
+td {
+	border: 0px;
+	margin: 0px;
+	padding: 2px 6px 2px 6px;
+	vertical-align: top;
+}
+
+td.ccbuffer {
+	width: 15px;
+}
+
+td.dates_event {
+	color: #325A89;
+	font-size: 1.2em;
+	font-weight: normal;
+}
+
+td.dates_category {
+	border: 0px;
+	margin: 0px;
+	padding: 3px 6px 3px 40px;
+	text-align: left;
+ 	white-space: nowrap; 
+}
+
+td.dates_future {
+	border: 0px;
+	font-weight: bold;
+	margin: 0px;
+	padding: 2px 6px 2px 6px;
+}
+
+td.dates_past {
+	color: #C0C0C0;
+}
+
+td.foto {
+	font-weight: bold;
+	height: 85px;
+	vertical-align: top;
+}
+
+.affiliation, .committee {
+	font-size: 0.8em;
+}
+
+.committee {
+	font-weight: bold;
+}
+
+.confposition {
+	font-weight: bold;
+}
+
+.newstable {
+	border-bottom-width: 0;
+	border-color: #CC6600;
+	border-style: dotted;
+	border-width: thin;
+	float: right;
+	margin: 5px 5px 2px 10px;
+	padding: 6px 6px 6px 6px;
+	text-align: left;
+	width: 240px;
+}
+
+.newstable td {
+	font-size: 0.75em;
+}
+
+.datetable {
+	border-bottom-width: 0;
+	border-color: #CC6600;
+	border-style: dotted;
+	border-width: thin;
+	text-align: left;
+	width: 100%;
+}
+
+.datetable th, .newstable th {
+/*	background-color: #E6E6E6; */
+	background-color: #CC6600;
+	color: #FFFFFF;
+	font-weight: normal;
+	text-align: left;
+	padding: 5px;
+}
+
+.alternate {
+	background: #FFF8DC;
+}
+
+/*
+ ============================================================
+ OVERVIEW TABLE
+ ============================================================
+*/
+
+Table.overviewTable {
+	border-bottom-width: 0;
+	border-color: #CC6600;
+	border-style: dotted;
+	border-width: thin;
+	width: 100%;
+}
+
+Table.inoverviewTable {
+	margin: 0px;
+	padding: 0px;
+}
+
+.overviewTime {
+	border-color: #000000;
+	border-style: solid;
+	border-width: 1px;
+	font-size: 9pt;
+	padding: 5px 2px 5px 2px;
+	white-space: nowrap;
+	text-align: center;
+	vertical-align: top;
+}
+
+.overviewBreak {
+	background-color: #EEEEEE;
+	border-color: #CCCCCC;
+	border-style: solid;
+	border-width: 1px;
+	color: #696969;
+	font-size: 0.8em;
+	padding: 5px 0px 5px 0px;
+	text-align: center;
+	vertical-align: top;
+}
+
+.overviewEvent {
+	border-color: #000000;
+	border-style: solid;
+	border-width: 1px;
+	font-size: 0.9em;
+	padding: 5px;
+	vertical-align: top;
+}
+
+.overviewEvent p {
+	text-align: left;
+}
+
+.inoverviewEvent {
+	padding: 0px;
+	vertical-align: top;
+}
+
+.overviewDate {
+	background-color: #CC6600;
+	border-style: none;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 1.2em;
+	padding: 5px;
+	vertical-align: top;
+}
+
+.overviewColumnTitle {
+	background-color: #325A89;
+	color: #FFFFFF;
+	font-size: 0.9em;
+	font-weight: bold;
+	padding: 5px;
+	text-align: center;
+	vertical-align: top;
+	white-space: nowrap;
+}
+
+.overviewSectionTitle {
+	background-color: #325A89;
+	border-color: #000000;
+	border-style: solid;
+	border-width: 1px;
+	color: #FFFFFF;
+	font-size: 0.9em;
+	font-weight: bold;
+	padding: 5px;
+	text-align: center;
+	vertical-align: top;
+	white-space: nowrap;
+}
+
+.overviewLink {
+	font-size: 10pt;
+}
+
+.italicsEvent {
+	border-color: #000000;
+	border-style: solid;
+	border-width: 1px;
+	font-size: 0.9em;
+	font-style: italic;
+	padding: 5px;
+	vertical-align: top;
+}
+
+.overviewEmpty {
+
+}
+
+.nopadding {
+	padding: 0px;
+}
+
+/*
+ ============================================================
+ DEMO TABLE
+ ============================================================
+*/
+
+Table.demoTable {
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+}
+
+.demoTable td {
+	padding: 0px;
+	width: 50%;
+}
+
+/*
+ ============================================================
+ RESEARCH TABLE
+ ============================================================
+*/
+
+Table.researchTable {
+	margin: 10px 0px 0px 0px;
+	padding: 2px;
+	width: 100%;
+}
+
+.researchTable td {
+	padding: 5px;
+}
+
+/*
+ ============================================================
+ LISTING
+ ============================================================
+*/
+
+.listing_session {
+	border-bottom-width: 0;
+	border-color: #CC6600;
+	border-style: dotted;
+	border-width: thin;
+	margin: 10px 0px 10px 0px;
+	padding: 2px;
+}
+
+.listing_session p {
+	padding-left: 5px;
+}
+
+.listing_session_title {
+	background-color: #CC6600;
+	color: #FFFFFF;
+	font-size: 1.3em;
+	padding: 5px;
+}
+
+.listing_paper {
+	margin: 10px 0px 5px 0px;
+	padding: 5px;
+}
+
+.listing_paper_title {
+	color: #325A89;
+	font-size: 1.2em;
+}
+
+.listing_author_name {
+	margin-top: 10px;
+}
+
+.listing_author_affl, .listing_chair_affl {
+	font-size: 0.7em;
+}
+
+.listing_content {
+	color: #000000;
+	margin-top: 20px;
+}
+
+/*
+ ============================================================
+ FOOTER
+ ============================================================
+*/
+
+#footer {
+	clear: both;
+	color: #808080;
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 20px;
+	padding-top: 20px;
+	width: 980px;
+}
+
+#footer p {
+	text-align: center;
+	text-transform: lowercase;
+	font-size: small;
+}
+
+#footer a {
+	color: #808080;
+}

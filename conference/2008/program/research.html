@@ -1,0 +1,700 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Annual Aspect-Oriented Software Development Conference: AOSD 2008 Research Program</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="description" content="Seventh International Conference on Aspect-Oriented Software Development: AOSD 2008" />
+<meta name="keywords" content="Brussels, Belgium, AOSD, 2008, 08, AOP, " />
+
+<link rel="stylesheet" type="text/css" href="../styles.css" />
+<link rel="icon" href="../img/aosd.ico" />
+<link rel="shortcut icon" href="../img/aosd.ico" />
+
+<script type="text/javascript" src="../expand.js"></script>
+
+</head>
+
+<body id="conference">
+<div id="header">
+
+ 		        
+<ul id="tabnav"><li class="conference"><a href="../" accesskey="1">Conference</a></li></ul>
+</div>
+<div id="content">
+
+	<div id="colTwo">
+	<div class="bg2">
+
+<h1>Research Track</h1>
+
+<div  style="border-bottom-color : #b8b8b8; border-bottom-style : solid; border-bottom-width : 1px; border-left-color : #b8b8b8; border-left-style : solid; border-left-width : 1px; border-right-color : #b8b8b8; border-right-style : solid; border-right-width : 1px; border-top-color : #b8b8b8; border-top-style : solid; border-top-width : 1px; padding-left : 10px; padding-right : 10px;">
+<p>AOSD is the premier conference on software modularity, with an emphasis on
+novel notions of modularity that crosscut traditional abstraction
+boundaries. The AOSD research track brings together leading researchers and
+practitioners working in the fields of software engineering, programming
+languages, and software systems. This page lists the papers to be presented
+in that research track at the 7th edition of AOSD, in 2008. A total of 79
+papers were submitted, and 340 in-depth technical reviews were produced to
+rank the papers according to quality; the majority of papers received four
+reviews, many of the strong contenders received five reviews or more.
+Authors had an opportunity to respond to reviews, and this helped clear up
+some misunderstandings. The research program committee met in Darmstadt to
+make the final selection of 17 papers. The program reflects how AOSD brings
+together different communities around the theme of crosscutting concerns:
+
+<ul>
+	<li>Several papers investigate the benefits of combining aspects and generative programming for test case instantiation, program evolution, and modular compiler design.</li>
+	<li>Another group of papers is about using static analysis and knowledge representation  techniques for reasoning about aspects and aspect-based modularity.</li>
+	<li>AOSD always has strong input from the programming language community and this year is no exception with two sessions dedicated to this theme. Contributions in this category range from addressing static typing issues, to design of new language features, as well implementation platforms for aspect-oriented languages.</li>
+	<li>Tool support is also a continuous theme of AOSD.</li>
+	<li>Finally, the program includes presentations of interesting applications of aspect techniques to support adaptation and variability.</li>
+</ul>
+
+
+</p>
+<p>
+I would like to thank all members of the research program committee for
+their efforts, and also all the co-reviewers who generously shared their
+expertise during the evaluation process. Richard van de Stadt of Borbala
+Online Conference Services provided superb support for the use of the
+CyberChair system, going far beyond the call of duty. Gudrun Jörs and
+Thorsten Schäfer assisted with all the secretarial aspects of the paper
+selection process, including the organisation of the PC meeting, as did many
+other members of the Software Technology team of Darmstadt University of
+Technology.</p>
+<p style="text-align : right;"><em>-Mira Mezini, Program Chair AOSD08</em></p>
+</div>
+
+
+<br>
+
+<h2>Wednesday, April 2nd, 2008</h2>
+
+<p>
+<strong>9:00-10:30</strong></p>
+
+<p> 
+Invited Talk by <A href="keynotes.html#key1">Daniel Wiese</A> (Siemens)<br /><br /> <strong>Large Scale Application for AOP in the Health Care Domain: A Case Study</strong>
+</p>
+
+<hr>
+
+<p><strong>10:30-11:00</strong> COFFEE BREAK
+</p>
+
+<hr>
+
+<A name="benz"></A><p><strong>11:00-12:30</strong></p> 
+
+<h2>Aspects and Generative Programming</h2>
+
+<p>
+<input type="button" class="button" onclick="return toggleMe('abs1')" value="+" title="Abstract"><strong>Aspect Oriented Test Case Instantiation</strong>, by Benz 
+</p>
+ <div id="abs1" style="display:none">
+<p></p>Test case instantiation is the transformation of abstract test cases into executable test scripts. Abstract test cases are either the result of model based test case generation or are manually defined in a suitable modeling notation. The transformation varies depending on different testing concerns, such as test goal, test setup and test phase. Thus, for each testing concern a new transformation must be defined. This paper introduces AspectT, an aspect-oriented language for the instantiation of abstract test cases. We reduce the effort of test case instantiation by modularizing testing concerns in the form of aspects to enable their reuse in different testing contexts. The approach is implemented and integrated in an existing testing framework and has been successfully applied to test an electronic control unit of an automotive infotainment system at BMW Group.</p>
+</div>
+
+<p><input type="button" class="button" onclick="return toggleMe('abs2')" value="+" title="Abstract"><strong>Program, Enhance Thyself! Demand-Driven Pattern-Oriented Program Enhancement</strong>, by Tilevich, Back</p>
+ <div id="abs2" style="display:none">
+
+<p>Program enhancement refers to adding new functionality to an
+existing program. We argue that repetitive program enhancement
+tasks can be expressed as patterns, and that the application of
+such enhancement patterns can be automated. This paper presents
+a novel approach to pattern-oriented automated enhancement of
+object-oriented programs. Our approach augments the capabilities
+of an aspect compiler to capture the programmerâ€™s intent to enhance
+a program. In response to the programmer referencing a piece of
+functionality that is non-existent, our approach automatically synthesizes
+aspect code to supply the required functionality transparently.
+To improve flexibility and facilitate reuse, the synthesis and
+application of the new functionality is guided by declarative when-then
+rules, concisely expressed using a rule base.
+</p>
+<p>Our extensible automated program enhancement system, called
+DRIVEL, extends the AspectJ compiler with aspect generating capabilities.
+The generation is controlled using the DROOLS rules engine. To validate our
+approach and automated tool, we have created a collection of enhancement
+libraries and used DRIVEL to apply them to the LibX Edition Builder, a
+large-scale, widely-used Web application. DRIVEL automatically enhanced the
+LibX Edition Builderâ€™s XML processing modules with structural navigation
+capabilities and caching, eliminating the need to implement this
+functionality by hand.</p>
+
+
+</div> 
+
+<p><input type="button" class="button" onclick="return toggleMe('abs3')" value="+" title="Abstract"><strong>Modularity First: A Case for Mixing AOP and Attribute Grammars</strong>, by Avgustinov, Ekman, Tibble</p>
+<br /> <div id="abs3" style="display:none">
+
+
+<p>We have reimplemented the frontend of the extensible AspectBench
+Compiler for AspectJ, using the aspect-oriented meta-compiler
+JastAdd. The original frontend was purely object-oriented. Each
+frontend extends Java with AspectJ and an additional set of pointcuts
+in a modular fashion. In this paper we give a detailed comparison of
+both approaches and show a number of advantages of using JastAdd: the
+implementation is half the size, twice as fast, concerns are better
+localised, extensions are composable, and computations are
+automatically scheduled.</p>
+<p>
+JastAdd provides a very constrained form of static AOP where only
+inter-type declarations and method execution interception are
+supported. However, additional modularisation mechanisms from the
+compiler construction community are supported in the form of
+demand-driven evaluation and attribute grammars. Our implementation
+would not have benefited from a richer pointcut language, while both
+demand-drive evaluation and declarative attributes were essential in
+enabling composable extensions and flexible modularisation.</p>
+
+<p>We believe that the AOP community at large can benefit from
+acknowledging demand-driven evaluation as an important modularisation
+mechanism. Also, reference attribute grammars enhance the extensible
+implementation of graph-based computations that rely on
+context-sensitive information.</p>
+
+
+</div> <br />
+
+</p>
+
+<hr>
+
+<p><strong>12:30-14:00</strong> LUNCH
+</p>
+
+<hr>
+<p><strong>14:00-15:30</strong></p>
+
+
+<h2>Reasoning about Aspects</h2>
+
+<p>
+<input type="button" class="button" onclick="return toggleMe('abs4')" value="+" title="Abstract"><strong>AJANA: A General Framework for Source-Code-Level Interprocedural Dataflow - Analysis of AspectJ Software</strong>, by Xu, Rountev</p>
+<div id="abs4" style="display:none">
+<p>
+Aspect-oriented software presents new challenges for the designers
+of static analyses. Our work aims to establish systematic foundations
+for dataflow analysis of AspectJ software. We propose a
+control- and data-flow program representation for AspectJ programs,
+as basis for subsequent interprocedural dataflow analyses.
+The representation is built at the source code level and captures
+the semantic intricacies of various pointcut designators, multiple
+applicable advices per joint point, dynamic advices, and general
+flow of data to, from, and between advices. We also propose two
+dataflow analyses for AspectJ software: (1) a novel object effect
+analysis based on a flow- and context-sensitive must-alias analysis,
+and (2) a dependence analysis used for constructing the system
+dependence graph for slicing, refactoring, change impact analysis,
+etc. Both analyses are representative of a general category of
+dataflow analyses referred to as interprocedural distributed environment
+(IDE) problems. The two analyses are built on top of the
+proposed representation, and take into account the complex flow
+of control and data due to aspect-oriented features. We present a
+study of the proposed techniques on 37 program versions, using
+our AJANA analysis framework which is based on the abc AspectJ
+compiler. The results show that the representation can be built efficiently,
+that it is superior to an approach based on the woven bytecode,
+and that it enables analyses that are both faster and more precise.
+These findings strongly indicate that the proposed approach is
+a promising candidate for a foundation upon which various interprocedural
+analyses for AspectJ can be designed and built.</p>
+</div>
+
+<p>
+
+<input type="button" class="button" onclick="return toggleMe('abs5')" value="+" title="Abstract"><strong>Reasoning about Aspects With Common Sense</strong>, by Ostermann.
+</p>
+<div id="abs5" style="display:none">
+
+
+<p>There has been a lot of debate about the modularity of aspect-oriented
+programs, and in particular the ability 
+to reason about such programs in a modular way, although it has never been
+defined precisely what modular reasoning means. This work analyzes what it
+means to reason about a program, and separates ``modular reasoning'' into
+several well-defined properties of a reasoning model.
+</p>
+<p>A comparison of an OO language semantics with an AO language semantics with
+respect to these properties reveals that explanations of AOP that are based on
+weaving are a major obstacle to reasoning about AO programs in a modular way.
+We argue that a more modular semantics that is easier to reason about can be
+given to AO programs if we renounce the monotonicity of the corresponding
+reasoning system - a sacrifice that is well-known in artificial intelligence
+to model ``common sense'' reasoning. More generally, we claim that AOP should
+be understood as a form of nonmonotonic knowledge representation.
+</p>
+
+</div>
+
+<h2>Programming Language Design and Implementation I</h2>
+
+<p>
+<input type="button" class="button" onclick="return toggleMe('abs6')" value="+" title="Abstract"><strong>StrongAspectJ: Flexible and Safe Pointcut/Advice Bindings</strong>, by De Fraine,
+Sudholt, Jonckers
+</p>
+<div id="abs6" style="display:none">
+
+<p>AspectJ was designed as a seamless aspect-oriented extension of the Java
+programming language. However, unlike Java, AspectJ does not have a safe
+type system: an accepted binding between a pointcut and an advice can give
+rise to type errors at runtime. In addition, AspectJ's typing rules severely
+restrict the definition of certain generic advice behavior.</p>
+
+<p>In this paper, we analyze the roots of these type errors, and describe
+measures to recover type safety for both generic and non-generic
+pointcut/advice declarations. Pointcuts quantify over heterogeneous sets of
+join points and are hence typed using type ranges in our approach, while
+type variables and a dual advice signature allow to express the generic and
+invasive nature of advices. Using these mechanisms, we can express advice
+that augments, narrows or replaces base functionality in possibly generic
+contexts.</p>
+
+<p>As a language engineering contribution, we integrate our proposal with the
+AspectJ language, and we provide a prototype implementation as a plugin for
+the AspectBench Compiler (abc). On a theoretical level, we present a formal
+definition of the proposed constructs and typing rules, and develop proofs
+for their type safety properties.</p>
+
+</div>
+
+<hr>
+<p><strong>15:30-16:00</strong> COFFEE BREAK
+</p>
+<hr>
+<p><strong>16:00-17:30</strong></p>
+
+<h2>Programming Language Design and Implementation I (ctd)</h2>
+
+<p><input type="button" class="button" onclick="return toggleMe('abs7')" value="+" title="Abstract"><strong>EJFlow: Taming Exceptional Control Flows in Aspect-Oriented Programming</strong>, by
+Cacho, Filho, Garcia, Figueiredo</p>
+<div id="abs7" style="display:none">
+
+
+<p>Many of the problems that stem from the use of exception handling are caused
+by the local way in which exceptions are handled. It demands that developers
+understand the source of an exception, the place where it is handled, and
+everything in between. As a consequence, exceptions easily get "out of
+control" and, as system development progresses, exceptional control flows
+become less well-understood, with potentially negative consequences for the
+program maintainability and reliability. This paper presents an innovative
+aspect-oriented model for exception handling implementation. In contrast to
+other exception handling mechanisms, our model provides abstractions to
+explicitly describe global views of exceptional control flows. As a result,
+this new model makes it possible to understand exception flows from an
+end-to-end perspective by looking at a single part of the program. Also, it
+leverages existing pointcut languages to make the association of handlers with
+normal code more flexible. The implementation of our proposed model, called
+EJFlow, extends the AspectJ programming language with the aim of promoting
+enhanced robustness and program modularization. We evaluate qualitatively and
+quantitatively the proposed exception handling model through a case study
+targeting a real mobile application.</p>
+</p>
+
+</div>
+
+
+<p><input type="button" class="button" onclick="return toggleMe('abs8')" value="+" title="Abstract"><strong>Relational Aspects as Tracematches</strong>, by Bodden, Shaikh, Hendren</p>
+<div id="abs8" style="display:none">
+
+
+<p>The relationships between objects in an object-oriented program are an
+essential property of the program's design and implementation.  Two
+previous approaches to implement relationships with aspects were
+association aspects, an AspectJ-based language extension, and the
+relationship aspects library.  While those approaches greatly ease
+software development, we believe that they are not general enough. For
+instance, the library approach only works for binary relationships, while
+the language extension does not allow for the association of primitive
+values or values from non-weavable classes.</p>
+<p>Hence, in this work we propose a generalized alternative implementation
+via a direct reduction to tracematches, a language feature for executing
+an advice after having matched a sequence of events.
+This new implementation scheme yields multiple benefits.  Firstly, our
+implementation is more general than existing ones, avoiding most
+previous limitations. It also yields a new language construct,
+relational tracematches.</p>
+<p>We provide an efficient implementation based on the AspectBench
+Compiler, along with test cases and microbenchmarks.  Our empirical
+studies showed that our implementation, when compared to previous
+approaches, uses a similar memory footprint with no leaking, but the
+generality of our approach does lead to some runtime overhead.  We
+believe that our implementation can provide a solid foundation for
+future research.</p>
+
+</div>
+
+<p><input type="button" class="button" onclick="return toggleMe('abs9')" value="+" title="Abstract"><strong>Test-Based Pointcuts for Robust and Fine-Grained Join Point Specification</strong>, by
+Sakurai, Masuhara</p>
+
+<div id="abs9" style="display:none">
+
+<p>We propose test-based pointcuts, a novel pointcut mechanism for AspectJ-like
+aspect-oriented programming languages. The idea behind the test-based
+pointcuts is to specify join points through unit test cases associated with
+the target program.  The test-based pointcuts improve robustness and precision
+of pointcut languages. The test-based pointcuts are more robust against
+software evolution because they do not directly rely on identifier names in a
+target program.  The test-based pointcuts are more precise because they can
+distinguish fine grained execution histories including conditional branches by
+comparing the runtime execution histories with recorded for ones of the unit
+test cases.  This paper presents design and implementation of the test-based
+pointcuts as an extension of an AspectJ compiler.  We evaluated robustness and
+runtime efficiency of test-based pointcuts through case studies that applied
+test-based pointcuts to several versions of practical application programs.</p>
+
+
+</div>
+
+
+
+
+
+<hr  style="height: 6px; margin-top: 30px; margin-bottom: 20px;">
+
+
+
+<h2>Thursday, April 3rd, 2008</h2>
+
+
+<p><strong>9:00-10:30</strong></p>
+<p> Invited Talk by <A href="keynotes.html#key2">Gul Agha</A>
+(University of Illinois at Urbana-Champaign, USA)<br /><br />
+<strong>Time, Chance and Change: Aspects, Middleware and Reflection
+in Pervasive Cyberspace</strong>
+</p>
+<hr>
+<p><strong>10:30-11:00</strong> COFFEE BREAK
+</p>
+<hr>
+<p><strong>11:00-11:30</strong>
+
+<strong>AOSD Community News</strong>
+by AOSA Steering Committee
+</p>
+
+<p><A name="adapt"></A><strong>11:30-12:30</strong></p>
+
+
+<h2>Aspects for Adaptation and Variability Support</h2>
+
+<p><input type="button" class="button" onclick="return toggleMe('abs10')" value="+" title="Abstract"><strong>Edicts: Implementing Features with Flexible Binding Times</strong>, by Chakravarthy,
+Regehr, Eide</p>
+
+<div id="abs10" style="display:none">
+
+<p>In a software product line, the binding time of a feature is the time at which
+one decides to include or exclude a feature from a software product.  Typical
+binding site implementations are intended to support a single binding time
+only, e.g., compile time or run time.  Sometimes, however, a product line must
+support features with variable binding times.  For instance, a product line
+may need to include both embedded system configurations, in which features are
+selected and optimized early, and desktop configurations, where clients choose
+features on demand.</p>
+<p> 
+We present a new technique for implementing the binding sites of features that
+require flexible binding times.  Our technique combines design patterns and
+aspect-oriented programming: a pattern encapsulates the variation point, and
+targeted aspects---called edicts---set the binding times of the pattern
+participants.  We describe our approach and demonstrate its usefulness by
+creating a middleware product line capable of serving the desktop and embedded
+domains.  Our product line is based on JacORB, which has many dynamically
+configurable features.  Using edicts to select features at compile time, we
+create a version of JacORB more suited to resource-constrained environments. 
+By configuring four JacORB subsystems via edicts, we achieve a 32.2% reduction
+in code size.
+</p>
+
+</div>
+
+
+<p><input type="button" class="button" onclick="return toggleMe('abs11')" value="+" title="Abstract"><strong>Support for Distributed Adaptations in Aspect-Oriented Middleware</strong>, by Truyen,
+Janssens, Sanen, Joosen</p>
+<div id="abs11" style="display:none">
+
+
+<p>Many aspect-oriented middleware platforms support run-time aspect
+weaving, but do not support coordinating distributed changes to a
+set of aspects at run-time. A distributed change entails weaving
+or unweaving multiple inter-dependent aspects that are logically
+or physically distributed. Coordinating such multiple weavings
+inside the application layer is a complex and difficult task for
+the application developer, because global state consistency,
+structural integrity and other safety properties have to be
+preserved. In this paper, we present the DyReS framework that
+offers the required coordination support on top of existing
+aspect-oriented middleware platforms. The framework is
+customizable towards application-specific requirements to achieve
+improved performance and reconfiguration semantics. We have
+validated our approach by delivering and examining two
+implementations of the DyReS framework: one on top of JBoss AOP
+and a second one for Spring AOP.</p>
+
+</div>
+</p>
+
+<hr>
+
+<p><strong>14:00-15:30</strong></p>
+
+
+<h2>Tool Support</h2>
+<p>
+<input type="button" class="button" onclick="return toggleMe('abs12')" value="+" title="Abstract"><strong>Tool-supported Refactoring of Aspect-oriented Programs</strong>, by Wloka, Hirschfeld, Hänsel<div id="abs12" style="display:none">
+</p>
+<p>Aspect-oriented programming languages provide new composition mechanisms for
+improving the modularity of crosscutting concerns. Implementations of such
+language support use advanced program representations, like abstract syntax
+trees or stack traces, to enable an indirect specification (pointcut) of
+executions of program elements at which aspect code (advice) is invoked.
+During the evolution of a program, this representations will change and,
+hence, advice may not be executed as intended by the developer.</p>
+<p>In this paper we present a tool-supported refactoring approach that addresses
+this evolution problem  by automating the detection of change effects on
+pointcuts and the generation of pointcut updates. A new model for decomposing
+pointcuts into simpler expressions is used as the base for deriving the change
+impact on pointcuts. Based on this model, we show how program analysis can
+detect affected or even broken pointcuts, how suitable pointcut adjustments
+can be derived, and when developer feedback is unavoidable.</p>
+
+
+</div>
+
+<p><input type="button" class="button" onclick="return toggleMe('abs13')" value="+" title="Abstract"><strong>Tool Support for Understanding and Diagnosing Pointcut Expressions</strong>, by Ye, Volder</p>
+<div id="abs13" style="display:none">
+
+
+<p>In this paper, we present algorithms that compute two kinds of information 
+that can help AspectJ developers diagnose and fix potential problems with 
+their pointcuts. First, we present an algorithm to compute almost matched
+ joinpoints. Second, we present algorithms to compute explanations of why
+ a pointcut does not match (or does match) a specific joinpoint. We
+implemented two tools using these algorithms.  The first is an offline tool that analyzes
+a code base and produces a comprehensive report about the pointcuts in the
+code. </p>
+<p>Using this tool, we were able to find several real problems in existing, 
+medium-sized AspectJ code bases. The second tool is an Eclipse plug-in called
+PointcutDoctor. PointcutDoctor is a natural extension of AJDT that provides
+developers easy access to the same information from within their already 
+familiar development environment.</p>
+
+</div>
+
+
+
+<p><input type="button" class="button" onclick="return toggleMe('abs14')" value="+" title="Abstract"><strong>View-Based Maintenance of Graphical User Interfaces</strong>, by Li, Wohlstadter
+</p>
+<div id="abs14" style="display:none">
+
+<p>One difficulty in software maintenance is that the relationship between
+observed program behavior and source code is not always clear. In this paper
+we are concerned specifically with the maintenance of graphical user
+interfaces (GUIs). User interface code can crosscut the decomposition of
+applications making GUIs hard to maintain. A popular approach to develop and
+maintain GUIs is to use "What you see is what you get" editors. They allow
+developers to work directly with a graphical design view instead of scattered
+source elements. Unfortunately GUI editors are limited by their ability to
+statically reconstruct dynamic collaborations between objects. In this paper
+we investigate the combination of a hybrid dynamic and static approach to
+allow for view-based maintenance of GUIs. Dynamic analysis reconstructs object
+relationships, providing a concrete context in which maintenance can be
+performed. Static checking restricts that only changes in the design view
+which can meaningfully be translated back to source are allowed. We
+implemented a prototype IDE plug-in and evaluate our approach by applying it
+to five open source projects.</p>
+
+
+</div>
+
+
+<hr>
+<p><strong>15:30-16:00</strong> COFFEE BREAK
+</p>
+<hr>
+<p><strong>16:00-17:30</strong> Panel on The Business Case of AOSD
+</p>
+
+
+
+
+
+
+
+<hr  style="height: 6px; margin-top: 30px; margin-bottom: 20px;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Friday, April 4th, 2008</h2>
+
+
+<p><strong>9:00-10:30</strong></p>
+<p>Invited Talk by <A href="keynotes.html#key3" name="Keynote 3">Philip Wadler</A> (University of Edinburgh, UK)<br /><br />
+<strong>Well-Typed Programs Can’t Be Blamed</strong>
+</p>
+<hr>
+<p><strong>10:30-11:00</strong> COFFEE BREAK
+</p>
+<hr>
+<p><strong>11:00-12:30 </strong></p>
+
+<h2>Programming Language Design and Implementation II</h2>
+<p>
+<input type="button" class="button" onclick="return toggleMe('abs15')" value="+" title="Abstract"><strong>Expressive Scoping of Dynamically-Deployed Aspects</strong>, by Tanter
+</p>
+<div id="abs15" style="display:none">
+<p>Several aspect languages and frameworks have recognized the need for dynamic
+deployment of aspects. However, they do not provide sufficiently expressive
+means to precisely specify the scope of deployed aspects. As a result,
+programmers have to resort to unnecessarily complex pointcut definitions that
+hinder the reuse potential of aspects. To address the issue of precise and
+expressive scoping of aspects at deployment time, we propose deployment
+strategies for parameterized dynamic aspect deployment. This novel mechanism
+gives full control over the propagation of the aspect on the call stack and
+within created objects or functions, and permits a deployment-specific
+refinement of its pointcuts. We discuss and illustrate the gain in
+expressiveness, and provide the operational semantics of deployment strategies
+with Scheme interpreters, for both functional and object-oriented based aspect
+languages.</p>
+
+</div>
+
+
+<p><input type="button" class="button" onclick="return toggleMe('abs16')" value="+" title="Abstract"><strong>Lightweight Virtual Machine Support for AspectJ</strong>, by Golbeck, Davis, Naseer, Ostrovsky, Kiczales</p>
+
+<div id="abs16" style="display:none">
+<p>Advice weaving can be efficiently supported with only lightweight
+enhancements to existing Virtual Machines.  Performing weaving at the
+Java byte code (JBC) level while preserving appropriate meta-data
+enables the VM to understand the AspectJ-specific semantics of the
+code and optimize it. This allows the overhead of advice weaving and
+performing non-local advice dispatch optimization to occur prior to
+runtime. It also allows the VM to perform optimizations that are
+unavailable to a byte code level weaver.</p>
+
+<p>An experimental implementation shows that this approach can take
+advantage of previously known macro optimizations of expensive
+constructs, including cflow, as well as micro optimizations including
+those based on improved type analysis unavailable to JBC-based advice
+dispatch.  A thorough benchmark evaluation confirms that the use of
+this architecture does not result in runtime performance overhead and
+benefits from the implemented optimizations.</p>
+
+</div>
+
+
+<p><input type="button" class="button" onclick="return toggleMe('abs17')" value="+" title="Abstract"><strong>Nu: a Dynamic Aspect-Oriented Intermediate Language Model and Virtual Machine for Flexible Runtime Adaptation</strong>, by Dyer, Rajan</p>
+
+<div id="abs17" style="display:none">
+<p>A variety of dynamic aspect-oriented language constructs are proposed in
+recent literature with corresponding, compelling use cases. Such constructs
+demonstrate the need to dynamically adapt the set of join points intercepted
+at a fine-grained level. The notion of morphing aspects and continuous weaving
+is motivated by this need. We propose an intermediate language model called
+Nu, that extends object-oriented intermediate language models with two
+fine-grained deployment primitives: bind and remove. These primitives offer a
+higher level of abstraction as a compilation target for dynamic
+aspect-oriented language constructs, thereby making it easier to support such
+constructs.</p>
+
+<p>We present the design and implementation of the Nu model in the Sun Hotspot
+VM, an industrial strength virtual machine, which serves to show the
+feasibility of the intermediate language design. Our implementation uses
+dedicated caching mechanisms to significantly reduce the amortized costs of
+join point dispatch. Our evaluation shows that the cost of supporting a
+dynamic deployment model can be reduced to as little as ~1.5%. We demonstrate
+the potential utility of the intermediate language design by expressing a
+variety of aspect-oriented source language constructs of dynamic flavor such
+as CaeserJ's deploy, history-based pointcuts, and control flow constructs in
+terms of the Nu model.</p>
+
+</div>
+
+
+<hr>
+<p><strong>12:30-14:00 </strong>LUNCH
+</p>
+
+<hr>
+
+<p><strong>14:00-15:30</strong></p>
+
+<p> Panel on “<strong>Aspects in the Future</strong>”
+</p>
+
+<hr>
+
+<p><strong>15:30-16:00</strong> COFFEE BREAK/ KICK-OFF
+</p>
+
+</div></div>	<div id="colOne">
+		<h3>Conference</h3><div class="bg1"><ul><li class="first,sub" ><a href="../index.html">AOSD.08</a></li><li class="sub" ><a href="../program/">Program</a></li><li class="snav" >&rsaquo;&rsaquo; <a href="../program/keynotes.html">Keynotes</a></li><li class="current snav">&rsaquo;&rsaquo; Research Track</li><li class="snav" >&rsaquo;&rsaquo; <a href="../program/workshops.html">Workshops</a></li><li class="snav" >&rsaquo;&rsaquo; <a href="../program/tutorials.html">Tutorials</a></li><li class="snav" >&rsaquo;&rsaquo; <a href="../program/industry.html">Industry Track</a></li><li class="snav" >&rsaquo;&rsaquo; <a href="../program/demos.html">Demonstrations</a></li><li class="snav" >&rsaquo;&rsaquo; <a href="../program/social.html">Social Events</a></li><li class="sub" ><a href="../students/">Student Extravaganza</a></li><li class="sub" ><a href="../calendar.html">Calendar</a></li><li class="sub" ><a href="../registration.html">Registration</a></li><li class="sub" ><a href="../accom.html">Accommodation</a></li><li class="sub" ><a href="../localinfo.html">Local Information</a></li><li class="sub" ><a href="../postcard.html">Postcard Competition</a></li><li class="sub" ><a href="../publicity/">Promote AOSD.08</a></li><li class="sub" ><a href="../cfc/">Call For Contributions</a></li><li class="sub" ><a href="../../">Past Conferences</a></li></ul></div>		     <h3>Sponsors</h3>
+     <div class="bg1">
+     <b>Hosted by</b>
+    <div class="sponsor"><a href="http://www.vub.ac.be/english/index.php"><img src="../img/sponsers/vub.logo.sml.gif" alt="VUB" /></a></div>
+	<b>Sponsored by</b>
+ 	<div class="sponsor"><A href="http://www.inno.com/" name="inno.com" target="_blank"><img src="../img/sponsers/inno-logo.gif" alt="INNO"/> </A></div>
+ 	<div class="sponsor"><A href="http://www.aosd-europe.net/" name="AOSD-Europe" target="_blank"><img src="../img/sponsers/AOSD-Europe_Logo.gif" alt="AOSD-Europe"/> </A></div>
+  	<div class="sponsor"><A href="http://www.mediagenix.tv/" name="MediaGeniX" target="_blank"><img src="../img/sponsers/MgX.gif" alt="MgX" /></A></div>
+ 	<div class="sponsor"><A href="http://www.eds.be/" name="EDS" target="_blank"><img src="../img/sponsers/eds.gif" alt="EDS" style="padding-left : 15px;" /></A></div>
+
+    <b>In cooperation with</b> 
+
+    	<div class="sponsor"><a href="http://www.acm.org/"><img src="../img/sponsers/acm.full.sml.gif" alt="In cooperation with the ACM " /></a></div>
+
+	<div class="bigsig left">
+	<a href="http://www.sigplan.org/index.htm"><img  src="../img/sponsers/acm_logo.jpg" alt="ACM Sigplan" />SIGPLAN</a>
+	</div>
+
+     <div class="sponsor"><a href="http://www.sigsoft.org/index.htm"><img src="../img/sponsers/sigsoft.logo.sml.gif" alt="In cooperation with ACM SIGSOFT"/></a></div>
+     
+     <div class="sponsor"><a href="http://prog.vub.ac.be/moves/"><img src="../img/sponsers/moves_banner.jpg" alt="In cooperation with MoVES"/></a></div>
+	 
+
+ </div>
+	 		<h3>Instant Feedback</h3>
+		<div class="feedback">
+
+			<form method="post" action="../../util/zzz.php">
+  			<p>
+			<textarea name="yyy" rows="2" cols="20" >Have something to say?</textarea><br />
+  				<select class="controls" name="xxx">
+					<option value="">Feedback for:</option>
+					<option value="conference">	Conference</option>
+					<option value="website">	Website</option>
+					<option value="other" >		Other</option>
+				</select>
+				<input class="submit,controls" type="submit" value="Send"/>
+			</p>
+			</form>
+		</div>
+	</div>
+	
+	 
+	
+</div>
+<div id="footer"><p>Edited by the <a href="../chairs.html">AOSD Conference Committee</a>.&nbsp; Maintained by the <a href="http://aosd.net/webmaster.php"> webmaster</p></div>
+	<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-779261-3");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+</body>
+</html>

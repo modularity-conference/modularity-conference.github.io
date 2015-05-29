@@ -1,0 +1,41 @@
+<?
+
+# These routines must be included at the top of a script that wants to implement
+# a multi page input form, before any submitted data is processed.
+# The idea is that all the submitted data of the form, that should be present for
+# the processing of every submit process for a single page of this form, is placed
+# in a array f[]. The key of the f[] array entry is then the variable name.
+# These values are then accessible in every page!
+#
+# The old values are transported in the f2[] array. The array should NOT be used!
+# The f2[] array is processed by this script. The reason why f2[] exists is that
+# in the f[] array there is a possibility that the entries are submitted from the
+# form fields and when the old f[] values would be inserted as hidden values,
+# they may overwrite the updated ones!
+
+
+
+@reset($f);							# values from the f[] array are newly submitted values
+while(list($key,$value)=@each($f)) {				# and overwrite old hidden values (@ used in case f is empty)
+	$f2[$key] =$f[$key];
+} # while
+
+
+@reset($f2);							# copy old values (that have not changed) into the f[] array
+while(list($key,$value)=@each($f2)) {
+	if (!$f[$key]) {
+		$f[$key] =$f2[$key];
+	} # if
+} # while
+
+
+function writehiddeninputvalues () {				# outputs all f[] array elements as hidden form fields
+	global $f;						# for the explained reason the f2[] array is used
+
+	@reset($f);
+	while(list($key,$value)=@each($f)) {
+		echo "<input type=\"hidden\" name=\"f2[".htmlentities($key)."]\" value=\"".htmlentities($value)."\">\n";
+	} # while
+} # writehiddeninputvalues
+
+?>

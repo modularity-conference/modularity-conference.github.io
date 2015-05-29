@@ -1,0 +1,214 @@
+                                                                     
+                                                                     
+                                                                     
+                                             
+#
+#
+# -----------------
+#  The survey data
+# -----------------
+#
+# A 'survey data group' consists of the following keys:
+#
+# - number       (required)
+# - question     (required)
+# - shortcut     (optional)
+# - answer_type  (required)
+# - weight       (optional; default is '1.0')
+# - css_class    (optional)
+#
+# Syntax notes:
+#
+# - Empty lines and lines beginning with '#' are ignored.
+# - Each survey data group has to start with the 'number' key. This is the unique identifier.
+# - A key may consist of the following characters: 'A'-'Z', 'a'-'z', '0'-'9', '_' (underscore).
+# - The leftmost space character separates the key from the value(s).
+# - The value for the 'answer_type' key is an id and refers to an answer type defined in the 'answer_types.txt' file.
+# - The value for the 'weight' key must be a (floating point) number >=0. '1' is the default value.
+#
+#
+
+number 1
+question How many AOSD's have you attended?
+answer_type 1
+css_class text
+
+number 2
+question Which of the following describe your interest in AOSD?
+answer_type 2
+css_class ruler
+
+number 3
+question Please rate: Conference overall?
+answer_type 3
+css_class ruler
+
+number 4
+question Please rate: Invited talks?
+answer_type 3
+css_class ruler
+
+number 5
+question Please rate: Research talks?
+answer_type 3
+css_class ruler
+
+number 6
+question Please rate: Industry talks
+answer_type 3
+css_class ruler
+
+number 7
+question Please rate: Tutorials?
+answer_type 3
+css_class ruler
+
+number 8
+question Please rate: Workshops?
+answer_type 3
+css_class ruler
+
+number 9
+question Please rate: Demonstrations?
+answer_type 3
+css_class ruler
+
+number 10
+question Please rate: Panel?
+answer_type 3
+css_class ruler
+
+number 11
+question Please rate: Birds of a Feather?
+answer_type 3
+css_class ruler
+
+number 12
+question Please rate: Student Spring School?
+answer_type 3
+css_class ruler
+
+number 13
+question Please rate: Student Poster Event?
+answer_type 3
+css_class ruler
+
+number 15
+question Did you take a tutorial?
+answer_type 4
+css_class yesno
+
+number 16
+question How important was the price in your decision to take/not take a tutorial?
+answer_type 5
+css_class ruler
+
+number 17
+question How important was the content in your decision to take/not take a tutorial?
+answer_type 5
+css_class ruler
+
+number 18
+question How important was the schedule conflict in your decision to take/not take a tutorial?
+answer_type 5
+css_class ruler
+
+number 19
+question What other tutorial topics should be offered in future?
+answer_type 6
+css_class text
+
+number 20
+question Please rate: Website: Program information
+answer_type 9
+css_class ruler
+
+number 21
+question Please rate: Website: Local information
+answer_type 9
+css_class ruler
+
+number 22
+question Please rate: Registration system
+answer_type 9
+css_class ruler
+
+number 23
+question Please rate: Quick check-in
+answer_type 9
+css_class ruler
+
+number 24
+question Please rate: Conference office
+answer_type 9
+css_class ruler
+
+number 25
+question Please rate: Local support
+answer_type 9
+css_class ruler
+
+number 26
+question Please rate: Wireless 
+answer_type 9
+css_class ruler
+
+number 27
+question Please rate: Catering and Food
+answer_type 9
+css_class ruler
+
+number 28
+question Which would you prefer for future conferences?
+answer_type 10
+css_class sb
+
+number 29
+question Why?
+answer_type 11
+css_class sb
+
+number 30
+question Where did you stay?
+answer_type 7
+css_class sb
+
+number 31
+question Why?
+answer_type 8
+css_class ruler
+
+number 32
+question Cost of AOSD.07
+answer_type 12
+css_class sb
+
+number 33
+question How can we improve the program? What topics should we (not) include?
+answer_type 6
+css_class text
+
+number 34
+question How could the Web site and registration process be improved?
+answer_type 6
+css_class text
+
+number 35
+question How could the facilities be improved?
+answer_type 6
+css_class sb
+
+number 36
+question Where else should we promote the AOSD conference?
+answer_type 6
+css_class sb
+
+number 37
+question Would you recommend AOSD to a colleague? Why?
+answer_type 6
+css_class sb
+
+number 38
+question We'd welcome any other comments or suggestions.
+answer_type 6
+css_class sb

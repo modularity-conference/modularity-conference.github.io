@@ -1,0 +1,28 @@
+title: Modularity
+
+host: http://modularity.info
+baseurl: /
+
+###############################################
+# Mirror github pages settings
+# safe: true
+# lsi: false
+
+# Build settings
+highlighter: pygments
+markdown: kramdown
+
+gems:
+  - jekyll-sitemap
+  - jekyll-redirect-from
+
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: "default"
+
+
+host: 0.0.0.0
+# EOF

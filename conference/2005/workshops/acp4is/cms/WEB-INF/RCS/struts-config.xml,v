@@ -1,0 +1,308 @@
+head	1.2;
+access;
+symbols;
+locks
+	lorenz:1.2; strict;
+comment	@# @;
+
+
+1.2
+date	2004.12.01.05.03.02;	author lorenz;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.11.29.01.34.19;	author lorenz;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@AutoRCS
+@
+text
+@<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+
+<struts-config>
+	<form-beans>
+    <form-bean name="interfacesForm" type="org.webjinn.cms.actions.MappedBean"/>
+		<form-bean name="itemsForm" type="org.webjinn.cms.actions.MappedBean"/>
+    <form-bean name="uploadForm" type="org.webjinn.cms.actions.UploadForm"/>
+    <form-bean name="form" type="org.webjinn.cms.actions.MappedBean"/>
+   </form-beans>
+<!-- ================================= Global Exception Definitions -->
+    <global-exceptions>
+        <!-- sample exception handler
+        <exception
+            key="expired.password"
+            type="app.ExpiredPasswordException"
+            path="/changePassword.jsp"/>
+        end sample -->
+    </global-exceptions>
+<!-- =================================== Global Forward Definitions -->
+    <global-forwards>
+        <!-- Default forward to "Welcome" action -->
+        <!-- Demonstrates using index.jsp to forward -->
+        <forward
+            name="welcome"
+            path="/Welcome.do"/>
+    </global-forwards>
+<!-- =================================== Action Mapping Definitions -->
+    <action-mappings>
+                                                                             
+		<action    path="/interfaces"
+			type="org.webjinn.cms.actions.SelectInterfacesAction"
+      name="interfacesForm">
+			<forward name="CONTENT" path="/interfaces.jsp"/>
+			<forward name="EXCEPTION" path="/error.jsp"/>
+		</action>
+		<action    path="/items"
+			type="org.webjinn.cms.actions.SelectItemsAction"
+      name="itemsForm">
+			<forward name="CONTENT" path="/items.jsp"/>
+			<forward name="EXCEPTION" path="/error.jsp"/>
+		</action>
+		<action    path="/addmenu"
+			type="org.webjinn.cms.actions.AddMenuAction"
+			name="form">
+			<forward name="SUCCESS" path="/items.do"/>
+			<forward name="FAIL" path="/items.do"/>
+		</action>
+		<action    path="/additem"
+ 			type="org.webjinn.cms.actions.AddItemAction"
+			name="form">
+			<forward name="SUCCESS" path="/items.do"/>
+			<forward name="FAIL" path="/items.do"/>
+		</action>
+		<action    path="/delmenu"
+			type="org.webjinn.cms.actions.DelMenuAction"
+			name="form">
+			<forward name="SUCCESS" path="/items.do"/>
+			<forward name="FAIL" path="/items.do"/>
+		</action>
+		<action    path="/delitem"
+			type="org.webjinn.cms.actions.DelItemAction"
+			name="form">
+			<forward name="SUCCESS" path="/items.do"/>
+			<forward name="FAIL" path="/items.do"/>
+		</action>
+		<action    path="/moveitem"
+			type="org.webjinn.cms.actions.MoveItemAction"
+			name="form">
+			<forward name="SUCCESS" path="/items.do"/>
+			<forward name="FAIL" path="/items.do"/>
+		</action>
+
+                <action    path="/upload"
+                        type="org.webjinn.cms.actions.UploadAction"
+                        name="uploadForm">
+                        <forward name="SUCCESS" path="/dirs.do"/>
+                        <forward name="FAIL" path="/dirs.do"/>
+                </action>
+		
+		<action    path="/disassociate"
+			type="org.webjinn.cms.actions.DisAssociateAction"
+			name="form">
+			<forward name="SUCCESS" path="/dirs.do"/>
+			<forward name="FAIL" path="/dirs.do"/>
+		</action>
+	
+		<action    path="/addfile"
+			type="org.webjinn.cms.actions.AddFileAction"
+			name="form">
+			<forward name="SUCCESS" path="/dirs.do"/>
+			<forward name="FAIL" path="/dirs.do"/>
+		</action>
+		<action    path="/adddir"
+			type="org.webjinn.cms.actions.AddDirAction"
+			name="form">
+			<forward name="SUCCESS" path="/dirs.do"/>
+			<forward name="FAIL" path="/dirs.do"/>
+		</action>
+		<action    path="/delfile"
+			type="org.webjinn.cms.actions.DelFileAction"
+			name="form">
+			<forward name="SUCCESS" path="/dirs.do"/>
+			<forward name="FAIL" path="/dirs.do"/>
+		</action>
+		<action    path="/deldir"
+			type="org.webjinn.cms.actions.DelDirAction"
+			name="form">
+			<forward name="SUCCESS" path="/dirs.do"/>
+			<forward name="FAIL" path="/dirs.do"/>
+		</action>
+
+		
+		<action    path="/dirs"
+			type="org.webjinn.cms.actions.SelectDirsAction"
+			name="form">
+			<forward name="CONTENT" path="/files.do"/>
+			<forward name="EXCEPTION" path="/files.do"/>
+		</action>
+		<action    path="/files"
+			type="org.webjinn.cms.actions.SelectFilesAction"
+			name="form">
+			<forward name="CONTENT" path="/pages.jsp"/>
+			<forward name="EXCEPTION" path="/pages.jsp"/>
+		</action>
+
+		<action    path="/associatewin"
+			type="org.webjinn.cms.actions.SelectInterfacesAction"
+      name="interfacesForm">
+			<forward name="CONTENT" path="/associateint.jsp"/>
+		</action>
+		<action    path="/associateitems"
+			type="org.webjinn.cms.actions.SelectItemsAction"
+      name="itemsForm">
+			<forward name="CONTENT" path="/associateitems.jsp"/>
+			<forward name="EXCEPTION" path="/error.jsp"/>
+		</action>
+		<action    path="/associate"
+			type="org.webjinn.cms.actions.AssociateAction"
+			name="form">
+			<forward name="SUCCESS" path="/associatesuccess.jsp"/>
+			<forward name="FAIL" path="/associatefail.jsp"/>
+		</action>
+
+    <action    path="/updcodewin"
+			type="org.webjinn.cms.actions.GetContentAction"
+			name="form">
+			<forward name="CONTENT" path="/contentform.jsp"/>
+			<forward name="EXCEPTION" path="/contentform.jsp"/>
+		</action>
+
+		<action    path="/updcode"
+			type="org.webjinn.cms.actions.UpdateContentAction"
+			name="form">
+			<forward name="CONTENT" path="/contentform.jsp"/>
+			<forward name="EXCEPTION" path="/contentform.jsp"/>
+		</action>
+		
+		<action    path="/attrwin"
+			type="org.webjinn.cms.actions.SelectAttributesAction"
+			name="form">
+			<forward name="CONTENT" path="/attributesform.jsp"/>
+			<forward name="EXCEPTION" path="/error.jsp"/>
+		</action>
+		
+		<action    path="/addcssfile"
+			type="org.webjinn.cms.actions.AddCSSFileAction"
+			name="form">
+			<forward name="SUCCESS" path="/cssfileswin.do"/>
+			<forward name="FAIL" path="/cssfileswin.do"/>
+		</action>
+		<action    path="/delcssfile"
+			type="org.webjinn.cms.actions.DelCSSFileAction"
+			name="form">
+			<forward name="SUCCESS" path="/cssfileswin.do"/>
+			<forward name="FAIL" path="/cssfileswin.do"/>
+		</action>
+		<action    path="/cssfileswin"
+			type="org.webjinn.cms.actions.SelectCSSFilesAction"
+			name="form">
+			<forward name="CONTENT" path="/cssfiles.jsp"/>
+			<forward name="EXCEPTION" path="/cssfiles.jsp"/>
+		</action>
+		
+
+		<action    path="/attrupdate"
+			type="org.webjinn.cms.actions.UpdateAttributesAction"
+			name="form">
+			<forward name="SUCCESS" path="/attrwin.do"/>
+			<forward name="FAIL" path="/attrwin.do"/>
+		</action>
+
+		<action    path="/wrap"
+			type="org.webjinn.cms.actions.WrapAction"
+			name="form">
+			<forward name="SUCCESS" path="/success.jsp"/>
+			<forward name="BROWSER" path="/dirs.do"/>
+                        <forward name="ITEMS" path="/items.do"/>
+			<forward name="FAIL" path="/error.jsp"/>
+		</action>
+		<action    path="/addinterface"
+			type="org.webjinn.cms.actions.AddInterfaceAction"
+			name="form">
+			<forward name="SUCCESS" path="/interfaces.do"/>
+			<forward name="FAIL" path="/interfaces.do"/>
+		</action>
+		<action    path="/delinterface"
+			type="org.webjinn.cms.actions.DelInterfaceAction"
+			name="form">
+			<forward name="SUCCESS" path="/interfaces.do"/>
+			<forward name="FAIL" path="/interfaces.do"/>
+		</action>
+
+   </action-mappings>
+
+<!-- ===================================== Controller Configuration -->
+    <controller
+       processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
+<!-- ================================ Message Resources Definitions -->
+    <message-resources parameter="resources.application"/>
+<!-- ======================================= Plug Ins Configuration -->
+  <!-- ========== Tiles plugin ===================  -->
+  <!--												-->
+  <!--
+     This plugin initialize Tiles definition factory. This later can takes some
+	 parameters explained here after. The plugin first read parameters from web.xml, then
+	 overload them with parameters defined here. All parameters are optional.
+	 The plugin should be declared in each struts-config file.
+       - definitions-config: (optional) 
+            Specify configuration file names. There can be several comma 
+		    separated file names (default: ?? )
+       - moduleAware: (optional - struts1.1) 
+            Specify if the Tiles definition factory is module aware. If true (default), 
+			there will be one factory for each Struts module. 
+			If false, there will be one common factory for all module. In this later case, 
+			it is still needed to declare one plugin per module. The factory will be 
+			initialized with parameters found in the first initialized plugin (generally the
+			one associated with the default module).
+			  true : One factory per module. (default)
+			  false : one single shared factory for all modules
+	   - definitions-parser-validate: (optional)
+	        Specify if xml parser should validate the Tiles configuration file.
+			  true : validate. DTD should be specified in file header. (default)
+			  false : no validation
+			  
+	  Paths found in Tiles definitions are relative to the main context.
+  -->
+  <!-- comment following if struts1.0.x -->
+  <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+    <set-property property="definitions-config" 
+	                 value="/WEB-INF/tiles-defs.xml" />
+    <set-property property="moduleAware" value="true" />
+    <set-property property="definitions-parser-validate" value="true" />
+  </plug-in>
+
+	<!-- end comment if struts1.0.x -->
+
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property
+        property="pathnames"
+        value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/>
+	</plug-in>
+		
+</struts-config>
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d11 1
+d33 1
+d77 6
+@

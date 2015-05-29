@@ -1,0 +1,360 @@
+<?
+function showmenu () {
+	global	$db,
+		$regtypes, $regtypename, $activities, $activityname, $priceformatadmin,
+		$maxsearchword, $submitvaluesearch, $submitvalueshowpart, $submitvaluenew,
+		$fsearchword, $fsearchregtype, $fsearchactivity, $fsearchpayment,
+		$fsearchpaystatus, $fsearchwaspresent, $fsearchhotel, $fsearchbanquet,
+		$fsearchtutorial,$currency,$lunchdates;
+
+	echo "<form method=\"post\">\n";
+	echo "<table class=\"adminentry\" width=\"870\" align=\"center\">\n";
+	echo "<tr>\n";
+	echo " <td class=\"adminhead\">Overview of Participants</td>\n";
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo " <td class=\"adminbody\" align=\"center\">\n";
+	echo "\n";
+	echo "  <table border=\"0\">\n";
+	echo "  <tr>\n";
+	echo "   <td>\n";
+	echo "\n";
+	echo "    <table border=\"0\">\n";
+	echo "    <tr>\n";
+	echo "     <td style=\"vertical-align:bottom;\">Search:</td>\n";
+	echo "     <td>\n";
+	echo "      <input name=\"fsearchword\" size=\"20\" maxlength=\"$maxsearchword\" value=\"".htmlentities($fsearchword)."\">\n";
+	echo "     </td>\n";
+	echo "    </tr>\n";
+	echo "    <tr>\n";
+	echo "     <td style=\"vertical-align:bottom;\">Type:</td>\n";
+	echo "     <td>\n";
+	echo "      <select name=\"fsearchregtype\">\n";
+	echo "       <option value=\"\">---</option>\n";
+	foreach ($regtypes as $regtype) {
+		echo "       <option value=\"".htmlentities($regtype)."\"";
+		if ($regtype==$fsearchregtype) echo " selected";
+		echo ">".htmlentities($regtypename[$regtype])."</option>\n";
+		if ($regtype=="student") {				# add non existing regtypes for advanced search possibility
+			echo "       <option value=\"studentmatmissing\"";
+			if ($fsearchregtype=="studentmatmissing") echo " selected";
+			echo ">Student (Matr. missing)</option>\n";
+			echo "       <option value=\"studentmatreceived\"";
+			if ($fsearchregtype=="studentmatreceived") echo " selected";
+			echo ">Student (Matr. received)</option>\n";
+		} # if
+	} # foreach
+	echo "      </select>\n";
+	echo "     </td>\n";
+	echo "    </tr>\n";
+#	echo "    <tr>\n";
+#	echo "     <td style=\"vertical-align:bottom;\">Activities:</td>\n";
+#	echo "     <td>\n";
+#	echo "      <select name=\"fsearchactivity\">\n";
+#	echo "       <option value=\"\">---</option>\n";
+#	foreach ($activities as $activity) {
+#		echo "       <option value=\"".htmlentities($activity)."\"";
+#		if ($activity==$fsearchactivity) echo " selected";
+#		echo ">".htmlentities($activityname[$activity])."</option>\n";
+#	} # foreach
+#	echo "      </select>\n";
+#	echo "     </td>\n";
+#	echo "    </tr>\n";
+	echo "    <tr>\n";
+	echo "     <td style=\"vertical-align:bottom;\">Payment:</td>\n";
+	echo "     <td>\n";
+	echo "      <select name=\"fsearchpayment\">\n";
+	echo "       <option value=\"\">---</option>\n";
+	echo "       <option value=\"creditcard\"";
+	if ($fsearchpayment=="creditcard") echo " selected";
+	echo ">Credit card</option>\n";
+	echo "       <option value=\"visa\"";
+	if ($fsearchpayment=="visa") echo " selected";
+	echo ">VISA</option>\n";
+	echo "       <option value=\"mastercard\"";
+	if ($fsearchpayment=="mastercard") echo " selected";
+	echo ">Mastercard</option>\n";
+	echo "       <option value=\"cardbyfax\"";
+	if ($fsearchpayment=="cardbyfax") echo " selected";
+	echo ">Credit card by fax</option>\n";
+	echo "       <option value=\"none\"";
+	if ($fsearchpayment=="none") echo " selected";
+	echo ">None</option>\n";
+
+#	echo "       <option value=\"banktransfer\"";
+#	if ($fsearchpayment=="banktransfer") echo " selected";
+#	echo ">Bank transfer</option>\n";
+	echo "      </select>\n";
+	echo "     </td>\n";
+	echo "    </tr>\n";
+	echo "    <tr>\n";
+	echo "     <td style=\"vertical-align:bottom;\">Status:</td>\n";
+	echo "     <td>\n";
+	echo "      <select name=\"fsearchpaystatus\">\n";
+	echo "       <option value=\"\">---</option>\n";
+	echo "       <option value=\"0\"";
+	if ($fsearchpaystatus=="0") echo " selected";
+	echo ">Payment open</option>\n";
+	echo "       <option value=\"1\"";
+	if ($fsearchpaystatus=="1") echo " selected";
+	echo ">Payment received</option>\n";
+	echo "      </select>\n";
+	echo "     </td>\n";
+	echo "    </tr>\n";
+	echo "    <tr>\n";
+	echo "     <td style=\"vertical-align:bottom;\">Presence:</td>\n";
+	echo "     <td>\n";
+	echo "      <select name=\"fsearchwaspresent\">\n";
+	echo "       <option value=\"\">---</option>\n";
+	echo "       <option value=\"1\"";
+	if ($fsearchwaspresent=="1") echo " selected";
+	echo ">Was present</option>\n";
+	echo "       <option value=\"0\"";
+	if ($fsearchwaspresent=="0") echo " selected";
+	echo ">Was not present</option>\n";
+	echo "      </select>\n";
+	echo "     </td>\n";
+	echo "    </tr>\n";
+	echo "    <tr>\n";
+	echo "     <td style=\"vertical-align:bottom;\">Accommodation:</td>\n";
+	echo "     <td>\n";
+	echo "      <select name=\"fsearchhotel\">\n";
+	echo "       <option value=\"\">---</option>\n";
+	echo "       <option value=\"none\"";
+	if ($fsearchhotel=="none") echo " selected";
+	echo ">None</option>\n";
+	echo "       <option value=\"ensuite\"";
+	if ($fsearchhotel=="ensuite") echo " selected";
+	echo ">En suite</option>\n";
+	echo "       <option value=\"standard\"";
+	if ($fsearchhotel=="standard") echo " selected";
+	echo ">Standard</option>\n";
+	echo "      </select>\n";
+	echo "     </td>\n";
+	echo "    </tr>\n";
+	echo "    <tr>\n";
+	echo "     <td style=\"vertical-align:bottom;\">Banquet:</td>\n";
+	echo "     <td>\n";
+	echo "      <select name=\"fsearchbanquet\">\n";
+	echo "       <option value=\"\">---</option>\n";
+	echo "       <option value=\"no\"";
+	if ($fsearchbanquet=="no") echo " selected";
+	echo ">No</option>\n";
+	echo "       <option value=\"yes\"";
+	if ($fsearchbanquet=="yes") echo " selected";
+	echo ">Yes</option>\n";
+	echo "      </select>\n";
+	echo "     </td>\n";
+	echo "    </tr>\n";
+	echo "    <tr>\n";
+	echo "     <td style=\"vertical-align:bottom;\">Tutorial:</td>\n";
+	echo "     <td>\n";
+	echo "      <select name=\"fsearchtutorial\">\n";
+	echo "       <option value=\"\">---</option>\n";
+	$result	=$db->query("SELECT * FROM tutorial ORDER BY id");	# now process every tutorial entry
+	while ($row=$result->fetchhash()) {
+		echo "       <option value=\"".$row["id"]."\"";
+		if ($fsearchtutorial==$row["id"]) echo " selected";
+		echo ">TU".$row["id"]."</option>\n";
+	} # while
+	echo "      </select>\n";
+	echo "     </td>\n";
+	echo "    </tr>\n";
+	echo "    <tr>\n";
+	echo "     <td colspan=\"2\" style=\"text-align:center;\">\n";
+	echo "      <input type=\"submit\" name=\"faction\" value=\"".htmlentities($submitvaluesearch)."\">\n";
+	echo "      <input type=\"button\" value=\"Roles\" onclick=\"window.location.href='adminroles.phtml'\">\n";
+	echo "      <input type=\"submit\" name=\"faction\" value=\"".htmlentities($submitvaluenew)."\">\n";
+#        echo "    <input type=\"button\" onClick=\"window.location.href='http://www.ecoop.tu-darmstadt.de:8080/badge/servlets/BadgeMaker?printall'\" value=\"All Badges\">\n";
+	echo "     </td>\n";
+	echo "    </tr>\n";
+	echo "    </table>\n";
+	echo "\n";
+	echo "   </td>\n";
+	echo "</form>\n";
+	echo "<form method=\"post\">\n";
+	echo "   <td>\n";
+	echo "\n";
+	echo "    <select name=\"fparticipantid\" size=\"15\" onchange=\"submit();\">\n";
+	$result	=$db->query("SELECT id,fname,lname,paymentreceived FROM participant ORDER BY lname");
+	while ($row=$result->fetchhash()) {
+		$id	=$row["id"];
+		$fname	=htmlentities($row["fname"]);
+		$lname	=htmlentities($row["lname"]);
+		echo "     <option value=\"$id\">$lname, $fname";
+		if ($row["paymentreceived"]==1) echo " (done)";
+		echo "</option>\n";
+	} # while
+	echo "    </select>\n";
+	echo "\n";
+	echo "   </td>\n";
+	echo "   <td>\n";
+		
+	showstatistics();	
+
+	echo "   </td>\n";
+	echo "  </tr>\n";
+	echo "  </table>\n";
+
+	echo " </td>\n";
+	echo "</tr>\n";
+	echo "</table>\n";
+	echo "<input type=\"hidden\" name=\"faction\" value=\"".htmlentities($submitvalueshowpart)."\">\n";
+	echo "</form>\n";
+} # showmenu
+
+function showstatistics() {
+	
+		global	$db,
+		$regtypes, $regtypename, $activities, $activityname, $priceformatadmin,
+		$maxsearchword, $submitvaluesearch, $submitvalueshowpart, $submitvaluenew,
+		$fsearchword, $fsearchregtype, $fsearchactivity, $fsearchpayment,
+		$fsearchpaystatus, $fsearchwaspresent, $fsearchhotel, $fsearchbanquet,
+		$fsearchtutorial,$currency,$lunchdates;
+	
+	#########################################################
+	# calculate hotel statistics
+	#########################################################
+	$ensuite	=0;					# count reservations by hotel for statistic
+	$standard	=0;
+	$ensuite_done	=0;					# count reservations by hotel for statistic that are paid
+	$standard_done	=0;
+	$sql		="SELECT accommodation,paymentreceived,COUNT(*) FROM participant ".
+			 "WHERE accommodation='ensuite' OR accommodation='standard' GROUP BY accommodation,paymentreceived";
+	$result	=$db->query($sql);
+	while ($row=$result->fetchhash()) {
+		if ($row["accommodation"]=="ensuite") $ensuite		+=$row["COUNT(*)"];
+		if ($row["accommodation"]=="standard") $standard		+=$row["COUNT(*)"];
+		if ($row["paymentreceived"]==1) {
+			if ($row["accommodation"]=="ensuite") $ensuite_done	+=$row["COUNT(*)"];
+			if ($row["accommodation"]=="standard") $standard_done	+=$row["COUNT(*)"];
+		} # if
+	} # if
+	#########################################################
+	# calculate general statistics
+	#########################################################
+	$totalcount	=0;						# count the amount of participants who must pay,
+	$totalcountdone	=0;						# have paid, total of regtype and total
+	$totalfee	=0.0;						# sum up the total registration fees
+	$totalfeedone	=0.0;						# and total paid fees
+	$totalbanquet	=0;						# count the banquet tickets
+	$totalbanquetdone=0;
+	$participants	=array();
+	$sql		="SELECT regtype,paymentreceived,paymentfree,SUM(totalprice),SUM(banquet+banquetadd),COUNT(*) ".
+			 "FROM participant GROUP BY regtype,paymentreceived,paymentfree";
+	$result		=$db->query($sql);
+	while ($row=$result->fetchhash()) {
+		$participants[$row["regtype"]][$row["paymentreceived"]]	 =$row["COUNT(*)"];
+		$participants[$row["regtype"]]["total"]			+=$row["COUNT(*)"];
+		$totalcount						+=$row["COUNT(*)"];
+		$totalbanquet						+=$row["SUM(banquet+banquetadd)"];
+		if ($row["paymentreceived"]==1) {
+			$totalcountdone					+=$row["COUNT(*)"];
+			$totalbanquetdone				+=$row["SUM(banquet+banquetadd)"];
+		} # if
+		if ($row["paymentfree"]!=1) {
+			$totalfee					+=$row["SUM(totalprice)"];
+			if ($row["paymentreceived"]==1) {
+				$totalfeedone				+=$row["SUM(totalprice)"];
+			} # if
+		} # if
+	} # while
+
+
+	#########################################################
+	# make lunch
+	#########################################################
+	$lunch_total=array();
+	$lunch_paid=array();
+	foreach ($lunchdates as $lunchdate) {
+		$lunch_total[$lunchdate] = 0;
+		$lunch_paid[$lunchdate] = 0;
+	}
+	$result=$db->query("SELECT l.lunchdate,p.paymentreceived,SUM(l.quantity) AS quantity FROM participant p, part_lunch l WHERE l.participantid = p.id GROUP BY l.lunchdate, p.paymentreceived ORDER BY l.lunchdate");
+	while ($row=$result->fetchhash()) {
+		$lunchdate = $row["lunchdate"];
+		$paid = $row["paymentreceived"];
+		$count = $row["quantity"];
+		$lunch_total[$lunchdate] += $count;
+		if ($paid == 1) {
+			$lunch_paid[$lunchdate] += $count;
+		}
+	} # while
+
+	#########################################################
+	# make tutorial list
+	#########################################################
+	$i		=0;
+	$htmlrows	=array();
+	$result		=$db->query("SELECT id FROM tutorial ORDER BY id");
+	while ($row=$result->fetchhash()) {
+		# make join with participant table, to not count dead joins in part_tutorial
+		$sql		="SELECT participant.id, participant.paymentreceived, participant.regtype FROM participant,part_tutorial ".
+				 "WHERE participant.id=part_tutorial.participantid AND tutorialid=".$row["id"];
+		$countresult	=$db->query($sql);
+		$count		=$countresult->numrows();
+		$htmlrows[($i%10)].="<td width=\"10\"><td>".tutorial_number($row["id"]).":</td><td><font";
+//		if ($count>25) {
+//			$htmlrows[($i%10)].=" class=\"error\"";
+//		} # if
+		$htmlrows[($i%10)].=">$count</font></td>";
+		$i++;
+	} # while
+
+
+	echo "    <table border=\"0\" cellspacing=\"1\">\n";
+	echo "    <tr><td>\n";
+
+	echo "    <table border=\"0\" cellspacing=\"1\">\n";
+	echo "    <tr><td>\n";
+
+	echo "    <b>Tutorials</b>:";
+	echo "    <table border=\"0\" cellspacing=\"1\">\n";
+	foreach ($htmlrows as $htmlrow) {
+		echo "    <tr>".$htmlrow."</tr>\n";
+	} # foreach
+	echo "     <tr><td height=\"5\"></td></tr>\n";
+	echo "    </table>\n";
+
+	echo "    </td><td>&nbsp;&nbsp;&nbsp;</td><td>\n";
+	
+	echo "    <b>Lunches</b>:";
+	echo "    <table border=\"0\" cellspacing=\"1\">\n";
+	foreach ($lunchdates as $lunchdate) {
+		echo "    <tr><td>".date("D",strtotime($lunchdate)).":</td><td>".$lunch_total[$lunchdate]."&nbsp;(".$lunch_paid[$lunchdate].")</td></tr>\n";
+	} # foreach
+	echo "    </table>\n";
+
+	echo "    </td></tr></table>\n";
+
+	echo "     Fees:&nbsp;".htmlentities(sprintf($priceformatadmin,$totalfee))."&nbsp;$currency";
+	echo "&nbsp;(".htmlentities(sprintf($priceformatadmin,$totalfeedone))."&nbsp;$currency)";
+	echo "   </td>\n";
+	echo "   <td>\n";
+	echo "    <table border=\"0\">\n";
+	echo "     <tr><td colspan=\"4\"><b>Reservations</b>:</td></tr>\n";
+	echo "     <tr><td>&nbsp;</td><td>En suite:</td><td align=\"right\">$ensuite</td><td>($ensuite_done)</td></tr>\n";
+	echo "     <tr><td>&nbsp;</td><td>Standard:</td><td align=\"right\">$standard</td><td>($standard_done)</td></tr>\n";
+	echo "     <tr><td height=\"2\"></td></tr>\n";
+	echo "     <tr><td colspan=\"2\"><b>Registrations</b>:</td><td align=\"right\">$totalcount</td><td align=\"right\">($totalcountdone)</td></tr>\n";
+	foreach ($regtypes as $regtype) {				# now go through ALL regtypes and show statistic
+		$name	=$regtypename[$regtype];
+		if ($regtype=="pcm") $name="Committee Mem.";		# cut down the long names because of space
+		if ($regtype=="accperson") $name="Acc. Person";
+		$count	=intval($participants[$regtype]["total"]);
+		echo "     <tr><td>&nbsp;</td><td>".htmlentities($name).":</td>";
+		echo "<td align=\"right\">$count</td>";
+		echo "<td align=\"right\">(".intval($participants[$regtype][1]).")</td></tr>\n";
+	} # foreach
+	echo "     <tr><td height=\"2\"></td></tr>\n";
+	echo "     <tr><td colspan=\"2\"><b>Banquet Tickets</b>:</td><td align=\"right\">$totalbanquet</td><td align=\"right\">($totalbanquetdone)</td></tr>\n";
+	echo "     <tr><td height=\"2\"></td></tr>\n";
+	echo "    </table>\n";
+	echo "   </td>\n";
+	echo "  </tr>\n";
+	echo "  </table>\n";
+
+
+}
+
+?>

@@ -1,0 +1,32 @@
+<?php
+
+# database configuration
+$database	="mkersten_TestRegistration";		# name of the used database
+$dbserver	="";			# IP of the computer on which the db server runs on, leave empty if on the same machine
+$dbuser		="mkersten";		# db username for the used database, the user has nothing to do with the UNIX users
+$dbpwd		="4n1rqG";			# db password for the used user and database
+
+
+require_once("dbinterface.phtml");
+$db	= new Database();
+require_once("userauth.phtml");
+$user = new Userauth("write", $forcename);	
+
+$username = trim( strtolower($GLOBALS["PHP_AUTH_USER"]));
+
+if ($username == "comp") {
+	$default_regtype = "comp";
+}
+elseif ($username == "volunteer") {
+	$default_regtype = "volunteer";
+}	
+elseif ($username == "epsrc") {
+	$default_regtype = "epsrc";
+}	
+else {
+	$user->errormessage("Unknown user or wrong password!", true);	
+}
+
+$adminmailto="djanze@yahoo.com";
+$earlytilladjusted ="2004-02-21 04:59:59"; # the early registration deadline adjusted for time zone
+?>

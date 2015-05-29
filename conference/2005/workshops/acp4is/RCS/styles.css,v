@@ -1,0 +1,364 @@
+head	1.9;
+access;
+symbols;
+locks
+	lorenz:1.9; strict;
+comment	@# @;
+
+
+1.9
+date	2004.11.28.05.57.26;	author lorenz;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.11.28.05.57.08;	author lorenz;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.9
+log
+@*** empty log message ***
+@
+text
+@P {
+	font:13px Verdana, Arial, Helvetica, sans-serif;
+}
+
+P:first-letter {font-size: 150%;}
+
+.disclaimer {
+	font:11px Verdana, Arial, Helvetica, sans-serif;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+.alert {
+	color: #840000;
+	font-weight:bold;
+}
+
+.download {
+	color: #840000;
+	font-weight:bold;
+}
+
+.printLink {
+	font:10px Verdana, Arial, Helvetica, sans-serif;
+	color : #000000;
+}
+
+.printLink:visited {
+   color : #000000;
+}
+
+.printLink:hover {
+   color: #FFFF99;
+}
+
+
+PRE { font:13px "Courier", sans-serif; }
+
+a {
+   color: #003300;
+}
+
+a:visited {
+   color: #336633;
+}
+
+
+/********************************************************************
+ * HEADINGS
+ ********************************************************************/
+H1 { font:20px Arial, Verdana, Helvetica, sans-serif;
+	color: #000000;
+	font-weight:bold;
+}
+
+H2 { font:18px Arial, Verdana, Helvetica, sans-serif;
+	color: #000000;
+	font-weight:bold;
+}
+
+H3 { font:16px Arial, Verdana, Helvetica, sans-serif;
+	color: #000000;
+	font-weight:bold;
+}
+H4 { font:13px Arial, Verdana, Helvetica, sans-serif;
+	color: #000000;
+	font-weight:bold;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+/********************************************************************
+ * LISTS & TABLES
+ ********************************************************************/
+LI { font:13px Verdana, Arial, Helvetica, sans-serif; }
+
+UL { font:13px Verdana, Arial, Helvetica, sans-serif; }
+
+OL { font:13px Verdana, Arial, Helvetica, sans-serif; }
+DT { font:13px Verdana, Arial, Helvetica, sans-serif; font-weight:bold; }
+DD { font:13px Verdana, Arial, Helvetica, sans-serif; }
+
+TD { font:13px Verdana, Arial, Helvetica, sans-serif; }
+
+TH { font:13px Verdana, Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	text-align:center;
+}
+
+/* ========================================
+   Results table
+   ======================================== */
+
+.resultsHeading {
+	background-color : #CCCCCC;
+}
+
+.colname {
+	font: 14px Verdana, Arial, Helvetica, sans-serif;
+	font-weight : bold;
+	color : #000000;
+}
+.colname:visited {
+	color : #000000;
+}
+
+.colname:hover {
+	color : #006600;
+}
+
+/********************************************************************
+ * FORMS
+ ********************************************************************/
+
+INPUT { font:10px Verdana, Arial, Helvetica, sans-serif; }
+TEXTAREA { font:10px Verdana, Arial, Helvetica, sans-serif; }
+
+
+/* ========================================
+   Top-level tabs
+   ======================================== */
+
+.bannar {
+        background-color : #663399;
+}
+
+.corner {
+	color : #CCFFFF;
+        background-color : #660066;
+}
+
+.subnavTabSelected, .subsubnavTabSelected {
+	background-color : #33FFFF; /* highlighted selection */
+}
+
+.subnavTab, .subsubnavTab, .headerTab, .headerLink, .headerLink:visited {
+	background-color : #9999FF; /* background */
+}
+
+.headerTab {
+	color : #000000;
+}
+
+.headerTabSelected {
+	font: 12px Verdana, Arial, Helvetica, sans-serif;
+	font-weight : normal;
+	color : #000000;
+	text-decoration: none;
+	font-weight : bold;
+	background-color : #FFFFFF;
+}
+
+.headerLink {
+	font: 12px Verdana, Arial, Helvetica, sans-serif;
+	font-weight : bold;
+	color : #000000;
+	text-decoration: none;
+}
+
+.headerLink:visited {
+	color : #000000;
+}
+
+.headerLink:hover {
+   color : #FFFF99;
+}
+
+
+/* ========================================
+   Subnavigation tabs
+   ======================================== */
+
+.subnavTab {
+	xbackground-color : #9999FF;
+}
+
+
+.subnavTabSelected {
+	font: 12px Verdana, Arial, Helvetica, sans-serif;
+	font-weight : bold;
+	color : #000000;
+	text-decoration: none;
+	xbackground-color : #33FFFF;
+}
+
+.subnavLink {
+	font: 12px Verdana, Arial, Helvetica, sans-serif;
+	font-weight : bold;
+	color : #000000;
+	text-decoration: none;
+}
+
+.subnavLink:visited {
+	color : #000000;
+}
+
+.subnavLink:hover {
+   color : #FFFF99;
+}
+
+/* Sub sub nav */
+/* ----------- 50BB3D */
+
+.subsubnavTab {
+	xbackground-color : #9999FF;
+}
+
+.subsubnavTabSelected {
+	font: 11px Verdana, Arial, Helvetica, sans-serif;
+	font-weight : normal;
+	color : #000000;
+	text-decoration: none;
+}
+
+.subsubnavLink {
+	font: 11px Verdana, Arial, Helvetica, sans-serif;
+	font-weight : normal;
+	color : #000000;;
+	text-decoration: none;
+}
+
+.subsubnavLink:visited {
+	color : #000000;
+}
+
+.subsubnavLink:hover {
+   color : #FFFF99;
+}
+
+/* ========================================
+   Photo navigation
+   ======================================== */
+
+.photoLink {
+   font: 14px Verdana, Arial, Helvetica, sans-serif;
+   color: #330066;
+   text-decoration: none;
+}
+
+.photoLink:visited {
+   color: #330066;
+}
+
+.photoLink:hover {
+   color: #FFFF99;
+   background-color : #CCCCCC;
+}
+
+.photoLinkSelected {
+   font: 14px Verdana, Arial, Helvetica, sans-serif;
+   color: #FFFF99;
+   text-decoration: none;
+   background-color : #330066;
+}
+
+.photoTitle {
+   font: 18px Verdana, Arial, Helvetica, sans-serif;
+   color: #330066;
+   font-weight: bold;
+}
+
+/* ========================================
+   Program
+   ======================================== */
+
+.pgmTime {
+   font:13px Verdana, Arial, Helvetica, sans-serif;
+}
+
+.pgmSession {
+   font:15px Verdana, Arial, Helvetica, sans-serif;
+   color: #330066;
+   font-weight:bold;
+}
+
+.pgmDay {
+   font:13px Verdana, Arial, Helvetica, sans-serif;
+   color: #330066;
+   font-weight:bold;
+   background-color : #CCCCFF;
+}
+
+/* ========================================
+   Schedule
+   ======================================== */
+
+.schedTime {
+   font:10px Verdana, Arial, Helvetica, sans-serif;
+   background-color : #CCCCCC;
+}
+
+.schedDay {
+   font:15px Verdana, Arial, Helvetica, sans-serif;
+   color: #330066;
+   font-weight:bold;
+   background-color : #CCCCFF;
+}
+
+.schedEvent {
+   font:12px Verdana, Arial, Helvetica, sans-serif;
+   color: #330066;
+   background-color : #EEEEEE;
+}
+
+.schedSlot {
+   background-color : #FFCC66;
+   font:10px Verdana, Arial, Helvetica, sans-serif;
+   text-decoration: none;
+   color: #3300FF;
+}
+
+.schedSlot:visited {
+   color: #3300FF;
+}
+
+.schedSlot:hover {
+   color: #FF0000;
+}
+
+.schedAntiSlot {
+   background-color : #EEEEEE;
+}
+
+
+.schedBreak {
+   background-color : #CCCCCC;
+}
+@
+
+
+1.1
+log
+@David
+@
+text
+@@

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cms SYSTEM 'cms.dtd'>
+<cms rootdir="/usr/local/jakarta-tomcat-4.1.29/webapps/acp4is">
+	<interfaces>
+		<interface name="Admin Interface">
+			<menu name="main menu">
+				<header><![CDATA[<html>
+<title><cms:pageattribute name='pagetitle' htmltype='text' description='Html Title String' /></title>
+<cms:cssfiles/>
+<body>
+<table border=0 cellspacing=5 cellpadding=0>
+<tr><cms:menuitems><td><cms:selecteditem><a class="amenuhref" href="<cms:itemattribute name='url' htmltype='text' description="url of the link"/>"><cms:itemattribute name='display' htmltype='text' description='Item display name'/></a></cms:selecteditem><cms:inactiveitem><a class="menuhref" href="<cms:itemattribute name='url' htmltype='text' description='url of the link'/>"><cms:itemattribute name='display' htmltype='text' description='Item display name'/></a></cms:inactiveitem></td></cms:menuitems> 
+</tr></table>]]></header>
+        <footer><![CDATA[</body>
+</html>]]></footer>
+        <attributes></attributes>
+        <cssfiles><cssfile url="styles.css"></cssfile></cssfiles>
+      <item name="CMS"><attributes><attribute name="url"><![CDATA[interfaces.do]]></attribute><attribute name="display"><![CDATA[CMS]]></attribute></attributes><menu name="CMS menu"><header><![CDATA[<table border=0 cellspacing=5 cellpadding=0>
+<tr><cms:menuitems><td><cms:selecteditem><a class="amenuhref" href="<cms:itemattribute name='url' htmltype='text' description="url of the link"/>"><cms:itemattribute name='display' htmltype='text' description='Item display name'/></a></cms:selecteditem><cms:inactiveitem><a class="menuhref" href="<cms:itemattribute name='url' htmltype='text' description='url of the link'/>"><cms:itemattribute name='display' htmltype='text' description='Item display name'/></a></cms:inactiveitem>&nbsp;|</td></cms:menuitems> 
+</tr></table>
+<hr>]]></header><footer></footer><attributes></attributes><cssfiles></cssfiles><item name="Interfaces"><attributes><attribute name="title"><![CDATA[Interfaces!]]></attribute><attribute name="url"><![CDATA[interfaces.do]]></attribute><attribute name="display"><![CDATA[Interfaces]]></attribute></attributes></item><item name="Files"><attributes><attribute name="title"><![CDATA[Files!]]></attribute><attribute name="url"><![CDATA[dirs.do]]></attribute><attribute name="display"><![CDATA[File Browser]]></attribute></attributes></item><item name="Weave!"><attributes><attribute name="title"><![CDATA[Weave!!!]]></attribute><attribute name="url"><![CDATA[wrap.do]]></attribute><attribute name="display"><![CDATA[Wrap]]></attribute></attributes></item><item name="Preview"><attributes><attribute name="url"><![CDATA[../index.html]]></attribute><attribute name="display"><![CDATA[Preview Site]]></attribute></attributes></item></menu></item></menu>
+    </interface>
+ <interface description="" name="ACP4IS UI">
+ <menu name="Main Menu">
+ <header></header>
+ <footer></footer>
+ <attributes></attributes>
+ <cssfiles></cssfiles>
+ <item name="ACP4IS">
+ <attributes></attributes>
+ <menu name="ACP4IS SubMenu">
+   <header><![CDATA[<html>
+<head>
+<title><cms:pageattribute name='pagetitle' htmltype='text' description='Html Title String' /></title>
+<meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<meta name="generator" content="WebJinn/1.0">
+<cms:cssfiles/>
+</style>
+</head>
+<body 
+   bgcolor="White"
+   text="Black"
+   link="Blue"
+   vlink="Purple"
+   alink="Red"
+   style="margin-left:0; 
+   xbackground-color:#9999FF;
+   margin-top:0;xbackground-image:url(img/background.gif);">
+
+<!-- start of page table -->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<!-- start of banner row -->
+<tr class="bannar">
+
+<!-- start of corner cells -->
+<td align="right" width="150" valign="middle" class="corner">
+<center>
+<h1><font class="corner" xcolor="Yellow"><font face="courier">ACP.4.IS</font></h1>
+</center> </td xlign="right">
+
+<td align="right" width="15" xxbgcolor="Green">&nbsp;&nbsp;</td align="right">
+
+<!--spacer-->
+<!--
+<td align="right" width="15" bgcolor="Green">&nbsp;&nbsp;</td align="right">
+-->
+
+<!-- end of corner cells -->
+
+<!-- start of banner -->
+<td width="90%" valign="middle">
+<h1><b><font color="White">
+<span style="font:20px Arial"><h1>
+&nbsp;&nbsp;&nbsp;
+<cms:pageattribute name='pagetitle' htmltype='text' description='Html Title String' /></h1></font></h1>
+</td align="right"><!-- end of banner -->
+</tr><!-- end of banner row -->
+<tr class="bannar">
+<td class="corner">&nbsp;</td>
+<td>&nbsp;</td>
+<!--start tabs -->
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" rules="none" frame="void">
+<tr>
+ <td width="1"><img src="img/spacer10.gif" alt=""></td>
+ <td valign="top"><img src="img/shim.gif" width="5" height="25" alt=""></td>
+ <td width="1" class="headerTab"><img src="img/spacer10.gif" alt=""></td>
+ <td class="headerTab" width="1"></td> 
+
+ <td class="headerTab" nowrap><a href="http://aosd.net/2005/" class="headerLink">&nbsp;&nbsp;AOSD.05&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|</td>
+ <td class="headerTab" nowrap><a href="http://aosd.net/2005/workshops/" class="headerLink">&nbsp;&nbsp;Workshops&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|</td>
+  <td width="1" bgcolor="#000000"><img src="img/shim.gif" alt=""></td>
+   <td class="headerTabSelected" nowrap>&nbsp;&nbsp;ACP4IS&nbsp;&nbsp;</td>
+  <td width="1" bgcolor="#000000"><img src="img/shim.gif" alt=""></td>
+
+<!--
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://dawis.informatik.uni-essen.de/events/AOM_AOSD2005/" class="headerLink">&nbsp;&nbsp;AOM&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a 
+nref="http://www.cs.iastate.edu/~leavens/FOAL/index-2005.shtml" href="http://foal.aosd.info" class="headerLink">&nbsp;&nbsp;FOAL&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://homepages.cwi.nl/~tourwe/late.html" class="headerLink">&nbsp;&nbsp;LATE&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://aosd.net/2005/workshops/daw/" class="headerLink">&nbsp;&nbsp;DAW&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|<td> 
+  <td class="headerTab" nowrap><a href="http://trese.cs.utwente.nl/early-aspects-AOSD2005/" class="headerLink">&nbsp;&nbsp;EA&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://www.daimi.au.dk/~eernst/splat05/" class="headerLink">&nbsp;&nbsp;SPLAT&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://www.cs.colostate.edu/~rta/wtaop/" class="headerLink">&nbsp;&nbsp;WTAOP&nbsp;&nbsp;</a></td>
+-->
+
+<td width="100%" class="headerTab" align="right"><a href="" class="printLink"><img src="img/printer.gif" border="0" align="top" alt="Printer Friendly"></a>&nbsp;&nbsp;&nbsp;</td>
+
+</tr>
+<!--
+<tr><td colspan="9" height="1" bgcolor="#000000"><img src="img/shim.gif" alt=""><
+/td><td height="1" bgcolor="#FFFFFF"><img src="img/shim.gif" alt=""></td><td colspan="17" height="1" bgcolor="#00O000"><img src="img/shim.gif" alt=""></td></tr>
+-->
+</table>
+</td></tr>
+
+<tr><!-- start of sidebar/body row -->
+<!-- start of sidebar cells -->
+<td align="right" width="150" valign="top" class="sidebar">
+<!-- start of sidebar table -->
+<table width="100%" border="0" cellspacing="0" cellpadding="3"
+       bgcolor="#ffffff">
+
+<tr><td align="right" class="subnavTabSelected">ACP4IS</td></tr>
+<tr><td align="right" class="subnavTabSelected"><img="img/subnav_line.gif" border="0" alt=""></td></tr>
+
+<!--start menuitem -->
+<cms:menuitems>
+<!-- top-level element -->
+<tr><td  class="headerTab" nowrap align="right">
+<img src="img/subnav_line.gif" border="0" alt="">
+<tr><td  class="headerTab" nowrap align="right">
+<b><font color="#000000">
+<cms:itemattribute name='display' htmltype='text' description='Item display name'/>
+</font></b>
+</td align="right"></tr>
+<!-- top-level element -->
+<cms:submenu  show="yes" />
+<tr><td class="headerTab">&nbsp;</td></tr>
+</cms:menuitems>
+
+</table><!-- end of sidebar table -->
+</td align="right">
+<td align="right" width="15">&nbsp;&nbsp;</td align="right"><!--spacer-->
+<!-- end of sidebar cell -->
+<!-- start of body cell -->
+<td valign="top" width="90%" class="body"><br>
+
+   <table border="0" cellspacing="20" cellpadding="0" width="100%">
+   <tr>
+   <td align="left" valign="top">]]></header>
+   <footer><![CDATA[</td align="right"><!-- end of body cell -->
+</tr><!-- end of sidebar/body row -->
+</table><!-- end of page table -->
+
+</td align="right"><!-- end of body cell -->
+</tr><!-- end of sidebar/body row -->
+</table><!-- end of page table -->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+ <td width="150">&nbsp;&nbsp;&nbsp;</td>
+  
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://acp4is.aosd.info" class="headerLink">&nbsp;&nbsp;ACP4IS&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://dawis.informatik.uni-essen.de/events/AOM_AOSD2005/" class="headerLink">&nbsp;&nbsp;AOM&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a 
+nref="http://www.cs.iastate.edu/~leavens/FOAL/index-2005.shtml" href="http://foal.aosd.info" class="headerLink">&nbsp;&nbsp;FOAL&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://homepages.cwi.nl/~tourwe/late.html" class="headerLink">&nbsp;&nbsp;LATE&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://aosd.net/2005/workshops/daw/" class="headerLink">&nbsp;&nbsp;DAW&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|<td> 
+  <td class="headerTab" nowrap><a href="http://trese.cs.utwente.nl/early-aspects-AOSD2005/" class="headerLink">&nbsp;&nbsp;EA&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://www.daimi.au.dk/~eernst/splat05/" class="headerLink">&nbsp;&nbsp;SPLAT&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://www.cs.colostate.edu/~rta/wtaop/" class="headerLink">&nbsp;&nbsp;WTAOP&nbsp;&nbsp;</a></td>
+ <td class="headerTab" width="10">|</td> 
+
+</tr>
+</table>
+
+
+</body></html>]]></footer>
+<attributes></attributes>
+<cssfiles><cssfile url="styles.css"></cssfile></cssfiles>
+<item name="workshop"><attributes><attribute name="display"><![CDATA[Workshop]]></attribute></attributes>
+  <menu name="workshop"><header><![CDATA[<cms:menuitems>
+<cms:selecteditem>
+<!--<b><cms:itemattribute name='display' htmltype='text' description='Item display name'/></b>--!>
+<tr><td align="right" class="subsubnavTabSelected"><cms:itemattribute name='display' htmltype='text' description='Item display name'/></td></tr>
+</cms:selecteditem>
+<cms:inactiveitem>
+<tr><td align="right" class="subsubnavTab">
+<a href="<cms:itemattribute name='link' htmltype='text' description='Item link'/>" class="subsubnavLink"><cms:itemattribute name='display' htmltype='text' description='Item display name'/></a>
+</td></tr>
+</cms:inactiveitem>
+</cms:menuitems>]]></header><footer><![CDATA[<a name="dates">
+<h2>Important Dates</h2>
+Submission Deadline: January 13, 2005<br>
+Notification of Acceptance: February 3, 2005<br>
+Workshop: March 14, 2005<br>]]></footer><attributes></attributes><cssfiles></cssfiles><item name="home"><attributes><attribute name="class"><![CDATA[subsubnavTab]]></attribute><attribute name="display"><![CDATA[Home]]></attribute><attribute name="link"><![CDATA[index.html]]></attribute></attributes></item><item name="call"><attributes><attribute name="display"><![CDATA[Call for Papers]]></attribute><attribute name="link"><![CDATA[cfp.shtml]]></attribute></attributes></item><item name="submit"><attributes><attribute name="display"><![CDATA[Submit a Paper]]></attribute><attribute name="link"><![CDATA[submit.shtml]]></attribute></attributes></item><item name="accepted"><attributes><attribute name="display"><![CDATA[Accepted Papers]]></attribute><attribute name="link"><![CDATA[papers.shtml]]></attribute></attributes></item><item name="schedule"><attributes><attribute name="display"><![CDATA[Workshop Schedule]]></attribute><attribute name="link"><![CDATA[schedule.shtml]]></attribute></attributes></item><item name="groups"><attributes><attribute name="display"><![CDATA[Discussion Groups]]></attribute><attribute name="link"><![CDATA[discussion.shtml]]></attribute></attributes></item><item name="report"><attributes><attribute name="display"><![CDATA[Workshop Report]]></attribute><attribute name="link"><![CDATA[report.shtml]]></attribute></attributes></item></menu></item><item name="organization"><attributes><attribute name="display"><![CDATA[Organization]]></attribute></attributes><menu name="org"><header><![CDATA[<cms:menuitems>
+<cms:selecteditem>
+<!--<b><cms:itemattribute name='display' htmltype='text' description='Item display name'/></b>--!>
+<tr><td align="right" class="subsubnavTabSelected"><cms:itemattribute name='display' htmltype='text' description='Item display name'/></td></tr>
+</cms:selecteditem>
+<cms:inactiveitem>
+<tr><td align="right" class="subsubnavTab">
+<a href="<cms:itemattribute name='link' htmltype='text' description='Item link'/>" class="subsubnavLink"><cms:itemattribute name='display' htmltype='text' description='Item display name'/></a>
+</td></tr>
+</cms:inactiveitem>
+</cms:menuitems>]]></header><footer></footer><attributes></attributes><cssfiles></cssfiles><item name="program"><attributes><attribute name="display"><![CDATA[Program Committee]]></attribute><attribute name="link"><![CDATA[pc.shtml]]></attribute></attributes></item><item name="organizing"><attributes><attribute name="display"><![CDATA[Organizing Committee]]></attribute><attribute name="link"><![CDATA[oc.shtml]]></attribute></attributes></item></menu></item><item name="related"><attributes><attribute name="display"><![CDATA[Past Meetings]]></attribute></attributes><menu name="rel"><header><![CDATA[<cms:menuitems>
+<cms:selecteditem>
+<!--<b><cms:itemattribute name='display' htmltype='text' description='Item display name'/></b>--!>
+<tr><td align="right" class="subsubnavTabSelected"><cms:itemattribute name='display' htmltype='text' description='Item display name'/></td></tr>
+</cms:selecteditem>
+<cms:inactiveitem>
+<tr><td align="right" class="subsubnavTab">
+<a href="<cms:itemattribute name='link' htmltype='text' description='Item link'/>" class="subsubnavLink"><cms:itemattribute name='display' htmltype='text' description='Item display name'/></a>
+</td></tr>
+</cms:inactiveitem>
+</cms:menuitems>]]></header><footer></footer><attributes></attributes><cssfiles></cssfiles><item name="acp4is04"><attributes><attribute name="display"><![CDATA[ACP4IS 2004]]></attribute><attribute name="link"><![CDATA[http://www.cs.uvic.ca/~ycoady/acp4is04/index.html]]></attribute></attributes></item><item name="acp4is03"><attributes><attribute name="display"><![CDATA[ACP4IS 2003]]></attribute><attribute name="link"><![CDATA[http://www.cs.ubc.ca/spider/ycoady/acp4is03/index.html]]></attribute></attributes></item><item name="acp4is02"><attributes><attribute name="display"><![CDATA[ACP4IS 2002]]></attribute><attribute name="link"><![CDATA[http://www.st.informatik.tu-darmstadt.de/staff/Ostermann/aosd2002/index.html]]></attribute></attributes></item></menu></item><item name="contacts"><attributes><attribute name="display"><![CDATA[Email Us]]></attribute></attributes><menu name="contacts"><header><![CDATA[<cms:menuitems>
+<cms:selecteditem>
+<!--<b><cms:itemattribute name='display' htmltype='text' description='Item display name'/></b>--!>
+<tr><td align="right" class="subsubnavTabSelected"><cms:itemattribute name='display' htmltype='text' description='Item display name'/></td></tr>
+</cms:selecteditem>
+<cms:inactiveitem>
+<tr><td align="right" class="subsubnavTab">
+<a href="<cms:itemattribute name='link' htmltype='text' description='Item link'/>" class="subsubnavLink"><cms:itemattribute name='display' htmltype='text' description='Item display name'/></a>
+</td></tr>
+</cms:inactiveitem>
+</cms:menuitems>]]></header><footer></footer><attributes></attributes><cssfiles></cssfiles><item name="yvonne"><attributes><attribute name="display"><![CDATA[Yvonne Coady]]></attribute><attribute name="link"><![CDATA[mailto:ycoady@cs.uvic.ca]]></attribute></attributes></item><item name="oldsite"><attributes><attribute name="display"><![CDATA[(old site ver 0.0)]]></attribute><attribute name="link"><![CDATA[oldsite]]></attribute></attributes></item><item name="oldsite1"><attributes><attribute name="display"><![CDATA[(old site ver 0.1)]]></attribute><attribute name="link"><![CDATA[oldsite1]]></attribute></attributes></item><item name="edit"><attributes><attribute name="display"><![CDATA[(edit page)]]></attribute><attribute name="link"><![CDATA[http://edit.aosd.info]]></attribute></attributes></item></menu></item></menu></item></menu></interface></interfaces>
+ <pages>
+ <page file-uri="cms/interfaces.jsp" interface-uri="Admin Interface/main menu/CMS menu:Interfaces"><attributes></attributes><cssfiles></cssfiles></page><page file-uri="cms/items.jsp" interface-uri="Admin Interface/main menu/CMS menu:Interfaces"><attributes></attributes><cssfiles></cssfiles></page><page file-uri="cms/pages.jsp" interface-uri="Admin Interface/main menu/CMS menu:Files"><attributes><attribute name="pagetitle"><![CDATA[File Browser]]></attribute></attributes><cssfiles></cssfiles></page><page file-uri="cms/error.jsp" interface-uri="Admin Interface/main menu/CMS menu"><attributes></attributes><cssfiles></cssfiles></page><page file-uri="cms/success.jsp" interface-uri="Admin Interface/main menu/CMS menu:Weave!"><attributes></attributes><cssfiles></cssfiles></page><page file-uri="cms/index.html" interface-uri="Admin Interface/main menu/CMS menu"><attributes></attributes><cssfiles></cssfiles></page><page file-uri="index.shtml" interface-uri="ACP4IS UI/Main Menu/workshop:home"><attributes><attribute name="pagetitle"><![CDATA[Overview]]></attribute></attributes><cssfiles></cssfiles></page><page file-uri="discussion.shtml" interface-uri="ACP4IS UI/Main Menu/workshop:groups"><attributes><attribute name="pagetitle"><![CDATA[Discussion Groups]]></attribute></attributes><cssfiles></cssfiles></page><page file-uri="oc.shtml" interface-uri="ACP4IS UI/Main Menu/org:organizing"><attributes><attribute name="pagetitle"><![CDATA[Organizing Committee]]></attribute></attributes><cssfiles></cssfiles></page><page file-uri="papers.shtml" interface-uri="ACP4IS UI/Main Menu/workshop:accepted"><attributes><attribute name="pagetitle"><![CDATA[Accepted Papers]]></attribute></attributes><cssfiles></cssfiles></page><page file-uri="pc.shtml" interface-uri="ACP4IS UI/Main Menu/org:program"><attributes><attribute name="pagetitle"><![CDATA[Program Committee]]></attribute></attributes><cssfiles></cssfiles></page><page file-uri="report.shtml" interface-uri="ACP4IS UI/Main Menu/workshop:report"><attributes><attribute name="pagetitle"><![CDATA[Workshop Report]]></attribute></attributes><cssfiles></cssfiles></page><page file-uri="schedule.shtml" interface-uri="ACP4IS UI/Main Menu/workshop:schedule"><attributes><attribute name="pagetitle"><![CDATA[Workshop Schedule]]></attribute></attributes><cssfiles></cssfiles></page><page file-uri="cfp.shtml" interface-uri="ACP4IS UI/Main Menu/workshop:call"><attributes><attribute name="pagetitle"><![CDATA[Call for Papers]]></attribute></attributes><cssfiles></cssfiles></page><page file-uri="submit.shtml" interface-uri="ACP4IS UI/Main Menu/workshop:submit"><attributes><attribute name="pagetitle"><![CDATA[Submit a Paper]]></attribute></attributes><cssfiles></cssfiles></page><page file-uri="index.html" interface-uri="ACP4IS UI/Main Menu/workshop:home"><attributes><attribute name="pagetitle"><![CDATA[Overview]]></attribute></attributes><cssfiles></cssfiles></page></pages> 
+</cms>

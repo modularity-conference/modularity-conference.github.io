@@ -1,0 +1,164 @@
+<?
+
+# 26.02.2003 script written (Victor Burwitz)
+# 07.03.2003 banquet tickets implemented (Victor Burwitz)
+#            added total price (Victor Burwitz)
+# 08.03.2003 banquet selection added (Victor Burwitz)
+#            added tutorials (Victor Burwitz)
+#            user and password check implemented (Victor Burwitz)
+# 10.03.2003 order of colums changed (Victor Burwitz)
+#            arrival and departure date just written if usefull content (Victor Burwitz)
+# 12.05.2003 added tutorial search criteria (Victor Burwitz)
+# 14.05.2003 added student matriculation received search criteria (Victor Burwitz)
+# 15.05.2003 added cardfaxreceived, paymentreceived, matricreceived (Victor Burwitz)
+#            added payment search criteria (Victor Burwitz)
+# 05.06.2003 added activity search criteria (Victor Burwitz)
+#            added roles to downloaded data (Victor Burwitz)
+# 10.06.2003 credit card number gets nice spaces, that excel doesnt display nonsense (Victor Burwitz)
+# 02.07.2003 added affiliation field (Victor Burwitz)
+# 27.07.2003 added was present search criteria (Victor Burwitz)
+
+
+#$nohttpheader	=true;			# prevents also "Pragma: no-cache" header which crashes IE on downloads via https
+require_once("../conf.phtml");
+require_once("../dbinterface.phtml");
+$db	=new Database();
+require_once("../userauth.phtml");
+$user	=new Userauth();						# check if user has authorized himself!
+
+
+$sep	="\t";								# the separator symbol for the columns (can not be \n)
+
+header("Content-type: application/vnd.ms-excel");			# tell browser with MIME type, that the file is a Excel file
+
+# output nice header line
+echo "ID".$sep."LAST NAME".$sep."FIRST NAME".$sep."TITLE".$sep."TYPE".$sep."ACTIVITY".$sep.
+     "AFFILIATION".$sep."ADDRESS".$sep."CITY".$sep."POSTAL CODE".$sep."COUNTRY".$sep.
+     "EMAIL".$sep."PHONE".$sep."FAX".$sep."REGDATE".$sep."TIME".$sep."SPECIAL NEEDS".$sep.
+     "TOTAL PRICE".$sep.
+     "PAYMENT METHOD".$sep."CARD NUMBER".$sep."EXPIRATION".$sep."CARDFAXRECEIVED".$sep.
+     "PAYMENTRECEIVED".$sep."MATRICRECEIVED".$sep."WAS PRESENT".$sep."BANQUET TICKETS".$sep.
+     "HOTEL".$sep."ARRIVAL".$sep."DEPARTURE".$sep."ACCOMMODATION".$sep."ROOMMATE".$sep.
+     "TUTORIAL1".$sep."TUTORIAL2".$sep."TUTORIAL3".$sep."TUTORIAL4".$sep."ROLES"."\n";
+
+$sqlsw	="LIKE '%".$db->quote($fsearchword)."%'";			# construct search query
+$sql	="SELECT participant.* FROM participant";
+if (strlen($fsearchtutorial)>0) {
+	$sql.=",part_tutorial";
+} # if
+
+$sql   .=" WHERE ".
+	 "(participant.id $sqlsw OR participant.fname $sqlsw ".		# search for search word
+	 "OR participant.lname $sqlsw OR participant.affiliation $sqlsw ".
+	 "OR participant.address $sqlsw OR participant.city $sqlsw ".
+	 "OR participant.postalcode $sqlsw OR participant.country $sqlsw ".
+	 "OR participant.email $sqlsw OR participant.specialneeds $sqlsw) ";
+if (   $fsearchregtype=="studentmatmissing"				# advanced search criteria for students
+    || $fsearchregtype=="studentmatreceived") {
+	$sql	.="AND participant.regtype='student' ".
+		  "AND participant.matricreceived=";
+	if ($fsearchregtype=="studentmatmissing") $sql.="0 ";
+	if ($fsearchregtype=="studentmatreceived") $sql.="1 ";
+}
+elseif (strlen($fsearchregtype)>0) {					# in case a search criteria for regtype is given, restrict result
+	$sql	.="AND participant.regtype='".$db->quote($fsearchregtype)."' ";
+} # if
+if (strlen($fsearchactivity)>0) {					# in case a search criteria for activity is given, restrict result
+	$sql	.="AND participant.activity='".$db->quote($fsearchactivity)."' ";
+} # if
+if ($fsearchpayment=="creditcard") {					# advanced search criteria for payment
+	$sql	.="AND (participant.paymentmethod='visa' OR participant.paymentmethod='mastercard') ";
+}
+elseif (strlen($fsearchpayment)>0) {					# in case a search criteria for paymentmethod is given, search
+	$sql	.="AND participant.paymentmethod='".$db->quote($fsearchpayment)."' ";
+} # if
+if (strlen($fsearchpaystatus)>0) {					# in case a search criteria for payment received, restrict result
+	$sql	.="AND participant.paymentreceived='".$db->quote($fsearchpaystatus)."' ";
+} # if
+if (strlen($fsearchwaspresent)>0) {					# in case a search criteria for was present rec., restrict result
+	$sql	.="AND participant.waspresent='".$db->quote($fsearchwaspresent)."' ";
+} # if
+if (strlen($fsearchhotel)>0) {						# in case a search criteria for hotel is given, restrict result
+	$sql	.="AND participant.hotel='".$db->quote($fsearchhotel)."' ";
+} # if
+if ($fsearchbanquet=="no") {
+	$sql	.="AND participant.banquet=0 AND participant.banquetadd=0 ";
+} # if
+if ($fsearchbanquet=="yes") {
+	$sql	.="AND (participant.banquet>0 OR participant.banquetadd>0) ";
+} # if
+if (strlen($fsearchtutorial)>0) {					# join with part_tutorial table, to select tutorial participants
+	$sql	.="AND participant.id=part_tutorial.participantid ".
+		  "AND part_tutorial.tutorialid='".$db->quote($fsearchtutorial)."' ";
+} # if
+$sql	.="ORDER BY lname,fname,id";					# sort the result
+$result	=$db->query($sql);
+while ($row=$result->fetchhash()) {					# output all participants in CSV format
+	# clean critical fields, replace seperator with a space (specially because separator should normally be \t)
+	$address	=ereg_replace($sep," ",$row["address"]);
+	$specialneeds	=ereg_replace($sep," ",$row["specialneeds"]);
+	$banquettickets	=$row["banquet"]+$row["banquetadd"];
+	$totalprice	=sprintf($priceformatxls,$row["totalprice"]);
+	$expiration	="";
+	if (strlen($row["cardvalidmonth"])>0 || strlen($row["cardvalidyear"])>0) {
+		$expiration	=$row["cardvalidmonth"]."/".$row["cardvalidyear"];
+	} # if
+	$arrival	=$row["arrival"];
+	if (strlen($arrival)==0 || $arrival=='0000-00-00') $arrival="";
+	$departure	=$row["departure"];
+	if (strlen($departure)==0 || $departure=='0000-00-00') $departure="";
+	$cardnumber	=$row["cardnumber"];
+	if (strpos($cardnumber," ")===false) {				# add spaces to credit card number, if not already present, this is done
+		$cardnumber	="";					# that excel shows the number as string and doesnt convert it to e-notation
+		for ($i=0; $i<strlen($row["cardnumber"]); $i++) {	# now go through string and insert a space after every fourth digit
+			$cardnumber	.=substr($row["cardnumber"],$i,1);
+			if (($i+1)%4==0 && $i+1!=strlen($row["cardnumber"])) {
+				$cardnumber.=" ";			# after every 4 digit output a space, but not if character is the last one
+			} # if
+		} # for
+	} # if
+
+	$line	=$row["id"].$sep.$row["lname"].$sep.$row["fname"].$sep.
+		 $row["title"].$sep.$row["regtype"].$sep.$row["activity"].$sep.
+		 $row["affiliation"].$sep.$address.$sep.$row["city"].$sep.$row["postalcode"].$sep.
+		 $row["country"].$sep.$row["email"].$sep.$row["phone"].$sep.
+		 $row["fax"].$sep.
+		 $row["regdate"].$sep.$row["reservationtime"].$sep.
+		 $specialneeds.$sep.$totalprice.$sep.
+		 $row["paymentmethod"].$sep.$cardnumber.$sep.$expiration.$sep.$row["cardfaxreceived"].$sep.
+		 $row["paymentreceived"].$sep.$row["matricreceived"].$sep.$row["waspresent"].$sep.
+		 $banquettickets.$sep.$row["hotel"].$sep.$arrival.$sep.$departure.$sep.
+		 $row["accommodation"].$sep.$row["roommate"];
+
+	$i	=0;							# now output the up to 4 tutorials
+	$sql	="SELECT tutorialid FROM part_tutorial WHERE participantid=".$row["id"]." ORDER BY tutorialid";
+	$tutres	=$db->query($sql);
+	while ($i<4 && $tutrow=$tutres->fetchhash()) {			# now iterate through the results and output up to max. 4
+		$line	.=$sep.tutorial_number($tutrow["tutorialid"]);		# can not be more anyhow but make shure!
+		$i++;
+	} # while
+	while ($i<4) {							# fill up the missing tutorials with empty colums
+		$line	.=$sep."";
+		$i++;
+	} # while
+
+	$i	=0;							# now output roles of the participant
+	$line	.=$sep;
+	$sql	="SELECT role.name FROM part_role,role ".
+		 "WHERE part_role.participantid=".$row["id"]." AND part_role.roleid=role.id ".
+		 "ORDER BY role.name";
+	$tutres	=$db->query($sql);
+	while ($rolerow=$tutres->fetchhash()) {
+		if ($i>0) $line.=", ";
+		$line	.=$rolerow["name"];
+		$i++;
+	} # while
+
+	$line	=ereg_replace("\n"," ",$line);				# remove false \n and \r in the data, to prevent false new rows
+	$line	=ereg_replace("\r"," ",$line);
+	echo "$line\n";
+} # while
+
+exit;									# end execution to prevent useless newlines
+
+?>

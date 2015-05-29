@@ -1,0 +1,40 @@
+<?
+
+function showworkshops () {						# outputs a list with all workshops
+	global	$db, $dateformat;
+
+	echo "  <p>\n";
+	echo "  <table border=\"0\" cellspacing=\"0\" cellpadding=\"3\" width=\"100%\" align=\"center\">\n";
+	echo "  <tr align=\"center\" bgcolor=\"#CCCCCC\">\n";
+	echo "   <td></td>\n";
+	echo "   <td>Workshop</td>\n";
+	echo "   <td>Date</td>\n";
+	echo "  </tr>\n";
+	$sql	="SELECT * FROM workshop ORDER BY date, id";
+	$result	=$db->query($sql);
+	while ($row=$result->fetchhash()){
+		$title = preg_split("/:\w*/", $row["title"]);
+		echo "<tr>\n";
+		echo " <td align=\"right\">".$title[0]."</td>\n";
+#		if (strlen($row["id"])==1) echo "0";
+#		echo $row["id"]."</font></td>\n";
+		echo " <td>\n";
+		if (strlen($row["link"])>0) {
+			echo "  <a href=\"".htmlentities($row["link"])."\" target=\"wsdesc\">";
+			echo htmlentities($title[1])."</a>";
+		}
+		else {
+			echo "  ".htmlentities($title[1]);
+		} # if
+		echo "<br>\n";
+		echo "  ".htmlentities($row["authors"])."</td>\n";
+		echo " <td align=\"center\">";
+		echo str_replace(" ","&nbsp;",date($dateformat,strtotime($row["date"])));
+		if (strlen($row["date2"])>0) echo "<br>and<br>".date($dateformat,strtotime($row["date2"]));
+		echo "</td>\n";
+		echo "</tr>\n";
+	} # while
+	echo "  </table>\n";
+} # showworkshops
+
+?>

@@ -1,0 +1,62 @@
+<?
+function calculateprice ($f) {
+	global	$db, $banquetprice, $tutorials, $lunchdates, $lunchprice, 
+	$hotelensuite,$hotelstandard;
+
+	$tutorialunits	=0;						# count the ordered units
+	foreach ($tutorials as $id=>$units) {
+		$tutorialunits	+=$units;
+	} # foreach
+
+	$sql		="SELECT * FROM fee ".				# select total price for the participants registration
+			 "WHERE regtype='".$db->quote($f["regtype"])."' ".
+			 "AND activity='".$db->quote($f["activity"])."' ".
+			 "AND reservationtime='".$db->quote($f["reservationtime"])."' ".
+			 "AND tutorialunits=$tutorialunits ".
+			 "AND administration=1";
+	$result		=$db->query($sql);
+	$row		=$result->fetchhash();
+	$totalprice	=$row["price"];
+
+	$totalprice	+=$banquetprice*$f["banquetadd"];		# add banquets to total price
+
+	$numlunches = 0;
+	foreach ($lunchdates as $lunchdate) {
+		$idx = "lunch".strtotime($lunchdate);
+		$numlunches += $f[$idx];
+	} 
+	$totalprice += $numlunches * $lunchprice;
+
+	$firstNight = date("z",strtotime($f["arrival"]));
+	$lastNight = date("z",strtotime($f["departure"])); 
+	$lastFreeNight = date("z",strtotime("2004-03-26"));
+	
+	$nights	= $lastNight - $firstNight;
+	
+	$freenights = 0;
+	if ($f["regtype"] == "epsrc") {
+		
+		$freenights = $nights;
+		if ($lastNight > $lastFreeNight) {
+			$freenights = $freenights - ($lastNight - $lastFreeNight);
+		}
+		
+	}
+
+	$chargenights = $nights - $freenights;
+	if ($chargenights < 0) {
+		$chargenights = 0;
+	}
+
+	if ($f["accommodation"]=="ensuite") {
+		$hotelprice	= $chargenights*$hotelensuite;
+	} # if
+	if ($f["accommodation"]=="standard") {
+		$hotelprice	=$chargenights*$hotelstandard;
+	} # if
+
+	$totalprice += $hotelprice;
+		
+	return $totalprice;
+} # calculateprice
+?>

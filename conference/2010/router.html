@@ -1,0 +1,32 @@
+<?php
+@ini_set("memory_limit",'2G');
+// router.php
+if (!preg_match('/\.(php|html)$/', $_SERVER["REQUEST_URI"])) {
+  return false;    // serve the requested resource as-is.
+}
+
+/* print_r($_SERVER); */
+/* return; */
+
+$SF = 'SCRIPT_NAME';
+
+$f =  __DIR__ . $_SERVER[$SF];
+/* error_log("F1 :>> " . $f); */
+if (preg_match('/\.html$/', $f)) {
+  /* error_log("I :>> html "); */
+
+  if (!preg_match('/stat/', $f)) {
+    /* error_log("I :>> stat "); */
+    $f = preg_replace('/\.html$/', '.php', $f);
+  }
+}
+/* error_log("S :>> " . print_r($_SERVER, TRUE)); */
+
+/* error_log("F2 :>> " . $f); */
+/* ob_start(NULL, 40960); */
+require $f;
+  /* $out = ob_get_flush(); */
+  /*  error_log("S :>> " . print_r($_SESSION, TRUE)); */
+  /*  error_log("C :>> " . $out); */
+
+?>

@@ -1,0 +1,189 @@
+<?
+
+require_once("conf.phtml");
+require_once("dbinterface.phtml");
+require_once("multipageinputhandler.phtml");				# treats input data that is in f[] array
+require_once("cc.phtml");
+require_once("defaultcreditcard.phtml");
+require_once("emailcheck.phtml");
+require_once("email.phtml");
+require_once("reginc/showtutorials.phtml");
+require_once("reginc/showworkshops.phtml");
+require_once("reginc/makecardbyfaxmail.phtml");
+require_once("reginc/savedata.phtml");
+require_once("reginc/page.phtml");
+
+$db	=new Database();
+
+# None of these page continue or previous values are allowed to have SAME values!
+$page1previous		="< Back";
+$page2continue		="Continue >";
+$page2previous		="<< Back";
+$page3continue		="Continue >>";
+$page3previous		="<<< Back";
+$page4continue		="Continue >>>";
+$page4previous		="<<<< Back";
+$page5continue		="Register";
+$page5previous		="<<< Back";
+$page6continue		="Continue >>>>";
+
+$submitvalueshowws	="Show Workshops";				# special submit values to unfold/hide workshops
+$submitvaluehidews	="Collapse Workshops";
+$submitvalueprevious	="";						# for safty init these values as empty
+$submitvaluecontinue	="";
+
+$e			=array();					# $e is a array and carries the errors as entries
+$stopoutput	=false;						# init flag that can stop output of further pages on error
+$footertext	="";						# init the pages footer text as empty
+
+$timestamp		=time();					# store timestamp of the execution
+if ($timestamp<=strtotime($earlytilladjusted)) {				# find out which booking conditions apply
+	$reservationtime="early";
+}
+else {
+	$reservationtime="late";
+} # if
+
+# $titles, $regtypes, $activities, $paymentmethods, $accommodations, $arrivaldates and $departuredates are initialized in conf.phtml
+$countries		=array();					# fill arrays with valid values from database
+$result			=$db->query("SELECT name FROM country ORDER BY name");
+while ($row=$result->fetchhash()) { $countries[]=$row["name"]; }
+
+
+$f["activity"]          ="conference";
+$f["title"]		=trim( substr($f["title"],0,$maxtitle) );	# cut strings to maximum length and cut of
+$f["fname"]		=trim( substr($f["fname"],0,$maxfname) );	# whitespaces at the beginning and at the end
+$f["lname"]		=trim( substr($f["lname"],0,$maxlname) );
+$f["affiliation"]	=trim( substr($f["affiliation"],0,$maxaffiliation) );
+$f["address"]		=trim( substr($f["address"],0,$maxaddress) );
+$f["city"]		=trim( substr($f["city"],0,$maxcity) );
+$f["postalcode"]	=trim( substr($f["postalcode"],0,$maxpostalcode) );
+$f["email"]		=trim( substr($f["email"],0,$maxemail) );
+$f["phone"]		=trim( substr($f["phone"],0,$maxphone) );
+$f["fax"]		=trim( substr($f["fax"],0,$maxfax) );
+$f["specialneeds"]	=trim( substr($f["specialneeds"],0,$maxspecialneeds) );
+$f["cardnumber"]	=trim( substr($f["cardnumber"],0,$maxcardnumber) );
+$f["cardvalidmonth"]	=trim( substr($f["cardvalidmonth"],0,$maxcardvalidmonth) );
+$f["cardvalidyear"]	=trim( substr($f["cardvalidyear"],0,$maxcardvalidyear) );
+$f["cardverification"]	=trim( substr($f["cardverification"],0,$maxcardverification) );
+#$f["cardcvc"]		=trim( substr($f["cardcvc"],0,$maxcardcvc) );
+$f["banquetadd"]	=trim( substr($f["banquetadd"],0,$maxbanquetadd) );
+$f["roommate"]		=trim( substr($f["roommate"],0,$maxroommate) );
+
+$f["banquetadd"]	=intval($f["banquetadd"]);			# cast integers to integer values
+
+$tutpossible	=true;						# shows if tutorials are possible for given registration
+$tutorials		=array();
+$result	=$db->query("SELECT * FROM tutorial");			# now process every tutorial entry
+while ($row=$result->fetchhash()) {
+	$key		="tutorial(".htmlentities($row["id"]).")";
+	if ($ftutorialsubmit=="1") $f[$key]=$ftutorial[$row["id"]];	# if data was submited, then overwrite old informations
+	$f[$key]	=intval($f[$key]);
+	if ($f[$key]==1) {					# if tutorial is selected, then put it in array
+		$tutorials[$row["id"]]	=$row["units"];
+	}
+	else {							# if not selected, then make sure it has a valid 0, nothing else
+		$f[$key]		=0;
+	} # if
+} # while
+
+
+
+if ($f["paymentmethod"]=="cardbyfax") {	# delete credit card data, if payment method is not credit card
+	$f["cardnumber"]	="";
+	$f["cardvalidmonth"]	="";
+	$f["cardvalidyear"]	="";
+	$f["cardverification"]	="";
+} # if
+if (strlen($f["cardvalidmonth"])==1 && is_numeric($f["cardvalidmonth"])==true) {
+	$f["cardvalidmonth"]="0".$f["cardvalidmonth"];			# if the date is a number and just 1 digit long, then leading zero
+} # if
+if (strlen($f["cardvalidyear"])==1 && is_numeric($f["cardvalidyear"])==true) {
+	$f["cardvalidyear"]="0".$f["cardvalidyear"];
+} # if
+if ($f["paymentmethod"]=="banktransfer" && $timestamp>strtotime($banktransfertill)) {
+	$f["paymentmethod"]	="";					# prevent bank transfer if time for this is over
+} # if
+if ($f["accommodation"]!="ensuite" && $f["accommodation"]!="standard") {	# if not relevant, then delete date entries for hotel booking
+	$f["arrival"]	="";
+	$f["departure"]	="";
+} # if
+if ($f["accommodation"]!="sharedroom") {				# if not relevant, then delete room mate entry
+	$f["roommate"]	="";
+} # if
+
+
+if ($f["regtype"]=="accperson") {					# special restictions for accompanying people
+	# second page useless for accompanying people, therefore skip
+	if ($fsubmitbutton==$page2continue) $fsubmitbutton=$page3continue;
+	if ($fsubmitbutton==$page2previous) $fsubmitbutton=$page1previous;
+#	$f["activity"]		="";					# a accompanying person cannot book any activity (checked below!)
+	$tutorials		=array();				# also tutorials are not possible
+	$banquet		=1;					# banquet always included
+	$f["banquetadd"]	=0;					# additional banquet tickets are not possible
+} # if
+if ($f["regtype"]=="banquet") {						# special restictions for banquet registration
+	# second page useless for banquet registration, therefore skip
+	if ($fsubmitbutton==$page2continue) $fsubmitbutton=$page4continue;
+	if ($fsubmitbutton==$page3continue) $fsubmitbutton=$page4continue;
+	if ($fsubmitbutton==$page2previous) $fsubmitbutton=$page1previous;
+	if ($fsubmitbutton==$page3previous) $fsubmitbutton=$page1previous;
+#	$f["activity"]		="";					# in banquet reservation no activities possible (checked below!)
+	$tutorials		=array();				# also tutorials are not possible
+	$banquet		=1;					# banquet always included
+	$f["banquetadd"]	=0;					# additional banquet tickets are not possible
+	$f["accommodation"]	="none";				# hotel reservation for banquet ticket not possible
+	$f["arrival"]		="";
+	$f["departure"]		="";
+} # if
+
+
+
+
+print_header();
+
+if ($timestamp>strtotime($latetill)) {					# if registration deadline is over, then prevent new registrations
+   deadline_over();
+   print_footer();
+   exit;								# prevent further output
+} # if
+
+include("reginc/page1.phtml");
+include("reginc/page2.phtml");
+include("reginc/page3.phtml");
+include("reginc/page4.phtml");
+include("reginc/page5.phtml");
+include("reginc/page6.phtml");
+
+?>
+
+<p>
+<table width="600">
+<tr>
+ <td colspan="2">
+  <? echo $footertext; ?>
+ </td>
+</tr>
+<tr>
+ <td>&nbsp;</td>
+</tr>
+<tr>
+<?
+echo " <td align=\"left\">";
+if (strlen($submitvalueprevious)>0) {
+	echo '<input type="submit" name="fsubmitbutton" value="'.htmlentities($submitvalueprevious).'">';
+} # if
+echo "</td>\n";
+echo " <td align=\"right\">";
+if (strlen($submitvaluecontinue)>0) {
+	echo '<input type="submit" name="fsubmitbutton" value="'.htmlentities($submitvaluecontinue).'">';
+} # if
+echo "</td>\n";
+?>
+</tr>
+</table>
+
+<?
+print_footer();
+?>
+

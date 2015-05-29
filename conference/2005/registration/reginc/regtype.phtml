@@ -1,0 +1,41 @@
+
+<table class="entry" width="600">
+<tr>
+ <td class="head">Registration</td>
+</tr>
+<tr>
+ <td class="body">
+<?php
+if ($f["regtype"] == "comp" || $f["regtype"] == "epsrc" || $f["regtype"] == "volunteer") {
+	echo $regtypename[$f["regtype"]];
+}
+else {
+?>
+
+  <font<? if ($e["regtype"]===true) echo " class=\"error\""; ?>>Please select one of the following:</font><br>
+<?
+	echo "  <ul>\n";
+	
+	$regtypesshow	=array("regular","student");
+	
+	foreach ($regtypesshow as $regtype) {
+		echo "   <input type=\"radio\" name=\"f[regtype]\" value=\"".htmlentities($regtype)."\"";
+		if ($f["regtype"]==$regtype) echo " checked";
+		echo ">".htmlentities($regtypename[$regtype]);
+		if ($regtype == "regular") echo '&nbsp;&nbsp;(<a href="javascript:openwin(\'regularWhatsIncluded\')">what\'s included</a>)';
+		if ($regtype == "student") echo '&nbsp;&nbsp;(<a href="javascript:openwin(\'studentWhatsIncluded\')">what\'s included</a>)';
+		echo "<br>\n";
+	} # foreach
+		
+	echo "  </ul>\n";
+
+	if ($reservationtime=="early") {				# in case of early registration, say something about reduction
+		echo "Special Early Registration rate available until  ".date($dateformatred,strtotime($earlytill)).".<br>\n";
+	} # if
+		
+}
+?>
+ </td>
+</tr>
+</table>
+

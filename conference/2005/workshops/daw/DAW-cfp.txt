@@ -1,0 +1,132 @@
+Dynamic Aspects Workshop (DAW05)
+
+http://aosd.net/2005/workshops/daw/index.html
+
+Call for Papers
+===============
+
+Join points are the locus of aspect and functional code
+interaction. Traditional aspect systems define join points in terms of
+the static structure of programs, such as syntactic method calls,
+method entry and field access.
+
+Research interests of the AOSD community have been extended beyond
+static aspects. In some situations, it is desirable to invoke or
+change aspect behavior based on the dynamics of program
+execution. Such situations include changing behavior based on the
+call-stack context, co-occurrence of predicate triggers, concurrent
+thread status, or events in the underlying interpreter such as storage
+reclamation or process scheduling.
+
+This workshop will identify examples of useful dynamic aspect
+behavior, suggest appropriate linguistic structures for dynamic
+aspects, and discuss implementation techniques for dynamic aspects,
+such as shadow compilation, dynamically changeable hook points, and
+modifications required in the underlying execution environment. The
+workshop organizers are particularly interested in position papers
+that describe experience with dynamic aspect systems or that outline
+real problems which need dynamic aspects.
+
+Topics and Motivation
+---------------------
+
+The theme of the workshop is dynamic aspects, an emerging frontier in
+the expansion of aspect technologies.
+
+The topics of the workshop include:
+
+* Application scenarios for and applications of dynamic aspects
+* Linguistic structures for dynamic aspects
+* Implementation mechanisms for dynamic aspects
+* Enabling technologies and environment support for dynamic aspects
+  (e.g., debuggers, IDEs)
+* Models for dynamic aspects
+* Validation techniques for dynamic aspects
+* Achieving the effect of dynamic aspects in conventional programming
+  environments
+* Challenges and research directions
+
+Format
+------
+
+We expect to run the workshop as a combination of demonstrations,
+paper presentations, and working groups. The workshop's format will
+correspond to a writer's workshop format, having its main focus is on
+the interaction of the participants. Hence, a lot of time is planned
+for discussions about the accepted papers. Based on these discussions,
+typical working groups would explore issues such as developing a set
+of reference problems and requirements for the implementers of dynamic
+aspect systems, taxonomic organizations of the dynamic aspect space,
+implementation techniques for dynamic aspect systems, and catalogs of
+applications that could be improved by the existence of dynamic aspect
+mechanisms. We expect the working groups to present their material to
+all workshop participants.
+
+Depending on the quality of the submitted papers, we will publish them
+as a technical report and may seek a more influential vehicle for
+wider dissemination of the better papers.
+
+This workshop is a successor to last year s AOSD Dynamic Aspects
+Workshop (http://aosd.net/2004/workshops/daw/) and the ECOOP 03
+Workshop on Advancing the State-of-the-Art in Runtime Inspection
+(ASARTI)
+(http://www.st.informatik.tudarmstadt.de/pages/workshops/ASARTI03/index.html).
+
+Submission and Invitation
+-------------------------
+
+Attendance at the workshop is by invitation. Prospective workshop
+participants are requested to submit to hirschfeld@acm.org, either (1)
+a full paper of up to 6,000 words, describing work on a topic germane
+to dynamic aspects, or (2) a position paper of up to 2,000
+words. Submissions should use the ACM format, templates for which can
+be found at http://www.acm.org/sigs/pubs/proceed/template.html. We
+especially welcome submissions that address multiple elements in the
+topic list for example, implementations along with a more formal
+discussion of their program model, or linguistic structures with
+examples of their application. If quality of enough submitted full
+papers merits, the workshop organizers will seek an archival
+publication for those papers.
+
+Key Dates
+---------
+
+Full and position papers due: January 16th, 2005
+Invitations issued: February 3rd, 2005
+Final copy of papers due: February 19th, 2005
+Workshop: March, 15th, 2005
+
+Organizing Committee
+--------------------
+
+Robert Filman
+RIACS, NASA Ames
+rfilman@mail.arc.nasa.gov
+
+Michael Haupt
+Darmstadt University of Technology
+haupt@informatik.tu-darmstadt.de
+
+Robert Hirschfeld
+DoCoMo Euro-Labs
+hirschfeld@acm.org
+
+Program Committee
+-----------------
+
+Johan Brichau, Vrije Universiteit Brussel
+Ruzanna Chitchyan, Lancaster University
+Yvonne Coady, University of Victoria
+Pascal Costanza, University of Bonn
+Robert Filman, NASA Ames Research Center (co-organiser)
+Stefan Hanenberg, University of Essen
+Michael Haupt, Darmstadt University of Technology (co-organiser)
+Stephan Herrmann, Technical University Berlin
+Robert Hirschfeld, DoCoMo Euro-Labs (co-organiser)
+Guenter Kniesel, University of Bonn
+Cristina Lopes, University of California, Irvine
+Katharina Mehner, Technical University Berlin
+Mario Suedholt, Ecole des Mines de Nantes
+
+
+

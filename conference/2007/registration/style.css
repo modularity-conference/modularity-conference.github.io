@@ -1,0 +1,92 @@
+
+body {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+P.required {
+	color : Red;
+}
+TD.topLeft {  
+  border-left: 1px solid Black;
+}
+TD.topRight {  
+  border-right: 1px solid Black;
+}
+TD.topBothSides {  
+  border-left: 1px solid Black;
+  border-right: 1px solid Black;
+}
+TD.topLeftTop { 
+  border-left: 1px solid Black;
+  border-top: 1px solid Black;
+}
+TD.topRightTop { 
+  border-right: 1px solid Black;
+  border-top: 1px solid Black;
+}
+TD.topTop { 
+  border-top: 1px solid Black;
+}
+TD.ccTitle {
+	background-color : Silver;
+	border : 1px solid Black;
+}
+TD.ccLeft {
+	background-color: #B0C4DE;
+	border-left: 1px solid Black;
+}
+TD.ccRight {
+	background-color: #B0C4DE;
+	border-right: 1px solid Black;
+}
+TD.ccTop {
+	background-color: #B0C4DE;
+	border-top: 1px solid Black;
+}
+TD.ccTopLeft {
+	background-color: #B0C4DE;
+	border-top: 1px solid Black;
+	border-left: 1px solid Black;
+}
+TD.ccTopRight {
+	background-color: #B0C4DE;
+	border-top: 1px solid Black;
+	border-right: 1px solid Black;
+}
+TD.ccBottomLeft {
+	background-color: #B0C4DE;
+	border-bottom: 1px solid Black;
+	border-left: 1px solid Black;
+}
+TD.ccBottomRight {
+	background-color: #B0C4DE;
+	border-bottom: 1px solid Black;
+	border-right: 1px solid Black;
+}
+TD.checkTitle {
+	background-color : Silver;
+	border : 1px solid Black;
+}
+TD.checkNone {  
+    background-color : #F0E68C;
+}
+TD.checkRight { 
+	background-color : #F0E68C;
+	border-right: 1px solid Black;
+}
+TD.checkLeft { 
+	background-color : #F0E68C;
+	border-left: 1px solid Black;
+}
+TD.checkBoth {
+	background-color : #F0E68C;
+	border-left : 1px solid Black;
+	border-right: 1px solid Black;
+}
+TD.checkBottom {
+	background-color : #F0E68C;
+	border-left : 1px solid Black;
+	border-right: 1px solid Black;
+	border-bottom: 1px solid Black;
+}

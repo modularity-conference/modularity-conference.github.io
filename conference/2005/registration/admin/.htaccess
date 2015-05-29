@@ -1,0 +1,9 @@
+
+AuthType Basic
+
+AuthName "www.aosd.net"
+
+AuthUserFile "/home/mkersten/.htpasswds/2005/registration/admin/passwd"
+
+
+require valid-user

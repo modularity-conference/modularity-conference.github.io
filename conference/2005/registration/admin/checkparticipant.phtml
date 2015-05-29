@@ -1,0 +1,237 @@
+<?
+function checkparticipant ($f,&$errmsg) {
+	global	$db, $titles, $countries, $regtypes, $activities, $regtypename, $activityname,
+		$accommodations, $hotels, $arrivaldates, $departuredates, $hotel1rooms,
+		$paymentmethods,
+		$tutorials, $tutpossible;
+
+	$e	=array();
+	$errmsg	="";
+
+	# PAGE 1 checks!!!
+	if (in_array($f["regtype"],$regtypes)!=true) $e["regtype"]=true;
+	if (   ($f["regtype"]=="accperson" || $f["regtype"]=="banquet")	# in accperson and banquet reservations, no activity is allowed
+	    && strlen($f["activity"])>0 ) {				# to be chooen
+	    	$e["activityselected"]	=true;
+	}
+	elseif (   $f["activity"]==""					# in accperson and banquet reservations, no activity is allowed
+	        && $f["regtype"]!="accperson" && $f["regtype"]!="banquet") {
+		$e["accpersonbanquet"]	=true;
+	} # if
+	elseif (   $f["regtype"]!="accperson" && $f["regtype"]!="banquet"	# a accompanying person/banquet cannot book any activity
+	        && in_array($f["activity"],$activities)!=true) $e["activity"]=true;
+	if (strlen($f["fname"])<=0) $e["fname"]=true;			# these fields must contain some content
+	if (strlen($f["lname"])<=0) $e["lname"]=true;
+	if (strlen($f["affiliation"])<=0) $e["affiliation"]=true;
+	if (strlen($f["address"])<=0) $e["address"]=true;
+	if (strlen($f["city"])<=0) $e["city"]=true;
+	if (strlen($f["postalcode"])<=0) $e["postalcode"]=true;
+	if (strlen($f["email"])<=0) $e["email"]=true;
+	#if (strlen($f["phone"])<=0) $e["phone"]=true;			# not required at the moment
+	#if (strlen($f["fax"])<=0) $e["fax"]=true;
+	#if (strlen($f["specialneeds"])<=0) $e["specialneeds"]=true;
+	if (in_array($f["title"],$titles)!=true) $e["title"]=true;	# take a look if the variables have a valid value
+	if (in_array($f["country"],$countries)!=true) $e["country"]=true;
+	if (   count($e)<=0
+	    && $f["regtype"]!="accperson" && $f["regtype"]!="banquet"	# a accompanying person cannot book any activity
+	    && $e["regtype"]!=true && $e["activity"]!=true) {		# if no error on regtype and activity, then check if the given
+		$sql		="SELECT * FROM fee WHERE regtype='".$db->quote($f["regtype"])."' ".
+				 "AND activity='".$db->quote($f["activity"])."' ".
+				 "AND reservationtime='".$db->quote($f["reservationtime"])."' ".
+				 "AND administration=1";
+		$res		=$db->query($sql);
+		if ($res->numrows()<=0) {
+			$e["priceundefined"]	=true;
+			$e["activity"]		=true;
+		} # if
+	} # if
+	if (@count($e)<=0) {						# if no error occured, then really check email
+		if (emailcheck($f["email"],$checkemailmx)===false) $e["emailformat"]=true;
+	} # if
+
+
+	# PAGE 1 error messages!!!
+	if (   $e["regtype"]===true || $e["activity"]===true		# check if simple data is missing
+	    || $e["fname"]===true || $e["lname"]===true || $e["affiliation"]===true
+	    || $e["address"]===true || $e["city"]===true || $e["postalcode"]===true
+	    || $e["email"]===true || $e["title"]===true || $e["country"]===true ) {
+		$errmsg	.="Please fill out the highlighted fields!<br>\n";
+	} # if
+	if ($e["priceundefined"]===true) {
+		$errmsg	.="For ".htmlentities($regtypename[$f["regtype"]]).
+			  " it is not possible to book ".htmlentities($activityname[$f["activity"]])."!<br>\n";
+	} # if
+	if ($e["emailformat"]===true) {
+		$errmsg	.="Please check the email address!<br>\n";
+	} # if
+	if ($e["activityselected"]==true) {
+		$errmsg	.="Please notice that for a ".htmlentities($regtypename[$f["regtype"]])." ".
+			  "registration the Acc. Person / Banquet activity must be choosen.<br>\n";
+	} # if
+	if ($e["accpersonbanquet"]==true) {
+		$errmsg	.="If you want to do a Acc. Person / Banquet registration, please ".
+			  "choose the appropriate registration type.<br>\n";
+	} # if
+
+
+	# PAGE 2 checks!!!
+	# check if selected tutorials are not overlapping
+	$seltutdates	=array();					# array to store the selected tutorial dates, to check collisions
+	$result		=$db->query("SELECT * FROM tutorial");		# check if tutorials are overlapping
+	while ($tutpossible===true && $row=$result->fetchhash()) {	# just check if tutorials are possible for given registration
+		$id	=$row["id"];					# and if then check every tutorial for a collision
+		$date	=$row["date"];
+		$session=$row["session"];
+		if ($f["tutorial($id)"]==1) {				# if selected and a collision was detected, then indicate errors
+			if (   ($session=="am" || $session=="pm") && strlen($seltutdates[$date.$session])>0
+			    || $session=="allday" && (strlen($seltutdates[$date."am"])>0 || strlen($seltutdates[$date."pm"])>0)) {
+				$e["tutorials"]			=true;
+				if ($session=="allday") {		# indicate all time and sessions that collide with date+allday!
+					$e["tutorial(".$date."allday)"]	=true;
+					$e["tutorial(".$date."am)"]	=true;
+					$e["tutorial(".$date."pm)"]	=true;
+				} # if
+				if ($session=="am" || $session=="pm") {	# indicate all time and sessions that collide with date+session!
+					$e["tutorial(".$date.$session.")"]=true;
+					$e["tutorial(".$date."allday)"]	=true;
+				} # if
+			} # if
+			$seltutdates[$date.$session]		=$id;
+			if ($session=="allday") {
+				$seltutdates[$date."am"]	=$id;
+				$seltutdates[$date."pm"]	=$id;
+			} # if
+		} # if
+	} # while
+	# check if the amount of selected units is possible (0 units are allowed if selected!)
+	$tutorialunits	=0;						# count the ordered units
+	foreach ($tutorials as $id=>$units) {
+		$tutorialunits	+=$units;
+	} # foreach
+	if (count($e)==0 && $tutorialunits==0) {			# just test if no other error already occured and 0 units booked
+		$sql		="SELECT * FROM fee WHERE regtype='".$db->quote($f["regtype"])."' ".
+				 "AND activity='".$db->quote($f["activity"])."' ".
+				 "AND reservationtime='".$db->quote($f["reservationtime"])."' ".
+				 "AND tutorialunits=$tutorialunits ".	# could be =0
+				 "AND administration=1";
+		$result		=$db->query($sql);
+		if ($result->numrows()<=0) $e["notutbooked"]=true;
+	} # if
+
+
+	# PAGE 2 error messages!!!
+	if ($e["tutorials"]===true) {
+		$errmsg	.="You cannot attend several tutorials taking place at the same time!<br>\n";
+	} # if
+	if ($e["notutbooked"]===true) {
+		$errmsg	.="As ".$regtypename[$f["regtype"]]." for ".$activityname[$f["activity"]]." ";
+			  "you need at least 1 tutorial!<br>\n";
+	} # if
+
+
+	# PAGE 3 checks!!!
+	# check if the given accommodation type is valid
+	if (in_array($f["accommodation"],$accommodations)!=true) $e["accommodation"]=true;
+	# if someone shares a room, then the roommate is a required field
+#	if (@count($e)==0 && $f["accommodation"]=="sharedroom" && strlen($f["roommate"])<=0) $e["roommate"]=true;
+	# take a look if the date variables have a valid value, just check if a hotel room was booked
+	if ($f["accommodation"]=="ensuite" || $f["accommodation"]=="standard") {
+		if (in_array($f["arrival"],$arrivaldates)!=true) $e["arrival"]=true;
+		if (in_array($f["departure"],$departuredates)!=true) $e["departure"]=true;
+		if (@count($e)==0 && strtotime($f["departure"])<strtotime($f["arrival"])) $e["dateillogical"]=true;
+		if (@count($e)==0 && strtotime($f["departure"])==strtotime($f["arrival"])) $e["datesimilar"]=true;
+		# hotel error check, since in administration the hotel information is send and not generated!
+#		if (in_array($f["hotel"],$hotels)!=true) $e["hotel"]=true;
+#		# check maximum count in hotel 1, hotel 2 is NOT checked for overbookings!
+#		if ($f["hotel"]=="rheinmain") {				# just check if hotel 1 was choosen!
+#			$result	=$db->query("SELECT id FROM participant WHERE hotel='rheinmain' AND id!=".intval($f["id"]));
+#			if ($result->numrows()>=$hotel1rooms) {		# if rooms are available in first hotel, then book this one
+#				$e["hotelcount"]	=true;		# otherwise book the second hotel (overbookings can occur here)
+#			} # if
+#		} # if
+	} # if
+	# to not interfer with the checks above (depending on infos if other errors occured) check addi.-banq. indepently
+	if ($f["banquetadd"]<0 || $f["banquetadd"]>30 ) {		# check if valid integer format and in acceptable range
+		$e["banquetadd"]	=true;
+	} # if
+
+
+	# PAGE 3 error messages!!!
+	if ($e["banquetadd"]===true) {					# output banquet error indepently from hotel error
+		$errmsg	.="Please fill in the amount of additional banquet tickets!<br>\n";
+	} # if
+	if ($e["roommate"]===true) {
+		$errmsg	.="For shared rooms, the roommate must be given!<br>\n";
+	} # if
+	if ($e["dateillogical"]===true) {
+		$errmsg	.="The arrival date is after the departure date!<br>\n";
+	} # if
+	if ($e["datesimilar"]===true) {
+		$errmsg	.="A hotel is just necessary if a stay overnight exists!<br>\n";
+	} # if
+	if ($e["accommodation"]===true) {
+		$errmsg	.="Please select form of accommodation!<br>\n";
+	} # if
+	if ($e["arrival"]===true || $e["departure"]===true) {
+		$errmsg	.="Please fill out arrival and departure date!<br>\n";
+	} # if
+	if ($e["hotel"]===true) {
+		$errmsg	.="Please choose a hotel!<br>\n";
+	} # if
+	if ($e["hotelcount"]===true) {
+		$errmsg	.="The choosen hotel is already full!<br>\n";
+	} # if
+
+
+
+	# PAGE 4 checks!!!
+	if (in_array($f["paymentmethod"],$paymentmethods)!=true) $e["paymentmethod"]=true;
+	# check payment data, if payment was done with credit card
+	
+	if ($f["paymentreceived"]==0 && ($f["paymentmethod"]=="visa" || $f["paymentmethod"]=="mastercard")) {
+		
+		//if (strlen($f["cardholder"])<=0) $e["cardholder"]=true;
+		
+		$addressdata			=array();
+		$paymentdata			=array();
+		$paymentdata["cardnumber"]	=$f["cardnumber"];
+		$paymentdata["cardvalidmonth"]	=$f["cardvalidmonth"];
+		$paymentdata["cardvalidyear"]	=$f["cardvalidyear"];
+		$paymentdata["cardbrand"]	=$f["paymentmethod"];
+		$paymentdata["cardverification"]	=$f["cardverification"];
+
+		$paymentmodule			=new defaultcreditcard();
+		$returncodes			=$paymentmodule->dopayment($addressdata,$paymentdata);
+		if ($returncodes["errorcode"]!=0) {
+			$e["paymentcreditcard"]	=true;
+			if ($returncodes["errortype"]=="missingdata") $e["carddatamissing"]=true;
+			if ($returncodes["cardnumbererror"]) $e["cardnumber"]=true;
+			if ($returncodes["cardvalidmontherror"]) $e["cardvalidmonth"]=true;
+			if ($returncodes["cardvalidyearerror"]) $e["cardvalidyear"]=true;
+			if ($returncodes["cardverificationerror"]) $e["cardverification"]=true;
+			if ($returncodes["errortype"]=="invaliddata") {	# if data is invalid, then always mark all fields
+				$e["cardnumber"]	=true;
+				$e["cardvalidmonth"]	=true;
+				$e["cardvalidyear"]	=true;
+			} # if
+		} # if
+	} # if
+
+	# PAGE 4 error messages!!!
+	if ($e["paymentmethod"]===true) {
+		$errmsg	.="Please choose a payment method!<br>\n";
+	}
+	if ($e["carddatamissing"]===true) {
+		$errmsg	.="Please enter all credit card data!<br>\n";
+	}
+	if ($e["carddatamissing"]!=true && $e["paymentcreditcard"]===true) {
+		$errmsg	.="Credit card data invalid, please check the entered informations!<br>\n";
+	}
+	if ($e["carddatamissing"]!=true && ($e["cardnumber"]===true || $e["cardvalidmonth"]===true || $e["cardvalidyear"]===true)) {
+		$errmsg	.="Please check the highlighted credit card fields!<br>\n";
+	} # if
+
+
+	return $e;
+} # checkparticipant
+?>

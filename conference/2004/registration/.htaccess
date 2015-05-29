@@ -1,0 +1,9 @@
+
+AuthType Basic
+
+AuthName "AOSD 2004 Registration"
+
+AuthUserFile "/home/mkersten/.htpasswds/2004/registration/passwd"
+
+
+require valid-user

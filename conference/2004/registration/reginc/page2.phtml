@@ -1,0 +1,89 @@
+<?
+
+# if one of the following pages are requested, then test if entered data of first page is valid
+if (   $fsubmitbutton!=$page2continue && $fsubmitbutton!=$page2previous
+    && $fsubmitbutton!=$submitvalueshowws && $fsubmitbutton!=$submitvaluehidews) {
+	# check if selected tutorials are not overlapping
+	$seltutdates	=array();					# array to store the selected tutorial dates, to check collisions
+	$result		=$db->query("SELECT * FROM tutorial");		# check if tutorials are overlapping
+	while ($tutpossible===true && $row=$result->fetchhash()) {	# just check if tutorials are possible for given registration
+		$id	=$row["id"];					# and if then check every tutorial for a collision
+		$date	=$row["date"];
+		$session=$row["session"];
+		if ($f["tutorial($id)"]==1) {				# if selected and a collision was detected, then indicate errors
+			if (   ($session=="am" || $session=="pm") && strlen($seltutdates[$date.$session])>0
+			    || $session=="allday" && (strlen($seltutdates[$date."am"])>0 || strlen($seltutdates[$date."pm"])>0)) {
+				$e["tutorials"]			=true;
+				if ($session=="allday") {		# indicate all time and sessions that collide with date+allday!
+					$e["tutorial(".$date."allday)"]	=true;
+					$e["tutorial(".$date."am)"]	=true;
+					$e["tutorial(".$date."pm)"]	=true;
+				} # if
+				if ($session=="am" || $session=="pm") {	# indicate all time and sessions that collide with date+session!
+					$e["tutorial(".$date.$session.")"]=true;
+					$e["tutorial(".$date."allday)"]	=true;
+				} # if
+			} # if
+			$seltutdates[$date.$session]		=$id;
+			if ($session=="allday") {
+				$seltutdates[$date."am"]	=$id;
+				$seltutdates[$date."pm"]	=$id;
+			} # if
+		} # if
+	} # while
+
+	# check if the amount of selected units is possible (0 units are allowed if selected!)
+	$tutorialunits	=0;						# count the ordered units
+	foreach ($tutorials as $id=>$units) {
+		$tutorialunits	+=$units;
+	} # foreach
+	if (count($e)==0 && $tutorialunits==0) {			# just test if no other error already occured and 0 units booked
+		$sql		="SELECT * FROM fee WHERE regtype='".$db->quote($f["regtype"])."' ".
+				 "AND activity='".$db->quote($f["activity"])."' ".
+				 "AND reservationtime='".$db->quote($reservationtime)."' ".
+				 "AND tutorialunits=$tutorialunits ".	# could be =0
+				 "AND registration=1";
+		$result		=$db->query($sql);
+		if ($result->numrows()<=0) $e["notutbooked"]=true;
+	} # if
+} # if
+
+if (   $stopoutput==false
+    && (   count($e)>0 || $fsubmitbutton==$page2continue || $fsubmitbutton==$page2previous
+        || $fsubmitbutton==$submitvalueshowws || $fsubmitbutton==$submitvaluehidews)) {
+
+	$submitvalueprevious	=$page1previous;
+	$submitvaluecontinue	=$page3continue;
+	$stopoutput		=true;					# prevent further pages to be outputted!
+
+	if (count($e)>0) {
+		echo "<table width=\"600\">\n";
+		echo "<tr>\n";
+		echo " <td align=\"center\"><font class=\"error\">";
+		if ($e["tutorials"]===true) {
+			echo "You cannot attend several tutorials taking place at the same time!";
+		}
+		elseif ($e["notutbooked"]===true) {
+			echo "As ".$regtypename[$f["regtype"]]." for ".$activityname[$f["activity"]]." ";
+			echo "you need at least 1 tutorial!";
+		}
+		else {
+			echo "Please fill out the highlighted fields!";
+		} # if
+		echo "</font></td>\n";
+		echo "</tr>\n";
+		echo "</table>\n";
+		echo "<br>\n";
+	} # if
+
+
+
+	include("reginc/workshops.phtml");
+	include("reginc/tutorials.phtml");
+
+
+	$footertext	="Please press &quot;".htmlentities($submitvaluecontinue)."&quot; to proceed.\n".
+			 "If necessary, you will be able to modify your registration data before submitting.\n";
+} # if
+
+?>

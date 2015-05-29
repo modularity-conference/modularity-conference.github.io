@@ -1,0 +1,34 @@
+<?
+function showparticipantshort ($participantid) {			# show short participant (for delete and email confirmation)
+	global	$db;							# function returns html (if $participantid ok) else false
+
+	$result	=$db->query("SELECT * FROM participant WHERE id=$participantid");
+	if ($result->numrows()<=0) return false;			# error with $participantid
+
+	$row=$result->fetchhash();
+	$id		=$row["id"];
+	$fname		=htmlentities($row["fname"]);
+	$lname		=htmlentities($row["lname"]);
+	$title		=htmlentities($row["title"]);
+	$email		=htmlentities($row["email"]);
+
+	$parttxt	.="  <table border=\"0\" cellpadding=\"2\" cellspacing=\"3\">\n".
+			  "  <tr>\n".
+			  "   <td bgcolor=\"#E8ECF8\" width=\"270\"><b>Personal Information</b></td>\n".
+			  "  </tr>\n".
+			  "  <tr valign=\"top\">\n".
+			  "   <td>\n".
+			  "    <table cellpadding=\"0\">\n".
+			  "    <tr><td>ID:</td><td>$id</td></tr>\n".
+			  "    <tr><td>Title:</td><td>$title</td></tr>\n".
+			  "    <tr><td>First name:&nbsp;</td><td>$fname</td></tr>\n".
+			  "    <tr><td>Last name:&nbsp;</td><td>$lname</td></tr>\n".
+			  "    <tr><td>Email:&nbsp;</td><td>$email</td></tr>\n".
+			  "    </table>\n".
+			  "   </td>\n".
+			  "  </tr>\n".
+			  "  </table>\n";
+
+	return $parttxt;						# since participant could be displayed, return html
+} # showparticipantshort
+?>

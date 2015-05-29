@@ -1,0 +1,49 @@
+<HTML>
+
+	<BODY>
+									<H1>Adobe Portable Document Format</H1>
+									<P>This page contains guidelines for properly producing and sending PDF files. A little preparation and testing can avoid a lot of problems.</P>
+									<H2>What is PDF?</H2>
+									<P>When you convert a document into Portable Document Format (PDF), you obtain a file that can be read, navigated, searched, and printed by anyone with a PDF viewer, such as (the free) <A HREF="http://www.adobe.com/products/acrobat/readstep.html">Adobe Acrobat Reader</A>. Since PDF viewers exist on a wide variety of platforms, PDF files are universal.</P>
+									<P>The look of a PDF file online is identical to a printout of the original document. Thus, PDF is most suitable for published works. That is, PDF is useful for documents that would otherwise normally be printed. If a document can be printed or generated in PostScript format, it can be converted to PDF. (In fact, PDF is one way to help validate PostScript content.)</P>
+									<P>Like PostScript, PDF files are not easily edited except for minor textual changes on a page. However, PDF files are better structured to allow entire pages to be independently inserted and deleted.</P>
+									<P>By compressing the graphics in a document, PDF files are typically much smaller than PostScript files. In comparison to HyperText Markup Language (HTML), PDF is particularly useful for stabilized web content where small size, quality layout, and excellent typography are needed.</P>
+									<H2><A NAME="producing"></A>Producing PDF</H2>
+									<P>The most reliable and flexible way of producing a PDF file is to generate a PostScript file from the original document and convert the PostScript file to PDF with Adobe Acrobat Distiller. For word processors on Windows and Macintosh platforms, another way is to use the Adobe PDF Writer printer driver to &quot;print&quot; a document to PDF. Both Acrobat Distiller and PDF Writer are part of the <A HREF="http://www.adobe.com/products/acrobat/main.html">Adobe Acrobat</A> product.</P>
+									<P>If the original document contains Encapsulated PostScript (EPS) figures, use the Distiller method. 
+									<P>See also the service <A HREF="http://createpdf.adobe.com/">Create Adobe PDF Online</A>. This service offers a limited free trial of up to three document conversions from a variety of input formats. At present, the unlimited paid subscription service is offered only to the US and Canada at USD$9.99 per month.</P>
+
+									<H2>PDF Guidelines</H2>
+									<P>Following are some guidelines to help avoid problems with PDF. The main goal is to make sure that the resulting PDF files are self-contained.</P>
+									<H3>Generating Proper PostScript</H3>
+									<UL>
+										<LI>Use PostScript Type 1 fonts whenever possible.
+										<P>Some TeX installations use fixed-resolution PostScript Type 3
+fonts for the Computer Modern typeface. 
+Because these fonts are not scalable, there are problems in presenting these documents attractively and quickly onscreen. 
+Configure <CODE>dvips</CODE> to generate PostScript files that use Type 1 versions of Computer Modern.</P>
+										<P>If you must use TrueType fonts (typically with a word processor), see <A HREF="http://www.adobe.com/support/techdocs/12f6e.htm">How Acrobat Distiller and PDF Writer Handle Fonts</A>. In this case, PDF Writer may produce better results.</P>
+										<P>In general, do not mix PostScript Type 1 and TrueType versions of the same typeface; use the PostScript version.</P>
+										<LI>Do not include the standard fonts when originally generating a PostScript file (before distilling).
+										<P>The standard 13 fonts are regular, bold, italic, and bold-italic variants of Times, Courier, Helvetica, and the font Symbol. PostScript versions of these fonts come standard with PostScript printers and with Acrobat Reader, so there is no need to include them.</P>
+										<P>One problem is that including these fonts during generation may unintentionally pull in TrueType versions if these are installed on the computer.</P>
+										<LI>Include all other non-standard fonts when generating a PostScript file.
+										<P>Note that TrueType versions of Times New Roman and Courier New are actually non-standard fonts. Thus, they should be included. Better yet, use Times and Courier instead.</P>
+									</UL>
+									<H3>Producing Proper PDF</H3>
+									<UL>
+										<LI>Optimize for print when distilling PostScript files to PDF.
+										<P>This Acrobat Distiller (version 4.0) setting determines the appropriate job options for PDF files that are meant to be printed. (The files will still display fine in Acrobat Reader, but some AOSD reviewers may wish to read a printed copy.)</P>
+										<LI>Embed all fonts when distilling.
+										<P>This Acrobat Distiller job option ensures that PDF files can be displayed properly with the right font. Otherwise, during viewing, Acrobat Reader may have to instantiate a multiple master font with the appropriate characteristics. The result may be less than optimal for unusual typefaces.</P>
+										<P>Note that Distiller will not embed the standard PostScript fonts.</P>
+										<LI>Subset all embedded fonts below 100 percent when distilling.
+										<P>To save some space, this Acrobat Distiller job option allows unused characters of an embedded font to not be included. Some typeface licenses may require this to avoid whole fonts being extracted out of documents and used without permission.</P>
+										<LI>Produce binary PDF files and use .pdf as the filename suffix.
+										<P>The binary form of a PDF file is more compact than its ASCII text form. Binary PDF is the most commonly expected form for transmission.</P>
+										<LI>Check PDF files by viewing them in Acrobat Reader on another machine.
+									</UL>
+									
+	</BODY>
+
+</HTML>

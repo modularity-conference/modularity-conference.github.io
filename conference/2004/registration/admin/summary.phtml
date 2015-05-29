@@ -1,0 +1,134 @@
+<?php
+
+require_once("../conf.phtml");
+require_once("../dbinterface.phtml");
+$db	=new Database();
+require_once("../userauth.phtml");
+$user	=new Userauth("read");
+require_once("showmenu.phtml");
+
+
+function show_tutorial_breakdown() {
+	
+		global	$db,
+		$regtypes, $regtypename;
+
+   $query = <<<EOT
+SELECT 
+   t.tutorialid,
+   p.regtype, 
+   count( p.id ) AS numregs
+FROM 
+   participant p,
+   part_tutorial t
+WHERE
+   t.participantid = p.id
+GROUP  BY 
+   t.tutorialid,
+   p.regtype
+ORDER BY
+   p.regtype,
+   t.tutorialid
+EOT;
+
+	$result=$db->query($query);
+	
+	$currRegtype = null;
+	$totals = array();
+
+	echo "<b>Tutorial Details</b><br>";
+		
+	echo "<table border=\"1\" cellspacing=\"0\" cellpadding=\"3\">\n";
+	echo "<tr>\n";
+	
+	echo "<td>&nbsp;</td>\n";
+	echo "<td><b>T1</b></td>\n";
+	echo "<td><b>T2</b></td>\n";
+	echo "<td><b>T3</b></td>\n";
+	echo "<td><b>T4</b></td>\n";
+	echo "<td><b>T5</b></td>\n";
+	echo "<td><b>T6</b></td>\n";
+	echo "<td><b>T7</b></td>\n";
+	
+	$count = 7;
+	
+	while ($row=$result->fetchhash()) {
+	
+		$regtype = $row["regtype"];
+		$tutorialid = $row["tutorialid"]; 
+		$numregs = $row["numregs"];
+
+		if ($currRegtype != $regtype) {
+
+			while ($count < 7) {
+				echo "<td>0</td>\n";
+				$count++;
+			}
+			$count = 0;
+			
+			echo "</tr>\n";
+			echo "</tr>\n";
+			echo "<td>".$regtypename[$regtype]."</td>\n";
+			$currRegtype = $regtype;
+			
+		}
+		
+		$count++;
+	
+		while ($count < $tutorialid) {
+			echo "<td>0</td>\n";
+			$count++;
+		}
+			
+		echo "<td>$numregs</td>\n";
+		
+		$totals[$tutorialid] += $numregs;
+	}
+		
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo "<td><b>Totals:</b></td>\n";
+	echo "<td><b>$totals[1]</b></td>\n";
+	echo "<td><b>$totals[2]</b></td>\n";
+	echo "<td><b>$totals[3]</b></td>\n";
+	echo "<td><b>$totals[4]</b></td>\n";
+	echo "<td><b>$totals[5]</b></td>\n";
+	echo "<td><b>$totals[6]</b></td>\n";
+	echo "<td><b>$totals[7]</b></td>\n";
+	echo "</tr>\n";	
+
+	echo "</table>\n";
+
+}
+
+
+echo "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n";
+echo "<html>\n";
+echo "<head>\n";
+echo "<title>$confname $confyear Administration</title>\n";
+echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-15\">\n";
+echo "<link href=\"../registration.css\" rel=\"stylesheet\" type=\"text/css\">\n";
+echo "</head>\n";
+echo "\n";
+echo "<body class=\"admin\">\n";
+
+echo "<table class=\"adminentry\" width=\"870\" align=\"center\">\n";
+echo "<tr>\n";
+echo " <td class=\"adminhead\">$confname $confyear Registration Summary</td>\n";
+echo "</tr>\n";
+echo "<tr>\n";
+echo " <td class=\"adminbody\" align=\"center\">\n";
+
+echo "<p>The numbers in brackets are for those whose payment has been processed.</p>";
+
+showstatistics();
+show_tutorial_breakdown();
+ 
+echo "   </td>\n";
+echo "  </tr>\n";
+echo "  </table>\n";
+
+echo "</body>\n";
+echo "</html>\n";
+
+?>

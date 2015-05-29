@@ -1,0 +1,63 @@
+<?
+function searchquery ($searchword) {
+	global	$db,
+		$fsearchregtype, $fsearchactivity, $fsearchpayment, $fsearchpaystatus,
+		$fsearchwaspresent, $fsearchhotel, $fsearchbanquet, $fsearchtutorial,
+		$currency;
+
+	$sqlsw	="LIKE '%".$db->quote($searchword)."%'";		# construct search query
+	$sql	="SELECT * FROM participant";
+	if (strlen($fsearchtutorial)>0) {
+		$sql.=",part_tutorial";
+	} # if
+	$sql   .=" WHERE ".
+		 "(participant.id $sqlsw OR participant.fname $sqlsw ".	# search for search word
+		 "OR participant.lname $sqlsw OR participant.affiliation $sqlsw ".
+		 "OR participant.address $sqlsw OR participant.city $sqlsw ".
+		 "OR participant.postalcode $sqlsw OR participant.country $sqlsw ".
+		 "OR participant.email $sqlsw OR participant.specialneeds $sqlsw) ";
+
+	if (   $fsearchregtype=="studentmatmissing"			# advanced search criteria for students
+	    || $fsearchregtype=="studentmatreceived") {
+		$sql	.="AND participant.regtype='student' ".
+			  "AND participant.matricreceived=";
+		if ($fsearchregtype=="studentmatmissing") $sql.="0 ";
+		if ($fsearchregtype=="studentmatreceived") $sql.="1 ";
+	}
+	elseif (strlen($fsearchregtype)>0) {				# in case a search criteria for regtype is given, restrict result
+		$sql	.="AND participant.regtype='".$db->quote($fsearchregtype)."' ";
+	} # if
+	if (strlen($fsearchactivity)>0) {				# in case a search criteria for activity is given, restrict result
+		$sql	.="AND participant.activity='".$db->quote($fsearchactivity)."' ";
+	} # if
+	if ($fsearchpayment=="creditcard") {				# advanced search criteria for payment
+		$sql	.="AND (participant.paymentmethod='visa' OR participant.paymentmethod='mastercard') ";
+	}
+	elseif (strlen($fsearchpayment)>0) {				# in case a search criteria for paymentmethod is given, search
+		$sql	.="AND participant.paymentmethod='".$db->quote($fsearchpayment)."' ";
+	} # if
+	if (strlen($fsearchpaystatus)>0) {				# in case a search criteria for payment received, restrict result
+		$sql	.="AND participant.paymentreceived='".$db->quote($fsearchpaystatus)."' ";
+	} # if
+	if (strlen($fsearchwaspresent)>0) {				# in case a search criteria for was present rec., restrict result
+		$sql	.="AND participant.waspresent='".$db->quote($fsearchwaspresent)."' ";
+	} # if
+	if (strlen($fsearchhotel)>0) {					# in case a search criteria for hotel is given, restrict result
+		$sql	.="AND participant.accommodation='".$db->quote($fsearchhotel)."' ";
+	} # if
+	if ($fsearchbanquet=="no") {
+		$sql	.="AND participant.banquet=0 AND participant.banquetadd=0 ";
+	} # if
+	if ($fsearchbanquet=="yes") {
+		$sql	.="AND (participant.banquet>0 OR participant.banquetadd>0) ";
+	} # if
+	if (strlen($fsearchtutorial)>0) {				# join with part_tutorial table, to select tutorial participants
+		$sql	.="AND participant.id=part_tutorial.participantid ".
+			  "AND part_tutorial.tutorialid='".$db->quote($fsearchtutorial)."' ";
+	} # if
+	$sql		.="ORDER BY lname,fname,id";			# sort the result
+	return $sql;
+
+} 
+
+?>

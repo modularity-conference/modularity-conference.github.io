@@ -1,0 +1,187 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <link rel="stylesheet" type="text/css" href="style/common2.css"/>
+    <title>Semantically extensible editors in Groovy-Eclipse</title>
+  </head>
+  <body>
+
+<h1>
+	<a href="index.html">
+		<img src="style/images/header_logo.png" width="300" height="110" alt="MODULARITY: aosd13"/>
+	</a>
+</h1>
+
+<h1><center>Semantically extensible editors in Groovy-Eclipse</center></h1>
+
+<center><table>
+  <tbody><tr><td><center>Andrew Eisenberg<br>
+  aeisenberg@vmware.com<br>
+ VMware Inc.</center></td></tr>
+</tbody></table></center>
+<h1 id="abstract">Abstract</h1>
+
+<p>Programs written in dynamic languages have semantics that are not fully known until they are executed. For this reason, providing semantically-aware editing support for these languages is a challenge. To address this problem, we introduce DSL Descriptors (DSLD), a DSL written in Groovy that describes the editing semantics of a Groovy DSL in a way that can be interpreted by Groovy-Eclipse. It is used to augment editor features such as content assist, search, and refactoring.</p>
+
+<h1 id="1introduction">1. Introduction</h1>
+
+<p>The <a href="http://groovy.codehaus.org/">Groovy programming language</a> is widely used to create Domain Specific Languages (DSLs) through its highly customizable Metaobject Protocol (MOP). Frameworks such as <a href="http://grails.org/">Grails</a>, <a href="http://griffon.codehaus.org/">Griffon</a>, <a href="https://code.google.com/p/spock/">Spock</a>, and <a href="http://gaelyk.appspot.com/">Gaelyk</a> all make heavy use of DSLs. Because of this, providing IDE tooling for these frameworks must have a semantic understanding of the DSLs in order to provide high-quality editing support.</p>
+
+<p><a href="http://groovy.codehaus.org/Eclipse+Plugin">Groovy-Eclipse</a> is a popular tool for developing Groovy applications. One of its core components is the <a href="http://contraptionsforprogramming.blogspot.ca/2009/11/how-type-inferencing-for-groovy-in.html">inferencing engine</a>. The inferencing engine infers the types of all expressions in a Groovy script as a programmer edits and uses this information to power editing features such as content assist, search, and refactoring.</p>
+
+<p>As long as metaprogramming is avoided, the inferencing can correctly determine most types. But, avoiding metaprogramming also means avoiding much of the power of Groovy. As an example of how the inferencing engine can break, consider <a href="http://joesgroovyblog.blogspot.com/2007/09/and-miles-to-go-before-i-sleep.html">this DSL</a> implemented by Joachim Baumann that can be used to calculate distances:</p>
+
+<p>Figure 1: distances dsl</p>
+
+<pre>3.m + 2.yd + 2.ml - 1.km</pre>
+
+<p>This DSL provides a concise, intuitive, and simple way to write programs that work with distances of various units. This</p>
+
+<p>However, when using the script inside of Groovy-Eclipse, semantic underlining shows that the editor is not able to resolve the DSL:</p>
+
+<p><img src="./greclipse_files/underlines.png" alt="Figure 2: distances in editor" title=""></p>
+
+<p>For the rest of this paper we describe the <a href="http://blog.springsource.org/2011/05/08/better-dsl-support-in-groovy-eclipse/">DSL Descriptor language</a> (DSLD), which is an Aspect-Oriented DSL written in Groovy that is interpreted by Groovy-Eclipse to provide editing support for Groovy DSLs. In next section, we touch on related techniques. Section 3 introduces DSLD by using the DSLD for the Distances DSL as an example. Section 4 describes Groovy-Eclipse's inferencing engine and architecture. Section 5 touches on details of the language, including its join point model. And section 7 concludes.</p>
+
+<h1 id="2relatedwork">2. Related work</h1>
+
+<p>IntelliJ is another IDE that provides high quality Groovy support. It also has a DSL for describing DSLs, called <a href="http://confluence.jetbrains.net/display/GRVY/Scripting+IDE+for+DSL+awareness">GDSL</a>. There are two major differences between the approaches. First, GDSL does not use a composable pointcut language for selecting which expressions to augment. And second, GDSL exposes internal IntelliJ APIs in scripts instead of Groovy compiler APIs, requiring familiarity with both IntelliJ and Groovy.</p>
+
+<p>The <a href="http://www.citeulike.org/user/JavaJoe/article/2677161">ETMOP</a> provides a way to extend the presentation of a program through a macro-like mechanism. Its capabilities are different than DSLD since the ETMOP supports non-textual extensions. However, it does not provide any mechanism for extending the edit-time program model in order to augment editor features.</p>
+
+<h1 id="3quickexample">3. Quick example</h1>
+
+<p>The <em>distances</em> DSL above can be supported in DSLD like this:</p>
+
+<pre><code>contribute (currentType( subType( Number ) ) ) {
+  [ "m", "yd", "mi", "km" ].each { val -&gt;
+    property name:val, type:"Distance"
+  }
+}
+</code></pre>
+
+<p>In English, this script roughly translates to: "Whenever the type of the expression currently being evaluated is a subtype of Number, execute the block of code. At edit time only, the block <em>contributes</em> a list of properties with a name, and a type of Distance."  The first sentence is the <em>pointcut</em> and the second sentence is the <em>contribution block</em>, both of which will be described in the DSLD language section.</p>
+
+<h1 id="4inferencingengine">4. Inferencing Engine</h1>
+
+<p>Groovy-Eclipse's inferencing engine is used by the IDE to infer the types of expressions and declarations in a Groovy file.  The result of inferencing is used to power IDE features like search, refactoring and content assist.  It uses a visitor-requestor pattern to walk the abstract syntax tree (AST) of a Groovy file. On every expression AST node that is visited, its inferred type is calculated and an optional action may be performed. This is performed by <em>type lookups</em> and <em>requestors</em>, respectively.</p>
+
+<ol>
+<li>Type lookups : a set of objects that provide a type given an expression and a context. The set of type lookups are determined at Eclipse's start time. Third parties can provide custom type lookups through the use of an Eclipse extension point.</li>
+<li>Requestors : an object that accepts the type lookup result for each expression. The requestor chooses what to do with the result. For example, it may populate a search view, generate content assist proposals, or end the visit early.</li>
+</ol>
+
+<p>As a simple example, when a method or property definition cannot be determined through the inferencing engine, it is underlined in the editor:</p>
+
+<p><img src="./greclipse_files/4110470080_3280f80e9c_d.jpg" alt="Figure 3: Typo in code leads to uninferrable identifiers" title=""></p>
+
+<p>And when you fix the typo, the inferencing engine can now find the type of <code>isImmutable</code> and that fix propagates through to the next statement:</p>
+
+<p><img src="./greclipse_files/4109706667_b4c608294f_d.jpg" alt="Figure 4: Fix type and underlines go away" title=""></p>
+
+<h1 id="5thedsldlanguage">5. The DSLD language</h1>
+
+<p>The DSLD language has two main constructs: pointcuts and contribution blocks. Pointcuts describe <em>where</em> type augmentation occurs, and contribution blocks describe <em>what kind of</em> type augmentation occurs.</p>
+
+<p>The DSLD executor is implemented as a type lookup and fits in as a sub-component of the inferencing engine. On startup, or whenever a project's classpath changes, a DSLD store object discovers all DSLD files that are relevant to the project, compiles them, optimizes them, and stores them for execution during runs of the inferencing engine.</p>
+
+<h2 id="51pointcuts">5.1. Pointcuts</h2>
+
+<p>Pointcuts in DSLD pick out sets of Groovy AST expression nodes. There is a core set of primitive pointcuts, as well as the logical pointcuts <em>and</em> &amp;, <em>or</em> | , and <em>not</em> ~ to combine pointcuts. All pointcuts can take an argument to refine what it matches on. The argument can be a string, class, or another pointcut.</p>
+
+<p>The following list describes some of the more common pointcuts:</p>
+
+<ul>
+<li>currentType : matches on the type currently being evaluated</li>
+<li>enclosingCall : matches on one or more enclosing method calls</li>
+<li>declaringType : matches on the type that declares the current expression, if one exists</li>
+<li>subType : matches if the type passed into the pointcut is a sub-type of the type specified as the pointcut argument</li>
+<li>fields, properties, methods : matches if the type passed into the pointcut contains fields/properties/methods with appropriate characteristics</li>
+<li>name, value : matches on annotation attribute and method arguments name and values</li>
+<li>hasAttribute : matches if a given annotation has an attribute with appropriate characteristics</li>
+<li>hasArgument : matches if a given method call has an argument with appropriate characteristics</li>
+<li>isThisType : matches if the current expression is declared on <em>this</em></li>
+<li>enclosingClosure : matches if the current expression is inside a closure</li>
+</ul>
+
+<p>And this list shows some ways that pointcuts can be combined to form more sophisticated ones:</p>
+
+<ul>
+<li>currentType(subType(Number)) : matches if current type is a sub-type of number</li>
+<li>currentType(annotatedBy('foo.Transactable')) : matches if current type is annotated by <em>foo.Transactable</em></li>
+<li>currentType(annotatedBy(name('foo.Transactable') &amp; hasAttribute(name("value") &amp; value(subType('foo.TransactionManager'))) : matches if current type is annotated by something named <em>foo.Transactable</em> and has an attribute <em>value</em> with a value that is a subtype of 'foo.TransactionManager'</li>
+<li>enclosingClosure() &amp; enclosingCall(name("transaction")) &amp; currentType(annotatedBy('foo.Transactable')) &amp; isThisType() : matches if the current expression is inside of a closure and inside a method call with a name of <em>transaction</em> and the current type is annotated by <em>foo.Transactable</em> and the expression is declared on <em>this</em></li>
+</ul>
+
+<h2 id="52contributionblocksandcontributions">5.2. Contribution blocks and contributions</h2>
+
+<p>Contribution blocks describe <em>what</em> occurs when the pointcut matches and they are standard Groovy closure blocks. Each contribution block contains at least one <em>contribution</em> and may contain additional logic like if statements, loops, method calls, variables, etc. The available contributions are:</p>
+
+<ul>
+<li>property : requires a <code>name</code> argument, others are optional</li>
+<li>method : requires a <code>name</code> argument, others are optional</li>
+<li>delegatesTo : requires a <code>type</code> argument, others are optional</li>
+</ul>
+
+<p>For example:</p>
+
+<pre><code>property name:'age', type:int, doc:"A person's age"
+method name:'calculateAge', params:[ageHint:int]
+delegatesTo type:'com.foo.age.AgeHelper'
+</code></pre>
+
+<h2 id="53associatingcontributionblockswithpointcuts">5.3. Associating contribution blocks with pointcuts</h2>
+
+<p>To associate a contribution block with a pointcut so that the block is invoked whenever the pointcut evaluates to true, you use the <em>contribute</em> method:</p>
+
+<pre><code>contribute (currentType("people.Person") {
+  property name:'age', type:int, doc:"A person's age"
+}
+</code></pre>
+
+<p>And if the above contribution is added to a DSLD file in a Groovy project, this allows you to hover over a reference to <code>age</code> in the editor and get appropriate feedback:</p>
+
+<p><img src="./greclipse_files/nmtHPGr.png" alt="A DSLD providing hover support" title=""></p>
+
+<h2 id="54binding">5.4. Binding</h2>
+
+<p>Sometimes it is necessary to bind the result of a pointcut match so that it is available inside of a contribution block. This is possible using the special <em>bind</em> pointcut.</p>
+
+<pre><code>contribute (currentType(bind(runMethods : methods("run"))) {
+  runMethods.each {
+    method name: "safeRun", params: it.parameters, type: it.returnType
+  }
+}
+</code></pre>
+
+<p><em>bind</em> always evaluates to <em>true</em> and it binds the name to whatever the contained pointcut matches. In the example above, a <em>safeRun</em> method is added at edit time for each <em>run</em> method in the current type.</p>
+
+<p>For consistency, bound variables will always be collections even if the pointcut matches a single object.</p>
+
+<h2 id="55thejoinpointmodel">5.5. The Join Point Model</h2>
+
+<p>DSLD has a <a href="http://www.cs.ubc.ca/labs/spl/papers/2003/ecoop2003-modeling-crosscutting.pdf">join point model</a> as described by Masuhara and Kiczales:</p>
+
+<ol>
+<li>Groovy AST expression nodes in a script or class constitute the set of reference points.</li>
+<li>The DSLD pointcuts define a way to specify a sub-set of AST nodes.</li>
+<li>Contribution blocks augment the semantics of Groovy-Eclipse's inferencing engine when pointcuts match.</li>
+</ol>
+
+<h1 id="6limitationsandfuturework">6. Limitations and future work</h1>
+
+<h2 id="61dynamicfinders">6.1. Dynamic finders</h2>
+
+<p>Not all DSLs and language idioms are appropriate for DSLD. One example is <a href="http://grails.org/doc/1.0.x/guide/5.%20Object%20Relational%20Mapping%20%28GORM%29.html#5.4.1%20Dynamic%20Finders">Grails dynamic finders</a>, which allow programmers to use dynamically generated methods based on domain class properties to query the datastore. For example, <code>Person.findByAgeLessThanAndLastNameEquals(30,'Smith')</code> is a valid dynamic finder. The number of these kinds of methods are approximately 2^n, where <em>n</em> is the number of properties in the target domain class. Since DSLD pre-computes all possible methods, it cannot be used in this situation. Instead, the Grails-IDE uses a custom Eclipse plugin to provide dynamic finder support.</p>
+
+<h2 id="62performance">6.2. Performance</h2>
+
+<p>We have put some effort into optimizing pointcuts. One optimization that is performed is that some pointcuts, like <em>fileName</em> and <em>folder</em>, fail fast and can disable a contribution block from ever executing during a run of the inferencing engine (i.e., an entire file). The inferencing engine also avoids inferring inside of methods and blocks that have no effect on the current operation.  </p>
+
+<p>However, there is still some work we can do to avoid duplicated and unnecessary work.  For example, we can do more sophisticated caching of pointcut results when the filesystem has not changed.</p>
+
+<h1 id="7summary">7. Summary</h1>
+
+<p>DSLD is widely used in the Groovy eco-system. Most major Groovy libraries, including Grails, Griffon, Gradle, SwingBuilder, and Spock ship with a DSLD file to describe the DSLs that they provide. Groovy-Eclipse itself ships with a meta-DSLD to provide editing support for developers working with DSLD.</p>
+
+<p>In this paper, we have shown the DSL descriptor language, that provides customized editor support for Groovy DSLs using a Groovy DSL. The join point model of DSLD allows developers to concisely describe the editing semantics of their DSL.</p></body></html>

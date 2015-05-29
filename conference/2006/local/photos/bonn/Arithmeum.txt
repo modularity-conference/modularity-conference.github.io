@@ -1,0 +1,1 @@
+<p>A museum dedicated to mathematics. The exhibits range from historical arithmetic books and old calculation machines up to modern computer chips. The <a href="http://www.arithmeum.uni-bonn.de/en/home/" target="_blank">Arithmeum</a> is a division of the University of Bonn and belongs to the institute of discrete mathematics.</p>

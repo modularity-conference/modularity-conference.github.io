@@ -1,0 +1,66 @@
+<?
+
+class defaultcreditcard {										# default payment module for credit card payment (all brands)
+	function defaultcreditcard () {									# CONSTRUCTOR (PUBLIC), use $x=new defaultcreditcard();
+	} # defaultcreditcard
+
+	function dopayment ($addressdata,$paymentdata) {						# PUBLIC, check credit card data with a checksum algorithm
+		global	$forcecardcvc;									# global internal configuration variables
+
+		$returncodes			=array();						# to make shure that at the beginning no errorcodes exist
+		$returncodes["paymentmodule"]	="default";						# returns the Payment Module identifier
+
+		if (   $paymentdata["cardbrand"]=="visa" || $paymentdata["cardbrand"]=="mastercard"
+		    || $paymentdata["cardbrand"]=="amex") {						# in case of creditcard payment, check the creditcard data
+			if (   strlen($paymentdata["cardnumber"])<=0					# if something is missing, then find out what
+			    || strlen($paymentdata["cardvalidmonth"])<=0
+			    || strlen($paymentdata["cardvalidyear"])<=0
+			    || strlen($paymentdata["cardverification"])<=0) {
+			    	
+				if (strlen($paymentdata["cardnumber"])<=0) {
+					$returncodes["cardnumbererror"]		=true;
+				} # if
+				if (strlen($paymentdata["cardvalidmonth"])<=0) {
+					$returncodes["cardvalidmontherror"]	=true;
+				} # if
+				if (strlen($paymentdata["cardvalidyear"])<=0) {
+					$returncodes["cardvalidyearerror"]	=true;
+				} # if
+				if (strlen($paymentdata["cardverification"])<=0) {
+					$returncodes["cardverificationerror"]	=true;
+				} # if
+				if (strlen($paymentdata["cardcvc"])<=0 && $forcecardcvc===true) {	# check if CVC Code was entered and CVC is required in mall
+					$returncodes["cardcvcerror"]		=true;
+				} # if
+				$returncodes["errortype"]	="missingdata";
+				$returncodes["errorcode"]	="6";
+				$returncodes["vendorerrorcode"]	="";
+				return $returncodes;
+			}
+			else {										# the payment is via creditcard and all fields have a value
+				if (CC($paymentdata["cardbrand"],$paymentdata["cardnumber"])==0		# do creditcard-check, functions gets "visa"|"mastercard"|
+				    || (   strlen($paymentdata["cardcvc"])!=3				# "amex" as first parameter and the number as second one
+				        && strlen($paymentdata["cardcvc"])!=4				# and check CVC code (if required in mall)
+					&& $forcecardcvc===true) ) {					# the CVC code must be 3 or 4 digits
+					$returncodes["errortype"]	="invaliddata";
+					$returncodes["errorcode"]	="8";
+					$returncodes["vendorerrorcode"]	="";
+					return $returncodes;
+				} # if
+				$returncodes["errortype"]	="success";
+				$returncodes["errorcode"]	="0";					# tell the caller that everything went alright
+				$returncodes["vendorerrorcode"]	="";
+				return $returncodes;
+			} # if
+		} # if
+
+		$returncodes["errortype"]	="rejectedtx";						# unknown card brand can not be accepted
+# IS THERE A BETTER CODE???!!!
+		$returncodes["errorcode"]	="7";
+		$returncodes["vendorerrorcode"]	="";
+		return $returncodes;
+	} # dopayment
+} # defaultcreditcard
+
+
+?>

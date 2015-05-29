@@ -1,0 +1,225 @@
+<html>
+<head>
+   <title>Tutorials: Enterprise Aspect-Oriented Programming with AspectJ</title>
+   <link rel="stylesheet" href="../styles.css" type="text/css">
+</head>
+<body
+   bgcolor="White"
+   text="Black"
+   link="Blue"
+   vlink="Purple"
+   alink="Red"
+   leftmargin="0"
+   topmargin="0"
+   background="../img/background.gif"
+   >
+
+
+
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr>
+<td valign="top" align="left" colspan="3" bgcolor="#333399">
+   <a href="../index.html">
+   <img src="../img/banner.gif" border="0" align="left">
+   </a>
+</td>
+</tr>
+
+<tr>
+<td colspan="3" bgcolor="#CCCCCC">
+   <table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr>
+<td width="100%" class="headerTab">
+
+   <table border="0" cellspacing="0" cellpadding="0">
+   <tr>
+   <td width="126" bgcolor="#333399"><img src="../img/spacer126.gif"></td>
+   <td><img src="../img/curve.gif"></td>
+   <td width="10" class="headerTab"><img src="../img/spacer10.gif"</td>
+      <td class="headerTab" width="10"></td><td width="1" bgcolor="#000000"><img src="../img/shim.gif"></td><td class="headerTabSelected" nowrap>&nbsp;&nbsp;AOSD Conference&nbsp;&nbsp;</td>
+<td width="1" bgcolor="#000000"><img src="../img/shim.gif"></td>
+   </tr>
+
+   <tr>
+   <td colspan="5" height="1" bgcolor="#000000"><img src="../img/shim.gif"></td>
+<td height="1" bgcolor="#FFFFFF"><img src="../img/shim.gif"></td>
+<td colspan="2" height="1" bgcolor="#000000"><img src="../img/shim.gif"></td>
+
+   </tr>
+   </table>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+
+<tr>
+
+<td align="left" valign="top">
+   <img src="../img/spacer125.gif">
+   <table border="0" cellspacing="0" cellpadding="5" width="100%">
+<tr><td align="right" class="subnavTab"><a href=../index.html class="subnavLink">AOSD 2004</a></td></tr>
+<tr><td align="right"><img src="../img/subnav_line.gif" border="0"></td></tr>
+<tr><td align="right" class="subnavTab"><a href=../registration.html class="subnavLink">Registration</a></td></tr>
+<tr><td align="right"><img src="../img/subnav_line.gif" border="0"></td></tr>
+<tr><td align="right" class="subnavTab"><a href=../program.html class="subnavLink">Program</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../overview.html class="subsubnavLink">Program Overview</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../technical.html class="subsubnavLink">Technical Program</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../keynotes.html class="subsubnavLink">Keynotes</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../workshops/index.html class="subsubnavLink">Workshops</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../tutorials/index.html class="subsubnavLink">Tutorials</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../demos/index.html class="subsubnavLink">Demonstrations</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../extravaganza.html class="subsubnavLink">Student Extravaganza</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../social.html class="subsubnavLink">Social Events</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../bofs.html class="subsubnavLink">BOFs</a></td></tr>
+<tr><td align="right"><img src="../img/subnav_line.gif" border="0"></td></tr>
+<tr><td align="right" class="subnavTab"><a href=../cfp.html class="subnavLink">Call For Contributions</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../papers.html class="subsubnavLink">Technical Papers</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../reports.html class="subsubnavLink">Practitioner Reports</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../workshops.html class="subsubnavLink">Workshops</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../tutorials.html class="subsubnavLink">Tutorials</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../demos.html class="subsubnavLink">Demonstrations</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../students.html class="subsubnavLink">Student Extravaganza</a></td></tr>
+<tr><td align="right"><img src="../img/subnav_line.gif" border="0"></td></tr>
+<tr><td align="right" class="subnavTab"><a href=../localinfo.html class="subnavLink">Local Information</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../travel.html class="subsubnavLink">Travel</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../accommodation.html class="subsubnavLink">Accommodation</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../placestoeat.html class="subsubnavLink">Places to Eat</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../internet.html class="subsubnavLink">Internet Access</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../attractions.html class="subsubnavLink">Attractions</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../photos/ class="subsubnavLink">Lancaster &amp; Lake District Photos </a></td></tr>
+<tr><td align="right"><img src="../img/subnav_line.gif" border="0"></td></tr>
+<tr><td align="right" class="subnavTab"><a href=../volunteers.html class="subnavLink">Student Volunteers &amp; EPSRC Bursaries</a></td></tr>
+<tr><td align="right"><img src="../img/subnav_line.gif" border="0"></td></tr>
+<tr><td align="right" class="subnavTab"><a href=../organization.html class="subnavLink">Organization</a></td></tr>
+<tr><td align="right"><img src="../img/subnav_line.gif" border="0"></td></tr>
+<tr><td align="right" class="subnavTab"><a href=../../ class="subnavLink">Past Conferences</a></td></tr>
+</table>
+</td>
+
+<td align="left" valign="top" width="15"><img src="../img/spacer10.gif"></td>
+
+<td align="right" valign="top" width="100%">
+
+   &nbsp;<br>
+
+   <table border="0" cellspacing="0" cellpadding="0" width="100%">
+   <tr>
+   <td align="left" valign="top">
+
+<!--
+==================================================
+END HEADER
+==================================================
+-->
+
+
+<a href="index.html"><b>tutorials</b></a>
+
+<h2>T7: Enterprise Aspect-Oriented Programming with AspectJ</h2>
+
+<p>
+<table border="0" cellspacing="0" cellpadding="3">
+
+<tr>
+<td><b>Date</b></td>
+<td>Thursday, March 25, 2004, mid-day (half day)</td>
+</tr>
+<tr>
+
+<td valign="top"><b>Presenters</b></td>
+<td>Ron Bodkin, New Aspects of Software<br>
+Andy Clement, IBM UK</td>
+</tr>
+
+<td valign="top"><b>Level</b></td>
+<td><b><i>Intermediate</i></b>:
+Attendees should have experience doing object-oriented design and enterprise
+Java development, and should have some previous exposure to aspect-oriented
+programming (at least a tutorial).  Previous experience with AspectJ is
+beneficial but not required.
+</td>
+</tr>
+
+</table>
+</p>
+
+
+<h3>Abstract</h3>
+
+<p>Aspect-oriented programming (AOP) has become a hot topic for enterprise
+development, with recent news of support by IBM, JBoss, BEA, Oracle, Eclipse,
+and IntelliJ.  Behind the news headlines, however, are critical questions:
+<ul>
+  <li>How real is AOP for the enterprise?</li>
+  <li>What problems can it solve today?</li>
+  <li>How does it apply to enterprise applications?</li>
+  <li>How can one make an informed decision about trying to use AOP?</li>
+  <li>What is the best adoption strategy?</li>
+  <li>What are the long term possibilities for AOP in the enterprise?</li>
+</ul>
+</p>
+
+<p>This tutorial will tackle these questions and give developers, architects, and
+technical managers an introduction to AOP for enterprise Java application
+development.  We will provide both a conceptual road map and tangible examples
+of how AOP works and where it can be beneficial, as well as discussing
+anti-patterns (i.e., how not to use AOP).  Over the course of the tutorial, we
+will demonstrate the use of AOP for security, error handling, policy
+enforcement, testing with JUnit, systems management with JMX, and more.  The
+examples will be implemented in the AspectJ programming language (a popular and
+seamless aspect-oriented extension to Java) and will incorporate major J2EE
+technologies such as servlets, JSPs, and EJBs.</p>
+
+<p>At the end of the tutorial, participants will have an understanding of both the
+potential and the pitfalls for applying AOP in a J2EE context.  The tools used
+in the tutorial are all freely available as open source software, so
+participants will be able to use the techniques shown in their own projects.
+AspectJ is available at
+<a href="http://eclipse.org/aspectj/">http://eclipse.org/aspectj/</a>.</p>
+
+<h3>Biographies</h3>
+
+<p>Ron Bodkin is the founder of New Aspects of Software, which provides consulting
+and training on application development with an emphasis on aspect-oriented
+programming and security.  Ron is also a member of AspectMentor, a consortium
+of AOP experts.  Previously, Ron led the first implementation projects and
+training for customers for the AspectJ group at Xerox PARC.  Prior to that, Ron
+was a founder and the CTO of C-bridge, a consultancy that delivered enterprise
+applications using frameworks for Java, XML, and other Internet technologies.
+C-bridge grew to 900 employees and a successful IPO in December of 1999.</p>
+
+<p>Andy Clement is a software developer at IBM Hursley Park.  He has almost ten
+years of experience in transaction processing and enterprise middleware
+development.  He is one of the founders of the AspectJ Development Tools (AJDT)
+for Eclipse project and is currently involved in the use of aspects in J2EE
+middleware.</p>
+
+
+<!--
+==================================================
+START FOOTER
+==================================================
+-->
+
+   <br>&nbsp;
+   <br>&nbsp;
+
+   <hr size="1">
+   <font color="#350166">Edited by the <a href="../organization.html">AOSD Conference Committee</a>.&nbsp; Send comments to: <a href="mailto:webmaster&#64;aosd.net">webmaster&#64;aosd.net</a>   </font>
+
+   <br>&nbsp;
+   <br>&nbsp;
+
+   </td>
+   </tr>
+   </table>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

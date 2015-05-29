@@ -1,0 +1,90 @@
+<?
+
+$skippayment = false;
+
+# if one of the following pages are requested, then test if entered data of first page is valid
+if ($fsubmitbutton!=$page5continue && $fsubmitbutton!=$page5previous) {
+	if (in_array($f["paymentmethod"],$paymentmethods)!=true) $e["paymentmethod"]=true;
+
+	# check payment data, if payment was done with credit card
+	if ($f["paymentmethod"]=="visa" || $f["paymentmethod"]=="mastercard") {
+		
+		//if (strlen($f["cardholder"])<=0) $e["cardholder"]=true;
+		
+		$addressdata			=array();
+		$paymentdata			=array();
+		$paymentdata["cardnumber"]	=$f["cardnumber"];
+		$paymentdata["cardvalidmonth"]	=$f["cardvalidmonth"];
+		$paymentdata["cardvalidyear"]	=$f["cardvalidyear"];
+		$paymentdata["cardbrand"]	=$f["paymentmethod"];
+		$paymentdata["cardverification"]	=$f["cardverification"];
+
+		$paymentmodule			=new defaultcreditcard();
+		$returncodes			=$paymentmodule->dopayment($addressdata,$paymentdata);
+		if ($returncodes["errorcode"]!=0) {
+			$e["paymentcreditcard"]	=true;
+			if ($returncodes["errortype"]=="missingdata") $e["carddatamissing"]=true;
+			if ($returncodes["cardnumbererror"]) $e["cardnumber"]=true;
+			if ($returncodes["cardvalidmontherror"]) $e["cardvalidmonth"]=true;
+			if ($returncodes["cardvalidyearerror"]) $e["cardvalidyear"]=true;
+			if ($returncodes["cardverificationerror"]) $e["cardverification"]=true;
+			if ($returncodes["errortype"]=="invaliddata") {	# if data is invalid, then always mark all fields
+				$e["cardnumber"]	=true;
+				$e["cardvalidmonth"]	=true;
+				$e["cardvalidyear"]	=true;
+			} # if
+
+		} # if
+	} # if
+} # if
+
+if ($stopoutput==false && (count($e)>0 || $fsubmitbutton==$page5continue || $fsubmitbutton==$page5previous)) {
+
+	$submitvalueprevious	=$page3previous;
+	$submitvaluecontinue	=$page6continue;
+	$stopoutput	= true;					# prevent further pages to be outputted!
+
+	if (count($e)>0) {
+		echo "<table width=\"600\">\n";
+		echo "<tr>\n";
+		echo " <td align=\"center\"><font class=\"error\">";
+		if ($e["paymentmethod"]===true) {
+			echo "Please choose a payment method!";
+		}
+		elseif ($e["carddatamissing"]===true) {
+			echo "Please enter all credit card data!";
+		}
+		elseif ($e["paymentcreditcard"]===true) {
+			echo "Credit card data invalid! Please check the entered informations!";
+		}
+		else {
+			echo "Please fill out the highlighted fields!";
+		} # if
+		echo "</font></td>\n";
+		echo "</tr>\n";
+		echo "</table>\n";
+		echo "<br>\n";
+	} # if
+
+	# output the registration details, so the participant can check all data and see the total price
+	$confirmation	=makeregistrationconfirmation("payment",0,$reservationtime,$total);
+	
+	if ($total > 0) {
+		
+	   echo $confirmation;
+	   include("reginc/payment.phtml");
+
+	   $footertext	="Please press &quot;".htmlentities($submitvaluecontinue)."&quot; to\n".
+			 "finish your on-line registration.\n".
+			 "If you want to change any registration details, then go back to the pages before\n".
+			 "with &quot;".htmlentities($submitvalueprevious)."&quot;.\n";
+	}
+	else {
+		$f["paymentmethod"] = "none";	
+		$stopoutput	= false;
+		$skippayment = true;
+	}
+
+} # if
+
+?>

@@ -1,0 +1,31 @@
+<?
+function showdeleteconfirmation ($participantid) {
+	global	$submitvaluedeletehard, $submitvaluedeletecancel;
+
+	$parttxt	=showparticipantshort($participantid);
+# Show a error message that the participant was not found!!!
+	if ($parttxt===false) return;
+
+	echo "<form method=\"post\">\n";
+	echo "<table class=\"adminentry\" width=\"870\" align=\"center\">\n";
+	echo "<tr>\n";
+	echo " <td class=\"adminhead\">Delete Confirmation</td>\n";
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo " <td class=\"adminbody\" align=\"center\">\n";
+	echo "\n";
+	echo "  Are you sure that you want to delete the following participant entry?<br>\n";
+	echo "  All data will be inrreversibly lost!\n";
+	echo "  <p>\n";
+	echo $parttxt;
+	echo "  <p>\n";
+	echo "  <input type=\"submit\" name=\"faction\" value=\"".htmlentities($submitvaluedeletehard)."\">\n";
+	echo "  <input type=\"submit\" name=\"faction\" value=\"".htmlentities($submitvaluedeletecancel)."\">\n";
+	echo "\n";
+	echo " </td>\n";
+	echo "</tr>\n";
+	echo "</table>\n";
+	echo "<input type=\"hidden\" name=\"fparticipantid\" value=\"".htmlentities($participantid)."\">\n";
+	echo "</form>\n";
+} # showdeleteconfirmation
+?>

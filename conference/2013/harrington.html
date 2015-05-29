@@ -1,0 +1,196 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <link rel="stylesheet" type="text/css" href="style/common2.css"/>
+    <title>Spring Roo: A Bird's Eye View</title>
+  </head>
+  <body>
+
+<h1>
+	<a href="index.html">
+		<img src="style/images/header_logo.png" width="300" height="110" alt="MODULARITY: aosd13"/>
+	</a>
+</h1>
+
+
+<h1 id="centerspringrooabirdseyeviewcenter"><center>Spring Roo: A Bird's Eye View!</center></h1>
+
+<p><center><table>
+  <tr><td><center>Naomi Harrington<br/>
+  naomih@cs.uvic.ca<br/>
+  University of Victoria</center></td><td><center>Angela Rook<br/>
+  angelarook@shaw.ca<br/>
+  University of Victoria</center></td><td><center>Celina Berg<br/>
+  celinag@cs.uvic.ca<br/>
+  University of Victoria</center></td><td><center>Nieraj Singh<br/>
+  nierajsingh@uvic.ca<br/>
+  VMWare</center></td><td><center>Yvonne Coady<br/>
+  ycoady@cs.uvic.ca<br/>
+  University of Victoria</center></td></tr>
+</table></center></p>
+
+<p><a href="http://www.springsource.org/spring-roo">Spring Roo</a> provides a powerful means of improving efficiency and
+productivity for experienced software engineers.  Though there have
+been several experience reports and testimonials along these lines,
+this report highlights an unexpected role we have uncovered for the
+tool suite: <em>a best practices guide for newbies</em>.</p>
+
+<p>In this experience report we describe how Spring Roo can be leveraged
+as a means of
+bridging the gap for novice programmers.  We
+focus our case study on course materials from a first year class on the
+World Wide Web and Mobile Applications.  This course assumes no prior
+programming
+experience, and exposes students to basic concepts of HTML, CSS and JavaScript.
+Given the highly motivated disposition and diverse backgrounds of these
+students, it becomes clear that this app-savvy generation are indeed
+ready to dive-in and leverage tool suites in ways that previously
+would have been considered far too advanced for their level of
+experience. Guided by a simple set of first principles that structures
+their efforts according to a Model, View, Controller design strategy,
+they have successfully  deployed simple mobile applications through
+services such as <a href="https://build.phonegap.com/">Phone Gap Build</a>.</p>
+
+<p>This report identifies the path we are attempting to carve for
+newbie-developers consisting of four stages: (1) simple tools
+leveraging MVC to structure HTML, CSS and JavaScript, such as
+<a href="http://jsfiddle.net/">jsFiddle</a>, (2) more advanced tools such as the <a href="http://www.springsource.org/sts">Spring Tool Suite</a>
+(STS) and templates such as <a href="http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/mvc.html">SpringMVC</a>, (3) powerful yet concise ways of
+generating new functionality with <a href="http://www.springsource.org/spring-roo">Spring Roo</a>, and (4) backend cloud
+deployments using <a href="http://www.cloudfoundry.com/">CloudFoundry</a> within STS.  We identify the ways in
+which we believe this is a natural progression appropriate for a new
+generation of students.  From our observations, we
+conclude that STS and Spring Roo allow newbies to experiment with
+previously unencountered features of databases, web tiers, testing,
+application servers and cloud deployments in an unencumbered way.</p>
+
+<h2 id="stage1mvcandjsfiddle">Stage 1: MVC and <a href="http://jsfiddle.net/">jsFiddle</a></h2>
+
+<p>In this first stage of the journey, students experiment with existing
+code and derive their own in a collaborative online environment
+designed to separate concerns addressed by HTML, CSS and JavaScript
+into a Model, View, Controller strategy.  The environment, <a href="http://jsfiddle.net/">jsFiddle</a>,
+fosters this separation by dividing the screen into four
+quadrants---one for each of these components, plus the final one for
+the live result of their combination.  An example assignment included
+a  <a href="http://i.imgur.com/O5fSh">monster game in jsFiddle</a>, where users
+can increase their score each time they click on a moving monster,
+whose speed increases every level of the game.</p>
+
+<h2 id="stage2springtoolsuiteandthespringmvctemplate">Stage 2: <a href="http://www.springsource.org/sts">Spring Tool Suite</a> and the <a href="http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/mvc.html">SpringMVC</a> Template</h2>
+
+<p>Though moving from <a href="http://jsfiddle.net/">jsFiddle</a> to a more sophisticated environment is
+challenging, this part of the journey merely involves navigating a
+given project within STS.
+The downloaded package, <a href="http://i.imgur.com/MndQV">SpringMVC </a>,
+consists of a simple webpage that they can understand,
+<a href="http://i.imgur.com/14Ynh">home.jsp</a>, along with more extensive Java
+code than they have previously seen
+<a href="http://i.imgur.com/nDBTW">HomeController.java</a>.  Running the
+application and viewing the page on a local machine can be
+accomplished by dragging and dropping the package onto the server also
+made available through STS.</p>
+
+<h2 id="stage3springroo">Stage 3: <a href="http://www.springsource.org/spring-roo">Spring Roo</a></h2>
+
+<p>Several tutorials from Spring Roo are
+strangely powerful from a newbie’s perspective.  Though our students
+do not understand what many of the
+incantations are doing at the <em>roo command line</em>, they do know that
+within minutes they can launch multilingual webpages with backend
+databases.  Unfortunately,
+our students also lack the experience to debug the system if they do
+have problems.  However, by using the command line available in STS,
+they can monitor changes derive best-practice patterns from the
+scripts provided.  For example, a sample first-impressions pass of the
+<em>clinic.roo</em> <a href="http://static.springsource.org/spring-roo/reference/html/command-index.html#command-index-script">script</a> as
+interpreted by a enthusiastic student without any extensive Java
+programming experience <a href="http://i.imgur.com/YLOhP">is included here</a>.</p>
+
+<h2 id="stage4stsandcloudfoundry">Stage 4:  STS and <a href="http://www.cloudfoundry.com/">CloudFoundry</a></h2>
+
+<p>As with deploying on the localhost, once students have a CloudFoundry
+account the can <a href="http://i.imgur.com/5X0HN">drag and drop to server</a>.
+From the SpringMVC template, they can add their previous monster
+assignment from jsFiddle and run it their game <a href="http://i.imgur.com/JAyZ1">in the
+cloud</a>.  Also within STS, they can explore
+<a href="http://i.imgur.com/596lO">cloud configuration</a> and a <a href="http://i.imgur.com/3bx3u">remote system
+view</a>.  It is important to note that, once
+comfortable in this environment, STS becomes a powerful dashboard,
+incorporating both <a href="http://i.imgur.com/4rnMa">Roo and CloudFoundry</a>.</p>
+
+<h2 id="wheredothesestagestakeus">Where Do These Stages Take Us?</h2>
+
+<p>Most of the students in our course have never built a web
+application, interfaced a Java program with a database, or even
+written extensive test suites.  They do, however, have a very clear
+idea of what they want from their web applications.  That is, at a
+high-level, they have a basic idea of system components and their
+interaction, though they have no hands-on experience putting them all
+together.</p>
+
+<p>This staged approach through tools, MVC, databases, and cloud
+deployment---all at a very high level---gives students the ability to
+build and investigate real applications. Using sample Spring Roo
+scripts, students can quickly
+appreciate the components of a given system, and learn how to build
+industrial strength web applications with relatively little Java
+experience.</p>
+
+<p>Though certainly, several parts of the script and codebase require
+much more experience to interpret, this top-down approach is powerful.  It
+gives students a critical starting point to build from.  Based on an
+accumulation of first impressions such as these, many more
+applications can be pieced together <em>by a newbie</em> on the order of days
+as opposed to months.  This goes way beyond the proof-of-concept
+approach we typically use.</p>
+
+<p>Additionally,
+a resulting prototype generated through these means has much more
+potential to be understood by
+other students reasoning through the codebase than the classic code
+produced from ad hoc attempts to get newly encountered system
+components to work.  Systematic addition of the <a href="http://www.ibm.com/developerworks/opensource/library/os-springroo3/index.html">email</a> and <a href="http://www.ibm.com/developerworks/opensource/library/os-springroo3/index.html">security</a>
+packages in Spring Roo further enhance a student's understanding of
+the extensibility of the resulting system.</p>
+
+<h2 id="findingsandchallenges">Findings and Challenges</h2>
+
+<p>These results not only have traction in terms of raising stakeholders
+awareness for prototype applications developed by newbies, but also in
+terms of gratifying students who are early on the
+learning curve for this kind of software engineering task.  We believe
+these stages can be incrementally refined
+easily within the STS environment.  Unlike the experts however, the
+novices appreciate <em>what</em> the functionality does, but don’t
+immediately recognize <em>how</em> it does it.  They can, however, begin to
+inspect the generated code, and appreciate what some of these commands
+do.  In that regard, we see STS plus Spring Roo as facilitating the
+same kind of incremental adaptation encouraged by the jsFiddle
+environment.</p>
+
+<p>One practical challenge we face in academic settings is getting new
+software installed lab machines, as this has to go through layers of
+administration and is typically only done once a year.  For that
+reason, online tools are incredibly valuable in our setting.</p>
+
+<h2 id="conclusions">Conclusions</h2>
+
+<p>The World Wide Web is becoming a playing field for everyone, not just
+software professionals.  HTML, CSS and JavaScript parceled out as
+mobile applications have put new power in the hands of enthusiasts who
+envision functionality that previously could only be delivered by
+experienced programmers.  We have examples of students from a wide
+array of disciplines designing mobile apps that require substantial
+backend server support.  Our challenge is no longer to teach them what
+an "app" is, but instead to give them the power to make their visions
+real.</p>
+
+<p>We have seen how the new generation of web developers require
+comprehensive high-level tools such as Spring Roo---not for
+productivity but for learning best practices and scaffolding.  Our
+experience so far indicates that it may in fact be possible to
+continue with our methodology on a larger scale, developing scripts
+and tools to support best practices in Spring Roo.  We also believe
+experience with industry tools nicely compliments other academic first
+year courses in Computer Science.</p></body></html>

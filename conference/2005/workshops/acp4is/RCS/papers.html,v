@@ -1,0 +1,308 @@
+head	1.6;
+access;
+symbols;
+locks
+	lorenz:1.6; strict;
+comment	@# @;
+
+
+1.6
+date	2005.03.12.21.50.26;	author lorenz;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2005.02.28.03.14.41;	author lorenz;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2005.02.26.08.25.57;	author lorenz;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2005.02.26.05.03.02;	author lorenz;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2004.11.28.04.43.31;	author lorenz;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.11.25.15.36.55;	author lorenz;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.6
+log
+@AutoRCS
+@
+text
+@<h2>The 4th AOSD Workshop on Aspects, Components, and Patterns for
+Infrastructure Software (ACP4IS)</h2>
+
+<p> 
+  To get the <cite><a href="acp4is05.pdf">Proceedings of the Fourth AOSD
+  Workshop on Aspects, Components, and Patterns for Infrastructure
+  Software</a></cite>, use this link: <a href="acp4is05.pdf">acp4is05.pdf<a>.
+  To fetch all the papers in one file (tar/gzip), use this link: <a
+  href="acp4is05-crc.tar.gz">acp4is05-crc.tar.gz<a>
+</p>
+
+<table border="1" cellpadding="5" cellspacing="5" style="border-collapse: collapse" width="117%" id="AutoNumber3">
+  <tr>
+    <td width="53%"><b><span style="font-size: 11pt">Title</span></b></td>
+    <td width="44%"><b><span style="font-size: 11pt">Authors</span></b></td>
+  </tr>
+  <tr>
+    <td><a href="crc/engel.pdf">Using a Low-Level Virtual Machine to Improve
+        Dynamic Aspect Support in Operating System Kernels</a></td>
+    <td>Michael Engel and Bernd Freisleben</td>
+  </tr>
+  <tr>
+    <td><a href="crc/lafferty.pdf">Avoiding Incorrect and Unpredictable
+        Behaviour with Attribute-Based Crosscutting</a></td>
+    <td>Donal Lafferty</td>
+  </tr>
+  <tr>
+    <td><a href="crc/lawall.pdf">Tarantula: Killing Driver Bugs Before They
+        Hatch</a></td>
+    <td>Julia L. Lawall, Gilles Muller, and Richard Urunuela</td>
+  </tr>
+  <tr>
+    <td><a href="crc/lohmann.pdf">On the Configuration of Non-Functional
+        Properties in Operating System Product Lines</a></td>
+    <td>Daniel Lohmann, Olaf Spinczyk, and Wolfgang
+        Schr&ouml;der-Preikschat</td>
+  </tr>
+  <tr>
+    <td><a href="crc/loriant.pdf">Software Security Patches: Audit, Deployment
+        and Hot Update</a></td>
+    <td>Nicolas Loriant, Marc S&eacute;gura-Devillechaise, and Jean-Marc
+        Menaud</td>
+  </tr>
+  <tr>
+    <td><a href="crc/monfort.pdf">Weaving Aspects to Support High Reliable
+        Systems: Developping a Blood Plasma Analysis Automaton</a></td>
+    <td>Val&eacute;rie Monfort, Muhammad Usman Bhatti, and Assia ait ali
+        Slimane</td>
+  </tr>
+
+  <tr>
+    <td><a href="crc/pesonen.pdf">Evaluating an Aspect-Oriented Approach for
+        Production-Testing Software</a></td>
+    <tdJani Pesonen, Mika Katara, and Tommi Mikkonen</td>
+  </tr>
+  <tr>
+    <td><a href="crc/tesanovic.pdf">Development Environment for Configuration
+         and Analysis of Embedded and Real-Time Systems </a></td>
+    <td>Aleksandra Tesanovic, Peng Mu, and J&ouml;rgen Hansson</td>
+  </tr>
+  <tr>
+    <td><a href="crc/wohlstadter.pdf">Two Party Aspect Agreement using a COTS
+        Solver</a></td>
+    <td>Eric Wohlstadter, Stefan Tai, and Prem Devanbu</td>
+  </tr>
+</table>
+@
+
+
+1.5
+log
+@AutoRCS
+@
+text
+@d5 6
+a10 5
+To get the 
+<a href="acp4is05.pdf">
+Proceedings of the Fourth AOSD Workshop on Aspects, Components, and Patterns for Infrastructure Software</a>,
+use this link:
+<a href="acp4is05.pdf">acp4is05.pdf<a>.
+a11 4
+To fetch all the papers in one file (tar/gzip), use this link:
+<a href="acp4is05-crc.tar.gz">acp4is05-crc.tar.gz<a>
+
+<p>
+d13 54
+a66 45
+      <tr>
+        <td width="53%"><b><span style="font-size: 11pt">Title</span></b></td>
+
+        <td width="44%"><b><span style="font-size: 11pt">Authors</span></b></td>
+      </tr>
+      <tr>
+        <td width="53%"><a href="crc/engel.pdf">Using a Low-Level Virtual Machine to Improve Dynamic Aspect Support in Operating System Kernels</a></td>
+        <td width="44%">&nbsp;Michael Engel and Bernd Freisleben</td>
+      </tr>
+      <tr>
+        <td width="53%"><a href="crc/lafferty.pdf">Avoiding Incorrect and Unpredictable Behaviour with Attribute-based Crosscutting</a></td>
+        <td width="44%">&nbsp;Donal Lafferty</td>
+      </tr>
+      <tr>
+        <td width="53%"><a href="crc/lawall.pdf">Tarantula: Killing Driver Bugs Before They Hatch</a></td>
+        <td width="44%">&nbsp;Julia L. Lawall, Gilles Muller and Richard Urunuela</td>
+      </tr>
+      <tr>
+        <td width="53%"><a href="crc/lohmann.pdf">On the Configuration of Non-Functional Properties in Operating System Product Lines</a></td>
+        <td width="44%">&nbsp;Daniel Lohmann, Olaf Spinczyk, and Wolfgang Schr?der-Preikschat</td>
+
+      </tr>
+      <tr>
+        <td width="53%"><a href="crc/loriant.pdf">Software security patches: Audit, deployment and hot update</a></td>
+        <td width="44%">&nbsp;Nicolas Loriant, Marc S ?egura-Devillechaise, and Jean-Marc Menaud                  </td>
+      </tr>
+      <tr>
+        <td width="53%"><a href="crc/monfort.pdf">WEAVING ASPECTS TO SUPPORT HIGH RELIABLE SYSTEMS: DEVELOPPING A BLOOD PLASMA ANALYSIS AUTOMATON</a></td>
+        <td width="44%">&nbsp;Val?rie MONFORT, Muhammad Usman BHATTI, and Assia AIT ALI SLIMANE</td>
+      </tr>
+
+      <tr>
+        <td width="53%"><a href="crc/pesonen.pdf">Evaluating an Aspect-Oriented Approach for Production-Testing Software</a></td>
+        <td width="44%">&nbsp;Jani Pesonen, Mika Katara, and Tommi Mikkonen</td>
+      </tr>
+      <tr>
+        <td width="53%"><a href="crc/tesanovic.pdf">Development environment for configuration and analysis                                                                                                                    of embedded and real-time systems </a></td>
+        <td width="44%">&nbsp;Aleksandra Tesanovic, Peng Mu, and J?rgen Hansson</td>
+      </tr>
+      <tr>
+
+        <td width="53%" height="40"><a href="crc/wohlstadter.pdf">Two Party Aspect Agreement using a COTS Solver</a></td>
+        <td width="44%" height="40">&nbsp;Eric Wohlstadter, Stefan Tai, and Prem Devanbu</td>
+      </tr>
+      </table>@
+
+
+1.4
+log
+@AutoRCS
+@
+text
+@d4 7
+d13 1
+a14 1
+
+@
+
+
+1.3
+log
+@AutoRCS
+@
+text
+@d6 1
+d15 1
+a15 1
+        <td width="53%">&nbsp;i<a href="crc/engel.pdf">Using a Low-Level Virtual Machine to Improve Dynamic Aspect Support in Operating System Kernels</a></td>
+d19 1
+a19 2
+        <td width="53%">&nbsp;<a href="crc/lafferty.pdf">Avoiding Incorrect and Unpredictable Behaviour with Attribute-based Crosscutting</a></td>
+
+d23 2
+a24 2
+        <td width="53%">&nbsp;<a href="crc/lawall.pdf">Tarantula: Killing Driver Bugs Before They Hatch</a></td>
+        <td width="44%">&nbsp;Julia L. Lawall and Gilles Muller and Richard Urunuela</td>
+d27 2
+a28 2
+        <td width="53%">&nbsp;<a href="crc/lohmann.pdf">On the Configuration of Non-Functional Properties in Operating System Product Lines</a></td>
+        <td width="44%">&nbsp;Daniel Lohmann, Olaf Spinczyk, Wolfgang Schr?der-Preikschat</td>
+d32 2
+a33 5
+        <td width="53%">&nbsp;Software security patches
+                               
+                                      Audit, deployment and hot update
+</td>
+        <td width="44%">&nbsp;Nicolas Loriant, Marc S ?egura-Devillechaise, Jean-Marc Menaud                  </td>
+d36 2
+a37 4
+        <td width="53%">&nbsp;WEAVING ASPECTS TO SUPPORT HIGH RELIABLE SYSTEMS:
+                DEVELOPPING A BLOOD PLASMA ANALYSIS AUTOMATON
+</td>
+        <td width="44%">&nbsp;Val?rie MONFORT, Muhammad Usman BHATTI, Assia AIT ALI SLIMANE                  </td>
+d41 2
+a42 5
+        <td width="53%">&nbsp;Evaluating an Aspect-Oriented Approach for
+                                  Production-Testing Software
+</td>
+        <td width="44%">&nbsp;Jani Pesonen                            Mika Katara                      Tommi Mikkonen
+</td>
+d45 2
+a46 5
+        <td width="53%">&nbsp;Development environment for configuration and analysis
+                                                                                                                    of embedded and real-time systems 
+</td>
+        <td width="44%">&nbsp;Aleksandra Tesanovic, Peng Mu, and J?rgen Hansson
+</td>
+d50 2
+a51 3
+        <td width="53%" height="40">&nbsp;Two Party Aspect Agreement using a COTS Solver
+</td>
+        <td width="44%" height="40">&nbsp;Eric Wohlstadter                           Stefan Tai</td>
+@
+
+
+1.2
+log
+@David
+@
+text
+@d4 2
+a5 1
+Coming soon...
+d14 2
+a15 2
+        <td width="53%">&nbsp;</td>
+        <td width="44%">&nbsp;</td>
+d18 1
+a18 1
+        <td width="53%">&nbsp;</td>
+d20 1
+a20 1
+        <td width="44%">&nbsp;</td>
+d23 2
+a24 2
+        <td width="53%">&nbsp;</td>
+        <td width="44%">&nbsp;</td>
+d27 2
+a28 2
+        <td width="53%">&nbsp;</td>
+        <td width="44%">&nbsp;</td>
+d32 5
+a36 2
+        <td width="53%">&nbsp;</td>
+        <td width="44%">&nbsp;</td>
+d39 4
+a42 2
+        <td width="53%">&nbsp;</td>
+        <td width="44%">&nbsp;</td>
+d46 5
+a50 2
+        <td width="53%">&nbsp;</td>
+        <td width="44%">&nbsp;</td>
+d53 5
+a57 2
+        <td width="53%">&nbsp;</td>
+        <td width="44%">&nbsp;</td>
+d61 3
+a63 2
+        <td width="53%" height="40">&nbsp;</td>
+        <td width="44%" height="40">&nbsp;</td>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d4 49
+a52 1
+Coming soon...@

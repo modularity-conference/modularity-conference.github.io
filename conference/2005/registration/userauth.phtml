@@ -1,0 +1,55 @@
+<?
+
+# Copyright 1999,2000,2001,2002,2003 Victor Burwitz, All rights reserved
+# user-authentification module
+
+# 11.04.1999 interfaces written (Victor Burwitz)
+# 08.03.2003 cutted everything down to a very simple and primitive class (Victor Burwitz)
+
+
+class Userauth {
+	function Userauth ($access="write", $forcename="") {				# CONSTRUCTOR, bei 'new Userauth("vic","a4t")' executet
+		global	$db;						# wenn keine Variablen angegeben, dann HTTP-Angaben nutzen
+
+		$name	=$GLOBALS["PHP_AUTH_USER"];		# deshalb manuell die Sache machen, damit
+		$pwd	=$GLOBALS["PHP_AUTH_PW"];		# "new Userauth()" sinnvoll moeglich ist
+
+		$name	=trim( strtolower($name) );			# remove useless returns, spaces, linefeeds on start and end
+		$pwd	=trim( strtolower($pwd) );
+
+		if (strlen($forcename) == 0) {
+			$forcename = $name;
+		}
+
+		$sql	="SELECT * FROM user ".
+			 "WHERE name='".$db->quote($name)."' AND password='".$db->quote($pwd)."' AND access='".$db->quote($access)."'";
+		$result =$db->query($sql);
+
+		if ((strlen($name)==0 || strlen($pwd)==0 || $result->numrows()<=0 || $name != $forcename)) {	# wenn nichts angegeben oder nichts gefunden, neuer Request
+			$this->errormessage("Unknown user or wrong password!",true);	# bei Fehler aussteigen mit errormessage und
+			exit;						# PWD Request und dann erst mal Ciao
+		} # if
+	} # Userauth
+
+	function errormessage ($errormsg, $pwdrequestsend) {		# Zeigt Fehlerseite und fragt wenn gewuenscht nach PWD
+		if ($pwdrequestsend==true) {				# wenn gewuenscht neuen Benutzernamen und PWD verlangen
+			header("WWW-authenticate: basic realm=\"".$GLOBALS["HTTP_HOST"]."\"");
+			header("HTTP/1.0 401 Unauthorized");
+		} # if
+				$name	=$GLOBALS["PHP_AUTH_USER"];		# deshalb manuell die Sache machen, damit
+		$pwd	=$GLOBALS["PHP_AUTH_PW"];
+		echo "<html>\n";					# im Fehlerfall aussteigen mit errormessage
+		echo "<head>\n";
+		echo "<title>Error</title>\n";
+		echo "</head>\n";
+		echo "<body bgcolor=#FFFFFF>\n";
+		echo "<p>&nbsp;</p>\n";
+		echo "$name $pwd";
+		echo "<center><font face=\"Arial,Helvetica,sans-serif\" size=4>$errormsg</font></center>\n";
+		echo "</body>\n";
+		echo "</html>\n";
+		exit;							# und erst mal Ciao	
+	} # errormessage
+} # Userauth
+
+?>

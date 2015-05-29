@@ -1,0 +1,237 @@
+<html>
+<head>
+   <title>Tutorials: Support for Crosscutting Concerns: Is There Life Outside AOP?</title>
+   <link rel="stylesheet" href="../styles.css" type="text/css">
+</head>
+<body
+   bgcolor="White"
+   text="Black"
+   link="Blue"
+   vlink="Purple"
+   alink="Red"
+   leftmargin="0"
+   topmargin="0"
+   background="../img/background.gif"
+   >
+
+
+
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr>
+<td valign="top" align="left" colspan="3" bgcolor="#333399">
+   <a href="../index.html">
+   <img src="../img/banner.gif" border="0" align="left">
+   </a>
+</td>
+</tr>
+
+<tr>
+<td colspan="3" bgcolor="#CCCCCC">
+   <table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr>
+<td width="100%" class="headerTab">
+
+   <table border="0" cellspacing="0" cellpadding="0">
+   <tr>
+   <td width="126" bgcolor="#333399"><img src="../img/spacer126.gif"></td>
+   <td><img src="../img/curve.gif"></td>
+   <td width="10" class="headerTab"><img src="../img/spacer10.gif"</td>
+      <td class="headerTab" width="10"></td><td width="1" bgcolor="#000000"><img src="../img/shim.gif"></td><td class="headerTabSelected" nowrap>&nbsp;&nbsp;AOSD Conference&nbsp;&nbsp;</td>
+<td width="1" bgcolor="#000000"><img src="../img/shim.gif"></td>
+   </tr>
+
+   <tr>
+   <td colspan="5" height="1" bgcolor="#000000"><img src="../img/shim.gif"></td>
+<td height="1" bgcolor="#FFFFFF"><img src="../img/shim.gif"></td>
+<td colspan="2" height="1" bgcolor="#000000"><img src="../img/shim.gif"></td>
+
+   </tr>
+   </table>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+
+<tr>
+
+<td align="left" valign="top">
+   <img src="../img/spacer125.gif">
+   <table border="0" cellspacing="0" cellpadding="5" width="100%">
+<tr><td align="right" class="subnavTab"><a href=../index.html class="subnavLink">AOSD 2004</a></td></tr>
+<tr><td align="right"><img src="../img/subnav_line.gif" border="0"></td></tr>
+<tr><td align="right" class="subnavTab"><a href=../registration.html class="subnavLink">Registration</a></td></tr>
+<tr><td align="right"><img src="../img/subnav_line.gif" border="0"></td></tr>
+<tr><td align="right" class="subnavTab"><a href=../program.html class="subnavLink">Program</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../overview.html class="subsubnavLink">Program Overview</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../technical.html class="subsubnavLink">Technical Program</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../keynotes.html class="subsubnavLink">Keynotes</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../workshops/index.html class="subsubnavLink">Workshops</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../tutorials/index.html class="subsubnavLink">Tutorials</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../demos/index.html class="subsubnavLink">Demonstrations</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../extravaganza.html class="subsubnavLink">Student Extravaganza</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../social.html class="subsubnavLink">Social Events</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../bofs.html class="subsubnavLink">BOFs</a></td></tr>
+<tr><td align="right"><img src="../img/subnav_line.gif" border="0"></td></tr>
+<tr><td align="right" class="subnavTab"><a href=../cfp.html class="subnavLink">Call For Contributions</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../papers.html class="subsubnavLink">Technical Papers</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../reports.html class="subsubnavLink">Practitioner Reports</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../workshops.html class="subsubnavLink">Workshops</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../tutorials.html class="subsubnavLink">Tutorials</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../demos.html class="subsubnavLink">Demonstrations</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../students.html class="subsubnavLink">Student Extravaganza</a></td></tr>
+<tr><td align="right"><img src="../img/subnav_line.gif" border="0"></td></tr>
+<tr><td align="right" class="subnavTab"><a href=../localinfo.html class="subnavLink">Local Information</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../travel.html class="subsubnavLink">Travel</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../accommodation.html class="subsubnavLink">Accommodation</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../placestoeat.html class="subsubnavLink">Places to Eat</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../internet.html class="subsubnavLink">Internet Access</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../attractions.html class="subsubnavLink">Attractions</a></td></tr>
+<tr><td align="right" class="subsubnavTab"><a href=../photos/ class="subsubnavLink">Lancaster &amp; Lake District Photos </a></td></tr>
+<tr><td align="right"><img src="../img/subnav_line.gif" border="0"></td></tr>
+<tr><td align="right" class="subnavTab"><a href=../volunteers.html class="subnavLink">Student Volunteers &amp; EPSRC Bursaries</a></td></tr>
+<tr><td align="right"><img src="../img/subnav_line.gif" border="0"></td></tr>
+<tr><td align="right" class="subnavTab"><a href=../organization.html class="subnavLink">Organization</a></td></tr>
+<tr><td align="right"><img src="../img/subnav_line.gif" border="0"></td></tr>
+<tr><td align="right" class="subnavTab"><a href=../../ class="subnavLink">Past Conferences</a></td></tr>
+</table>
+</td>
+
+<td align="left" valign="top" width="15"><img src="../img/spacer10.gif"></td>
+
+<td align="right" valign="top" width="100%">
+
+   &nbsp;<br>
+
+   <table border="0" cellspacing="0" cellpadding="0" width="100%">
+   <tr>
+   <td align="left" valign="top">
+
+<!--
+==================================================
+END HEADER
+==================================================
+-->
+
+
+<a href="index.html"><b>tutorials</b></a>
+
+<h2>T3: Support for Crosscutting Concerns: Is There Life Outside AOP?</h2>
+
+<p>
+<table border="0" cellspacing="0" cellpadding="3">
+
+<tr>
+<td><b>Date</b></td>
+<td>Monday, March 22, 2004, afternoon (half day)</td>
+</tr>
+<tr>
+
+<td valign="top"><b>Presenters</b></td>
+<td>Alejandro Buchmann, Technische Universit&auml;t Darmstadt<br>
+Mariano Cilia, Technische Universit&auml;t Darmstadt</td>
+</tr>
+
+<td valign="top"><b>Level</b></td>
+<td><b><i>Advanced</i></b>:
+Attendees should be familiar with current approaches to aspect-oriented
+programming.
+</td>
+</tr>
+
+</table>
+</p>
+
+
+<h3>Abstract</h3>
+
+<p>The problem of dealing with crosscutting concerns is not new.  Prior to the
+current interest in aspect-oriented programming (AOP), many different
+approaches to crosscutting concerns were devised, for example, in active
+databases and reflective middleware.  In looking at this previous work,
+important questions arise:
+<ul>
+  <li>Where are the similarities and differences between previous approaches and
+    AOP?</li>
+  <li>Are there problems looming ahead that AOP has not yet addressed?</li>
+  <li>Can solutions developed by other communities be exploited in AOP?</li>
+</ul>
+</p>
+
+<p>This tutorial addresses these questions by drawing parallels to active
+databases and middleware.  For instance, active databases are based on the
+popular event-condition-action (ECA) paradigm in which lightweight events are
+detected and reactions are triggered whenever a guarding condition is true.
+The notions of "event" and "reaction" in ECA rules are astonishingly similar to
+the notions of "pointcut" and "advice" in AOP.  Research in the areas of active
+databases and middleware has developed solutions to such problems as dealing
+with rich sets of events, event composition, non-invasive event detection and
+signaling, multiple reactions to a single event, conflict resolution,
+transactions, delayed execution of reactions, consistency of ECA rule-sets, and
+dynamic activation and deactivation of rule-sets.  These issues are now arising
+in AOP as more complex applications are tackled and more powerful AOP
+mechanisms are proposed.</p>
+
+<p>In this tutorial we will present the problems, draw some parallels between
+paradigms and sketch the solutions that have been proposed by the active
+database and middleware communities.  Attendees will learn about past and
+current research in these areas, and how solutions from those communities can
+be adopted for use in future AOP and AOSD systems.</p>
+
+<h3>Biographies</h3>
+
+<p>Alejandro Buchmann has been a Professor in the Department of Computer Science
+at the Technische Universit&auml;t Darmstadt (TUD) since 1991 and is
+responsible for the areas of databases and distributed systems.  Alejandro
+received his PhD from the University of Texas, Austin, in 1980.  He was an
+Assistant/Associate Professor from 1980 to 1986 at the National Autonomous
+University of Mexico and held positions as a senior researcher at Computer
+Corporation of America/XEROX Advanced Information Technology (1986-1989) and
+GTE Laboratories (1989-1991) before joining TUD.  He is responsible for the
+graduate program in enabling technologies for e-commerce at TUD and is a
+cofounder of ITO (Information Technology transfer Office), a research center of
+TUD specializing in industrial research in middleware, ubiquitous computing,
+and end-to-end security.  Alejandro's current research interests are in the
+areas of event-based and reactive systems, heterogeneous distributed systems,
+middleware, and new paradigms for data management and information processing.</p>
+
+<p>Mariano Cilia holds a post-doctoral position in the Department of Computer
+Science at the Technische Universit&auml;t Darmstadt.  He graduated from
+UNICEN, Argentina in 1993 and received his MS degree from UNICAMP, Brazil in
+1996.  He received his PhD in computer science from the Technische
+Universit&auml;t Darmstadt in August 2002, working on an active functionality
+service for open distributed heterogeneous environments.  During his PhD
+research, Mariano was involved in cooperative projects with industry.  He is
+now a visiting professor at the Faculty of Sciences, UNICEN, Argentina.  His
+research interests include reactive functionality, aspect-oriented programming,
+event-driven systems, semantic data integration, data dissemination, and
+middleware.</p>
+
+
+<!--
+==================================================
+START FOOTER
+==================================================
+-->
+
+   <br>&nbsp;
+   <br>&nbsp;
+
+   <hr size="1">
+   <font color="#350166">Edited by the <a href="../organization.html">AOSD Conference Committee</a>.&nbsp; Send comments to: <a href="mailto:webmaster&#64;aosd.net">webmaster&#64;aosd.net</a>   </font>
+
+   <br>&nbsp;
+   <br>&nbsp;
+
+   </td>
+   </tr>
+   </table>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

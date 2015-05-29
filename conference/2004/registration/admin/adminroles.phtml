@@ -1,0 +1,351 @@
+<?
+
+# 03.06.2003 role administration tool created (Victor Burwitz)
+
+require_once("../conf.phtml");
+require_once("../dbinterface.phtml");
+$db	=new Database();
+require_once("../userauth.phtml");
+$user	=new Userauth();						# check if user has authorized himself!
+
+
+function showmenu () {
+	global	$db,
+		$submitvaluenew, $submitvaluechange;
+
+	echo "<form method=\"post\">\n";
+	echo "<table class=\"adminentry\" width=\"870\" align=\"center\">\n";
+	echo "<tr>\n";
+	echo " <td class=\"adminhead\">Overview of Roles</td>\n";
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo " <td class=\"adminbody\" align=\"center\">\n";
+	echo "\n";
+	echo "  <table border=\"0\">\n";
+	echo "  <tr>\n";
+	echo "   <td align=\"center\">\n";
+	echo "    <select name=\"froleid\" size=\"13\" onchange=\"submit();\">\n";
+	$result	=$db->query("SELECT id,name FROM role ORDER BY name");
+	while ($row=$result->fetchhash()) {
+		$id	=$row["id"];
+		$name	=htmlentities($row["name"]);
+		echo "     <option value=\"$id\">$name</option>\n";
+	} # while
+	echo "    </select>\n";
+	echo "   </td>\n";
+	echo "  </tr>\n";
+	echo "<input type=\"hidden\" name=\"faction\" value=\"".htmlentities($submitvaluechange)."\">\n";
+	echo "</form>\n";
+	echo "<form method=\"post\">\n";
+	echo "  <tr>\n";
+	echo "   <td align=\"center\">\n";
+	echo "    <input type=\"button\" value=\"Participants\" onclick=\"window.location.href='adminparticipants.phtml'\">\n";
+	echo "    <input type=\"submit\" name=\"faction\" value=\"".htmlentities($submitvaluenew)."\">\n";
+	echo "   </td>\n";
+	echo "  </tr>\n";
+	echo "  </table>\n";
+	echo "\n";
+	echo " </td>\n";
+	echo "</tr>\n";
+	echo "</table>\n";
+	echo "</form>\n";
+} # showmenu
+
+
+function showdeleteconfirmation ($roleid) {
+	global	$db,
+		$submitvaluedeletehard, $submitvaluedeletecancel;
+
+	$result	=$db->query("SELECT * FROM role WHERE id=$roleid");
+# Show a error message that the role was not found!!!
+	if ($result->numrows()<=0) return;
+
+	$row=$result->fetchhash();
+	$id		=$row["id"];
+	$name		=htmlentities($row["name"]);
+
+	echo "<form method=\"post\">\n";
+	echo "<table class=\"adminentry\" width=\"870\" align=\"center\">\n";
+	echo "<tr>\n";
+	echo " <td class=\"adminhead\">Delete Confirmation</td>\n";
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo " <td class=\"adminbody\" align=\"center\">\n";
+	echo "\n";
+	echo "  Are you shure that you want to delete the following role entry?<br>\n";
+	$cresult	=$db->query("SELECT * FROM part_role WHERE roleid=$roleid");
+	if ($cresult->numrows()>0) {
+		echo "  <p>\n";
+		echo "  <font class=\"error\">\n";
+		echo "   There are participants with this role!<br>\n";
+		echo "   Deletion will result in loss of role informations!\n";
+		echo "  </font>\n";
+	} # if
+	echo "  <p>\n";
+	echo "  <table border=\"0\" cellpadding=\"2\" cellspacing=\"3\">\n";
+	echo "  <tr>\n";
+	echo "   <td bgcolor=\"#E8ECF8\" width=\"200\"><b>Role Information</b></td>\n";
+	echo "  </tr>\n";
+	echo "  <tr valign=\"top\">\n";
+	echo "   <td>\n";
+	echo "    <table cellpadding=\"0\">\n";
+#	ID is not really of any interest
+#	echo "    <tr><td>ID:</td><td>$id</td></tr>\n";
+	echo "    <tr><td>Name:&nbsp;</td><td>$name</td></tr>\n";
+	echo "    </table>\n";
+	echo "   </td>\n";
+	echo "  </tr>\n";
+	echo "  </table>\n";
+	echo "  <p>\n";
+	echo "  <input type=\"submit\" name=\"faction\" value=\"".htmlentities($submitvaluedeletehard)."\">\n";
+	echo "  <input type=\"submit\" name=\"faction\" value=\"".htmlentities($submitvaluedeletecancel)."\">\n";
+	echo "\n";
+	echo " </td>\n";
+	echo "</tr>\n";
+	echo "</table>\n";
+	echo "<input type=\"hidden\" name=\"froleid\" value=\"".htmlentities($id)."\">\n";
+	echo "</form>\n";
+} # showdeleteconfirmation
+
+
+function deleterole ($roleid) {						# delete the given participant entry in ALL tables
+	global	$db;
+
+	$db->query("DELETE FROM part_role WHERE roleid=$roleid");
+	$db->query("DELETE FROM role WHERE id=$roleid");		# delete in participant table as last, just in case
+} # deleterole
+
+
+function loadroledata ($roleid) {
+	global	$db;
+
+	$result	=$db->query("SELECT * FROM role WHERE id=$roleid");
+# Show a error message that the participant was not found!!!
+	if ($result->numrows()<=0) return;
+
+	$row=$result->fetchhash();
+	$f["id"]		=$row["id"];
+	$f["name"]		=$row["name"];
+
+	return $f;
+} # loadroledata
+
+
+# $use: defines for which purpose the form is used
+#       "new":		for entering a new role
+#       "change":	for modifying a existing role
+# $f: array that carries the role data (similar to the registration frontend)
+# $e: array that has all error codes of the submited data of the $f array
+# $errmsg: the error message as text for the display to the user
+function showrolechange ($use,$f,$e=array(),$errmsg="") {		# shows form to modify a existing role
+	global	$db,
+		$submitvaluenewsave, $submitvaluenewcancel,
+		$submitvaluechangesave, $submitvaluechangecancel,
+		$submitvaluedelete,
+		$maxname;
+
+	$formtitle	=array("new"=>"Create New Role","change"=>"Change Role's Details");
+	echo "<form method=\"post\">\n";
+	echo "<table class=\"adminentry\" width=\"870\" align=\"center\">\n";
+	echo "<tr>\n";
+	echo " <td class=\"adminhead\">".htmlentities($formtitle[$use])."</td>\n";
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo " <td class=\"adminbody\" align=\"center\">\n";
+	echo "\n";
+	if (strlen($errmsg)>0) {
+		echo "\n";
+		echo "<font class=\"error\">$errmsg</font>\n";
+		echo "<p>\n";
+	} # if
+	echo "  <table border=\"0\">\n";
+	echo "  <tr>\n";
+	echo "   <td colspan=\"2\" bgcolor=\"#E8ECF8\"><b>Role Data</b></td>\n";
+	echo "  </tr>\n";
+#	ID is not really of any interest
+#	if ($use=="change") {
+#		echo "  <tr>\n";
+#		echo "   <td>ID:</td>\n";
+#		echo "   <td>".htmlentities($f["id"])."</td>\n";
+#		echo "  </tr>\n";
+#	} # if
+	echo "  <tr>\n";
+	echo "   <td><font";
+	if ($e["name"]===true) echo " class=\"error\"";
+	echo ">Name: </font></td>\n";
+	echo "   <td><input type=\"text\" name=\"f[name]\" maxlength=\"$maxname\" size=\"30\" value=\"".htmlentities($f["name"])."\"></td>\n";
+	echo "  </tr>\n";
+	echo "  </table>\n";
+
+	echo "  <p>\n";
+	if ($use=="new") {
+		echo "  <input type=\"submit\" name=\"faction\" value=\"".htmlentities($submitvaluenewsave)."\">\n";
+		echo "  <input type=\"submit\" name=\"faction\" value=\"".htmlentities($submitvaluenewcancel)."\">\n";
+	} # if
+	if ($use=="change") {
+		echo "  <input type=\"hidden\" name=\"f[id]\" value=\"".htmlentities($f["id"])."\">\n";
+		echo "  <input type=\"hidden\" name=\"froleid\" value=\"".htmlentities($f["id"])."\">\n";
+		echo "  <input type=\"submit\" name=\"faction\" value=\"".htmlentities($submitvaluechangesave)."\">\n";
+		echo "  <input type=\"submit\" name=\"faction\" value=\"".htmlentities($submitvaluedelete)."\">\n";
+		echo "  <input type=\"submit\" name=\"faction\" value=\"".htmlentities($submitvaluechangecancel)."\">\n";
+	} # if
+	echo " </td>\n";
+	echo "</tr>\n";
+	echo "</table>\n";
+	echo "</form>\n";
+} # showrolechange
+
+
+function checkrole ($f,$roleid,&$errmsg) {
+	global	$db;
+
+	$e	=array();
+	$errmsg	="";
+
+	# checks!!!
+	if (strlen($f["name"])<=0) {
+		$e["name"]	=true;
+	} # if
+	if ($e["name"]!=true) {
+		$sql	="SELECT * FROM role WHERE name='".$db->quote($f["name"])."' AND id!=".intval($roleid);
+		$result	=$db->query($sql);
+		if ($result->numrows()>0) {
+			$e["nameused"]	=true;
+		} # if
+	} # if
+
+	# error messages!!!
+	if ($e["name"]===true) {
+		$errmsg		.="Please fill out the highlighted fields!<br>\n";
+	} # if
+	if ($e["nameused"]===true) {
+		$errmsg		.="The choosen name already exists!<br>\n";
+	} # if
+
+	return $e;
+} # checkrole
+
+
+function savedata ($roleid,$f) {					# save the registration data in the DB
+	global	$db, $f;
+
+	# insert in role table
+	$sql   ="INSERT INTO role (id,name) ".
+		"VALUES ($roleid,'".$db->quote($f["name"])."')";
+	$result	=$db->query($sql);
+	if (!$result) die("ERROR: Database error: ".$db->geterrorstr());
+} # savedata
+
+
+function updatedata ($roleid,$f) {					# update the registration data in the DB
+	global	$db;
+
+	# update role table
+	$sql   ="UPDATE role SET name='".$db->quote($f["name"])."' WHERE id=$roleid";
+	$result	=$db->query($sql);
+	if (!$result) die("ERROR: Database error: ".$db->geterrorstr());
+} # updatedata
+
+
+
+
+
+
+
+
+
+# None of these form submit buttons are allowed to have SAME values!!!
+$submitvaluedelete	="Delete";
+$submitvaluedeletehard	="DELETE";
+$submitvaluedeletecancel="Cancel";
+$submitvaluechange	="Modify";
+$submitvaluechangesave	=" Save ";
+$submitvaluechangecancel=" Cancel ";
+$submitvaluenew		="New";
+$submitvaluenewsave	="  Create  ";
+$submitvaluenewcancel	="  Cancel  ";
+
+$e			=array();					# $e is a array and carries the errors as entries
+
+
+
+
+$maxname		=25;						# define maximum field lengths in the database
+
+
+$f["name"]		=trim( substr($f["name"],0,$maxname) );		# cut strings to maximum length and cut of
+									# whitespaces at the beginning and at the end
+
+$froleid		=intval($froleid);				# cast integers to integer values
+
+
+
+
+
+echo "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n";
+echo "<html>\n";
+echo "<head>\n";
+echo "<title>$confname $confyear Administration</title>\n";
+echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-15\">\n";
+echo "<link href=\"../registration.css\" rel=\"stylesheet\" type=\"text/css\">\n";
+echo "</head>\n";
+echo "\n";
+echo "<body class=\"admin\">\n";
+
+
+
+if ($faction==$submitvaluedelete) {
+	showmenu();
+	showdeleteconfirmation($froleid);
+}
+elseif ($faction==$submitvaluedeletehard) {
+	deleterole($froleid);
+	showmenu();
+}
+elseif ($faction==$submitvaluechange) {
+	showmenu();
+	$f	=loadroledata($froleid);
+	showrolechange("change",$f);
+}
+elseif ($faction==$submitvaluechangesave) {
+	$e	=checkrole($f,$froleid,$errmsg);
+	if (count($e)>0) {
+		showmenu();
+		showrolechange("change",$f,$e,$errmsg);
+	}
+	else {
+		updatedata($froleid,$f);
+		showmenu();
+	} # if
+}
+elseif ($faction==$submitvaluechangecancel) {
+	showmenu();
+}
+elseif ($faction==$submitvaluenew) {
+	showmenu();
+	$f		=array();
+	showrolechange("new",$f);
+}
+elseif ($faction==$submitvaluenewsave) {
+	$e	=checkrole($f,0,$errmsg);
+	if (count($e)>0) {
+		showmenu();
+		showrolechange("new",$f,$e,$errmsg);
+	}
+	else {
+		$seq	=new Sequence($db);				# generate new unique role registration ID
+		$roleid	=$seq->select("role");
+		savedata($roleid,$f);
+		showmenu();
+	} # if
+}
+elseif (strlen($faction)<=0 || $faction==$submitvaluedeletecancel || $faction==$submitvaluenewcancel) {
+	showmenu();
+} # if
+
+
+
+echo "</body>\n";
+echo "</html>\n";
+
+?>

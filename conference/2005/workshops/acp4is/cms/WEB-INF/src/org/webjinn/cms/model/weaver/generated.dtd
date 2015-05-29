@@ -1,0 +1,31 @@
+<!ELEMENT ROOT (#PCDATA | cms:cssfiles | cms:menuattribute | cms:pageattribute |cms:noselecteditem | cms:selecteditem | cms:menuitems)> 
+
+<!ELEMENT cms:cssfiles EMPTY>
+<!ELEMENT cms:menuattribute EMPTY>
+<!ELEMENT cms:itemattribute EMPTY>
+<!ELEMENT cms:pageattribute EMPTY>
+
+<!ELEMENT cms:noselecteditem (#PCDATA | cms:itemattribute | cms:menuattribute | cms:pageattribute | cms:cssfiles)*>
+
+<!ELEMENT cms:menuitems (#PCDATA | cms:selecteditem | cms:inactiveitem | cms:itemattribute | cms:menuattribute | cms:pageattribute)*>
+
+<!ELEMENT cms:selecteditem (#PCDATA | cms:itemattribute | cms:menuattribute | cms:pageattribute | cms:cssfiles)*>
+
+<!ELEMENT cms:inactiveitem (#PCDATA | cms:itemattribute | cms:menuattribute | cms:pageattribute)*>
+
+<!ATTLIST cms:menuattribute 
+  name CDATA #REQUIRED
+  htmltype CDATA #REQUIRED
+  description CDATA #IMPLIED>
+
+<!ATTLIST cms:itemattribute 
+  name CDATA #REQUIRED
+  htmltype CDATA #REQUIRED
+  description CDATA #IMPLIED>
+
+<!ATTLIST cms:pageattribute 
+  name CDATA #REQUIRED
+  htmltype CDATA #REQUIRED
+  description CDATA #IMPLIED>
+
+

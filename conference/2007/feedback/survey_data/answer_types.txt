@@ -1,0 +1,79 @@
+#
+# Each question (with its answer options) of the survey is grouped and has the following properties:
+#
+# id     = A unique id (string or number). (required)
+# style  = The layout of the answer options. (required)
+#          Possible styles:
+#            - cb  (checkbox)
+#            - rb  (radiobutton)
+#            - sb  (selectbox)
+#            - msb (multiple selectbox)
+#            - tf  (text field)
+#            - ta  (text area)
+# labels = The rendered labels for each answer option. (required)
+#          The order matters! (e.g. a yes/no answer has labels 'yes' and 'no')
+#          An asterisk (*) at the end of a label indicates the default label.
+# values = The internal values of the labels. (optional)
+#          If not given the values are the same as the labels.
+#
+
+# ruler
+id       1
+style    tf
+labels   &nbsp;
+cols    2
+
+# 
+id       2
+style    rb
+labels   Researcher, Student, Evangelist, User, Tool Developer, Manager
+
+# ruler
+id       3
+style    rb
+labels   Excellent, Very Good, Good, Fair, Poor, Did not attend
+
+# yeso
+id       4
+style    rb
+labels   Yes, No
+
+# ruler3
+id       5
+style    rb
+labels   Very, Somewhat, Not
+
+#
+id       6
+style    ta
+labels   &nbsp;
+
+#hotel
+id       7
+style    sb
+labels   Recommended hotel (Sheraton Wall Center), Other hotel listed on the accommodation page, Stayed with friends, Other
+
+#hotel why
+id       8
+style    rb
+labels   Cost, Location, Personal, Other 
+
+#rb
+id       9
+style    rb
+labels   Excellent, Very Good, Good, Fair, Poor, Did not use
+
+#rb
+id       10
+style    sb
+labels   Full catered lunch included in registration, Sandwich lunches included in registration with $100 reduction in fee, No lunches included in registration with $200 reduction in fee
+
+#rb
+id       11
+style    sb
+labels   Saved time, Networking, Quality, Costs, Other
+
+#rb
+id       12
+style    rb
+labels   Excellent value, Good value, Too expensive, Not worth the fees

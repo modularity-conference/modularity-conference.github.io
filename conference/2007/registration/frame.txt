@@ -1,0 +1,116 @@
+<script language="javascript">
+
+	var html = document.body.innerHTML;
+	var index = html.search("Total:"); 
+	var subhtml = html.substr(index, 100);
+	temp = subhtml.split('$');
+	var iamount = temp[1];
+	temp = iamount.split("<");
+	iamount = temp[0];
+	var url = escape(document.location);
+
+	function poptastic(url) {
+		var newwindow=window.open(url,'name','height=400,width=400');
+		if (window.focus) {newwindow.focus()}
+	}
+
+	function aosdButtonAlert() {
+
+		var text = "You have not yet completed payment. Do you want to pay now?\n\n";
+		var text2 = "Clicking \"OK\" will take you to the AOSD/ALP payment page. ";
+		var text3 = "Clicking \"Cancel\" will bring you to RegOnline's registration ";
+		var text4 = "completed page without paying.\n\n";
+		var text5 = "Please note that your registration will not actually be ";
+		var text6 = "completed until you have paid in full.\n\n";
+		var text7 = "RegOnline thinks that you still owe $"%2Biamount%2B". ";
+		var text8 = "If this is not correct, you may change it.\n\n";
+		var text9 = "The AOSD organizing committee only records payments to RegOnline periodically, ";
+		var text10 = "and so $"%2Biamount%2B" may not take into account any payments that you have made earlier.";
+
+		var answer = confirm(text%2Btext2%2Btext3%2Btext4%2Btext5%2Btext6%2Btext7%2Btext8%2Btext9%2Btext10);
+
+		if(answer) {
+			aosdButtonPress();
+		} else {
+			FinishMyRegistration = oldSubmit;
+			FinishMyRegistration();
+		}
+	}
+
+	function aosdButtonPress() {
+
+		var tbl = document.getElementById('Table13');
+		var rows = tbl.getElementsByTagName("tr");
+		var name = rows[0].cells[0].innerHTML;
+		var temp = new Array();
+		temp = name.split('<br>');
+		name = temp[0];	
+		temp = name.split(' ');
+
+		if(temp.length == 3) {
+			//has Miss, Mr etc. in front
+			var lname = temp[2];
+			var fname = temp[1];
+		} else {
+			var lname = temp[1];
+			var fname = temp[0];
+		}
+
+		window.location="http://aosd.net/2007/registration/payment.php?lname="%2Blname%2B"&fname="%2Bfname%2B"&iamount="%2Biamount%2B"&url="%2Burl;
+
+	}
+
+	var otherSelect = document.getElementById("AcceptCheckPO");
+	otherSelect.options[0].text = otherSelect.options[1].text;
+    	otherSelect.options[0].value = otherSelect.options[1].value
+	otherSelect.length = 1;
+	otherSelect.style.visibility = "hidden";
+
+	var otherLabel = document.getElementById("Custom");
+	otherLabel.style.visibility = "hidden";
+	otherLabel.width = 0;
+
+	var paymentTable = document.getElementById("Table3");
+	paymentTable.align = "center";
+
+	var oldSubmit = FinishMyRegistration;
+
+	FinishMyRegistration = function() {
+		aosdButtonAlert();
+	}
+
+	var refer = document.referrer;
+	var index = refer.indexOf("https://www.regonline.com");
+	var url = escape(document.location);
+
+	if(index != 0) {
+		document.write("Thank you for your payment for AOSD 2007. Please finish your registration.");
+		//document.write("Thank you for your payment for ALP 2007. Please finish your registration.");
+		FinishMyRegistration = oldSubmit;
+	} else {
+		document.write("<center>");
+		document.write("<br>");
+		document.write("<input type=\"button\" value=\"Pay Now >>\"OnClick=\"aosdButtonAlert()\"/>");
+		document.write("</center>");
+	}
+
+</script>
+
+	<center><br><a href="javascript:poptastic('poppedexample.html');">Privacy Statement</a><br><br>
+
+
+<script language="javascript">
+
+	document.write("<center>Please note that your registration will not actually be completed");
+	document.write(" until you have paid in full.<br><br>");
+	document.write("RegOnline thinks that you still owe $"%2Biamount%2B". If this");
+	document.write(" is not correct, you may change it.<br><br>");
+	document.write("The AOSD organizing committee only records payments to RegOnline");
+	document.write(" periodically, and so $"%2Biamount%2B" may not take into account");
+	document.write(" any payments that you have made earlier.</center>");
+
+</script>
+
+
+
+

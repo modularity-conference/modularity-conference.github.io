@@ -1,0 +1,10 @@
+<?
+function deleteparticipant ($participantid) {				# delete the given participant entry in ALL tables
+	global	$db;
+
+	$db->query("DELETE FROM part_lunch WHERE participantid=$participantid");
+	$db->query("DELETE FROM part_tutorial WHERE participantid=$participantid");
+	$db->query("DELETE FROM part_role WHERE participantid=$participantid");
+	$db->query("DELETE FROM participant WHERE id=$participantid");	# delete in participant table as last, just in case
+} # deleteparticipant
+?>

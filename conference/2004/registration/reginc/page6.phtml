@@ -1,0 +1,124 @@
+<?
+
+# in case the data was submitted, then check it and if correct store it!
+if ($stopoutput==false && $fsubmitbutton==$page6continue || $skippayment) {
+	if (count($e)==0) {
+		$seq	=new Sequence($db);				# generate new unique participant registration ID
+		$partid	=$seq->select("participant");
+
+		# make a nice Confirmation HTML output and calculate total price for savedata()
+		$totalprice	=0.0;
+		$confirmation	=makeregistrationconfirmation("confirmation",$partid,$reservationtime,$totalprice);
+
+		savedata($partid,$totalprice);				# save participant in database, now registration is done
+
+		echo $confirmation;					# tell participant that everything worked out and he is registered
+
+		$subject	="$confname $confyear Registration Confirmation";
+		$mailfrom	=$confmailfrom;
+		$addedheaders  ="From: $mailfrom\r\n".
+#				"Subject: $subject\r\n".
+				"Reply-to: $mailfrom\r\n".
+				"MIME-Version: 1.0\r\n".		# iso-8859-15 would be nicer but EUR symbol in HTML anyhow
+				"Content-type: text/html; charset=\"iso-8859-1\"\r\n".
+				"Content-transfer-encoding: 8bit";
+		$msg	       ="<html>\n".
+				"<head>\n".
+				"<style type=\"text/css\">\n".
+				"<!--\n";
+		$cssfilearray	=file("registration.css", 1);		# read the stylesheet and copy it into the HTML mail
+		foreach ($cssfilearray as $line) {
+			$msg	.=$line;
+		} # foreach
+		$msg	      .="-->\n".
+				"</style>\n".
+				"</head>\n".
+				"<body class=\"registration\">\n".
+				$confirmation.
+				"</body>\n".
+				"</html>\n";
+		if (mail($f["email"],$subject,$msg,$addedheaders)!=true) {
+			echo "MAIL ERROR!!!";
+		} # if
+
+
+		$subject	="$confname $confyear Registration Notification ($partid)";
+		$mailfrom	=$adminmailfrom;
+		$addedheaders  ="From: $mailfrom\r\n".
+#				"Subject: $subject\r\n".
+				"Reply-to: $mailfrom\r\n".
+				"MIME-Version: 1.0\r\n".
+				"Content-type: text/html; charset=\"iso-8859-1\"\r\n".
+				"Content-transfer-encoding: 8bit";
+		$msg	       ="<html>\n".
+				"<head>\n".
+				"<style type=\"text/css\">\n".
+				"<!--\n";
+		$cssfilearray	=file("registration.css", 1);		# read the stylesheet and copy it into the HTML mail
+		foreach ($cssfilearray as $line) {
+			$msg	.=$line;
+		} # foreach
+		$msg	      .="-->\n".
+				"</style>\n".
+				"</head>\n".
+				"<body class=\"registration\">\n".
+				makeregistrationconfirmation("admin",$partid,$reservationtime,$useless).
+				"</body>\n".
+				"</html>\n";
+		if (mail($adminmailto,$subject,$msg,$addedheaders)!=true) {
+			echo "MAIL ERROR!!!";
+		} # if
+
+
+		if ($f["paymentmethod"]=="cardbyfax") {			# if the payment id done with card by fax, then send email form
+			$subject	="$confname $confyear Payment Form";
+			$mailfrom	=$confmailfrom;
+			$addedheaders  ="From: $mailfrom\r\n".
+#					"Subject: $subject\r\n".
+					"Reply-to: $mailfrom\r\n".
+					"MIME-Version: 1.0\r\n".
+					"Content-type: text/html; charset=\"iso-8859-1\"\r\n".
+					"Content-transfer-encoding: 8bit";
+			$msg	       ="<html>\n".
+					"<head>\n".
+					"<style type=\"text/css\">\n".
+					"<!--\n";
+			$cssfilearray	=file("registration.css", 1);	# read the stylesheet and copy it into the HTML mail
+			foreach ($cssfilearray as $line) {
+				$msg	.=$line;
+			} # foreach
+			$msg	      .="-->\n".
+					"</style>\n".
+					"</head>\n".
+					"<body class=\"registration\">\n".
+					makecardbyfaxmailtext($partid,$totalprice).
+					"</body>\n".
+					"</html>\n";
+			if (mail($f["email"],$subject,$msg,$addedheaders)!=true) {
+				echo "MAIL ERROR!!!";
+			} # if
+		} # if
+
+		echo "<p>\n";
+		echo "<div class=\"noprint\">\n";			# take care that the link will not be on the printout
+		echo "<table border=\"0\" width=\"600\">\n";
+		echo "<tr>\n";
+		echo " <td align=\"center\">\n";
+		echo "  <a href=\"http://".$_SERVER["HTTP_HOST"]."/conference\">Return to $confname $confyear website</a>\n";
+		echo " </td>\n";
+		echo "</tr>\n";
+		echo "</table>\n";
+		echo "</div>\n";
+
+		echo "</body>\n";				
+		echo "</html>\n";
+		exit;						# data was saved and processing comes to an end, no buttons!
+	}
+	else {
+# NEEDS TO BE IMPLEMENTED NICER!!!
+		echo "A UNKNOWN ERROR OCCURED!!! PLEASE REPORT THIS!!!";
+		exit;
+	} # if
+} # if
+
+?>

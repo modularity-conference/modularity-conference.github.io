@@ -1,0 +1,58 @@
+<?
+
+function showtutorials ($date,$session) {
+	global	$db, $dateformattut, $f, $e;
+
+	$sessionnames	=array("am"=>"morning session","pm"=>"afternoon session","allday"=>"Full day","midday"=>"mid-day session");
+
+	$sql	="SELECT * FROM tutorial WHERE date='".$db->quote($date)."' AND ".
+		 "session='".$db->quote($session)."' ORDER BY id";
+	$result	=$db->query($sql);
+	if ($result->numrows()<=0) return;				# prevent output if no tutorials exist for given date and session
+
+	echo "  <p><br>\n";
+
+	if ($session=="allday") {
+		echo "  <b>".$sessionnames[$session]." tutorials ";
+		echo "on ".date($dateformattut,strtotime($date))."</b>";
+	}
+	else {
+		echo "  <b>Half day tutorials, ".$sessionnames[$session]." ";
+		echo "on ".date($dateformattut,strtotime($date))."</b>";
+	} # if
+	echo "  <p>\n";
+	echo "  <table border=\"0\" cellspacing=\"0\" cellpadding=\"3\" width=\"100%\">\n";
+	echo "  <tr align=\"center\" bgcolor=\"#CCCCCC\">\n";
+	echo "   <td width=\"1%\">&nbsp;</td>\n";
+	echo "   <td width=\"1%\">No.</td>\n";
+	echo "   <td>Tutorial</td>\n";
+	echo "   <td width=\"1%\">Units</td>\n";
+	echo "  </tr>\n";
+
+	while ($row=$result->fetchhash()) {				# output tutorials
+		echo "<tr>\n";
+		echo " <td><input type=\"checkbox\" name=\"ftutorial[".htmlentities($row["id"])."]\" value=\"1\"";
+		# preselect field if it was selected previously
+		if ($f["tutorial(".$row["id"].")"]==1) echo " checked";
+		echo "></td>";
+		echo " <td><font";
+		if (   $e["tutorial(".$row["date"].$row["session"].")"]
+		    && $f["tutorial(".$row["id"].")"]==1) echo " class=\"error\"";
+		echo ">".tutorial_number($row["id"])."</font></td>\n";
+		echo " <td>\n";
+		if (strlen($row["link"])>0) {
+			echo "  <a href=\"".htmlentities($row["link"])."\" target=\"tutdesc\">";
+			echo htmlentities($row["title"])."</a>";
+		}
+		else {
+			echo "  ".htmlentities($row["title"]);
+		} # if
+		echo "<br>\n";
+		echo "  ".htmlentities($row["authors"])."</td>\n";
+		echo " <td align=\"center\">".htmlentities($row["units"])."</td>\n";
+		echo "</tr>\n";
+	} # while
+	echo "  </table>\n";
+} # showtutorials
+
+?>

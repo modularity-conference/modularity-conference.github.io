@@ -1,0 +1,43 @@
+<?
+function showemailconfirmation ($participantid) {
+	global	$db,
+		$submitvalueemailsend, $submitvalueemailcancel;
+
+	$parttxt	=showparticipantshort($participantid);
+# Show a error message that the participant was not found!!!
+	if ($parttxt===false) return;
+
+	echo "<form method=\"post\">\n";
+	echo "<table class=\"adminentry\" width=\"870\" align=\"center\">\n";
+	echo "<tr>\n";
+	echo " <td class=\"adminhead\">Delete Confirmation</td>\n";
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo " <td class=\"adminbody\" align=\"center\">\n";
+	echo "\n";
+	echo "  Are you sure that you want to send an email to the following participant?<br>\n";
+	echo "  This is just usefull if important registration data was changed or the participant was entered in the administration!\n";
+	echo "  <p>\n";
+	echo $parttxt;
+	echo "  <p>\n";
+	echo "  <table border=\"0\">\n";
+	echo "  <tr>\n";
+	echo "   <td><input type=\"checkbox\" name=\"fsendmailconfirmation\" value=\"1\" checked></td>\n";
+	echo "   <td style=\"vertical-align:middle;\">Send email to the participant (registration confirmation)</td>\n";
+	echo "  </tr>\n";
+	echo "  <tr>\n";
+	echo "   <td><input type=\"checkbox\" name=\"fsendmailadmin\" value=\"1\" checked></td>\n";
+	echo "   <td style=\"vertical-align:middle;\">Send email to the administrative user (registration notification)</td>\n";
+	echo "  </tr>\n";
+	echo "  </table>\n";
+	echo "  <p>\n";
+	echo "  <input type=\"submit\" name=\"faction\" value=\"".htmlentities($submitvalueemailsend)."\">\n";
+	echo "  <input type=\"submit\" name=\"faction\" value=\"".htmlentities($submitvalueemailcancel)."\">\n";
+	echo "\n";
+	echo " </td>\n";
+	echo "</tr>\n";
+	echo "</table>\n";
+	echo "<input type=\"hidden\" name=\"fparticipantid\" value=\"".htmlentities($participantid)."\">\n";
+	echo "</form>\n";
+} # showemailconfirmation
+?>

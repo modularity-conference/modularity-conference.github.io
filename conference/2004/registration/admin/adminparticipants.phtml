@@ -1,0 +1,334 @@
+<?
+
+# 23.01.2003 administration tool created (Victor Burwitz)
+# 18.02.2003 search function implemented (Victor Burwitz)
+# 21.02.2003 added hotel statistic informations (Victor Burwitz)
+# 22.02.2003 added programm information (Victor Burwitz)
+# 25.02.2003 added hotel seach criteria (Victor Burwitz)
+# 26.02.2003 added csv file download (Victor Burwitz)
+# 08.03.2003 banquet selection added (Victor Burwitz)
+#            user and password check implemented (Victor Burwitz)
+# 10.03.2003 empty search is now allowed to receive full list (Victor Burwitz)
+# 23.03.2003 added modify form for participant (Victor Burwitz)
+# 28.04.2003 implemented modify form save (Victor Burwitz)
+# 29.04.2003 added credit card by fax payment type (Victor Burwitz)
+# 30.04.2003 added error checks for modify (Victor Burwitz)
+# 03.05.2003 added tutorials error checks (Victor Burwitz)
+# 11.05.2003 added update SQL statement for modify (Victor Burwitz)
+#            added nice error messages for modify (Victor Burwitz)
+# 12.05.2003 added matriculation number received checkbox (Victor Burwitz)
+#            added tutorial search criteria (Victor Burwitz)
+#            added tutorial statistic informations (Victor Burwitz)
+# 13.05.2003 implemented new participant function (Victor Burwitz)
+#            optical warning if tutorial has to much participants (Victor Burwitz)
+# 14.05.2003 added student matriculation received search criteria (Victor Burwitz)
+# 15.05.2003 added payment done checkbox (Victor Burwitz)
+#            added payment search criteria with extension for credit card (Victor Burwitz)
+# 16.05.2003 added nice registration type statistic (Victor Burwitz)
+#            added hint message if price changed because of modify (Victor Burwitz)
+# 20.05.2003 added small fees statistic (Victor Burwitz)
+# 21.05.2003 added banquet ticket statistic (Victor Burwitz)
+#            hotel statistic now also shows count of done ones (Victor Burwitz)
+# 03.06.2003 implemented role funtionality (Victor Burwitz)
+# 05.06.2003 added activity search criteria (Victor Burwitz)
+#            added search results hits count (Victor Burwitz)
+# 09.06.2003 implemented email function for participant (Victor Burwitz)
+# 10.06.2003 added possibility to send registration email to admin (Victor Burwitz)
+# 11.06.2003 implemented payment free checkbox (Victor Burwitz)
+# 12.06.2003 added error message on participant form (Victor Burwitz)
+# 18.06.2003 added possibility to change the hotel for participants (Victor Burwitz)
+# 19.06.2003 added hotel error checks (Victor Burwitz)
+# 23.06.2003 administration now checks if fees are valid for the administration (Victor Burwitz)
+# 16.07.2003 added button to print badges (Thorsten Schäfer)
+# 27.02.2003 added field to indicate if participant was present on conference (Victor Burwitz)
+#            added was present search criteria (Victor Burwitz)
+
+require_once("../conf.phtml");
+require_once("../dbinterface.phtml");
+$db	=new Database();
+require_once("../userauth.phtml");
+$user	=new Userauth();						# check if user has authorized himself!
+require_once("../cc.phtml");
+require_once("../defaultcreditcard.phtml");
+require_once("../emailcheck.phtml");
+require_once("../email.phtml");
+
+require_once("calculateprice.phtml");
+require_once("checkparticipant.phtml");
+require_once("deleteparticipant.phtml");
+require_once("loadparticipantdata.phtml");
+require_once("savedata.phtml");
+require_once("showdeleteconfirmation.phtml");
+require_once("showmailconfirmation.phtml");
+require_once("showmenu.phtml");
+require_once("showparticipant.phtml");
+require_once("showparticipantchange.phtml");
+require_once("showparticipantshort.phtml");
+require_once("showsearchresults.phtml");
+require_once("showtutorials.phtml");
+require_once("updatedata.phtml");
+
+# None of these form submit buttons are allowed to have SAME values!!!
+$submitvaluesearch	="Search";
+$submitvalueshowpart	="showparticipant";
+$submitvaluedelete	="Delete";
+$submitvaluedeletehard	="DELETE";
+$submitvaluedeletecancel="Cancel";
+$submitvaluechange	="Modify";
+$submitvaluechangesave	=" Save ";
+$submitvaluechangecancel=" Cancel ";
+$submitvaluenew		="New";
+$submitvaluenewsave	="  Create  ";
+$submitvaluenewcancel	="  Cancel  ";
+$submitvalueemail	=" Email ";
+$submitvalueemailsend	="Send";
+$submitvalueemailcancel	="Cancel ";
+$submitvaluecheckboxes	="Save";
+
+$e			=array();					# $e is a array and carries the errors as entries
+
+$timestamp		=time();					# store timestamp of the execution on creating new participant
+
+
+# $titles, $regtypes and $activities are initialized in conf.phtml
+$countries		=array();					# fill arrays with valid values from database
+$result			=$db->query("SELECT name FROM country ORDER BY name");
+while ($row=$result->fetchhash()) { $countries[]=$row["name"]; }
+
+
+
+$f["activity"] = "conference";
+
+$fsearchword		=trim( substr($fsearchword,0,$maxsearchword) );	# cut strings to maximum length and cut of
+$f["title"]		=trim( substr($f["title"],0,$maxtitle) );	# whitespaces at the beginning and at the end
+$f["fname"]		=trim( substr($f["fname"],0,$maxfname) );
+$f["lname"]		=trim( substr($f["lname"],0,$maxlname) );
+$f["affiliation"]	=trim( substr($f["affiliation"],0,$maxaffiliation) );
+$f["address"]		=trim( substr($f["address"],0,$maxaddress) );
+$f["city"]		=trim( substr($f["city"],0,$maxcity) );
+$f["postalcode"]	=trim( substr($f["postalcode"],0,$maxpostalcode) );
+$f["email"]		=trim( substr($f["email"],0,$maxemail) );
+$f["phone"]		=trim( substr($f["phone"],0,$maxphone) );
+$f["fax"]		=trim( substr($f["fax"],0,$maxfax) );
+$f["specialneeds"]	=trim( substr($f["specialneeds"],0,$maxspecialneeds) );
+$f["cardnumber"]	=trim( substr($f["cardnumber"],0,$maxcardnumber) );
+$f["cardvalidmonth"]	=trim( substr($f["cardvalidmonth"],0,$maxcardvalidmonth) );
+$f["cardvalidyear"]	=trim( substr($f["cardvalidyear"],0,$maxcardvalidyear) );
+#$f["cardcvc"]		=trim( substr($f["cardcvc"],0,$maxcardcvc) );
+$f["banquetadd"]	=trim( substr($f["banquetadd"],0,$maxbanquetadd) );
+$f["roommate"]		=trim( substr($f["roommate"],0,$maxroommate) );
+
+
+
+$f["banquetadd"]	=intval($f["banquetadd"]);			# cast integers to integer values
+$fparticipantid		=intval($fparticipantid);
+$fcardfaxreceived	=intval($fcardfaxreceived);
+$fpaymentreceived	=intval($fpaymentreceived);
+$fpaymentfree		=intval($fpaymentfree);
+$fmatricreceived	=intval($fmatricreceived);
+$fwaspresent		=intval($fwaspresent);
+
+if ($fcardfaxreceived!=1) $fcardfaxreceived=0;				# make shure $fcardfaxreceived flag just has valid value
+if ($fpaymentreceived!=1) $fpaymentreceived=0;				# make shure $fpaymentreceived flag just has valid value
+if ($fpaymentfree!=1) $fpaymentfree=0;					# make shure $fpaymentfree flag just has valid value
+if ($fmatricreceived!=1) $fmatricreceived=0;				# make shure $fmatricreceived flag just has valid value
+if ($fwaspresent!=1) $fwaspresent=0;					# make shure $fwaspresent flag just has valid value
+
+$banquet		=0;
+if ( $f["regtype"]=="regular" || $f["regtype"]=="comp") {	# find out if banquet is included
+	$banquet	=1;
+} # if
+
+$tutpossible		=false;						# show if for given regtype/activity/time tutorials are possible
+$tutorials		=array();					# also fill array with the selected tutorials (ids and units)
+$sql			="SELECT * FROM fee WHERE regtype='".$db->quote($f["regtype"])."' ".
+			 "AND activity='".$db->quote($f["activity"])."' ".
+			 "AND reservationtime='".$db->quote($f["reservationtime"])."' ".
+			 "AND tutorialunits>0 ".
+			 "AND administration=1";
+$result			=$db->query($sql);
+if ($result->numrows()>0) {						# fill and treat $tutorials array, just if they are possible!
+	$tutpossible	=true;						# shows if tutorials are possible for given registration
+	$result	=$db->query("SELECT * FROM tutorial");			# now process every tutorial entry
+	while ($row=$result->fetchhash()) {
+		$key		="tutorial(".htmlentities($row["id"]).")";
+		if ($ftutorialsubmit=="1") $f[$key]=$ftutorial[$row["id"]];	# if data was submited, then overwrite old informations
+		$f[$key]	=intval($f[$key]);
+		if ($f[$key]==1) {					# if tutorial is selected, then put it in array
+			$tutorials[$row["id"]]	=$row["units"];
+		}
+		else {							# if not selected, then make sure it has a valid 0, nothing else
+			$f[$key]		=0;
+		} # if
+	} # while
+} # if
+
+if ($f["paymentmethod"]!="visa" && $f["paymentmethod"]!="mastercard") {	# delete credit card data, if payment method is not credit card
+	$f["cardnumber"]	="";
+	$f["cardvalidmonth"]	="";
+	$f["cardvalidyear"]	="";
+} # if
+if (strlen($f["cardvalidmonth"])==1 && is_numeric($f["cardvalidmonth"])==true) {
+	$f["cardvalidmonth"]="0".$f["cardvalidmonth"];			# if the date is a number and just 1 digit long, then leading zero
+} # if
+if (strlen($f["cardvalidyear"])==1 && is_numeric($f["cardvalidyear"])==true) {
+	$f["cardvalidyear"]="0".$f["cardvalidyear"];
+} # if
+if ($f["accommodation"]!="ensuite" && $f["accommodation"]!="standard") {	# if not relevant, then delete date entries for hotel booking
+	$f["hotel"]	="";
+	$f["arrival"]	="";
+	$f["departure"]	="";
+} # if
+if ($f["accommodation"]!="sharedroom") {				# if not relevant, then delete room mate entry
+	$f["roommate"]	="";
+} # if
+
+
+
+echo "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n";
+echo "<html>\n";
+echo "<head>\n";
+echo "<title>$confname $confyear Administration</title>\n";
+echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-15\">\n";
+echo "<link href=\"../registration.css\" rel=\"stylesheet\" type=\"text/css\">\n";
+echo "</head>\n";
+echo "\n";
+echo "<body class=\"admin\">\n";
+
+
+if ($faction==$submitvalueshowpart) {
+	showmenu();
+	showparticipant($fparticipantid);
+}
+elseif ($faction==$submitvaluesearch) {
+	showmenu();
+	showsearchresults($fsearchword);
+}
+elseif ($faction==$submitvaluedelete) {
+	showdeleteconfirmation($fparticipantid);
+}
+elseif ($faction==$submitvaluedeletehard) {
+	deleteparticipant($fparticipantid);
+	showmenu();
+}
+elseif ($faction==$submitvaluechange) {
+	$f	=loadparticipantdata($fparticipantid);
+	showparticipantchange("change",$f);
+}
+elseif ($faction==$submitvaluechangesave) {
+	$e	=checkparticipant($f,$errmsg);
+	if (count($e)>0) {
+		showparticipantchange("change",$f,$e,$errmsg);
+	}
+	else {
+		updatedata($fparticipantid,$f);
+		showmenu();
+		if ($f["oldtotalprice"]!=calculateprice($f)) {
+			echo "<center><font class=\"error\">The price for the registration has changed ";
+			echo "(old price ".htmlentities($f["oldtotalprice"])." $currency)!</font></center>\n";
+			echo "<p>\n";
+		} # if
+		showparticipant($fparticipantid);
+	} # if
+}
+elseif ($faction==$submitvaluenew) {
+	$f		=array();
+	$f["activity"]	="conference";					# set nice default property
+	if ($timestamp<=strtotime($earlytill)) {			# and use appropriate reservationtime as default
+		$f["reservationtime"]="early";
+	}
+	else {
+		$f["reservationtime"]="late";
+	} # if
+	$f["hotel"]	="none";					# add useful standard hotel setting for new participant
+	showparticipantchange("new",$f);
+}
+elseif ($faction==$submitvaluenewsave) {
+	$e	=checkparticipant($f,$errmsg);
+	if (count($e)>0) {
+		showparticipantchange("new",$f,$e,$errmsg);
+	}
+	else {
+		$seq	=new Sequence($db);				# generate new unique participant registration ID
+		$partid	=$seq->select("participant");
+		savedata($partid,$f);
+		showmenu();
+		showparticipant($partid);
+	} # if
+}
+elseif ($faction==$submitvalueemail) {
+	showemailconfirmation($fparticipantid);
+}
+elseif ($faction==$submitvalueemailsend) {
+	$f	=loadparticipantdata($fparticipantid);
+	if (@count($f)>0) {						# just mail if participant data could be loaded
+		# make neccessary global vars for makeregistrationconfirmation()
+		$timestamp	=strtotime($f["regdate"]);
+#		$banquet	=$f["banquet"];
+		$tutorials	=array();				# fill array with the selected tutorials from participant
+		$sql		="SELECT tutorial.* FROM tutorial,part_tutorial WHERE tutorial.id=part_tutorial.tutorialid ".
+				 "AND part_tutorial.participantid=".intval($fparticipantid);
+		$result		=$db->query($sql);			# now process every tutorial entry
+		while ($row=$result->fetchhash()) {
+			$tutorials[$row["id"]]	=$row["units"];
+		} # while
+
+		showmenu();
+		if ($fsendmailconfirmation==1) {			# if wanted, then send mail to participant
+			$confirmation	=makeregistrationconfirmation("confirmation",$f["id"],$f["reservationtime"],$useless);
+			if (sendmail($f["email"],$confmailfrom,"$confname $confyear Registration Confirmation",$confirmation)!=true) {
+				echo "<div align=\"center\">MAIL ERROR on participant email!!!</div>\n";
+			}
+			else {
+				echo "<div align=\"center\">Participant email was send successfully!</div>\n";
+			} # if
+		} # if
+		if ($fsendmailadmin==1) {				# if wanted, then send mail to administrative user
+			$mailmsg	=makeregistrationconfirmation("admin",$f["id"],$f["reservationtime"],$useless);
+			if (sendmail($adminmailto,$adminmailfrom,"$confname $confyear Registration Notification (".$f["id"].")",$mailmsg)!=true) {
+				echo "<div align=\"center\">MAIL ERROR on administrative email!!!</div>\n";
+			}
+			else {
+				echo "<div align=\"center\">Administrative email was send successfully!</div>\n";
+			} # if
+		} # if
+		echo "<p>\n";
+		showparticipant($fparticipantid);
+	}
+	else {
+		showmenu();
+	} # if
+}
+elseif ($faction==$submitvaluecheckboxes) {
+	# set cardbyfax payment form received flag, but make shure the participant really has this payment type
+	$sql	="UPDATE participant SET cardfaxreceived=$fcardfaxreceived ".
+		 "WHERE paymentmethod='cardbyfax' AND id=$fparticipantid";
+	$db->query($sql);
+	$sql	="UPDATE participant SET paymentreceived=$fpaymentreceived ".
+		 "WHERE id=$fparticipantid";
+	$db->query($sql);
+	$sql	="UPDATE participant SET paymentfree=$fpaymentfree ".
+		 "WHERE id=$fparticipantid";
+	$db->query($sql);
+	$sql	="UPDATE participant SET matricreceived=$fmatricreceived ".
+		 "WHERE regtype='student' AND id=$fparticipantid";
+	$db->query($sql);
+	$sql	="UPDATE participant SET waspresent=$fwaspresent ".
+		 "WHERE id=$fparticipantid";
+	$db->query($sql);
+	showmenu();
+	showparticipant($fparticipantid);
+}
+elseif ($faction==$submitvaluedeletecancel || $faction==$submitvaluechangecancel || $faction==$submitvalueemailcancel) {
+	showmenu();
+	showparticipant($fparticipantid);
+}
+elseif (strlen($faction)<=0 || $faction==$submitvaluenewcancel) {
+	showmenu();
+} # if
+
+
+echo "</body>\n";
+echo "</html>\n";
+
+?>

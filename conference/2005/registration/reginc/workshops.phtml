@@ -1,0 +1,41 @@
+<p>
+<table class="entry" width="600">
+<tr>
+ <td class="head">Workshops</td>
+</tr>
+<tr>
+ <td class="body">
+<?
+	# no critical operation, therefore can be done here, to keep code on top tidy
+	if ($fsubmitbutton==$submitvalueshowws) $f["showws"]=1;
+	if ($fsubmitbutton==$submitvaluehidews) $f["showws"]=0;
+
+	if ($f["activity"]=="tutonly") {
+		echo "  You cannot attend the workshops, since you choose\n";
+		echo "  <b>".htmlentities(strtolower($activityname["tutonly"]))."</b> as activity.<br>\n";
+		echo "  If you want to participate in the workshops, please go back to the first\n";
+		echo "  page and select <b>".htmlentities(strtolower($activityname["conference"]))."</b> or\n";
+		echo "  <b>".htmlentities(strtolower($activityname["wsonly"]))."</b>.\n";
+	}
+	elseif ($f["showws"]==1) {
+		echo "  Workshop participation is free of charge, but attendance is by invitation only.\n";
+		echo "  Please check workshop pages for participation conditions.<br>\n";
+		echo "  If you want to collapse the list of the workshops, then press the button below.\n";
+		echo "  <p>\n";
+		echo "  <center>\n";
+		echo "  <input type=\"submit\" name=\"fsubmitbutton\" value=\"".htmlentities($submitvaluehidews)."\">\n";
+		echo "  </center>\n";
+		showworkshops();
+	}
+	else {
+		echo "  Workshop participation is free of charge, but attendance is by invitation only.\n";
+		echo "  Please check workshop pages for participation conditions.\n";
+		echo "  <p>\n";
+		echo "  <center>\n";
+		echo "  <input type=\"submit\" name=\"fsubmitbutton\" value=\"".htmlentities($submitvalueshowws)."\">\n";
+		echo "  </center>\n";
+	} # if
+?>
+ </td>
+</tr>
+</table>

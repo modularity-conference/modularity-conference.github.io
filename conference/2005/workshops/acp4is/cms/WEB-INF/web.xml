@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE web-app
+  PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.2//EN"
+  "http://java.sun.com/j2ee/dtds/web-app_2_2.dtd">
+
+<web-app>
+  <display-name>CMS</display-name>
+  <!-- Uncomment this and provide a path to the xml file with that stores
+  the cms tree.  -->
+  <context-param>
+    <param-name>CMSXMLFileURI</param-name>
+    <param-value>WEB-INF/cms.xml</param-value>
+    <description>The parameter specifies a file path to a CMS Tree XML file.
+                 Path can be relative (to cms app installation) OR absolute.
+                 Default value is "WEB-INF/cms.xml".
+    </description>
+   </context-param>
+  <!-- Standard Action Servlet Configuration (with debugging) -->
+  <servlet>
+    <servlet-name>action</servlet-name>
+    <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+    <init-param>
+      <param-name>config</param-name>
+      <param-value>/WEB-INF/struts-config.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>debug</param-name>
+      <param-value>2</param-value>
+    </init-param>
+    <init-param>
+      <param-name>detail</param-name>
+      <param-value>2</param-value>
+    </init-param>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+
+
+  <!-- Standard Action Servlet Mapping -->
+  <servlet-mapping>
+    <servlet-name>action</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+
+
+  <!-- The Usual Welcome File List -->
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
+
+  <!-- Struts Tag Library Descriptors -->
+  <taglib>
+    <taglib-uri>/tags/struts-bean</taglib-uri>
+    <taglib-location>/WEB-INF/struts-bean.tld</taglib-location>
+  </taglib>
+
+  <taglib>
+    <taglib-uri>/tags/struts-html</taglib-uri>
+    <taglib-location>/WEB-INF/struts-html.tld</taglib-location>
+  </taglib>
+
+  <taglib>
+    <taglib-uri>/tags/struts-logic</taglib-uri>
+    <taglib-location>/WEB-INF/struts-logic.tld</taglib-location>
+  </taglib>
+
+  <taglib>
+    <taglib-uri>/tags/struts-nested</taglib-uri>
+    <taglib-location>/WEB-INF/struts-nested.tld</taglib-location>
+  </taglib>
+
+  <taglib>
+    <taglib-uri>/tags/struts-tiles</taglib-uri>
+    <taglib-location>/WEB-INF/struts-tiles.tld</taglib-location>
+  </taglib>
+
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>CMS manager</web-resource-name>
+      <url-pattern>/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+     <role-name>admin</role-name>
+     <role-name>acp4is</role-name>
+    </auth-constraint>
+  </security-constraint>
+
+  <!-- Define the Login Configuration for this Application -->
+  <login-config>
+    <auth-method>BASIC</auth-method>
+    <realm-name>ACP4IS WebJinn CMS Manager Application</realm-name>
+  </login-config>
+
+  <!-- Security roles referenced by this web application -->
+  <security-role>
+     <description>
+        The role that is required to log in to the ACP4IS WebJinn CMS Manager Application
+     </description>
+     <role-name>admin</role-name>
+  </security-role>
+				    
+  <!-- Security roles referenced by this web application -->
+  <security-role>
+     <description>
+        The role that is required to log in to the ACP4IS WebJinn CMS Manager Application
+     </description>
+     <role-name>acp4is</role-name>
+  </security-role>
+				    
+</web-app>

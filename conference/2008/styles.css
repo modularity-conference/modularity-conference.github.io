@@ -1,0 +1,381 @@
+body {
+	margin: 0;
+	padding: 0;
+	background: #FFFFFF url(img/theme/img1.gif) repeat-x;
+	text-align: justify;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: medium;
+	/*color: #8F8F8F;*/
+}
+
+h2, h3, h4, h5, h6 {
+	margin: 0;
+}
+
+h2 {
+	letter-spacing: -1px;
+	font-size: larger;
+	color: #31576F;
+}
+h1 {
+	letter-spacing: -1px;
+	font-size: x-large;
+	font-weight: normal;
+	color: #31576F;
+}
+
+h2 em {
+
+	font-style: normal;
+}
+h2{
+
+	padding-top:20px;
+}
+
+h3,.newsitem .title {
+	height: 25px;
+	font-size: large;
+	padding: 13px 0 0 20px;
+
+}
+
+p, ol, ul {
+}
+
+ul {
+	margin-left: 2em;
+	padding-left: 1em;
+/*	list-style-position: inside;*/
+	text-indent: 0em;
+}
+
+ul ul li {
+	margin-left: 0;
+	padding-left: 2em;
+	list-style-position: inside;
+}
+
+a {
+	color: #6B6B6B;
+}
+
+a:hover {
+	text-decoration: none;
+}
+a img {
+   border: none;
+}
+.image {
+	float: left;
+	margin: 0 20px 0 0;
+}
+
+.bg1 {
+	padding: 0 10px 10px 10px;
+	border-top: 1px solid #FFFFFF;
+	background: #FFFFFF url(img/theme/img4.gif) repeat-x;
+}
+
+.bg2 {
+	padding: 20px;
+	padding-top:5px;
+	border-top: 1px solid #CBE1EF;
+	background: #FFFFFF url(img/theme/img4.gif) repeat-x;
+}
+
+.newsitem {
+	text-align: left;
+	padding-bottom: 20px;
+	padding-top: 20px;
+}
+.smallnewsitem {
+	text-align: left;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	display:block;
+}
+
+.newsitem .date {
+ font-style:italic;
+}
+
+.smallnewsitem .date {
+ font-style:italic;
+ display: inline;
+
+}
+
+.newsitem .title {
+display: inline;
+}
+.smallnewsitem .title {
+display: inline;
+}
+
+.newsitem .desc {
+padding-bottom: 30px;
+}
+
+.datetable {
+text-align: left;
+border-bottom-width:0;
+width:95%;
+border-color:#E6E6E6;
+border-style:dotted;
+border-width:thin;
+}
+
+.datetable th{
+background-color:#E6E6E6;
+text-align:left;
+}
+.datetable h2{
+background-color:#E6E6E6;
+text-align:center;
+ 
+}
+
+.workshop h3, .workshop a{
+	white-space:nowrap;
+	padding-left:5px;
+	background: #0077A7 url(img/theme/img3.gif) repeat-x left bottom;
+	color: #FFFFFF;
+}
+.workshop.longtitle h3 {
+font-size:smaller;
+}
+
+.email {
+`display:inline;
+}
+
+#header {
+	width: 891px;
+	height: 121px; /* was 179 */
+	margin: 0 auto;
+	background: #0A376C url(img/header.jpg) no-repeat;
+	background-color:#0A376C;
+}
+
+#header * {
+	margin: 0;
+	padding: 0;
+	
+	color: #FFFFFF;
+}
+
+#header h1 {
+	float: left;
+	padding: 70px 0 0 10px;
+	font-size: 33px;
+}
+
+#header h2 {
+	float: left;
+	padding: 91px 0 0 10px;
+	font-size: 11px;
+	font-weight: normal;
+}
+
+
+ul#tabnav { /* general settings */
+position: relative;
+top: 104px; /*CHRIS -- was 102?  */
+text-align: right; /* set to left, right or center */
+margin: 0em 0em 0em 205px; /* set margins as desired */
+font-size: 9pt;
+border-bottom: 1px solid #0A376C; /* set border COLOR as desired */
+list-style-type: none;
+padding: 0px 10px 0px 10px; /* THIRD number must change with respect to padding-top (X) below */
+}
+
+ul#tabnav li { /* do not change */
+display: inline;
+}
+
+body#Home li.Home, body#conference li.conference, body#News li.News, body#Wiki li.Wiki { /* settings for selected tab */
+border-bottom: 1px solid #FFFFFF; /* set border color to page background color */
+background-color: #FFFFFF; /* set background color to match above border color */
+}
+
+body#Home li.Home a, body#News li.News a, body#conference li.conference a, body#Wiki li.Wiki a { /* settings for selected tab link */
+background-color: #E4F1FA; /* set selected tab background color as desired */
+color: #000; /* set selected tab link color as desired */
+position: relative;
+top: 0px;
+padding-top: 0px; /* must change with respect to padding (X) above and below */
+
+/*font-weight: bold;*/
+}
+
+ul#tabnav li a { /* settings for all tab links */
+padding: 0px 6px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
+border: 1px solid #0A376C; /* set border COLOR as desired; usually matches border color specified in #tabnav */
+background-color: #0079A8; /* set unselected tab background color as desired */
+color: #FFFFFF; /* set unselected tab link color as desired */
+margin-right: 10px; /* set additional spacing between tabs as desired */
+/*font-weight: bold;*/
+/*text-decoration: none;*/
+border-bottom: none;
+}
+
+ul#tabnav a:hover { /* settings for hover effect */
+background: #E4F1FA; /* set desired hover color */
+color:#000000
+}
+
+
+
+/* Content */
+
+#content {
+	width: 892px;
+	margin: 0 auto;
+}
+
+#colOne {
+	float: left;
+	width: 186px;
+}
+
+#colOne ul {
+	padding-left: 0;
+	margin-left: 0;
+	list-style: none none outside;
+}
+
+#colOne li {
+	padding: 5px 0 0 0;
+	background: url(img/theme/img6.gif) repeat-x;
+}
+
+#colOne li.first {
+	background: none;
+}
+#colOne li.current {
+	font-weight: bold;
+
+}
+
+#colOne.snav.current li {
+	font-size:small;
+}
+#colOne li.snav {
+	font-size:small;
+	padding: 0px 0px 0px 0px;
+}
+
+#colOne h3  {
+	background: #0077A7 url(img/theme/img3.gif) repeat-x left bottom;
+	color: #FFFFFF;
+}
+
+#colOne.submit input
+{
+color: #000;
+background: #ffa20f;
+border: 2px outset #d7b9c9
+}
+
+#colOne textarea {
+	padding-left: 0;
+	background: #FFFFFF url(img/theme/img4.gif) repeat-x;
+
+}
+
+
+#colTwo {
+	float: right;
+	width: 686px;
+}
+#colTwo h3 {
+padding-left:0;
+}
+
+
+/* Footer */
+
+#footer {
+	clear: both;
+	width: 892px;
+	margin-top:20px;
+	margin-left:auto;
+	margin-right:auto;
+	
+	padding: 10px 0;
+	background: url(img/theme/img7.gif) repeat-x
+}
+
+#footer p {
+	text-align: center;
+	text-transform: lowercase;
+	font-size:small;
+}
+
+/*Sponser*/
+.SponsorTable {
+	border-style: solid;
+	border-color: #333333;
+	border-width: 1px;
+}
+
+.SponsorTitle {
+	background-color: #eeeeee;
+}
+
+.left {
+
+  float: left;
+
+}
+
+.bigsig a { 
+  display:inline;
+  font-size: 14pt ;
+  font-family: verdana, arial, helvetica, sans-serif ; 
+  font-weight: bold ; 
+  font-style: italic ;
+  color: #6666cc ; 
+  text-decoration: none;
+
+
+}
+
+.bigsig a img {
+display:inline;
+  vertical-align:middle;
+}
+
+
+a.sponsor {
+  text-decoration: none;
+}
+
+
+#Layer1 {
+	position:absolute;
+	width:200px;
+	height:280px;
+	z-index:1;
+	left: 1032px;
+	top: 1542px;
+}
+.moreNews {
+	text-align:right;
+	font-size:small;
+	
+}
+.title {
+text-align:center;
+}
+
+input.button {
+  padding : 0px;
+  margin-right: 1em;
+  color: #31576F; background: #fff;
+  font-size: .8em;
+  font-weight:bold;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  border: solid 1px #31576F;
+}

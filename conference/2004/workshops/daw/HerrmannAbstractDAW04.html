@@ -1,0 +1,86 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Katharina Mehner">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; I) [Netscape]">
+   <title>HerrmannAbstractDAW04</title>
+</head>
+<body>
+
+<center>
+<h4>
+Poster Abstract</h4></center>
+
+<center>
+<h2>
+Dynamism in ObjectTeams</h2></center>
+
+<center>
+<h4>
+Stephan Herrmann, Christine Hundt, and Katharina Mehner<br>
+Technical University Berlin</h4></center>
+
+<center>
+<h4>
+<a href="http://www.objectteams.org">http://www.objectteams.org</a></h4></center>
+<b>ObjectTeams.</b> The aspect-oriented programming language ObjectTeams/Java
+takes an approach based on <b><i>views </i></b>and<b><i> collaborations</i></b>. ObjectTeams
+encapsulates aspects in potentially interacting <b><i>roles</i></b> (views)
+whereby role instances are contained in <b><i>team</i></b> instances (collaborations).
+Roles can be used for aspectizing programs by decorating classes in three
+major ways, which can be combined freely:
+<ul>
+<li>
+Intercepting and augmenting control flow.</li>
+
+<li>
+Adding new behaviour to classes and object.</li>
+
+<li>
+Forwarding role messages to existing objects.</li>
+</ul>
+The poster presents the various <b><i>dimensions of dynamism</i></b> realized
+in ObjectTeams.
+<p><b>1. Deployment or activation time of aspects.<i> </i></b>This dimension
+identifies which aspects rsp. roles are active and for which scope. Roles
+for decorating objects are created implicitly with further fine grained
+control. ObjectTeams allows to control:
+<ul>
+<li>
+for which object instances these role instances are activated.</li>
+
+<li>
+for which duration these role instances are activated.</li>
+</ul>
+All this is accomplished through controling the <b><i>activation of team
+instances</i></b> in which roles are contained and encapsulated. Roles
+can be activated and deactivated per team instance at runtime, either for
+the entire application or for a block of statements. Thus, aspect activation
+is moulded into the language itself in an imperative manner and completely
+controled at runtime.
+<p><b>2. Dynamic binding of aspects.<i> </i></b>This dimension is in analogy
+to object-oriented polymorphism, which allows to determine the most suitable
+method implementation at runtime. In a context where objects are decorated
+with roles this issue arises in two additional flavours, namely <b><i>role-object
+binding</i></b> and <b><i>role polymorphism</i></b>.
+<ul>
+<li>
+During role instance creation the most suitable role type has to be determined.
+This involves analysis of the team inheritance and the role inheritance
+hierarchies.</li>
+
+<li>
+The most suitable implementation of the desired role method has to be determined.</li>
+</ul>
+<b>3. Aspect weaving time.</b> We view weaving not as a feature in its
+own right but merely as a support which allows for the desired behaviour
+according to the previous two dimensions. Weaving is deferred to <b><i>load-time</i></b>
+which simplifies organisational issues like configuration management, build
+management, and deployment.
+<p><b>4. Definition time of aspects</b>.<i> </i>Currently, ObjectTeams
+does not support dynamic, i.e., runtime, definition of roles and teams.
+We envision a reflection-based solution for this extending the Java class
+loading mechanism at runtime.
+</body>
+</html>

@@ -1,0 +1,87 @@
+
+<p>
+<table class="entry" width="600">
+<tr>
+ <td class="head">Personal Information</td>
+</tr>
+<tr>
+ <td class="body">
+
+  <table width="570">
+  <tr>
+   <td><font<? if ($e["title"]===true) echo " class=\"error\""; ?>>Title: </font></td>
+   <td>
+    <select name="f[title]">
+<?
+foreach ($titles as $titleentry) {
+	echo "   <option value=\"".htmlentities($titleentry)."\"";
+	if ($f["title"]==$titleentry) { echo " selected"; }
+	echo ">".htmlentities($titleentry)."</option>\n";
+} # foreach
+?>
+    </select>
+   </td>
+   <td><font<? if ($e["fname"]===true) echo " class=\"error\""; ?>>First Name: </font></td>
+   <td><input type="text" name="f[fname]" maxlength="<? echo $maxfname; ?>" size="30" value="<? echo htmlentities($f["fname"]); ?>"></td>
+  </tr>
+  <tr>
+   <td></td><td></td>
+   <td><font<? if ($e["lname"]===true) echo " class=\"error\""; ?>>Last Name: </font></td>
+   <td><input type="text" name="f[lname]" maxlength="<? echo $maxlname; ?>" size="30" value="<? echo htmlentities($f["lname"]); ?>"></td>
+  </tr>
+  <tr>
+   <td><font<? if ($e["affiliation"]===true) echo " class=\"error\""; ?>>Affiliation: </font></td>
+   <td colspan="3"><input type="text" name="f[affiliation]" maxlength="<? echo $maxaffiliation; ?>" size="50" value="<? echo htmlentities($f["affiliation"]); ?>"></td>
+  </tr>
+  <tr>
+   <td valign="top"><font<? if ($e["address"]===true) echo " class=\"error\""; ?>>Address: </font></td>
+   <td colspan="3"><textarea rows="2" cols="50" name="f[address]"><? echo htmlentities($f["address"]); ?></textarea></td>
+  </tr>
+  <tr>
+   <td><font<? if ($e["city"]===true) echo " class=\"error\""; ?>>City: </font></td>
+   <td colspan="3"><input type="text" name="f[city]" maxlength="<? echo $maxcity; ?>" size="50" value="<? echo htmlentities($f["city"]); ?>"></td>
+  </tr>
+  <tr>
+   <td><font<? if ($e["postalcode"]===true) echo " class=\"error\""; ?>>Postal Code: </font></td>
+   <td><input type="text" name="f[postalcode]" maxlength="<? echo $maxpostalcode; ?>" size="6" value="<? echo htmlentities($f["postalcode"]); ?>"></td>
+   <td><font<? if ($e["country"]===true) echo " class=\"error\""; ?>>Country: </font></td>
+   <td>
+    <select name="f[country]">
+     <option value="nocountry">select your country</option>
+<?
+# generate country drop down list
+foreach ($countries as $countryentry) {
+	echo "   <option value=\"".htmlentities($countryentry)."\"";
+	if ($f["country"]==$countryentry) { echo " selected"; }
+	echo ">".htmlentities($countryentry)."</option>\n";
+} # foreach
+?>        
+    </select>
+   </td>
+  </tr>
+  <tr>
+   <td><font<? if ($e["email"]===true || $e["emailformat"]===true) echo " class=\"error\""; ?>>Email: </font></td>
+   <td colspan="3"><input type="text" name="f[email]" maxlength="<? echo $maxemail; ?>" size="50" value="<? echo htmlentities($f["email"]); ?>"></td>
+  </tr>
+  <tr>
+   <td><font<? if ($e["phone"]===true) echo " class=\"error\""; ?>>Phone: </font></td>
+   <td><input type="text" name="f[phone]" maxlength="<? echo $maxphone; ?>" size="15" value="<? echo htmlentities($f["phone"]); ?>"></td>
+   <td><font<? if ($e["fax"]===true) echo " class=\"error\""; ?>>Fax: </font></td>
+   <td><input type="text" name="f[fax]" maxlength="<? echo $maxfax; ?>" size="15" value="<? echo htmlentities($f["fax"]); ?>"></td>
+  </tr>
+  <tr>
+   <td valign="top"><font<? if ($e["specialneeds"]===true) echo " class=\"error\""; ?>>Special Needs: </font></td>
+   <td colspan="3"><textarea rows="3" cols="50" name="f[specialneeds]"><? echo htmlentities($f["specialneeds"]); ?></textarea>
+    <br>
+    Let us know if you need special food, or any kind of special assistance.
+   </td>
+  </tr>
+  </table>
+
+ </td>
+</tr>
+</table>
+
+
+
+

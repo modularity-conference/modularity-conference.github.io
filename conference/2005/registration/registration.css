@@ -1,0 +1,185 @@
+/* Formatierungen aus allgemeinen übernommen, nur wegen Includes */
+body {
+	font-size: 13px;
+	color: #333333;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	background-color: #FFFFFF;
+}
+td {
+	font-size: 13px;
+	color: #333333;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	vertical-align:top
+}
+h1 {
+	font-size: 21px;
+}
+h2 {
+	font-size: 17px;
+	font-weight: bold;
+	margin-bottom: -1px
+}
+h3 {
+	font-size: 15px;
+	font-weight: bold;
+	margin-bottom: -1px
+}
+h4 {
+	font-size: 13px;
+	font-weight: bold;
+	margin-bottom: -1px
+}
+blockquote {
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+a {
+	color: #006600;
+}
+a:visited {
+	color: #006600;
+}
+a:hover {
+	color: #99CC00;
+}
+.disable {
+	color: #AAAAAA;
+}
+.menulink a:link {
+	color: #333333;
+	text-decoration: none;
+}
+.menulink a:hover {
+	text-decoration: none;
+	color: #F7812A;
+}
+.menulink a:visited {
+	text-decoration: none;
+}
+.contentlink a:link {
+	color: #F7812A;
+	font-weight: bold;
+}
+.contentlink a:visited {
+	color: #F7812A;
+	font-weight: bold;
+}
+.normallink a:link {
+	color: #101010;
+	font-weight: normal;
+	text-decoration: none;
+}
+.normallink a:visited {
+	color: #101010;
+	font-weight: normal;
+	text-decoration: none;
+}
+.normallink a:hover {
+	color: #101010;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+.cancelled {
+	text-decoration: line-through;
+}
+
+/* Formatierungen für Registrationsseite */
+body.registration {
+	font-size: 13px;
+	color: #333333;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	background-color:#FFFFFF;
+}
+font {
+	font-size: 13px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+font.error {
+	color:#FF0000;
+	font-weight:bold;
+}
+table.entry {
+	border-color:#000000;
+	border-width:0px;
+	border-style:solid;
+	border-spacing:0px;
+	border-collapse:collapse;
+}
+td.head {
+	background-color:#99CC00;
+	font-weight:bold;
+	padding:4px;
+	border-color:#000000;
+	border-width:1px;
+	border-style:solid;
+}
+td.body {
+	background-color:#FFFFFF;
+	padding:10px;
+	padding-top:18px;
+	padding-bottom:18px;
+	border-color:#000000;
+	border-width:1px;
+	border-style:solid;
+}
+div.hline {
+	border:1px solid #000000;
+	border-top-width:1px;
+	border-bottom-width:0px;
+	border-left-width:0px;
+	border-right-width:0px;
+	font-size:1px;
+}
+@media print {
+	div.noprint {
+		display:none;
+	}
+}
+
+/* Formatierungen für Administrationsseite */
+body.admin {
+	font-size: 13px;
+	color: #333333;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	background-color:#FFFFFF;
+}
+font.adminerror {
+	color:#FF0000;
+	font-weight:bold;
+}
+table.adminentry {
+	border-color:#000000;
+	border-width:0px;
+	border-style:solid;
+	border-spacing:0px;
+	border-collapse:collapse;
+}
+td.adminhead {
+	background-color:#9999FF;
+	font-weight:bold; padding:4px;
+	border-color:#000000;
+	border-width:1px;
+	border-style:solid;
+}
+td.adminbody {
+	background-color:#FFFFFF;
+	padding:10px;
+	padding-top:18px;
+	padding-bottom:18px;
+	border-color:#000000;
+	border-width:1px;
+	border-style:solid;
+}
+
+.alert {
+	color: #840000;
+	font-weight:bold;
+}
+
+.footnote {
+	font:11px Verdana, Arial, Helvetica, sans-serif;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+

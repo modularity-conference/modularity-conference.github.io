@@ -1,0 +1,36 @@
+<p>
+<table class="entry" width="600">
+<tr>
+ <td class="head">Lunch Tickets For Accompanying Persons </td>
+</tr>
+<tr>
+<td class="body">
+
+<p>Accompanying persons' lunch tickets cost 10.00<? echo $currency ?>.
+
+If you would like to book lunch ticket(s), please indicate your requirements:</p>
+
+<p>
+
+<?
+foreach ($lunchdates as $lunchdate) {
+	$idx = "lunch".strtotime($lunchdate);
+?>
+	<select name="f[<? echo $idx; ?>]">
+	<option value="0"<? if ($f[$idx]==0) echo " selected";?>>0</option>
+	<option value="1"<? if ($f[$idx]==1) echo " selected";?>>1</option>
+	<option value="2"<? if ($f[$idx]==2) echo " selected";?>>2</option>
+	</select>
+<? 
+	echo date($dateformat, strtotime($lunchdate))."<br>";
+} 
+?>
+
+</p>
+
+<p>If the accompanying person has any special needs, please complete 
+the box below.</p>
+
+</td>
+</tr>
+</table>

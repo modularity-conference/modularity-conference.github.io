@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<!--$Id: build.xml,v 1.1 2004/11/29 01:34:19 lorenz Exp $	  -->
+<project name="CMS" default="main" basedir=".">
+  <!-- Local properties -->
+  <property file="${basedir}/build.properties"/>
+	
+<!-- ###################### Library dependencies #########################--> 
+	<!-- Xerces stuff -->
+	<property name="xercesImpl.jar" value="${xerces.home}/xercesImpl.jar"/>
+	<property name="xml-apis.jar" value="${xerces.home}/xml-apis.jar"/>
+	<!-- Tomcat stuff -->
+	<property name="servlet.jar" value="${catalina.home}/common/lib/servlet.jar"/>
+	<property name="jsp-api.jar" value="${catalina.home}/common/lib/jsp-api.jar"/>
+  <property name="servlet-api.jar" value="${catalina.home}/common/lib/servlet-api.jar"/>
+
+	<!-- Project stuff -->
+	<property name="libs.dir"  value="${basedir}/lib" />
+	<property name="distr.dir"  value="${basedir}/distr" />
+	<property name="shared.libs.dir" value="${basedir}/shared" />
+
+	<!-- AspectJ stuff -->
+	<!--
+  <property name="aspectjrt.jar" value="${aspectj.home}/lib/aspectjrt.jar"/>
+	<property name="aspectjtools.jar" value="${aspectj.home}/lib/aspectjtools.jar"/>
+	-->
+	<!-- Ant/Tomcat Task STuff -->
+	<!-- Configure the context path for this application -->
+	<!--
+	<property name="webapp.path"     value="/cms"/>
+	-->
+	<!-- Configure properties to access the Manager application -->
+	<!--
+	<property name="webapp.url"      value="http://localhost:8080/manager"/>
+	<property name="webapp.username" value="admin"/>
+	<property name="webapp.password" value="admin"/>
+	-->
+
+	<!-- Configure the custom Ant tasks for the Manager application -->
+	<!--
+  <taskdef name="deploy"    classname="org.apache.catalina.ant.DeployTask"/>
+  <taskdef name="list"      classname="org.apache.catalina.ant.ListTask"/>
+  <taskdef name="reload"    classname="org.apache.catalina.ant.ReloadTask"/>
+  <taskdef name="resources" classname="org.apache.catalina.ant.ResourcesTask"/>
+  <taskdef name="roles"     classname="org.apache.catalina.ant.RolesTask"/>
+  <taskdef name="start"     classname="org.apache.catalina.ant.StartTask"/>
+  <taskdef name="stop"      classname="org.apache.catalina.ant.StopTask"/>
+  <taskdef name="undeploy"  classname="org.apache.catalina.ant.UndeployTask"/>
+	-->
+
+	<!-- AspectJ Compiler Task -->
+<!--
+  <taskdef name="ajc" classname="org.aspectj.tools.ant.taskdefs.Ajc" >
+    <classpath refid="project.libs"/>
+  </taskdef>
+	--> 
+
+  <!-- Creating path to be used within classpath -->
+	<path id="project.libs" >
+    <fileset dir="${libs.dir}" >
+      <include name="*.jar" />
+		</fileset>
+    <fileset dir="${shared.libs.dir}" >
+      <include name="*.jar" />
+		</fileset>
+		<!--
+   <pathelement location="${aspectjtools.jar}"/>
+   <pathelement location="${aspectjrt.jar}"/>
+	 <pathelement location="${aspectj-ant.jar}"/>
+	 -->
+	 <pathelement location="${xercesImpl.jar}"/>
+	 <pathelement location="${xml-apis.jar}"/>
+	 <pathelement location="${servlet-api.jar}"/>
+	 <pathelement location="${servlet.jar}"/>
+   <pathelement location="${jsp-api.jar}"/>
+  </path>
+
+<!-- ###################### Project directories #########################--> 
+	<!-- Build directory -->
+	<property name="build.dir" value="${basedir}/build" />
+  <!-- Source directory -->
+	<property name="src.dir"  value="${basedir}/src" />
+	<!-- AspectJ preprocess directory --> 
+	<property name="preprocess.dir"  value="${basedir}/preprocess" />
+  <!-- Aspects directory -->
+	<property name="aspects.src.dir"  value="aspects"/>
+	<!-- Name of the distributive jar file -->
+	<property name="project.jar" value="${distr.dir}/${project.name}.jar" />
+	<!-- Name of the distributive war file -->
+	<property name="project.war" value="${distr.dir}/${project.name}.war" />
+	<!-- Name of the distributive src.zip file -->
+	<property name="project_src.zip" value="${distr.dir}/${project.name}_src.zip" />
+
+
+<!--  ##################### CMS  ########################## -->
+  <property name="cms.src.subdir"  value="org/webjinn/cms" />
+  <property name="utils.src.subdir"  value="org/webjinn/utils" />
+
+<target 
+	name="main" 
+	depends="install" 
+	description="builds and installs webapp to ${install.dir}"/>
+
+<target 
+	name="distr" 
+	depends="src,jar,war"
+	description="Creates distributable src zip archive, war archive and 
+	jar archive in ${distr} dir"/>
+
+
+	<target name="prepare"
+		description="Preparing to Compilation">
+		<echo message="Preparing for the compilation"/>
+    <delete dir="${build.dir}" />
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${distr.dir}" />
+		<mkdir dir="${shared.libs.dir}" />		
+	</target>
+
+	<target name="build" depends="prepare"
+		description="Building the project with javac">
+		<echo message="Building the project with javac" />
+		<javac 
+			srcdir="${src.dir}"
+			destdir="${build.dir}">
+			<include name="${cms.src.subdir}/**/*.java"/>
+			<include name="${utils.src.subdir}/**/*.java"/>
+			<include name="dom/**/*.java"/>
+		  <exclude name="${aspects.src.dir}/**/*.java"/>
+			<classpath refid="project.libs" />
+	  </javac>
+	</target>
+	
+	<target 
+		name="jar" 
+		depends="build"
+		description="Jars files in the build directory">
+		<echo message="Creating jar file" />
+		<delete file="${project.jar}"/>
+		<jar 
+			destfile="${project.jar}"
+			basedir="${build.dir}" />
+	</target>	
+
+	<target 
+		name="install" 
+		depends="build,jar"
+		description="Installs cms webapp by copying jar, xml and jsp 
+		files into actual webapp location">
+
+		<echo message="Copying jar file into ${install.dir}/WEB-INF/lib"/>
+		<copy overwrite="yes" file="${project.jar}" todir="${install.dir}/WEB-INF/lib" />
+		<echo message="Copying xml files into ${install.dir}/WEB-INF"/>
+		<copy todir="${install.dir}/WEB-INF">
+			<fileset dir="${src.dir}/xml" includes="cms.xml">
+				<present present="srconly" targetdir="${install.dir}/WEB-INF"/>
+      </fileset>
+		</copy>
+
+		<copy todir="${install.dir}/WEB-INF">
+      <fileset dir="${src.dir}/xml">
+				<include name="*.xml"/>
+				<exclude name="cms.xml" />
+      </fileset>
+		</copy> 
+
+		<echo message="Copying jsp files into ${install.dir}"/>
+		<copy todir="${install.dir}">
+			<fileset dir="${src.dir}/jsp" includes="*.jsp"/>
+			<fileset dir="${src.dir}/jsp" includes="*.gif"/>
+			<fileset dir="${src.dir}/jsp" includes="*.html"/>
+			<fileset dir="${src.dir}/jsp" includes="*.js"/>
+      <fileset dir="${src.dir}/jsp" includes="*.htm"/>
+      <fileset dir="${src.dir}/jsp" includes="*.css"/>
+		</copy>
+	</target>
+
+	<target 
+		name="src" 
+		description="zips sources to be moved to the other machine" >
+		<mkdir dir="${distr.dir}"/>
+		<copy 
+			file="${basedir}/build.properties" 
+			tofile="${basedir}/build_changeit.properties"/>
+		<zip destfile="${project_src.zip}"
+				basedir="${basedir}">
+				<include name="src/**/*"/>
+				<include name="struts/**/*"/>
+				<include name="lib/**/*"/>
+				<include name="shared/**/*"/>
+				<include name="build.xml"/>
+				<include name="build_changeit.properties"/>
+		</zip>
+		<delete file="${basedir}/build_changeit.properties"/>
+	</target>
+	
+	<target 
+		name="war"
+	  depends="build,jar"	
+		description="creates ready-to-install war file" >
+		<delete file="${project.war}" />
+		<war 
+			destfile="${project.war}" 
+			webxml="${src.dir}/xml/web.xml"
+			update="false">
+			<lib dir="${distr.dir}">
+				<include name="${project.name}.jar"/>
+		  </lib>
+			<lib dir="${basedir}/struts/lib">
+				<include name="*.jar"/>
+		  </lib>
+			<classes dir="${basedir}/struts/classes"/>
+			<fileset dir="${src.dir}/jsp"/>
+			<zipfileset dir="${src.dir}/xml" prefix="WEB-INF">
+				<include name="*.xml"/>
+        <include name="*.dtd"/>
+			</zipfileset>	
+			<zipfileset dir="${basedir}/struts" prefix="WEB-INF">
+				<include name="*.xml"/>
+				<include name="*.tld"/>
+			</zipfileset>	
+			<zipfileset dir="${src.dir}" prefix="WEB-INF/src">
+				<include name="org/**/*.java"/>
+				<include name="org/**/*.dtd"/>
+			</zipfileset>	
+			<zipfileset dir="${basedir}" prefix="WEB-INF">
+				<include name="build.xml"/>
+        <include name="build.properties"/>
+			</zipfileset>	
+		</war>
+	</target>
+
+		<!--
+		<target name="reload" description="Reload cms web application">
+			<reload  url="${webapp.url}" username="${webapp.username}" password="${webapp.password}"
+				path="${webapp.path}"/>
+		</target> -->
+	
+</project>

@@ -1,0 +1,9 @@
+
+AuthType Basic
+
+AuthName "AOSD OC Area"
+
+AuthUserFile "/home/mkersten/.htpasswds/2005/registration/oc/passwd"
+
+
+require valid-user

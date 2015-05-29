@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Tutorials: A Workbench for Aspect-Oriented Programming Language Research :: AOSD.06</title>
+<link rel="stylesheet" href="../styles.css" type="text/css">
+</head>
+<body
+   bgcolor="White"
+   text="Black"
+   link="Blue"
+   vlink="Purple"
+   alink="Red"
+   style="margin-left:0; margin-top:0;">
+ 
+
+
+
+
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+  <!-- Page Header -->
+  <tr>
+    <td colspan="3" align="left" bgcolor="#D7E6BF"><table border="0" cellspacing="0" cellpadding="0" style="background-image: url(../img/banner_top.gif); background-repeat: no-repeat;">
+        <tr>
+          <td height="91" valign="bottom" align="left"><img src="../img/shim.gif" alt="">
+                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+              <tr>
+                <td width="126"><img src="../img/spacer126.gif" alt=""></td>
+                <td valign="top"><img src="../img/shim.gif" width="20" height="21" alt=""></td>
+                <td width="10" class="headerTab"><img src="../img/spacer10.gif" alt=""></td>
+                <td height="21"><img src="../img/spacer10.gif" alt=""></td><td height="21"><img src="../img/tab_left.gif" alt=""></td><td height="21" align="center" style="background-image: url(../img/tab.gif)" class="headerTabSelected" nowrap>AOSD Conference</td>
+<td height="21"><img src="../img/tab_right.gif" alt=""></td>              </tr>
+            </table>
+                      </td>
+              </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td align="left" valign="bottom" height="0" colspan="3"><img src="../img/banner_bottom.gif" alt=""></td>
+  </tr>
+  <!-- End Page Header -->
+  <tr>
+    <td bgcolor="#E9EFD9" align="left" valign="top" width="124">  <table border="0" cellspacing="0" cellpadding="5" width="124">
+<tr><td align="left" class="subnavTab"><a href="../index.html" class="subnavLink">AOSD.06</a></td></tr>
+<tr><td align="left" class="subnavTab"><a href="../registration.html" class="subnavLink">Registration</a></td></tr>
+<tr><td align="left" class="subnavTab"><a href="../program/" class="subnavLink">Program</a></td></tr>
+<tr><td align="left" class="subsubnavTab"><a href="../program/overview.html" class="subsubnavLink">&rsaquo;&rsaquo; Program Overview</a></td></tr>
+<tr><td align="left" class="subsubnavTab"><a href="../program/research.html" class="subsubnavLink">&rsaquo;&rsaquo; Research Track</a></td></tr>
+<tr><td align="left" class="subsubnavTab"><a href="../industry/" class="subsubnavLink">&rsaquo;&rsaquo; Industry Track</a></td></tr>
+<tr><td align="left" class="subsubnavTab"><a href="../program/keynotes.html" class="subsubnavLink">&rsaquo;&rsaquo; Keynotes</a></td></tr>
+<tr><td align="left" class="subsubnavTab"><a href="../workshops/" class="subsubnavLink">&rsaquo;&rsaquo; Workshops</a></td></tr>
+<tr><td align="left" class="subsubnavTabSelected"><a href="../tutorials/" class="subsubnavLinkSelected">&rsaquo;&rsaquo; Tutorials</a></td></tr>
+<tr><td align="left" class="subsubnavTab"><a href="../demos/" class="subsubnavLink">&rsaquo;&rsaquo; Demonstrations</a></td></tr>
+<tr><td align="left" class="subsubnavTab"><a href="../program/panel.html" class="subsubnavLink">&rsaquo;&rsaquo; Panel</a></td></tr>
+<tr><td align="left" class="subsubnavTab"><a href="../program/bofs.html" class="subsubnavLink">&rsaquo;&rsaquo; BOFs</a></td></tr>
+<tr><td align="left" class="subnavTab"><a href="../students/" class="subnavLink">Student Extravaganza</a></td></tr>
+<tr><td align="left" class="subnavTab"><a href="../publicity/" class="subnavLink">Promote AOSD.06</a></td></tr>
+<tr><td align="left" class="subnavTab"><a href="../local/" class="subnavLink">Local Information</a></td></tr>
+<tr><td align="left" class="subnavTab"><a href="../cfc/" class="subnavLink">Call For Contributions</a></td></tr>
+<tr><td align="left" class="subnavTab"><a href="../organization.html" class="subnavLink">Organization</a></td></tr>
+<tr><td align="left" class="subnavTab"><a href="../../" class="subnavLink">Past Conferences</a></td></tr>
+            </table>
+                </td>
+    <td align="right" valign="top" width="100%">&nbsp;<br>
+      <table border="0" cellspacing="20" cellpadding="0" width="100%">
+        <tr>
+          <td align="left" valign="top"><!-- Page Content goes here -->
+            <!--
+==================================================
+END HEADER
+==================================================
+-->
+            
+
+
+<a href="index.html"><b>Back to list of tutorials</b></a>
+<h2>T6 : abc : A Workbench for Aspect-Oriented Programming Language Research</h2>
+
+<table border="0" cellspacing="0" cellpadding="3">
+
+<tr>
+<td><b>Date</b></td>
+<td>Tuesday, March 21, 2006 (full day)</td>
+</tr>
+<tr>
+
+<td valign="top"><b>Presenters</b></td>
+<td>
+Oege de Moor, Oxford University<br>
+Laurie Hendren, McGill University<br>
+Ondrej Lhot&aacute;k, University of Waterloo </td>
+</tr>
+
+<tr>
+<td valign="top"><b>Level</b></td>
+<td><b><i>Intermediate</i></b>: Knowledge of Java and AspectJ required.</td>
+</tr>
+
+</table>
+
+<h3>Abstract</h3>
+
+<p>The proliferation of new features, analyses and optimisations for aspect-oriented programming
+languages necessitates a workbench for realistic experiments. The AspectBench Compiler (abc for
+short) provides such a workbench. The base compiler is a full implementation of the AspectJ language.
+abc has been designed to disentangle the implementation of new, experimental features from the base
+compiler. abc has also been designed to enable the implementation of advanced analyses, for the
+purpose of optimisation, but also to enable static detection of bugs.
+By working through concrete examples from the literature, participants will learn how to integrate
+their own language extensions, analyses and optimisations into abc.</p>
+
+<h3>Biographies</h3>
+<p><strong>Oege de Moor</strong> received an M.Sc. degree from the University of Utrecht, the Netherlands.
+  He did his doctoral (D.Phil.) work at Oxford, on a characterisation in category theory of algorithmic
+  paradigms such as dynamic programming. He has held visiting appointments at the University of
+  Tokyo, Chalmers University and Microsoft Research (both Redmond and Cambridge).
+  Since 1994 he has been a faculty member at Oxford, where he founded the Algebra of Programming
+  research group, jointly with Richard Bird. After the publication of a textbook on that subject in 1997,
+  he turned to the general area of meta-programming, and founded the Programming Tools Group.
+  Research topics in the group include type systems for metaprogramming, mechanised support for
+  refactoring, and aspect-orientation. During the 2003-2004 academic year Professor Hendren visited
+Oxford University, and they started the joint abc project, the topic of this tutorial.</p>
+ 
+ <p>Summary of Teaching Experience: Oege de Moor has taught at Oxford for 11 years, on topics ranging
+from computational geometry to database systems. He has also lectured at specialist summer schools
+in Brazil, Denmark, Germany, the Netherlands and Portugal. For the past two years he has taught a a
+course at Oxford that focuses on code queries, refactoring and aspect-oriented programming.</p>
+ <p><strong>Laurie Hendren</strong> received the B.Sc.(Honours) and M.Sc degrees in Computing and Information
+Science at Queen’s University, Kingston, Canada. She received the Ph.D. degree from Cornell
+University, Ithaca, N.Y. Her Ph.D. thesis was in the area of automatic parallelization of programs with
+pointer data structures.
+Since 1990 she has been a faculty member in the School of Computer Science at McGill University
+where she has led the McCAT optimizing/parallelizing compiler project, and currently leads the Sable
+project that concentrates on compiling and optimizing Java. During the 2003-2004 academic year she
+visited Professor de Moor at Oxford University, where they started the joint abc project, the topic of
+this tutorial.</p>
+ <p>Summary of Teaching Experience: Professor Hendren has had substantial teaching experience, 15 years
+  teaching at McGill where she has taught courses on Java, compiler design, and advanced compiler
+  topics. Since 2006, she has been teaching a course on advanced object-oriented and aspect-oriented
+  programming. Detailed course web pages are available from her web site. She has twice been nominated
+  for the award as best teacher in the Faculty of Science at McGill.</p>
+ <p><strong>Ondrej Lhot&aacute;k</strong> received a B.Math. (Honours) degree in Computer Science from the University
+   of Waterloo in Waterloo, Ontario, Canada. He received M.Sc. and Ph.D. degrees in Computer
+   Science from McGill University in Montreal, Quebec, Canada. His thesis was in the area of interprocedural
+   analysis of object-oriented and aspect-oriented programming languages.
+   Since January 2006, he has been an assistant professor at the University of Waterloo. During his graduate
+   studies at McGill University, he was a maintainer of the Soot framework on which abc is built. He
+ was a member of the abc team from the beginning of the project, and continues to contribute.</p>
+ <p>Summary of Teaching Experience: Professor Lhot&acute;ak has been a teaching assistant for courses on compilers,
+   as well as introductory computer science courses. At PLDI 2003 and CASCON 2003, he was one
+ of the presenters of a tutorial on the Soot framework.</p>
+             <!--
+==================================================
+START FOOTER
+==================================================
+-->
+            <br>
+&nbsp; <br>
+&nbsp;
+            <hr size="1">
+            Edited by the <a href="../organization.html">AOSD Conference Committee</a>.&nbsp; Send comments to: webmaster<img src="../img/z.gif" border="0" alt="@">aosd.net            <br>
+&nbsp; <br>
+&nbsp; </td>
+          <td valign="top">          </td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+</body></html>

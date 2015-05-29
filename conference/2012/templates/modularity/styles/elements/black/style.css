@@ -1,0 +1,42 @@
+/* @override http://aosd.net/2012/templates/modularity/styles/elements/black/style.css */
+
+a {
+	color: #f7941d;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a:hover {
+	text-decoration:none;
+	border-bottom:1px dotted #f7941d;
+}
+
+a.readon {
+	color: #f7941d;
+}
+
+.bignumber {
+	color: #1a171b;
+}
+
+div.moduletable h3,
+div.moduletable_menu h3,
+div.moduletable_text h3 {
+	color: #1a171b;
+}
+
+div.module h3 {
+	color: #1a171b;
+}
+
+div.module a {
+	color: #1a171b;
+	font-weight: normal;
+	font-style: normal;
+}
+
+div.module a:hover {
+	text-decoration:none;
+	border-bottom:1px dotted #1a171b;
+}
+

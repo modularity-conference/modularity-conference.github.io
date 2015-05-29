@@ -1,0 +1,43 @@
+<?
+
+# if one of the following pages are requested, then test if entered data of first page is valid
+if ($fsubmitbutton!=$page4continue && $fsubmitbutton!=$page4previous) {
+
+} # if
+
+if ($stopoutput==false && (count($e)>0 || $fsubmitbutton==$page4continue || $fsubmitbutton==$page4previous)) {
+
+	$submitvalueprevious	=$page3previous;
+	$submitvaluecontinue	=$page5continue;
+	$stopoutput		=true;					# prevent further pages to be outputted!
+
+	if (count($e)>0) {
+		echo "<table width=\"600\">\n";
+		echo "<tr>\n";
+		echo " <td align=\"center\"><font class=\"error\">";
+		if ($e["dateillogical"]===true) {
+			echo "The arrival date is after the departure date!";
+		}
+		elseif ($e["datesimilar"]===true) {
+			echo "A hotel is just necessary if you stay overnight!";
+		}
+		elseif ($e["accommodation"]===true) {
+			echo "Please select your form of accommodation!\n";
+		}
+		elseif ($e["arrival"]===true || $e["departure"]===true) {
+			echo "Please fill out the highlighted fields!";
+		} # if
+		echo "</font></td>\n";
+		echo "</tr>\n";
+		echo "</table>\n";
+		echo "<br>\n";
+	} # if
+
+
+	include("reginc/hotel.phtml");	
+
+	$footertext	="Please press &quot;".htmlentities($submitvaluecontinue)."&quot; to proceed.\n".
+			 "If necessary, you will be able to modify your registration data before submitting.\n";
+} # if
+
+?>

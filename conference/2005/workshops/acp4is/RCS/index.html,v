@@ -1,0 +1,1178 @@
+head	1.26;
+access;
+symbols;
+locks
+	lorenz:1.26; strict;
+comment	@# @;
+
+
+1.26
+date	2005.03.12.21.50.26;	author lorenz;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	2005.02.28.03.27.30;	author lorenz;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	2005.02.28.03.19.04;	author lorenz;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	2005.02.28.03.14.41;	author lorenz;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	2005.02.26.08.25.57;	author lorenz;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	2005.02.21.05.03.01;	author lorenz;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	2005.02.06.05.03.01;	author lorenz;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	2005.01.14.15.34.42;	author lorenz;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	2005.01.14.02.29.41;	author lorenz;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	2005.01.12.12.45.27;	author lorenz;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	2005.01.09.05.38.09;	author lorenz;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	2005.01.09.05.03.01;	author lorenz;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2004.12.01.05.03.02;	author lorenz;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2004.11.30.01.57.40;	author lorenz;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2004.11.29.06.18.42;	author lorenz;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2004.11.29.05.59.26;	author lorenz;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2004.11.29.05.14.01;	author lorenz;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2004.11.28.05.56.58;	author lorenz;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2004.11.28.05.26.15;	author lorenz;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2004.11.28.05.14.01;	author lorenz;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2004.11.28.05.05.01;	author lorenz;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2004.11.28.04.51.15;	author lorenz;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2004.11.28.04.43.31;	author lorenz;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2004.11.28.02.42.18;	author lorenz;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2004.11.26.01.37.59;	author lorenz;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.11.25.15.36.55;	author lorenz;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.26
+log
+@AutoRCS
+@
+text
+@<!-- Generated Start -->
+<html>
+<head>
+<title>ACP4IS: Overview</title>
+<meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<meta name="generator" content="WebJinn/1.0">
+<LINK href='styles.css' rel=STYLESHEET type=text/css>
+
+</style>
+<script type="text/javascript" src="scripts/countdown_expanded.js" defer="defer"></script>
+</head>
+<body 
+   bgcolor="White"
+   text="Black"
+   link="Blue"
+   vlink="Purple"
+   alink="Red"
+   style="margin-left:0; 
+   margin-right:0;
+   xbackground-color:#9999FF;
+   margin-top:0;xbackground-image:url(img/background.gif);">
+
+<!-- start of page table -->
+
+<table width="100%" hight="100%" border="0" cellspacing="0" cellpadding="0">
+<!-- start of banner row -->
+<tr class="bannar">
+
+<!-- start of corner cells -->
+<td align="right" width="150" valign="middle" class="corner">
+<center>
+<h1><font class="corner"><font face="courier">ACP.4.IS:</font></h1>
+</center> </td xlign="right">
+<td align="right" width="15">&nbsp;&nbsp;</td align="right">
+<!-- end of corner cells -->
+
+<!-- start of banner -->
+<td width="90%" valign="middle">
+<h1><span style="font:20px Arial"><b><font color="#FFFFFF">
+&nbsp;&nbsp;&nbsp;Overview</font></b></h1>
+</td align="right"><!-- end of banner -->
+</tr><!-- end of banner row -->
+<tr class="bannar">
+<td class="corner">&nbsp;</td>
+<td>&nbsp;</td>
+<!--start tabs -->
+<td wrap>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" rules="none" frame="vsides">
+<tr>
+ <td width="1"><img src="img/spacer10.gif" alt=""></td>
+ <td valign="top"><img src="img/shim.gif" width="5" height="25" alt=""></td>
+ <td width="1" class="headerTab"><img src="img/spacer10.gif" alt=""></td>
+ <td class="headerTab" width="1"></td> 
+
+<td class="headerTab" width="10">|</td>
+
+
+
+ <td class="headerTab" nowrap><a href="http://aosd.net/2005/" class="headerLink">&nbsp;&nbsp;
+AOSD.05
+&nbsp;&nbsp;</a></td>
+
+<td class="headerTab" width="10">|</td>
+
+
+  <td width="1" bgcolor="#000000"><img src="img/shim.gif" alt=""></td>
+   <td class="headerTabSelected" nowrap>&nbsp;&nbsp;
+<a nohref="index.html"></a>
+    ACP4IS
+-<font size="-2">Overview</font>
+   &nbsp;&nbsp;</td>
+  <td width="1" bgcolor="#000000"><img src="img/shim.gif" alt=""></td>
+
+
+<td class="headerTab" width="10">|</td>
+
+
+
+ <td class="headerTab" nowrap><a href="http://aosd.net/2005/workshops/" class="headerLink">&nbsp;&nbsp;
+Other Workshops
+&nbsp;&nbsp;</a></td>
+
+<td class="headerTab" width="10">|</td>
+
+
+<td width="100%" class="headerTab" align="right"><a notarget="_blank" href="" class="printLink"><img src="img/printer.gif" border="0" align="top" alt="Printer Friendly"></a>&nbsp;&nbsp;&nbsp;</td>
+
+</tr>
+<!--
+<tr><td colspan="9" height="1" bgcolor="#000000"><img src="img/shim.gif" alt=""><
+/td><td height="1" bgcolor="#FFFFFF"><img src="img/shim.gif" alt=""></td><td colspan="17" height="1" bgcolor="#00O000"><img src="img/shim.gif" alt=""></td></tr>
+-->
+</table>
+</td></tr>
+
+
+<tr><!-- start of sidebar/body row -->
+<!-- start of sidebar cells -->
+<td align="right" width="150" valign="top" class="sidebar">
+<!-- start of sidebar table -->
+<table width="100%" hight="100%" border="0" cellspacing="0" cellpadding="3"
+       bgcolor="#ffffff">
+
+<tr><td align="right" class="subnavTabSelected">ACP4IS</td></tr>
+<tr><td align="right" class="subnavTabSelected"><img="img/subnav_line.gif" border="0" alt=""></td></tr>
+
+<!--start menuitem -->
+
+<tr><td class="headerTab" nowrap align="right">
+<img src="img/subnav_line.gif" border="0" alt="">
+<tr><td class="headerTab" nowrap align="right">
+<b><font color="#000000">
+Workshop
+</font></b>
+</td align="right"></tr>
+
+
+<tr><td align="right" class="subsubnavTabSelected">Home</td></tr>
+
+
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="cfp.shtml" class="subsubnavLink">Call for Papers</a>
+</td></tr>
+
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="submit.shtml" class="subsubnavLink">Authors' Instructions</a>
+</td></tr>
+
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="papers.shtml" class="subsubnavLink">Accepted Papers</a>
+</td></tr>
+
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="schedule.shtml" class="subsubnavLink">Workshop Schedule</a>
+</td></tr>
+
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="discussion.shtml" class="subsubnavLink">Discussion Groups</a>
+</td></tr>
+
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="report.shtml" class="subsubnavLink">Workshop Report</a>
+</td></tr>
+
+
+<tr><td class="headerTab">&nbsp;</td></tr>
+
+<tr><td class="headerTab" nowrap align="right">
+<img src="img/subnav_line.gif" border="0" alt="">
+<tr><td class="headerTab" nowrap align="right">
+<b><font color="#000000">
+Organization
+</font></b>
+</td align="right"></tr>
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="pc.shtml" class="subsubnavLink">Program Committee</a>
+</td></tr>
+
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="oc.shtml" class="subsubnavLink">Organizing Committee</a>
+</td></tr>
+
+
+<tr><td class="headerTab">&nbsp;</td></tr>
+
+<tr><td class="headerTab" nowrap align="right">
+<img src="img/subnav_line.gif" border="0" alt="">
+<tr><td class="headerTab" nowrap align="right">
+<b><font color="#000000">
+Past Meetings
+</font></b>
+</td align="right"></tr>
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="past/acp4is04/" class="subsubnavLink">ACP4IS 2004</a>
+</td></tr>
+
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="past/acp4is03/" class="subsubnavLink">ACP4IS 2003</a>
+</td></tr>
+
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="past/acp4is02/" class="subsubnavLink">ACP4IS 2002</a>
+</td></tr>
+
+
+<tr><td class="headerTab">&nbsp;</td></tr>
+
+<tr><td class="headerTab" nowrap align="right">
+<img src="img/subnav_line.gif" border="0" alt="">
+<tr><td class="headerTab" nowrap align="right">
+<b><font color="#000000">
+Email Us
+</font></b>
+</td align="right"></tr>
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="mailto:acp4is@@aosd.info" class="subsubnavLink">Yvonne Coady</a>
+</td></tr>
+
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="submit.shtml" class="subsubnavLink">Submit</a>
+</td></tr>
+
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="http://edit.aosd.info" class="subsubnavLink">(edit page)</a>
+</td></tr>
+
+
+<tr><td class="headerTab">&nbsp;</td></tr>
+
+
+</table><!-- end of sidebar table -->
+</td align="right">
+<td align="right" width="15">&nbsp;&nbsp;</td align="right"><!--spacer-->
+<!-- end of sidebar cell -->
+<!-- start of body cell -->
+<td valign="top" width="90%" class="body"><br>
+
+   <table border="0" cellspacing="20" cellpadding="0" width="100%">
+   <tr>
+   <td align="left" valign="top">
+<!-- Generated End -->
+<h2>The 4th AOSD Workshop on Aspects, Components, and Patterns for
+Infrastructure Software (ACP4IS)</h2>
+
+<h4>A one-day workshop at <a href="http://aosd.net/conference">AOSD.05</font></a>, 
+the Fourth International Conference on Aspect-Oriented Software Development, March 14-18, Chicago, USA, 2005</h4>
+                                  
+<p>
+
+Aspect-oriented programming, component models, and design patterns are modern
+and actively evolving techniques for improving the modularization of complex
+software.  In particular, these techniques hold great promise for the
+development of "systems infrastructure" software, e.g., application servers,
+middleware, virtual machines, compilers, operating systems, and other software
+that provides general services for higher-level applications.  The developers
+of infrastructure software are faced with increasing demands from application
+programmers needing higher-level support for application development.  Meeting
+these demands requ
+these demands requires careful use of software modularization techniques, since
+infrastructural concerns are notoriously hard to untangle.
+<br><br>
+Building on the <a href="http://acp4is.aosd.info">ACP4IS</a> meetings at AOSD 2002-2004, the meeting at AOSD.05 will
+focus on the particular topic of implementing infrastructure software product
+families.  The goal of this year's workshop is to better understand how
+advanced modularization techniques relate, individually and in combination, to
+the inherent and special challenges of systems infrastructure product families.
+</p>
+
+<!-- DELETED --- WILL APPEAR AUTOMATICALLY ON ALL PAGES
+<a name="dates">
+<h2>Important Dates</h2>
+Submission Deadline: January 13, 2005<br>
+Notification of Acceptance: February 3, 2005<br>
+Workshop: March 14, 2005<br>
+-->
+<!-- Generated Start -->
+<a name="dates">
+<h2>Important Dates</h2>
+Submission Deadline was January 13, 2005 (closed)<br>
+<!--Notification of Acceptance was February 3, 2005 <br>-->
+<!--AOSD Early Registration Deadline: February 20, 2005<br>-->
+Camera-Ready Copy (CRC Deadline) Due: February 17, 2005<br> 
+Last day for hotel discount rate: March 1, 2005 (extended)<br>
+Workshop: <b>March 14, 2005</b><br>
+</td align="right"><!-- end of body cell -->
+</tr><!-- end of sidebar/body row -->
+</table><!-- end of page table -->
+
+
+</td align="right"><!-- end of body cell -->
+</tr><!-- end of sidebar/body row -->
+
+<tr>
+<td>&nbsp;
+<font size="-2">$Revision: 1.15 $</font>
+</td><td>&nbsp;</td>
+
+<td>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+
+<!-- <td width="150">&nbsp;&nbsp;&nbsp;</td> -->
+  
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://acp4is.aosd.info" class="headerLink">&nbsp;&nbsp;ACP4IS&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://dawis.informatik.uni-essen.de/events/AOM_AOSD2005/" class="headerLink">&nbsp;&nbsp;AOM&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a 
+nref="http://www.cs.iastate.edu/~leavens/FOAL/index-2005.shtml" href="http://foal.aosd.info" class="headerLink">&nbsp;&nbsp;FOAL&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://homepages.cwi.nl/~tourwe/late.html" class="headerLink">&nbsp;&nbsp;LATE&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://aosd.net/2005/workshops/daw/" class="headerLink">&nbsp;&nbsp;DAW&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|<td> 
+  <td class="headerTab" nowrap><a href="http://trese.cs.utwente.nl/early-aspects-AOSD2005/" class="headerLink">&nbsp;&nbsp;EA&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://www.daimi.au.dk/~eernst/splat05/" class="headerLink">&nbsp;&nbsp;SPLAT&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://www.cs.colostate.edu/~rta/wtaop/" class="headerLink">&nbsp;&nbsp;WTAOP&nbsp;&nbsp;</a></td>
+ <td class="headerTab" width="10">|</td> 
+
+</tr>
+</table>
+
+</td align="right"><!-- end of body cell -->
+</tr><!-- end of sidebar/body row -->
+</table><!-- end of page table -->
+
+
+</body>
+</html>
+<!-- Generated End -->@
+
+
+1.25
+log
+@AutoRCS
+@
+text
+@d267 1
+a267 1
+<h4>A one-day Workshop at <a href="http://aosd.net/conference">AOSD.05</font></a>, 
+d317 1
+a317 1
+<font size="-2">$Revision: 1.14 $</font>
+@
+
+
+1.24
+log
+@AutoRCS
+@
+text
+@d305 1
+d317 1
+a317 1
+<font size="-2">$Revision: 1.13 $</font>
+d363 1
+a363 1
+<!-- Generated End -->
+@
+
+
+1.23
+log
+@AutoRCS
+@
+text
+@d264 2
+d267 31
+d362 1
+a362 1
+<!-- Generated End -->@
+
+
+1.22
+log
+@AutoRCS
+@
+text
+@d201 1
+a201 1
+<a href="http://www.cs.uvic.ca/~ycoady/acp4is04/index.html" class="subsubnavLink">ACP4IS 2004</a>
+d208 1
+a208 1
+<a href="http://www.cs.ubc.ca/spider/ycoady/acp4is03/index.html" class="subsubnavLink">ACP4IS 2003</a>
+d215 1
+a215 1
+<a href="http://www.st.informatik.tu-darmstadt.de/staff/Ostermann/aosd2002/index.html" class="subsubnavLink">ACP4IS 2002</a>
+a263 2
+<h2>The 4th AOSD Workshop on Aspects, Components, and Patterns for
+Infrastructure Software (ACP4IS)</h2>
+a264 31
+<h4>A one-day Workshop at <a href="http://aosd.net/conference">AOSD.05</font></a>, 
+the Fourth International Conference on Aspect-Oriented Software Development, March 14-18, Chicago, USA, 2005</h4>
+                                  
+<p>
+
+Aspect-oriented programming, component models, and design patterns are modern
+and actively evolving techniques for improving the modularization of complex
+software.  In particular, these techniques hold great promise for the
+development of "systems infrastructure" software, e.g., application servers,
+middleware, virtual machines, compilers, operating systems, and other software
+that provides general services for higher-level applications.  The developers
+of infrastructure software are faced with increasing demands from application
+programmers needing higher-level support for application development.  Meeting
+these demands requ
+these demands requires careful use of software modularization techniques, since
+infrastructural concerns are notoriously hard to untangle.
+<br><br>
+Building on the <a href="http://acp4is.aosd.info">ACP4IS</a> meetings at AOSD 2002-2004, the meeting at AOSD.05 will
+focus on the particular topic of implementing infrastructure software product
+families.  The goal of this year's workshop is to better understand how
+advanced modularization techniques relate, individually and in combination, to
+the inherent and special challenges of systems infrastructure product families.
+</p>
+
+<!-- DELETED --- WILL APPEAR AUTOMATICALLY ON ALL PAGES
+<a name="dates">
+<h2>Important Dates</h2>
+Submission Deadline: January 13, 2005<br>
+Notification of Acceptance: February 3, 2005<br>
+Workshop: March 14, 2005<br>
+-->
+d283 1
+a283 1
+<font size="-2">$Revision: 1.12 $</font>
+@
+
+
+1.21
+log
+@AutoRCS
+@
+text
+@d303 1
+a303 1
+AOSD Early Registration Deadline: <b>February 20, 2005</b><br> 
+d305 1
+a305 1
+Workshop: March 14, 2005<br>
+d316 1
+a316 1
+<font size="-2">$Revision: 1.11 $</font>
+@
+
+
+1.20
+log
+@AutoRCS
+@
+text
+@d303 1
+a303 1
+AOSD Early Registration Deadline: <b>February 12, 2005</b><br> 
+d316 1
+a316 1
+<font size="-2">$Revision: 1.10 $</font>
+@
+
+
+1.19
+log
+@AutoRCS
+@
+text
+@d232 1
+a232 1
+<a href="mailto:ycoady@@cs.uvic.ca" class="subsubnavLink">Yvonne Coady</a>
+d302 3
+a304 2
+Notification of Acceptance: <b>February 3, 2005</b><br>
+AOSD Early Registration Deadline: February 12, 2005<br> 
+d316 1
+a316 1
+<font size="-2">$Revision: 1.9 $</font>
+@
+
+
+1.18
+log
+@AutoRCS
+@
+text
+@d239 1
+a239 1
+<a href="http://www.flux.utah.edu/acp4is05/submit/" class="subsubnavLink">Submit a Paper</a>
+d301 2
+a302 6
+Submission Deadline: <b>January <blink>13</blink>, 2005</b> (midnight Apia, Samoa time)<br>
+This is a firm deadline.
+Time remaining: 
+<span id="countdown1" style="bold">13 January 2005 23:59:59 UTC-1100</span>
+<br>
+Notification of Acceptance: February 3, 2005<br>
+d305 1
+a305 2
+<h2>Submission Guidelines</h2> 
+Technical papers should be electronically submitted through the <a href="http://www.flux.utah.edu/acp4is05/">ACP4IS 2005 online submission</a> system. For information about formatting your paper please consult the <a href="submit.shtml">Authors' Instructions</a> page.</td align="right"><!-- end of body cell -->
+d315 1
+a315 1
+<font size="-2">$Revision: 1.8 $</font>
+@
+
+
+1.17
+log
+@AutoRCS
+@
+text
+@d301 1
+a301 1
+Submission Deadline: <b>January <blink>13</blink>, 2005</b> (Apia, Samoa time)<br>
+d320 1
+a320 1
+<font size="-2">$Revision: 1.7 $</font>
+@
+
+
+1.16
+log
+@AutoRCS
+@
+text
+@d10 1
+d301 5
+a305 1
+Submission Deadline: <b>January <blink>13</blink>, 2005</b><br>
+d307 1
+a307 1
+AOSD Early Registration Deadline: February 10, 2005<br> 
+d320 1
+a320 1
+<font size="-2">$Revision: 1.5 $</font>
+@
+
+
+1.15
+log
+@AutoRCS
+@
+text
+@d238 1
+a238 1
+<a href="oldsite1" class="subsubnavLink">(old site)</a>
+d315 1
+a315 1
+<font size="-2">$Revision: 1.4 $</font>
+@
+
+
+1.14
+log
+@AutoRCS
+@
+text
+@d131 1
+a131 1
+<a href="submit.shtml" class="subsubnavLink">Submit a Paper</a>
+d303 3
+a305 1
+Workshop: March 14, 2005<br></td align="right"><!-- end of body cell -->
+d315 1
+a315 1
+<font size="-2">$Revision: 1.3 $</font>
+@
+
+
+1.13
+log
+@*** empty log message ***
+@
+text
+@d85 1
+a85 1
+<td width="100%" class="headerTab" align="right"><a target="_blank" nohref="" class="printLink"><img src="img/printer.gif" border="0" align="top" alt="Printer Friendly"></a>&nbsp;&nbsp;&nbsp;</td>
+d313 1
+a313 1
+<font size="-2">$Revision: 1.2 $</font>
+@
+
+
+1.12
+log
+@*** empty log message ***
+@
+text
+@d300 1
+a300 1
+Submission Deadline: <b>January 13, 2005</b><br>
+d302 1
+@
+
+
+1.11
+log
+@*** empty log message ***
+@
+text
+@a116 1
+<!--<b>Home</b>-->
+@
+
+
+1.10
+log
+@AutoRCS
+@
+text
+@d46 2
+a47 2
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" rules="none" frame="void">
+a77 24
+ <td class="headerTab" nowrap><a href="index.html" class="headerLink">&nbsp;&nbsp;
+Overview
+&nbsp;&nbsp;</a></td>
+
+<td class="headerTab" width="10">|</td>
+
+
+
+ <td class="headerTab" nowrap><a href="cfp.shtml" class="headerLink">&nbsp;&nbsp;
+CFP
+&nbsp;&nbsp;</a></td>
+
+<td class="headerTab" width="10">|</td>
+
+
+
+ <td class="headerTab" nowrap><a href="submit.shtml" class="headerLink">&nbsp;&nbsp;
+Submit
+&nbsp;&nbsp;</a></td>
+
+<td class="headerTab" width="10">|</td>
+
+
+
+d313 1
+a313 1
+$Revision: 1.1 $
+@
+
+
+1.9
+log
+@David
+@
+text
+@d4 1
+a4 1
+<title>Overview</title>
+d31 1
+a31 1
+<h1><font class="corner" xcolor="Yellow"><font face="courier">ACP.4.IS</font></h1>
+d33 1
+a33 8
+
+<td align="right" width="15" xxbgcolor="Green">&nbsp;&nbsp;</td align="right">
+
+<!--spacer-->
+<!--
+<td align="right" width="15" bgcolor="Green">&nbsp;&nbsp;</td align="right">
+-->
+
+d38 2
+a39 4
+<h1><b><font color="White">
+<span style="font:20px Arial"><h1>
+&nbsp;&nbsp;&nbsp;
+Overview</h1></font></h1>
+a53 1
+
+a57 1
+
+d59 2
+a60 2
+AOSD.05&nbsp;&nbsp;</a></td>
+
+d69 1
+d74 2
+d78 4
+a85 1
+
+d87 2
+a88 2
+CFP&nbsp;&nbsp;</a></td>
+
+a93 1
+
+d95 2
+a96 2
+Submit&nbsp;&nbsp;</a></td>
+
+a101 1
+
+d103 2
+a104 2
+Other Workshops&nbsp;&nbsp;</a></td>
+
+d119 1
+d132 1
+a132 2
+<!-- top-level element -->
+<tr><td  class="headerTab" nowrap align="right">
+d134 1
+a134 1
+<tr><td  class="headerTab" nowrap align="right">
+a138 1
+<!-- top-level element -->
+d141 1
+a141 1
+<!--<b>Home</b>--!>
+d190 1
+a190 2
+<!-- top-level element -->
+<tr><td  class="headerTab" nowrap align="right">
+d192 1
+a192 1
+<tr><td  class="headerTab" nowrap align="right">
+a196 1
+<!-- top-level element -->
+d214 1
+a214 2
+<!-- top-level element -->
+<tr><td  class="headerTab" nowrap align="right">
+d216 1
+a216 1
+<tr><td  class="headerTab" nowrap align="right">
+a220 1
+<!-- top-level element -->
+d245 1
+a245 2
+<!-- top-level element -->
+<tr><td  class="headerTab" nowrap align="right">
+d247 1
+a247 1
+<tr><td  class="headerTab" nowrap align="right">
+a251 1
+<!-- top-level element -->
+d325 1
+a325 1
+Submission Deadline: January 13, 2005<br>
+d337 1
+a337 1
+$Revision$
+@
+
+
+1.8
+log
+@David
+@
+text
+@d78 1
+d91 11
+a101 2
+ <td class="headerTab" nowrap><a href="http://aosd.net/2005/workshops/" class="headerLink">&nbsp;&nbsp;
+Other Workshops&nbsp;&nbsp;</a></td>
+d109 2
+a110 2
+ <td class="headerTab" nowrap><a href="cfp.shtml" class="headerLink">&nbsp;&nbsp;
+CFP&nbsp;&nbsp;</a></td>
+@
+
+
+1.7
+log
+@AutoRCS
+@
+text
+@d97 9
+d267 1
+a267 8
+<a href="oldsite" class="subsubnavLink">(old site ver 0.0)</a>
+</td></tr>
+
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="oldsite1" class="subsubnavLink">(old site ver 0.1)</a>
+@
+
+
+1.6
+log
+@AutoRCS
+@
+text
+@a96 9
+
+
+ <td class="headerTab" nowrap><a href="cfp.shtml" class="headerLink">&nbsp;&nbsp;
+CFP&nbsp;&nbsp;</a></td>
+
+
+<td class="headerTab" width="10">|</td>
+
+
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@d97 9
+@
+
+
+1.4
+log
+@David
+@
+text
+@d338 3
+a340 1
+<td>&nbsp;</td><td>&nbsp;</td>
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d17 4
+a20 1
+   style="margin-left:0; margin-top:0;background-image:url(img/background.gif);">
+d24 1
+a24 1
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+d58 1
+a58 1
+ <td width="1"><img src="img/spacer126.gif" alt=""></td>
+a62 1
+ <td class="headerTab" nowrap><a href="http://aosd.net/2005/" class="headerLink">&nbsp;&nbsp;AOSD.05&nbsp;&nbsp;</a></td>
+d64 11
+a74 2
+ <td class="headerTab" width="10">|</td>
+ <td class="headerTab" nowrap><a href="http://aosd.net/2005/workshops/" class="headerLink">&nbsp;&nbsp;Workshops&nbsp;&nbsp;</a></td>
+a75 1
+ <td class="headerTab" width="10">|</td>
+d77 3
+a79 1
+   <td class="headerTabSelected" nowrap>&nbsp;&nbsp;ACP4IS&nbsp;&nbsp;</td>
+a81 3
+<!--
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://dawis.informatik.uni-essen.de/events/AOM_AOSD2005/" class="headerLink">&nbsp;&nbsp;AOM&nbsp;&nbsp;</a></td>
+a82 3
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a 
+nref="http://www.cs.iastate.edu/~leavens/FOAL/index-2005.shtml" href="http://foal.aosd.info" class="headerLink">&nbsp;&nbsp;FOAL&nbsp;&nbsp;</a></td>
+a83 2
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://homepages.cwi.nl/~tourwe/late.html" class="headerLink">&nbsp;&nbsp;LATE&nbsp;&nbsp;</a></td>
+d85 7
+a91 2
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://aosd.net/2005/workshops/daw/" class="headerLink">&nbsp;&nbsp;DAW&nbsp;&nbsp;</a></td>
+a92 2
+ <td class="headerTab" width="10">|<td> 
+  <td class="headerTab" nowrap><a href="http://trese.cs.utwente.nl/early-aspects-AOSD2005/" class="headerLink">&nbsp;&nbsp;EA&nbsp;&nbsp;</a></td>
+d94 1
+a94 2
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://www.daimi.au.dk/~eernst/splat05/" class="headerLink">&nbsp;&nbsp;SPLAT&nbsp;&nbsp;</a></td>
+a95 3
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://www.cs.colostate.edu/~rta/wtaop/" class="headerLink">&nbsp;&nbsp;WTAOP&nbsp;&nbsp;</a></td>
+-->
+d97 1
+a97 1
+<td width="100%" class="headerTab" align="right"><a href="" class="printLink"><img src="img/printer.gif" border="0" align="top" alt="Printer Friendly"></a>&nbsp;&nbsp;&nbsp;</td>
+d111 1
+a111 1
+<table width="100%" border="0" cellspacing="0" cellpadding="3"
+d210 1
+a210 1
+Past Workshops
+d317 1
+d323 1
+d325 9
+d336 39
+a374 1
+</table><!-- end of page table -->
+d379 4
+a382 1
+</body></html>
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d26 1
+a26 1
+<td align="right" width="150" valign="middle" xxclass="bannar" xclass="corner">
+d28 1
+a28 1
+<h1><font color="Yellow"><font face="courier">ACP.4.IS</font></h1>
+d49 1
+a49 1
+<td>&nbsp;</td>
+d70 1
+d92 1
+d94 1
+a94 3
+<!-- 
+ <td width="100%" class="headerTab" align="right"><a href="" class="printLink"><img src="img/printer.gif" border="0" align="top" alt="Printer Friendly"></a>&nbsp;&nbsp;&nbsp;</td>
+-->
+d255 8
+a262 1
+<a href="oldsite" class="subsubnavLink">(old site)</a>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d6 1
+a6 1
+<meta name="generator" content="HT2HTML/2.0">
+d23 2
+a24 1
+<tr>
+d26 1
+a26 3
+
+<td align="right" width="150" valign="middle" bgcolor="Green" class="corner">
+
+d29 1
+a29 1
+</center> </td align="right">
+d31 1
+a31 1
+<td align="right" width="15" bgcolor="Green">&nbsp;&nbsp;</td align="right"><!--spacer-->
+d33 1
+d41 1
+a41 1
+<td width="90%" valign="middle" bgcolor="Green" class="banner">
+d48 56
+d106 1
+a106 1
+<td align="right" width="150" valign="top" xbgcolor="Green" class="sidebar">
+d111 4
+d117 1
+a117 1
+<tr><td  class="headerTab" nowrap align="right" xbgcolor="Yellow">
+d119 1
+a119 1
+<tr><td  class="headerTab" nowrap align="right" xbgcolor="Yellow">
+d177 1
+a177 1
+<tr><td  class="headerTab" nowrap align="right" xbgcolor="Yellow">
+d179 1
+a179 1
+<tr><td  class="headerTab" nowrap align="right" xbgcolor="Yellow">
+d203 1
+a203 1
+<tr><td  class="headerTab" nowrap align="right" xbgcolor="Yellow">
+d205 1
+a205 1
+<tr><td  class="headerTab" nowrap align="right" xbgcolor="Yellow">
+d207 1
+a207 1
+Related
+d215 1
+a215 8
+<a href="http://aosd.net/conference" class="subsubnavLink">AOSD</a>
+</td></tr>
+
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="http://www.st.informatik.tu-darmstadt.de/staff/Ostermann/aosd2002/index.html" class="subsubnavLink">ACP4IS 2002</a>
+d229 1
+a229 1
+<a href="http://www.cs.uvic.ca/~ycoady/acp4is04/index.html" class="subsubnavLink">ACP4IS 2004</a>
+d236 1
+a236 1
+<tr><td  class="headerTab" nowrap align="right" xbgcolor="Yellow">
+d238 1
+a238 1
+<tr><td  class="headerTab" nowrap align="right" xbgcolor="Yellow">
+d296 1
+d300 1
+a300 1
+Building on the ACP4IS meetings at AOSD 2002-2004, the meeting at AOSD.05 will
+d307 1
+@

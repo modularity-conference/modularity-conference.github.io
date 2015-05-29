@@ -1,0 +1,99 @@
+<p>
+<table class="entry" width="600">
+<tr>
+ <td class="head">Payment</td>
+</tr>
+<tr>
+ <td class="body">
+
+  Please choose a payment method.  Note that you are accessing this 
+  site through a secure connection.  All information in this form will 
+  be transferred in an encrypted format.
+  
+  <p>
+  <table border="0" width="400" cellspacing="0" cellpadding="0" align="center">
+  <tr>
+   <td colspan="2"><b>Credit card</font></td>
+  </tr>
+  <tr valign="top">
+    <td nowrap><font<? if ($e["paymentmethod"]===true) echo " class=\"error\""; ?>>Card Type: </font></td>
+    <td>
+    <table border="0" cellspacing="5" cellpadding="0">
+    <tr>
+     <td>
+      <input type="radio" name="f[paymentmethod]" value="visa"<? if ($f["paymentmethod"]=="visa") echo " checked"; ?>><br>
+     </td>
+     <td>
+      <img src="img/visa.gif" width="38" height="24">
+     </td>
+     </tr>
+     <tr>
+     <td>
+      <input type="radio" name="f[paymentmethod]" value="mastercard"<? if ($f["paymentmethod"]=="mastercard") echo " checked"; ?>><br>
+     </td>
+     <td>
+      <img src="img/mastercard.gif" width="38" height="24">
+     </td>
+    </tr>
+    </table>
+   </td>
+  </tr>
+  <tr>
+   <td nowrap><font<? if ($e["cardholder"]===true) echo " class=\"error\""; ?>>Card Holder: </font></td>
+   <td><input type="text" name="f[cardholder]" maxlength="<? echo $maxcardholder; ?>" size="16" value="<? echo htmlentities($f["cardholder"]); ?>"></td>
+  </tr>
+  <tr>
+   <td nowrap><font<? if ($e["cardnumber"]===true) echo " class=\"error\""; ?>>Card Number: </font></td>
+   <td><input type="text" name="f[cardnumber]" maxlength="<? echo $maxcardnumber; ?>" size="16" value="<? echo htmlentities($f["cardnumber"]); ?>"></td>
+  </tr>
+  <tr>
+   <td nowrap>
+    <font<? if ($e["cardvalidmonth"]===true || $e["cardvalidyear"]===true) echo " class=\"error\""; ?>>Expiry Date (MM/YY): </font>
+   </td>
+   <td>
+    <input type="text" name="f[cardvalidmonth]" maxlength="<? echo $maxcardvalidmonth; ?>" size="2" value="<? echo htmlentities($f["cardvalidmonth"]); ?>">
+    /
+    <input type="text" name="f[cardvalidyear]" maxlength="<? echo $maxcardvalidyear; ?>" size="2" value="<? echo htmlentities($f["cardvalidyear"]); ?>">
+   </td>
+  </tr>
+  <tr>
+   <td nowrap>
+    <font<? if ($e["cardverification"]===true) echo " class=\"error\""; ?>>Card Verification: </font>
+   </td>
+   <td>
+    <input type="text" name="f[cardverification]" maxlength="<? echo $maxcardverification; ?>" size="3" value="<? echo htmlentities($f["cardverification"]); ?>"><br>
+    (On the back of your credit card, on the signature strip, there are a set of
+    numbers.  Please enter the last <b>3</b> digits.)
+   </td>
+  </tr>
+<?
+/*
+#  <tr>
+#   <td><font<? if ($e["cardcvc"]===true) echo " class=\"error\""; ?>>Credit card validation code: </font></td>
+#   <td><input type="text" name="f[cardcvc]" maxlength="<? echo $maxcardcvc; ?>" size="5" value="<? echo htmlentities($f["cardcvc"]); ?>"></td>
+#  </tr>
+#  <tr>
+#   <td colspan="2">
+#   (The last 3 digits im Unterschriftenfeld on the Rückseite of the credit card,
+#    <a href="JavaScript:assistent('cvccode.html',520,435)">direkt hinter der Kartennummer</a>.)
+#   </td>
+#  </tr>
+*/
+?>
+  <tr>
+   <td height="60">&nbsp;</td>
+  </tr>
+  <tr>
+   <td colspan="2">
+    <input type="radio" name="f[paymentmethod]" value="cardbyfax"<? if ($f["paymentmethod"]=="cardbyfax") echo " checked"; ?>>
+     <font<? if ($e["paymentmethod"]===true) echo " class=\"error\""; ?>><b>Credit card by fax or mail</b></font>
+   </td>
+  </tr>
+  <tr>
+   <td colspan="2">
+    In case you don<? echo "'"; ?>t want to send your credit card data over the Internet,
+    you can send your credit card information by fax or mail.
+    You will receive the form after registration.
+   </td>
+  </tr>
+</table>

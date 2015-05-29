@@ -1,0 +1,85 @@
+<?
+
+# $partid: the ID for the participants registration
+# $totalprice: the total price for the registration
+function makecardbyfaxmailtext ($partid,$totalprice) {
+	global	$priceformat, $f, $currency, $confname, $confyear, $faxnumber, $mailingaddress;
+
+	$text  ="<p>\n".						# make confirmation page and return it to the caller
+		"<table class=\"entry\" width=\"600\">\n".
+		"<tr>\n".
+		" <td class=\"head\">$confname $confyear Payment Form</td>\n".
+		"</tr>\n".
+		"<tr>\n".
+		" <td class=\"body\">\n".
+		"\n";
+
+	$text .="<p>Dear ".htmlentities($f["title"])." ".htmlentities($f["fname"])." ".
+		htmlentities($f["lname"]).",</p>\n<p>Thank you for your registration.</p>\n".
+		"  <p>\n".
+		"  You have chosen credit card by fax or mail for the payment.\n".
+		"  In order to pay, please print out this email and fax or mail the completed form to:\n".
+		"  </p>\n".		
+		"  <p><b>FAX:</b> $faxnumber</p>\n".
+		"  <p><b>MAIL:</b><br>$mailingaddress</p>\n".
+		"  <p>Please note that the registration is valid only after we receive the payment.\n".
+		"  <p>\n".
+		"  \n".
+		"  <center>\n".
+		"  <table border=\"0\">\n".
+		"  <tr>\n".
+		"   <td height=\"40\" style=\"vertical-align:bottom;\">Registration ID:</td>\n".
+		"   <td style=\"vertical-align:bottom;\"><b>".htmlentities($partid)."</b></td>\n".
+		"  </tr>\n".
+		"  <tr>\n".
+		"   <td height=\"40\" style=\"vertical-align:bottom;\">Price:</td>\n".
+		"   <td style=\"vertical-align:bottom;\"><b>".sprintf($priceformat,$totalprice)."&nbsp;$currency</b></td>\n".
+		"  </tr>\n".
+		"  <tr>\n".
+		"   <td height=\"40\" style=\"vertical-align:bottom;\">Card holder:</td><td></td>\n".
+		"  </tr>\n".
+		"  <tr>\n".
+		"   <td></td><td width=\"300\"><div class=\"hline\">&nbsp;</div></td>\n".
+		"  </tr>\n".
+		"  <tr>\n".
+		"   <td height=\"40\" style=\"vertical-align:bottom;\">Card type:<br>(VISA or Mastercard)</td><td></td>\n".
+		"  </tr>\n".
+		"  <tr>\n".
+		"   <td></td><td width=\"200\"><div class=\"hline\">&nbsp;</div></td>\n".
+		"  </tr>\n".
+		"  <tr>\n".
+		"   <td height=\"40\" style=\"vertical-align:bottom;\">Card number:</td><td></td>\n".
+		"  </tr>\n".
+		"  <tr>\n".
+		"   <td></td><td width=\"200\"><div class=\"hline\">&nbsp;</div></td>\n".
+		"  </tr>\n".
+		"  <tr>\n".
+		"   <td height=\"40\" style=\"vertical-align:bottom;\">Expiry Date (MM/YY):&nbsp;&nbsp;&nbsp;</td><td></td>\n".
+		"  </tr>\n".
+		"  <tr>\n".
+		"   <td></td><td width=\"300\"><div class=\"hline\" style=\"margin-right:200px;\">&nbsp;</div></td>\n".
+		"  </tr>\n".
+		"  <tr>\n".
+		"   <td height=\"40\" style=\"vertical-align:bottom;\">Card Verification:&nbsp;&nbsp;&nbsp;</td><td></td>\n".
+		"  </tr>\n".
+		"  <tr>\n".
+		"   <td></td><td width=\"300\"><div class=\"hline\" style=\"margin-right:200px;\">&nbsp;</div><br>
+					(On the back of your credit card, on the signature strip, there are a set of numbers. Please write down the last <b>3</b> digits.)</td>\n".
+		"  </tr>\n".
+		"  <tr>\n".
+		"   <td height=\"40\" style=\"vertical-align:bottom;\">Signature:</td><td></td>\n".
+		"  </tr>\n".
+		"  <tr>\n".
+		"   <td></td><td width=\"300\"><div class=\"hline\">&nbsp;</div></td>\n".
+		"  </tr>\n".
+		"  </table>".
+		"  <center>\n";
+
+	$text .=" </td>\n".
+		"</tr>\n".
+		"</table>\n";
+
+	return $text;
+} # makecardbyfaxmailtext
+
+?>

@@ -1,0 +1,97 @@
+head	1.2;
+access;
+symbols;
+locks
+	lorenz:1.2; strict;
+comment	@# @;
+
+
+1.2
+date	2005.03.12.21.50.26;	author lorenz;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.11.25.15.36.55;	author lorenz;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@AutoRCS
+@
+text
+@<h2>The 4th AOSD Workshop on Aspects, Components, and Patterns for
+Infrastructure Software (ACP4IS)</h2>
+
+<p>
+  Below are some seed ideas for workshop discussion groups.  The workshop
+  participants will choose the actual discussion topics on the day of the
+  workshop.
+</p>
+
+<h3>Emergent Properties</h3>
+
+<p>
+  In a systems software product line, many properties of individual products
+  are effectively determined by just one or a few modules within the software
+  architecture.  <em>Emergent properties</em>, however, are not so easily
+  modularized using current techniques.  Emergent properties are inherently
+  tied to the integration or combination of features in a product, rather than
+  to individual software modules.  Examples of emergent properties include the
+  schedule for a system, the maximum run-time stack depth, and the total static
+  and dynamic memory footprints.
+</p>
+
+<p>
+  <em>What are other examples of emergent properties in systems product lines?
+  What do different emergent properties have in common with each other?  Are
+  these things inherently different than the kinds of concerns that we can
+  modularize via components and aspects?  Are emergent properties predictable?
+  Is there hope for a unified approach, like "aspects," or do we need to deal
+  with each emergent properties in an ad&nbsp;hoc fashion?</em>
+</p>
+
+<h3>Feature Binding Time as an Aspect</h3>
+
+<p>
+  A software product line can be described in terms of its features, using a
+  feature model.  Such a model describes the features that may be combined to
+  build various products, and shows how the features depend on and relate to
+  one another.  A feature model may also describe the times at which different
+  feature-selection choices must be made.  Some choices may be made when the
+  software is configured and compiled by the "manufacturer," but other choices
+  may be made much later, when the system starts running (boot-time), or even
+  later.  One might even imagine that the binding time of a feature should vary
+  between members of a product family.
+</p>
+
+<p>
+  <em>What are some real-world examples of variable binding times?  Can feature
+  binding-time be described as an aspect, or as a feature?  Are existing
+  techniques sufficient for describing variable binding times, or are new
+  techniques needed?</em>
+</p>
+
+<h3>More...</h3>
+
+<p>
+  Bring your good ideas to the workshop!
+</p>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d4 54
+a57 1
+Coming soon...
+@

@@ -1,0 +1,61 @@
+<?
+
+require_once("searchquery.phtml");
+
+function showsearchresults ($searchword) {
+	global	$db,
+		$fsearchregtype, $fsearchactivity, $fsearchpayment, $fsearchpaystatus,
+		$fsearchwaspresent, $fsearchhotel, $fsearchbanquet, $fsearchtutorial,
+		$currency;
+
+	$sql = searchquery($searchword);
+
+	$result		=$db->query($sql);
+	$resultrows	=$result->numrows();
+	if ($resultrows<=0) {						# tell user if nothing was found
+		echo "<center>No participants found for given search data!</center>";
+		return;							# do not output any search related stuff any more
+	} # if
+
+	# in case of search results, offer these as downloadable CSV file
+	$fakexlsfilename	="";
+	if (strlen($fsearchregtype)>0) $fakexlsfilename.=$fsearchregtype."-";
+	if (strlen($fsearchactivity)>0) $fakexlsfilename.=$fsearchactivity."-";
+	if (strlen($fsearchpayment)>0) $fakexlsfilename.=$fsearchpayment."-";
+	if ($fsearchpaystatus=="0") $fakexlsfilename.="paymentopen-";
+	if ($fsearchpaystatus=="1") $fakexlsfilename.="paymentreceived-";
+	if ($fsearchwaspresent=="0") $fakexlsfilename.="notpresent-";
+	if ($fsearchwaspresent=="1") $fakexlsfilename.="waspresent-";
+	if (strlen($fsearchhotel)>0) $fakexlsfilename.=$fsearchhotel."hotel-";
+	if ($fsearchbanquet=="no") $fakexlsfilename.="nobanquet-";
+	if ($fsearchbanquet=="yes") $fakexlsfilename.="banquet-";
+	if (strlen($fsearchtutorial)>0) $fakexlsfilename.="tu".$fsearchtutorial."-";
+	$fakexlsfilename	.="list.xls";
+	echo "<table class=\"adminentry\" width=\"870\" align=\"center\">\n";
+	echo "<tr>\n";
+	echo " <td class=\"adminhead\">Excel Search Results ($resultrows participant";
+	if ($resultrows!=1) echo "s";
+	echo " found)</td>\n";
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo " <td class=\"adminbody\">\n";
+	echo "\n";							# the real script is participantlist.phtml, the /xxx gets ignored
+	echo "  Download the search result as a Excel file here: ";	# by the webserver, but the browser takes it for real!
+	echo "<a href=\"download.phtml/".urlencode($fakexlsfilename);
+	echo "?fsearchword=".urlencode($searchword)."&fsearchregtype=".urlencode($fsearchregtype);
+	echo "&fsearchactivity=".urlencode($fsearchactivity)."&fsearchpaystatus=".urlencode($fsearchpaystatus);
+	echo "&fsearchpayment=".urlencode($fsearchpayment)."&fsearchwaspresent=".urlencode($fsearchwaspresent);
+	echo "&fsearchhotel=".urlencode($fsearchhotel)."&fsearchbanquet=".urlencode($fsearchbanquet);
+	echo "&fsearchtutorial=".urlencode($fsearchtutorial)."\">".htmlentities($fakexlsfilename)."</a>.\n";
+	echo "  The file contains the below listed participants.\n";
+	echo "\n";
+	echo " </td>\n";
+	echo "</tr>\n";
+	echo "</table>\n";
+	echo "<p>\n";
+
+	while ($row=$result->fetchhash()) {				# display all participants on the screen
+		showparticipant($row["id"]);
+	} # while
+} # showsearchresults
+?>

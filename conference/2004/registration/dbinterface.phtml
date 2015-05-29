@@ -1,0 +1,108 @@
+<?
+
+# Copyright 1998,1999,2000,2001,2002,2003 Victor Burwitz, All rights reserved
+# database interface for a clear access, that can be adopted to other vendors (here MySQL)
+# all scripts must access the database through this interface
+
+# 20.10.98 interface written (Victor Burwitz)
+# 22.11.00 changed fetch_array to fetch_assoc in fetch_hash() (Victor Burwitz)
+#          setrow added (Victor Burwitz)
+# 27.11.00 remote db connect added into constructor (Victor Burwitz)
+# 07.12.02 class Query written (Victor Burwitz)
+# 05.03.02 class Sequence implemented (Victor Burwitz)
+
+
+class Database {
+	var $_dbhandle;							# _ leads to private variables in PHP
+
+	function Database () {						# das ist der Konstruktor der lieben Klasse (wird bei "new database()" aufgerufen)
+									# erst mal ein Handle auf die Datenbank erzeugen, hier PERSISTENT (wegen Performance)
+		$this->_dbhandle =mysql_pconnect($GLOBALS["dbserver"],$GLOBALS["dbuser"],$GLOBALS["dbpwd"]);
+	} # Database
+
+	function quote ($string) {					# escapes $string in a way, it doesn't make a problem in queries,
+		return mysql_escape_string($string);			# BUT % and _ are NOT escaped
+	} # quote
+
+	function query ($sqlstatement) {				# executes SQL statement on db and return the result as query object,
+									# false if query fails! can be tested with === in PHP
+		$result	=mysql_db_query($GLOBALS["database"], $sqlstatement, $this->_dbhandle);
+		if ($result===false) return false;
+		return new Query($result);
+	} # query
+
+	function geterrorstr () {					# gibt letzte DB Fehlermeldung zurueck
+		return mysql_error();
+	} # geterrorstr
+} # class Database
+
+
+class Query {
+	var $_resulthandle;						# _ leads to private variables in PHP
+	var $_errorno;
+	var $_errorstr;
+	
+	function Query ($result) {
+		$this->_resulthandle	=$result;
+		$this->_errorno		=mysql_errno();
+		$this->_errorstr	=mysql_error();
+	} # Query
+
+	function geterrorno () {					# returns the queries error number
+		return $this->_errorno;
+	} # geterrorno
+
+	function geterrorstr () {					# returns the queries error message
+		return $this->_errorstr;
+	} # geterrorstr
+
+	function numrows () {						# gibt die Anzahl der Zeilen des Results zurueck
+		return mysql_num_rows($this->_resulthandle);
+	} # numrows
+
+	function result ($i,$fieldname) {				# returns $fieldname from row $i
+		return @mysql_result($this->_resulthandle,$i,$fieldname);
+	} # result
+
+	function fetchhash () {						# PUBLIC, returns the active row in form of a hash and increments the row counter
+		return @mysql_fetch_array($this->_resulthandle);	# false if the row counter is at the end of the result set
+	} # fetchhash
+
+	function setrow ($row) {					# PUBLIC, sets the internal db result row counter to the given row, the rows start at row 0
+		return mysql_data_seek($this->_resulthandle,$row);
+	} # setrow
+
+	function freeresult () {					# gibt den Speicher des Result-Sets frei, wenn Spreicher vor Scriptende frei sein soll
+		mysql_free_result($this->_resulthandle);
+	} # freeresult
+} # class Query
+
+
+class Sequence {
+	var $_db;
+
+	function Sequence ($dbobject=false) {				# das ist der Konstruktor der lieben Klasse (wird bei "new Sequence()" aufgerufen)
+		if ($dbobject!=false) $this->_db=$dbobject;
+		else $this->_db=new Database();
+	} # Sequence
+
+	function create ($sequencename,$sequencevalue) {		# erzeugt neue Sequence mit Startwert, wenn noch nicht vorhanden
+		$sql	="INSERT INTO sequencetable (sequencename,sequencevalue) VALUES ('".$this->_db->quote($sequencename)."',$sequencevalue)";
+		$this->_db->query($sql);				# since sequencename is PRIMARY KEY, no 2 same entries possible
+	} # create_sequence
+
+	function select ($sequencename) {				# zieht neue Sequence aus der DB
+		$this->_db->query("LOCK TABLES sequencetable WRITE");	# HILFE IST LOCKING HAESSLICH, aber es geht halt nicht anders
+		$this->_db->query("UPDATE sequencetable SET sequencevalue=sequencevalue+1 WHERE sequencename='".$this->_db->quote($sequencename)."'");
+		$result	=$this->_db->query("SELECT sequencevalue FROM sequencetable WHERE sequencename='".$this->_db->quote($sequencename)."'");
+		$this->_db->query("UNLOCK TABLES");			# Table wieder frei geben
+
+		return $result->result(0,"sequencevalue");
+	} # select_sequence
+
+	function drop ($sequencename) {					# loscht vorhandene Sequence
+		$this->_db->query("DELETE FROM sequencetable WHERE sequencename='".$GLOBALS["db"]->quote($sequencename)."'");
+	} # drop_sequence
+} # class Sequence
+
+?>

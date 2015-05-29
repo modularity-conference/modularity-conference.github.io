@@ -1,0 +1,154 @@
+<?
+
+#$nohttpheader	=true;			# prevents also "Pragma: no-cache" header which crashes IE on downloads via https
+require_once("../conf.phtml");
+require_once("../dbinterface.phtml");
+$db	=new Database();
+require_once("../userauth.phtml");
+$user	=new Userauth();						# check if user has authorized himself!
+header("Content-type: application/vnd.ms-excel");			# tell browser with MIME type, that the file is a Excel file
+require_once("Spreadsheet.php");
+require_once("searchquery.phtml");
+
+
+
+
+$cols = array();
+
+$cols[] = new Col("id", "ID");
+$cols[] = new Col("regtype", "Type");
+$cols[] = new Col("title", "Title");
+$cols[] = new Col("lname", "Last Name");
+$cols[] = new Col("fname", "First Name");
+$cols[] = new Col("affiliation", "Affiliation");
+$cols[] = new Col("address", "Address");
+$cols[] = new Col("city", "City");
+$cols[] = new Col("postalcode", "Postal Code");
+$cols[] = new Col("country", "Country");
+$cols[] = new Col("email", "Email");
+$cols[] = new Col("phone", "Phone");
+$cols[] = new Col("fax", "Fax");
+$cols[] = new Col("regdate", "Reg Date");
+$cols[] = new Col("specialneeds", "Special Needs");
+$cols[] = new Col("apspecialneeds", "Acc. Person Special Needs");
+$cols[] = new Col("totalprice", "Total Price");
+$cols[] = new Col("paymentmethod", "Payment Method");
+$cols[] = new Col("cardfaxreceived", "Card Fax Received");
+$cols[] = new Col("paymentreceived", "Payment Received");
+$cols[] = new Col("paymentfree", "Payment Free");
+$cols[] = new Col("matriceceived", "Matriculation Received");
+$cols[] = new Col("waspresent", "Was Present");
+$cols[] = new Col("banquet", "Banquet Tickets");
+$cols[] = new Col("soca21", "SOCA-21");
+$cols[] = new Col("soca22", "SOCA-22");
+$cols[] = new Col("soca23", "SOCA-23");
+$cols[] = new Col("soca24", "SOCA-24");
+$cols[] = new Col("soca25", "SOCA-25");
+$cols[] = new Col("soca26", "SOCA-26");
+$cols[] = new Col("soca27", "SOCA-27");
+$cols[] = new Col("t1", "T1");
+$cols[] = new Col("t2", "T2");
+$cols[] = new Col("t3", "T3");
+$cols[] = new Col("t4", "T4");
+$cols[] = new Col("t5", "T5");
+$cols[] = new Col("t6", "T6");
+$cols[] = new Col("t7", "T7");
+$cols[] = new Col("lunch22", "Lunch-22");
+$cols[] = new Col("lunch23", "Lunch-23");
+$cols[] = new Col("lunch24", "Lunch-24");
+$cols[] = new Col("lunch25", "Lunch-25");
+$cols[] = new Col("lunch26", "Lunch-26");
+
+$ss = new Spreadsheet($cols);
+
+$sql = searchquery($fsearchword);
+	
+$result	=$db->query($sql);
+
+while ($row=$result->fetchhash()) {					# output all participants in CSV format
+	
+	$r = array();
+
+	foreach ($ss->cols as $col) {
+		if (array_key_exists($col->name, $row)) {
+			$r[$col->name] = $row[$col->name];
+		}
+	}
+			
+	# clean critical fields, replace seperator with a space (specially because separator should normally be \t)
+
+	$r["address"]	=ereg_replace($ss->sep," ",$row["address"]);
+	$r["specialneeds"]	=ereg_replace($ss->sep," ",$row["specialneeds"]);
+	$r["banquet"] = $row["banquetadd"];
+	$r["price"]	=sprintf($priceformatxls,$row["totalprice"]);
+
+	$r["expiry"]="";
+	if (strlen($row["cardvalidmonth"])>0 || strlen($row["cardvalidyear"])>0) {
+		$r["expiry"]=$row["cardvalidmonth"]."/".$row["cardvalidyear"];
+	} # if
+
+
+	$cardnumber	=$row["cardnumber"];
+	if (strpos($cardnumber," ")===false) {				# add spaces to credit card number, if not already present, this is done
+		$cardnumber	="";					# that excel shows the number as string and doesnt convert it to e-notation
+		for ($i=0; $i<strlen($row["cardnumber"]); $i++) {	# now go through string and insert a space after every fourth digit
+			$cardnumber	.=substr($row["cardnumber"],$i,1);
+			if (($i+1)%4==0 && $i+1!=strlen($row["cardnumber"])) {
+				$cardnumber.=" ";			# after every 4 digit output a space, but not if character is the last one
+			} # if
+		} # for
+	} # if
+	$r["ccnum"] = $cardnumber;
+	
+
+	// TUTORIALS
+	$sql	="SELECT tutorialid FROM part_tutorial WHERE participantid=".$row["id"]." ORDER BY tutorialid";
+	$tutres	=$db->query($sql);
+	while ($tutrow=$tutres->fetchhash()) {		
+		$r["t".$tutrow["tutorialid"]] = 1;		
+	} # while
+
+	// LUNCHES
+	$sql	="SELECT lunchdate, quantity FROM part_lunch WHERE participantid=".$row["id"];
+	$lunchres= $db->query($sql);
+	while ($lunchrow=$lunchres->fetchhash()) {
+		$t = strtotime($lunchrow["lunchdate"]);
+		$d = getdate($t);		
+		$r["lunch".$d["mday"]] = $lunchrow["quantity"];		
+	} # while
+
+	// ACCOMMODATION
+	
+	$startdate = 0;
+	$enddate = 0;
+	
+	$arrival = $row["arrival"];
+	if (strlen($arrival)!=0 && $arrival!='0000-00-00') {
+		$t = strtotime($arrival);
+		$d = getdate($t);
+		$startdate = $d["mday"];		
+	}
+
+
+	$departure = $row["departure"];
+	if (strlen($departure)!=0 && $departure!='0000-00-00') { 
+		$t = strtotime($departure);
+		$d = getdate($t);
+		$enddate = $d["mday"];		
+	}
+	
+	$acctype = substr($row["accommodation"], 0, 1);
+
+	for ($i = $startdate; $i < $enddate; $i++) {
+		$r["soca".$i] = $acctype;
+	}
+
+	$ss->addRow($r);
+
+} # while
+
+echo $ss->output();
+
+exit;									# end execution to prevent useless newlines
+
+?>

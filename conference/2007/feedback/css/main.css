@@ -1,0 +1,34 @@
+body{
+	font-family:arial, helvetica, sans-serif;
+}
+
+#aosdsurvey_title{
+	margin-left:20px;
+}
+
+#aosdsurvey_preamble{
+	margin-left:20px;
+}
+
+#aosdsurvey_survey{
+	margin-left:20px;
+}
+
+#aosdsurvey_footer{
+	margin:20px 0;
+	padding-bottom:10px;
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#aaaaaa;
+}
+#aosdsurvey_topofpage_link{
+	text-align:right;
+	font-size:0.75em;
+}
+#aosdsurvey_topofpage_link a:link, a:visited, a:active a:hover, a:focus{
+	text-decoration:none;
+}
+
+#aosdsurvey_postfooter{
+	text-align:center;
+}

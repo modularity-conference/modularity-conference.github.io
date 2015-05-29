@@ -1,0 +1,89 @@
+<?
+
+if (strlen($default_regtype) > 0) {
+	$f["regtype"] = $default_regtype;
+}
+
+# if one of the following pages are requested, then test if entered data of first page is valid
+if ($fsubmitbutton!="" && $fsubmitbutton!=$page1previous) {
+		
+	if (in_array($f["regtype"],$regtypes)!=true) $e["regtype"]=true;
+
+	if (   $f["regtype"]!="accperson" && $f["regtype"]!="banquet"	# a accompanying person cannot book any activity, banquet as well
+	    && in_array($f["activity"],$activities)!=true) $e["activity"]=true;
+
+	if (   ($f["regtype"]=="accperson" || $f["regtype"]=="banquet")	# in accperson and banquet reservations, no activity is allowed
+	    && strlen($f["activity"])>0 ) {				# to be chooen
+	    	$e["activityselected"]	=true;
+		$f["activity"]		="";				# erase activity value, to make online reg. proceeding possible
+	} # if
+
+	if (strlen($f["fname"])<=0) $e["fname"]=true;			# these fields must contain some content
+	if (strlen($f["lname"])<=0) $e["lname"]=true;
+	if (strlen($f["affiliation"])<=0) $e["affiliation"]=true;
+	if (strlen($f["address"])<=0) $e["address"]=true;
+	if (strlen($f["city"])<=0) $e["city"]=true;
+	if (strlen($f["postalcode"])<=0) $e["postalcode"]=true;
+	if (strlen($f["email"])<=0) $e["email"]=true;
+	#if (strlen($f["phone"])<=0) $e["phone"]=true;			# not required at the moment
+	#if (strlen($f["fax"])<=0) $e["fax"]=true;
+	#if (strlen($f["specialneeds"])<=0) $e["specialneeds"]=true;
+
+	if (in_array($f["title"],$titles)!=true) $e["title"]=true;	# take a look if the variables have a valid value
+	if (in_array($f["country"],$countries)!=true) $e["country"]=true;
+
+	if (   $f["regtype"]!="accperson" && $f["regtype"]!="banquet"	# a accompanying person cannot book any activity
+	    && $e["regtype"]!=true && $e["activity"]!=true) {		# if no error on regtype and activity, then check if the given
+		$sql		="SELECT * FROM fee WHERE regtype='".$db->quote($f["regtype"])."' ".
+				 "AND activity='".$db->quote($f["activity"])."' AND reservationtime='".$db->quote($reservationtime)."' ".
+				 "AND registration=1";
+		$res		=$db->query($sql);
+		if ($res->numrows()<=0) {
+			$e["priceundefined"]	=true;
+			$e["activity"]		=true;
+		} # if
+	} # if
+
+	if (@count($e)<=0) {						# if no error occured, then really check email
+		if (emailcheck($f["email"],$checkemailmx)===false) $e["emailformat"]=true;
+	} # if
+} # if
+
+if ($stopoutput==false && (count($e)>0 || $fsubmitbutton=="" || $fsubmitbutton==$page1previous)) {
+
+	$submitvalueprevious	="";
+	$submitvaluecontinue	=$page2continue;
+	$stopoutput		=true;					# prevent further pages to be outputted!
+
+	if (count($e)>0) {
+		echo "<table width=\"600\">\n";
+		echo "<tr>\n";
+		echo " <td align=\"center\"><font class=\"error\">";
+		if ($e["priceundefined"]===true) {
+			echo "As ".htmlentities($regtypename[$f["regtype"]]);
+			echo " it is not possible to book ".htmlentities($activityname[$f["activity"]])."!";
+		}
+		elseif ($e["emailformat"]===true) {
+			echo "Please check your email address!";
+		}
+		elseif (count($e)>1 || $e["activityselected"]!=true) {	# just show if errors unlike "activityselected" occured
+			echo "Please fill out the highlighted fields!";
+		} # if
+		if ($e["activityselected"]==true) {			# always show as additional hint!
+			echo "<br>Please notice that for a ".htmlentities($regtypename[$f["regtype"]])." ";
+			echo "registration no activity is possible.";
+		} # if
+		echo "</font></td>\n";
+		echo "</tr>\n";
+		echo "</table>\n";
+		echo "<br>\n";
+	} # if
+	
+	include("reginc/regtype.phtml");
+	include("reginc/personal.phtml");
+
+	$footertext	="Please press &quot;".htmlentities($submitvaluecontinue)."&quot; to proceed.\n".
+			 "If necessary, you will be able to modify your registration data before submitting.\n";
+} # if
+
+?>

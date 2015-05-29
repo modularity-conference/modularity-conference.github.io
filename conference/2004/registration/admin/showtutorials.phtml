@@ -1,0 +1,29 @@
+<?
+function showtutorials ($date,$session) {
+	global	$db, $dateformattut, $f, $e;
+
+	$sessionnames	=array("am"=>"am","pm"=>"pm","allday"=>"day","midday"=>"mid-day");
+
+	$sql	="SELECT * FROM tutorial WHERE date='".$db->quote($date)."' AND ".
+		 "session='".$db->quote($session)."' ORDER BY id";
+	$result	=$db->query($sql);
+	if ($result->numrows()<=0) return;				# prevent output if no tutorials exist for given date and session
+
+	echo "  <table border=\"0\" width=\"100%\">\n";
+
+	while ($row=$result->fetchhash()) {				# output tutorials
+		echo "<tr>\n";
+		echo " <td width=\"1%\"><input type=\"checkbox\" name=\"ftutorial[".htmlentities($row["id"])."]\" value=\"1\"";
+		# preselect field if it was selected previously
+		if ($f["tutorial(".$row["id"].")"]==1) echo " checked";
+		echo "></td>";
+		echo " <td><font";
+		if (   $e["tutorial(".$row["date"].$row["session"].")"]
+		    && $f["tutorial(".$row["id"].")"]==1) echo " class=\"error\"";
+		echo ">".tutorial_number($row["id"]);
+		echo "&nbsp;(".date("jS",strtotime($date))."&nbsp;".$sessionnames[$session].")</font></td>\n";
+		echo "</tr>\n";
+	} # while
+	echo "  </table>\n";
+} # showtutorials
+?>

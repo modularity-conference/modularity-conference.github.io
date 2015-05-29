@@ -1,0 +1,36 @@
+body {
+	background: #FFFFFF;
+}
+
+#header0 {
+	display: none;
+}
+
+#header1 {
+	display: none;
+}
+
+#header_print {
+	display: inline;
+}
+
+#content {
+	width: auto;
+}
+
+#colOne {
+	display: none;
+}
+
+#colTwo {
+	float: none;
+	width: auto;
+}
+
+ul#tabnav {
+	display: none;
+}
+
+#footer {
+	width: auto;
+}

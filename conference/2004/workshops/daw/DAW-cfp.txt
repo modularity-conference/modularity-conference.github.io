@@ -1,0 +1,140 @@
+Dynamic Aspects Workshop (DAW04)
+
+Call for Papers
+
+Join points are the locus of aspect and functional code interaction.
+Traditional aspect systems define join points in terms of the static
+structure of programs. Method wrappers, before and after method calls,
+variable setting and retrieving, and structural identification of object
+fields are all examples of traditional join points.
+
+Beginning with the "Jumping Aspects" paper of Brichau et al., examples began
+to emerge in which it was desirable to invoke or change aspect behavior
+based on the dynamics of program execution. Such situations include changing
+behavior based on the call-stack context, co-occurrence of predicate
+triggers, concurrent thread status, or events in the underlying interpreter
+such as storage reclamation or process scheduling. Cflow in AspectJ was one
+response to the need for dynamic aspects.
+
+This workshop will seek to identify examples of useful dynamic aspect
+behavior, suggest appropriate linguistic structures for dynamic aspects, and
+discuss implementation techniques for dynamic aspects, such as shadow
+compilation and modifications required in the underlying execution
+environment. The workshop organizers are particularly interested in position
+papers that describe experience with dynamic aspect systems or that outline
+real problems which need dynamic aspects.
+
+The primary goal of the workshop is technology interchange-we would like to
+bring people working in this area to discuss the technologies they're using;
+we would like to have the collective brainpower of the workers in the area
+clarify the value of this work and its applications.
+
+The topics of the workshop include:
+   * Applications of dynamic aspects,
+   * Models for dynamic aspects,
+   * Techniques for validating dynamic aspect programs,
+   * Linguistic structures for dynamic aspects,
+   * Dynamic action expression and linguistic integration,
+   * Implementation mechanisms for dynamic aspects,
+   * Enabling technologies and environment support for dynamic aspects
+(e.g., debuggers, IDEs),
+   * The relationship between dynamic aspects and the rest of a software
+system,
+   * Challenges and research directions.
+
+We will circulate the position papers before the workshop. At the workshop,
+participants will present their positions and then break up into smaller
+groups to explore specific topics in dynamic aspects. At the end of the
+workshop, the smaller groups will reconvene to present their findings to the
+workshop as a whole. We expect to publish the position papers and group
+reports as a Research Institute for Advanced Computer Science technical
+report. If possible, we may seek some additional venue for the publication
+of highest-quality submitted papers.
+
+This workshop continues some of the themes of the ECOOP 2003 workshop
+<http://www.st.informatik.tu-darmstadt.de/pages/workshops/ASARTI03/index.html>Advancing
+the State-of-the-Art in Runtime Inspection.
+
+Attendance at the workshop is by invitation. Prospective workshop
+participants should send submissions to
+<mailto:mehner@upb.de><mehner@upb.de>, either (1) a full paper of up to
+6,000 words, describing work on a topic germane to dynamic aspects, or (2) a
+"position paper" of up to 2,000 words.
+
+Important Dates
+
+   * January 19th, 2004, Deadline for Submissions
+   * February 9th, 2004, Notification of Acceptance
+   * February 13th, 2004 AOSD Early Registration Deadline
+   * March 22nd-26th, 2004, AOSD in Lancaster
+   * March 23rd, DAW04
+
+Program Committee
+
+    * Gustavo Alonso
+      Swiss Federal Institute of Technology (ETH Zürich)
+    * Kris de Volder
+      University of British Columbia
+    * Robert Filman (Workshop Co-Organiser)
+      NASA Ames Research Center
+    * Michael Haupt (Workshop Co-Organiser)
+      Darmstadt University of Technology
+    * Klaus Havelund
+      Kestrel Technologies / NASA Ames Research Center
+    * Stephan Herrmann
+      Technical University Berlin
+    * Robert Hirschfeld
+      DoCoMo Euro-Labs
+    * Guenter Kniesel
+      Universities of Osnabrück and of Bonn
+    * Crista Lopes
+      University of California, Irvine
+    * Katharina Mehner (Workshop Co-Organiser)
+      Technical University Berlin
+    * Mira Mezini (Workshop Co-Organiser)
+      Darmstadt University of Technology
+    * Christa Schwanninger
+      Siemens CT/SE
+
+Workshop Organisers
+
+   * Robert Filman
+   * Research Institute for Advanced Computer Science
+   * NASA Ames Research Center, MS 269-2
+   * Moffett Field, CA 94035
+   * USA
+   * E-Mail: <mailto:rfilman@mail.arc.nasa.gov><rfilman@mail.arc.nasa.gov>
+   * Home Page:
+<http://ic.arc.nasa.gov/people/filman/>http://ic.arc.nasa.gov/people/filman/
+
+   * Michael Haupt
+   * Software Technology Group, Computer Science Department
+   * Darmstadt University of Technology
+   * Alexanderstr. 10
+   * 64283 Darmstadt
+   * Germany
+   * E-Mail:
+<mailto:haupt@informatik.tu-darmstadt.de><haupt@informatik.tu-darmstadt.de>
+   * Home Page:
+<http://www.st.informatik.tu-darmstadt.de/staff/Haupt/>http://www.st.informatik.tu-darmstadt.de/staff/Haupt/
+
+   * Katharina Mehner
+   * Institute for Software Engineering and Theoretical Computer Science
+   * Technical University Berlin
+   * Franklinstr. 28/29
+   * 10587 Berlin
+   * Germany
+   * E-Mail: <mailto:mehner@upb.de><mehner@upb.de>
+   * Home Page:
+<http://www.upb.de/cs/mehner.html>http://www.upb.de/cs/mehner.html
+
+   * Mira Mezini
+   * Software Technology Group, Computer Science Department
+   * Darmstadt University of Technology
+   * Alexanderstr. 10
+   * 64283 Darmstadt
+   * Germany
+   * E-Mail:
+<mailto:mezini@informatik.tu-darmstadt.de><mezini@informatik.tu-darmstadt.de>
+   * Home Page:
+<http://www.st.informatik.tu-darmstadt.de/staff/Mezini/>http://www.st.informatik.tu-darmstadt.de/staff/Mezini/

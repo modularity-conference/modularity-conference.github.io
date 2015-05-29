@@ -1,0 +1,118 @@
+<?
+
+require_once("sslcheck.phtml");
+require_once("siteconf.phtml");
+
+@reset($f);						
+while(list($key,$value)=@each($f)) {
+	$f[$key] = stripslashes($f[$key]);
+} # while
+@reset($f2);						
+while(list($key,$value)=@each($f2)) {
+	$f2[$key] = stripslashes($f2[$key]);
+} # while
+
+
+# feature configuration
+$forcecardcvc	=false;			# turn CVC credit card check off
+$checkemailmx	=true;			# defines if email addresses are checked online
+$dateformat	="D, F j, Y";		# configure the display date format for the frontend (see PHP date() documentation)
+$dateformatred	="F j, Y";		# configure the display date format for the reduced date in the frontend
+$dateformatban	="l, F j, Y";		# configure the display date format for the banquet date in the frontend
+$dateformattut	="l, F j, Y";		# configure the display date format for the tutorial dates in the frontend
+$dateformatadmin="d.m.Y";		# configure the display date format for the administration (see PHP date() documentation)
+$timeformatadmin="G:i";
+$hotel1rooms	=150;			# rooms of first (rheinmain) hotel (single and double treated equal), filled up with bookings
+$hotel2rooms	=100;			# until full, then second (konferenz) hotel used, second hotel will in case be overbooked
+$hotelensuite	="38.00";			# price for a single en suite room in a hotel
+$hotelstandard	="31.00";			# price for a single standard room in a hotel
+$currency       ="GBP";
+$earlytill	="2004-02-20 23:59:59";	# the timestamp (in american database format) till when bookings are for early prices
+$latetill	="2004-03-15 23:59:59";	# the timestamp (in american database format) till when registrations are possible!
+$hotelsafetill	="2004-03-21 23:59:59";	# the timestamp (in american database format) till when hotel bookings are guaranteed
+$banktransfertill="2004-03-21 23:59:59";# the timestamp (in american database format) till when bank transfer payments are possible
+$banquetdate	="2004-03-25";		# the date (in american database format) of the conference banquet
+$priceformat	="%1.2f";		# format for price informations (see PHP sprintf() documentation)
+$priceformatxls	="%1.2f";		# format for price informations for XLS/CSV download file (see PHP sprintf() documentation)
+$priceformatadmin="%1.2f";		# format for price informations (see PHP sprintf() documentation)
+$banquetprice	="50.00";		# the price for a additional banquet
+
+$lunchprice	="10.00";		# the price for a lunch ticket
+$lunchdates	=array("2004-03-22","2004-03-23","2004-03-24","2004-03-25","2004-03-26");
+
+$faxnumber      ="+44 1524 593608"; # The fax number for submitting credit card payments
+# mail configuration
+$confmailfrom	="registration@aosd.net";	# email address from in the confirmation mails for participants
+$adminmailfrom	="registration@aosd.net";	# email address from in the notification mails for administration
+
+# header and footer files
+$headerfile	="header.html";		# part of html that appears on the head of the registration page
+$footerfile	="footer.html";		# part of html that appears on the bottom of the registration page
+
+
+# fill arrays with valid values
+$titles		=array("Mr.","Ms.","Dr.","PhD.","Prof.");
+$regtypes	=array("regular","student","comp","epsrc","volunteer");
+$regtypename	=array("regular"=>"Regular",
+			"student"=>"Student",
+			"comp"=>"Complimentary",
+			"epsrc"=>"EPSRC Bursary",
+			"volunteer"=>"Student Volunteer"
+			);
+
+$activities	=array("conference","tutonly");
+$activityname	=array("conference"=>"Conference","tutonly"=>"Tutorials Only");
+
+$regtimes=array("early", "late", "onsite");
+$regtimenames=array("early"=>"Early", "late"=>"Late", "onsite"=>"On-site");
+
+$paymentmethods	=array("visa","mastercard","banktransfer","cardbyfax", "none");
+$accommodations	=array("none","ensuite","standard");
+$accommodationnames	=array("none"=>"None","ensuite"=>"Single (en suite)","standard"=>"Single (standard)");
+$hotels		=array("oncampus");
+$hotelname	=array("oncampus"=>"Lancaster University Student Accommodation");
+$arrivaldates	=array("2004-03-21","2004-03-22","2004-03-23","2004-03-24","2004-03-25");
+$departuredates	=array("2004-03-23","2004-03-24","2004-03-25","2004-03-26","2004-03-27","2004-03-28");
+$fulldates	=array("2004-03-21");
+
+# the bank account informations for bank transfer payments
+$bt["accountholder"]="Technische Universität Darmstadt";
+$bt["bankaccount"]="123456";
+$bt["bank"]	="mybank";
+$bt["iban"]	="DE8750800000005080XXXX";
+$bt["bic"]	="ZBHEDEFXXXX";
+$bt["purpose"]	="ECOOP2003-20XXXX";			# the purpose will get the registration id appended e.g. " (4711)"
+
+# conference title
+$confname = "AOSD";
+$confyear = "2004";
+
+
+$maxsearchword		=25;						# define maximum field lengths in the database
+$maxtitle		=7;
+$maxfname		=30;
+$maxlname		=30;
+$maxaffiliation		=255;
+$maxaddress		=255;
+$maxcity		=50;
+$maxpostalcode		=20;
+$maxemail		=255;
+$maxphone		=20;
+$maxfax			=20;
+$maxspecialneeds	=255;
+$maxpaymentmethod	=16;
+$maxcardholder		=50;
+$maxcardnumber		=25;
+$maxcardvalidmonth	=2;
+$maxcardvalidyear	=2;
+$maxcardverification=3;
+$maxcardcvc		=4;
+$maxbanquetadd		=3;
+$maxapspecialneeds	=255;
+$maxroommate		=50;
+
+function tutorial_number($id) {
+	return "T".$id;
+}
+
+?>

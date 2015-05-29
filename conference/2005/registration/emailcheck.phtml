@@ -1,0 +1,72 @@
+<?
+
+#  isValidEmail routine v.1.00
+#  Language: PHP
+#  Author:   Vadim Bodrov (falkoris@hotmail.com)
+#  Date:     1 April 2002
+#
+# 25.02.2003 implemented some extentions (Victor Burwitz)
+#            corrected to limited ereg expression (Victor Burwitz)
+#            corrected domain extraction from email address (Victor Burwitz)
+#
+#  Description:
+#    boolean emailcheck (string address_to_check, [boolean checkMX]);
+#
+#  emailcheck is an express email address validation routine
+#  it checks if the given email address is _looks_ like a valid one.
+#  Also it searches DNS for MX records corresponding to the hostname
+#  extracted from the address (note the checkMX flag).
+
+function emailcheck ($address, $checkMX=false) {
+	$valid_tlds	=array("arpa", "biz", "com", "edu", "gov", "int", "mil", "net", "org",
+			"info", "biz",
+			"ad", "ae", "af", "ag", "ai", "al", "am", "an", "ao", "aq", "ar", "as", "at", "au",
+			"aw", "az", "ba", "bb", "bd", "be", "bf", "bg", "bh", "bi", "bj", "bm", "bn", "bo",
+			"br", "bs", "bt", "bv", "bw", "by", "bz", "ca", "cc", "cf", "cd", "cg", "ch", "ci",
+			"ck", "cl", "cm", "cn", "co", "cr", "cs", "cu", "cv", "cx", "cy", "cz", "de", "dj",
+			"dk", "dm", "do", "dz", "ec", "ee", "eg", "eh", "er", "es", "et", "fi", "fj", "fk",
+			"fm", "fo", "fr", "fx", "ga", "gb", "gd", "ge", "gf", "gh", "gi", "gl", "gm", "gn",
+			"gp", "gq", "gr", "gs", "gt", "gu", "gw", "gy", "hk", "hm", "hn", "hr", "ht", "hu",
+			"id", "ie", "il", "in", "io", "iq", "ir", "is", "it", "jm", "jo", "jp", "ke", "kg",
+			"kh", "ki", "km", "kn", "kp", "kr", "kw", "ky", "kz", "la", "lb", "lc", "li", "lk",
+			"lr", "ls", "lt", "lu", "lv", "ly", "ma", "mc", "md", "mg", "mh", "mk", "ml", "mm",
+			"mn", "mo", "mp", "mq", "mr", "ms", "mt", "mu", "mv", "mw", "mx", "my", "mz", "na",
+			"nc", "ne", "nf", "ng", "ni", "nl", "no", "np", "nr", "nt", "nu", "nz", "om", "pa",
+			"pe", "pf", "pg", "ph", "pk", "pl", "pm", "pn", "pr", "pt", "pw", "py", "qa", "re",
+			"ro", "ru", "rw", "sa", "sb", "sc", "sd", "se", "sg", "sh", "si", "sj", "sk", "sl",
+			"sm", "sn", "so", "sr", "st", "su", "sv", "sy", "sz", "tc", "td", "tf", "tg", "th",
+			"tj", "tk", "tm", "tn", "to", "tp", "tr", "tt", "tv", "tw", "tz", "ua", "ug", "uk",
+			"um", "us", "uy", "uz", "va", "vc", "ve", "vg", "vi", "vn", "vu", "wf", "ws", "ye",
+			"yt", "yu", "za", "zm", "zr", "zw");
+
+	# Rough email address validation using POSIX-style regular expressions
+	if (!eregi("^[a-z0-9\._-]+@+[a-z0-9\._-]+\.+[a-z]{2,3}$", $address))
+		return false;
+	else
+		$address = strtolower($address);
+
+	# Explode the address on name and domain parts
+	$name_domain = explode("@", $address);
+
+	# There can be only one ;-) I mean... the "@" symbol
+	if (count($name_domain) != 2)
+		return false;
+
+	# Check the domain parts
+	$domain_parts = explode(".", $name_domain[1]);
+	if (count($domain_parts) < 2)
+		return false;
+
+	# Check the TLD ($domain_parts[count($domain_parts) - 1])
+	if (!in_array($domain_parts[count($domain_parts) - 1], $valid_tlds))
+		return false;
+
+#	# Searche DNS for MX records corresponding to the hostname ($name_domain[0])#\
+#	if ($checkMX && !getmxrr($name_domain[1], $mxhosts))
+#		return false;
+
+	# if no error occured, then email should be correct
+	return true;
+} # emailcheck
+
+?>

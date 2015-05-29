@@ -1,0 +1,261 @@
+<?
+function showparticipant ($participantid) {
+	global	$db, $dateformatadmin, $timeformatadmin, $priceformatadmin,
+		$submitvaluedelete, $submitvaluechange, $submitvaluecheckboxes, $submitvalueemail,
+		$activityname, $regtypename,$currency,$accommodationnames;
+
+	$result	=$db->query("SELECT * FROM participant WHERE id=$participantid");
+# Show a error message that the participant was not found!!!
+	if ($result->numrows()<=0) return;
+
+	$row=$result->fetchhash();
+	$id		=$row["id"];
+	$activity	=$row["activity"];
+	$regtype	=$row["regtype"];
+	$fname		=htmlentities($row["fname"]);
+	$lname		=htmlentities($row["lname"]);
+	$title		=htmlentities($row["title"]);
+
+	$affiliation	=htmlentities($row["affiliation"]);
+	$address	=htmlentities($row["address"]);
+	$city		=htmlentities($row["city"]);
+	$postalcode	=htmlentities($row["postalcode"]);
+	$country	=htmlentities($row["country"]);
+	$email		=htmlentities($row["email"]);
+	$phone		=htmlentities($row["phone"]);
+	$fax		=htmlentities($row["fax"]);
+	$specialneeds	=htmlentities($row["specialneeds"]);
+	$totalprice	=$row["totalprice"];
+	$paymentmethod	=htmlentities($row["paymentmethod"]);
+	$cardholder	=htmlentities($row["cardholder"]);
+	$cardnumber	=htmlentities($row["cardnumber"]);
+	$cardvalidmonth	=htmlentities($row["cardvalidmonth"]);
+	$cardvalidyear	=htmlentities($row["cardvalidyear"]);
+	$cardverification =htmlentities($row["cardverification"]);
+	$cardfaxreceived=$row["cardfaxreceived"];
+	$paymentreceived=$row["paymentreceived"];
+	$waspresent	=$row["waspresent"];
+	$paymentfree	=$row["paymentfree"];
+	$matricreceived	=$row["matricreceived"];
+	$waspresent	=$row["waspresent"];
+	$regdate	=$row["regdate"];
+	$reservationtime=htmlentities($row["reservationtime"]);
+	$banquet	=$row["banquet"];
+	$banquetadd	=$row["banquetadd"];
+	$apspecialneeds	=htmlentities($row["apspecialneeds"]);
+	
+	$accommodation	=htmlentities($row["accommodation"]);
+	$hotel		=htmlentities($row["hotel"]);
+	$roommate	=htmlentities($row["roommate"]);
+	$arrival	=htmlentities(date($dateformatadmin,strtotime($row["arrival"])));
+	$departure	=htmlentities(date($dateformatadmin,strtotime($row["departure"])));
+
+
+	echo "<form method=\"post\">\n";
+	echo "<table class=\"adminentry\" width=\"870\" align=\"center\">\n";
+	echo "<tr>\n";
+	echo " <td class=\"adminhead\">Participant's Details</td>\n";
+	echo "</tr>\n";
+	echo "<tr>\n";
+	echo " <td class=\"adminbody\" align=\"center\">\n";
+	echo "\n";
+	echo "  <table border=\"0\" cellpadding=\"2\" cellspacing=\"3\">\n";
+	echo "  <tr>\n";
+	echo "   <td bgcolor=\"#E8ECF8\" width=\"270\"><b>Personal Information</b></td>\n";
+	echo "   <td bgcolor=\"#E8ECF8\" width=\"220\"><b>Payment</b></td>\n";
+	echo "   <td bgcolor=\"#E8ECF8\" width=\"190\"><b>Program</b></td>\n";
+	echo "  </tr>\n";
+	echo "  <tr valign=\"top\">\n";
+	echo "   <td rowspan=\"3\">\n";
+	echo "    <table cellpadding=\"0\">\n";
+	echo "    <tr><td>ID:</td><td>$id</td></tr>\n";
+	echo "    <tr><td>Title:</td><td>$title</td></tr>\n";
+	echo "    <tr><td>First name:</td><td>$fname</td></tr>\n";
+	echo "    <tr><td>Last name:</td><td>$lname</td></tr>\n";
+	echo "    <tr><td>Affiliation:</td><td>$affiliation</td></tr>\n";
+	echo "    <tr><td>Address:</td><td>$address</td></tr>\n";
+	echo "    <tr><td>City:</td><td>$city</td></tr>\n";
+	echo "    <tr><td>Postalcode:</td><td>$postalcode</td></tr>\n";
+	echo "    <tr><td>Country:</td><td>$country</td></tr>\n";
+	echo "    <tr><td>Email:</td><td><a href=\"mailto:$email\">$email</a></td></tr>\n";
+	if (strlen($phone)>0) {
+		echo "    <tr><td>Phone:</td><td>$phone</td></tr>\n";
+	} # if
+	if (strlen($fax)>0) {
+		echo "    <tr><td>Fax:</td><td>$fax</td></tr>\n";
+	} # if
+	if (strlen($specialneeds)>0) {
+		echo "    <tr><td>Special Needs:</td><td>$specialneeds</td></tr>\n";
+	} # if
+	if (strlen($apspecialneeds)>0) {
+		echo "    <tr><td>Accompanying Person<br>Special Needs:</td><td>$apspecialneeds</td></tr>\n";
+	} # if
+	echo "    </table>\n";
+	echo "   </td>\n";
+	echo "   <td height=\"70\">\n";
+	echo "    <table cellpadding=\"0\">\n";
+	if ($paymentmethod=="visa" || $paymentmethod=="mastercard") {
+		echo "    <tr><td>Credit card:</td><td>$paymentmethod</td></tr>\n";
+		echo "    <tr><td>Holder:</td><td>$cardholder</td></tr>\n";
+		echo "    <tr><td>Number:</td><td>$cardnumber</td></tr>\n";
+		echo "    <tr><td>Expiry:</td><td>$cardvalidmonth/$cardvalidyear</td></tr>\n";
+		echo "    <tr><td>Verification:</td><td>$cardverification</td></tr>\n";
+	}
+	if ($paymentmethod=="banktransfer") {
+		echo "    <tr><td>Payment:</td><td>bank transfer</td></tr>\n";
+	} # if
+	if ($paymentmethod=="cardbyfax") {
+		echo "    <tr><td>Payment:</td><td>credit card by fax</td></tr>\n";
+		echo "    <tr>\n";
+		echo "     <td style=\"vertical-align:middle;\">Fax received:</td>\n";
+		echo "     <td>\n";
+		echo "      <input type=\"checkbox\" name=\"fcardfaxreceived\" value=\"1\"";
+		if ($cardfaxreceived==1) echo " checked";
+		echo "> <input type=\"submit\" name=\"faction\" value=\"".htmlentities($submitvaluecheckboxes)."\">\n";
+		echo "     </td>\n";
+		echo "    </tr>\n";
+	} # if
+	echo "    <tr>\n";
+	echo "     <td style=\"vertical-align:middle;\">Payment received:</td>\n";
+	echo "     <td>\n";
+	echo "      <input type=\"checkbox\" name=\"fpaymentreceived\" value=\"1\"";
+	if ($paymentreceived==1) echo " checked";
+	echo "> <input type=\"submit\" name=\"faction\" value=\"".htmlentities($submitvaluecheckboxes)."\">\n";
+	echo "     </td>\n";
+	echo "    </tr>\n";
+
+	echo "    <tr>\n";
+	echo "     <td style=\"vertical-align:middle;\">Payment free:</td>\n";
+	echo "     <td>\n";
+	echo "      <input type=\"checkbox\" name=\"fpaymentfree\" value=\"1\"";
+	if ($paymentfree==1) echo " checked";
+	echo "> <input type=\"submit\" name=\"faction\" value=\"".htmlentities($submitvaluecheckboxes)."\">\n";
+	echo "     </td>\n";
+	echo "    </tr>\n";
+
+	echo "    </table>\n";
+	echo "   </td>\n";
+	echo "   <td rowspan=\"3\">\n";
+	echo "    <table cellpadding=\"0\">\n";
+	echo "    <tr><td>Type:</td><td>".htmlentities($regtypename[$regtype])."</td></tr>\n";
+	if ($regtype=="student") {
+		echo "    <tr>\n";
+		echo "     <td style=\"vertical-align:middle;\">Matriculation received:</td>\n";
+		echo "     <td style=\"vertical-align:middle;\">\n";
+		echo "      <input type=\"checkbox\" name=\"fmatricreceived\" value=\"1\"";
+		if ($matricreceived==1) echo " checked";
+		echo "> <input type=\"submit\" name=\"faction\" value=\"".htmlentities($submitvaluecheckboxes)."\">\n";
+		echo "     </td>\n";
+		echo "    </tr>\n";
+	} # if
+	if (strlen($activity)>0) {
+		echo "    <tr><td>Activity:</td><td>".htmlentities($activityname[$activity])."</td></tr>\n";
+	} # if
+	echo "    <tr><td>Registration:</td><td>".htmlentities(date($dateformatadmin,strtotime($regdate)))." ";
+	echo htmlentities(date($timeformatadmin,strtotime($regdate)))."</td></tr>\n";
+	echo "    <tr><td>Booking:</td><td>$reservationtime</td></tr>\n";
+	echo "    <tr><td>Banquet tickets:</td><td>".$banquetadd."</td></tr>\n";
+	echo "    <tr><td>Tutorials:</td><td>";
+	$sql	="SELECT tutorial.id FROM tutorial,part_tutorial ".
+		 "WHERE part_tutorial.tutorialid=tutorial.id AND part_tutorial.participantid=$id ORDER BY tutorial.id";
+	$result	=$db->query($sql);
+	if ($result->numrows()<=0) {
+		echo "none";
+	}
+	else {
+		$i	=0;
+		while ($row=$result->fetchhash()) {
+			if ($i>0) echo ", ";
+			echo tutorial_number($row["id"]);
+			$i++;
+		} # while
+	} # if
+	echo "</td></tr>\n";
+
+	echo "    <tr><td>Lunches:</td><td>";
+	$sql	="SELECT l.lunchdate,l.quantity FROM part_lunch l ".
+		 "WHERE l.participantid=$id ORDER BY l.lunchdate";
+	$result	=$db->query($sql);
+	$i	=0;
+	while ($row=$result->fetchhash()) {
+		if ($row["quantity"] > 0) {
+			echo date("D",strtotime($row["lunchdate"])).": ".$row["quantity"]."<br>";
+			$i++;
+		}
+	} # while
+	if ($i==0) {
+		echo "none";
+	}
+	
+	echo "</td></tr>\n";
+
+	echo "    <tr><td>Roles:</td><td>";
+	$sql	="SELECT role.name FROM role,part_role ".
+		 "WHERE part_role.roleid=role.id AND part_role.participantid=$id ORDER BY role.name";
+	$result	=$db->query($sql);
+	if ($result->numrows()<=0) {
+		echo "none";
+	}
+	else {
+		$i	=0;
+		while ($row=$result->fetchhash()) {
+			if ($i>0) echo ",<br> ";
+			echo htmlentities($row["name"]);
+			$i++;
+		} # while
+	} # if
+	echo "</td></tr>\n";
+	echo "    <tr><td>Price:</td><td>".htmlentities(sprintf($priceformatadmin,$totalprice))."&nbsp;$currency</td></tr>\n";
+	echo "    <tr>\n";
+	echo "     <td style=\"vertical-align:middle;\">Was present:</td>\n";
+	echo "     <td>\n";
+	echo "      <input type=\"checkbox\" name=\"fwaspresent\" value=\"1\"";
+	if ($waspresent==1) echo " checked";
+	echo "> <input type=\"submit\" name=\"faction\" value=\"".htmlentities($submitvaluecheckboxes)."\">\n";
+	echo "     </td>\n";
+	echo "    </tr>\n";
+	echo "    </table>\n";
+	echo "   </td>\n";
+	echo "   <td rowspan=\"3\" width=\"1%\">\n";
+	echo "    <input type=\"submit\" name=\"faction\" value=\"".htmlentities($submitvaluedelete)."\">\n";
+	echo "    <p>\n";
+	echo "    <input type=\"submit\" name=\"faction\" value=\"".htmlentities($submitvaluechange)."\">\n";
+	echo "    <p>\n";
+	echo "    <input type=\"submit\" name=\"faction\" value=\"".htmlentities($submitvalueemail)."\">\n";
+        echo "    <p>\n";
+        echo "    <input type=\"button\" onClick=\"window.location.href='http://cage.st.informatik.tu-darmstadt.de:8180/BadgeMaker/badge.pdf?participantid=$id'\" value=\"Badge\">\n";
+	echo "   </td>\n";
+	echo "  </tr>\n";
+	echo "  <tr>\n";
+	echo "   <td bgcolor=\"#E8ECF8\" height=\"1\"><b>Accommodation</b></td>\n";
+	echo "  </tr>\n";
+	echo "  <tr valign=\"top\">\n";
+	echo "   <td>\n";
+	echo "    <table cellpadding=\"0\">\n";
+	if ($accommodation=="none") {
+		echo "    <tr><td>No hotel room reservation</td></tr>\n";
+	}
+	elseif ($accommodation=="ensuite" || $accommodation=="standard") {
+		echo "    <tr><td>Room type:</td><td>$accommodationnames[$accommodation]</td></tr>\n";
+		echo "    <tr><td>Arrival:</td><td>$arrival</td></tr>\n";
+		echo "    <tr><td>Departure:</td><td>$departure</td></tr>\n";
+	}
+	elseif ($accommodation=="sharedroom") {
+		echo "    <tr><td>Shared room with:</td><td>$roommate</td></tr>\n";
+	}
+	else {
+		echo "<tr><td>Error: Unknown reservation status occured!</td></tr>\n";
+	} # if
+	echo "    </table>\n";
+	echo "   </td>\n";
+	echo "  </tr>\n";
+	echo "  </table>\n";
+	echo "\n";
+	echo " </td>\n";
+	echo "</tr>\n";
+	echo "</table>\n";
+	echo "<input type=\"hidden\" name=\"fparticipantid\" value=\"".htmlentities($id)."\">\n";
+	echo "</form>\n";
+} # showparticipant
+
+?>

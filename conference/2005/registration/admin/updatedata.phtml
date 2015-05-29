@@ -1,0 +1,74 @@
+<?
+function updatedata ($partid,$f) {					# update the registration data in the DB
+	global	$db, $hotel1rooms, $tutorials, $banquet, $lunchdates;
+
+	# first delete the old tutorials stored in part_tutorials, to insert afterwards the new selection
+	$result	=$db->query("DELETE FROM part_tutorial WHERE participantid=$partid");
+	# One entry per each selected tutorial, since the routine looks if the existing tutorials are selected, no false IDs can be saved
+	# the use of the $tutorials array prevents the storing if tutorials are not possible, since then the array will be empty
+	$result	=$db->query("SELECT * FROM tutorial");
+	while ($row=$result->fetchhash()) {
+		if (strlen($tutorials[$row["id"]])>0) {
+			$sql	="INSERT INTO part_tutorial (participantid,tutorialid) VALUES ($partid,".$row["id"].")";
+			$db->query($sql);
+		} # if
+	} # while
+
+	# first delete the old roles stored in part_role, to insert afterwards the new selection
+	$result	=$db->query("DELETE FROM part_role WHERE participantid=$partid");
+	# One entry per each selected role, since the routine looks if the existing roles are selected, no false IDs can be saved
+	$result	=$db->query("SELECT * FROM role");
+	while ($row=$result->fetchhash()) {
+		if ($f["role(".$row["id"].")"]==1) {
+			$sql	="INSERT INTO part_role (participantid,roleid) VALUES ($partid,".$row["id"].")";
+			$db->query($sql);
+		} # if
+	} # while
+
+
+	# first delete the old roles stored in part_role, to insert afterwards the new selection
+	$result	=$db->query("DELETE FROM part_lunch WHERE participantid=$partid");
+	foreach ($lunchdates as $lunchdate) {
+		$idx = "lunch".strtotime($lunchdate);
+		$sql	="INSERT INTO part_lunch (participantid,lunchdate,quantity) VALUES ($partid,'".$db->quote($lunchdate)."',".$db->quote($f[$idx]).")";
+		$db->query($sql);
+	}
+
+
+#	$hotel	="none";						# if no single or double room booked, no hotel is reserved
+#	if ($f["accommodation"]=="single" || $f["accommodation"]=="double") {
+#		# count the persons in the hotel excluding this one, to assign correctly on limit
+#		$result	=$db->query("SELECT id FROM participant WHERE hotel='rheinmain' AND id!=$partid");
+#		if ($result->numrows()<$hotel1rooms) {			# if rooms are available in first hotel, then book this one
+#			$hotel	="rheinmain";				# otherwise book the second hotel (overbookings can occur here)
+#		}
+#		else {
+#			$hotel	="konferenz";
+#		} # if
+#	} # if
+
+	$totalprice	=calculateprice($f);
+
+	# update participant table
+	$sql   ="UPDATE participant SET ".
+		"activity='".$db->quote($f["activity"])."', title='".$db->quote($f["title"])."', ".
+		"fname='".$db->quote($f["fname"])."', lname='".$db->quote($f["lname"])."', ".
+		"affiliation='".$db->quote($f["affiliation"])."', address='".$db->quote($f["address"])."', ".
+		"city='".$db->quote($f["city"])."', postalcode='".$db->quote($f["postalcode"])."', ".
+		"country='".$db->quote($f["country"])."', email='".$db->quote($f["email"])."', ".
+		"phone='".$db->quote($f["phone"])."', fax='".$db->quote($f["fax"])."', ".
+		"specialneeds='".$db->quote($f["specialneeds"])."', ".
+		"apspecialneeds='".$db->quote($f["apspecialneeds"])."', ".
+		"paymentmethod='".$db->quote($f["paymentmethod"])."', cardholder='".$db->quote($f["cardholder"])."', cardnumber='".$db->quote($f["cardnumber"])."', ".
+		"cardvalidmonth='".$db->quote($f["cardvalidmonth"])."', cardvalidyear='".$db->quote($f["cardvalidyear"])."', ".
+		"cardverification='".$db->quote($f["cardverification"])."', ".
+		"reservationtime='".$db->quote($f["reservationtime"])."', regtype='".$db->quote($f["regtype"])."', ".
+		"banquet='0', banquetadd='".$db->quote($f["banquetadd"])."', ".
+		"accommodation='".$db->quote($f["accommodation"])."', hotel='".$db->quote($f["hotel"])."', ".
+		"roommate='".$db->quote($f["roommate"])."', arrival='".$db->quote($f["arrival"])."', ".
+		"departure='".$db->quote($f["departure"])."', totalprice=".$db->quote(sprintf("%1.2f",$totalprice))." ".
+		"WHERE id=$partid";
+	$result	=$db->query($sql);
+	if (!$result) die("ERROR: Database error: ".$db->geterrorstr());
+} # updatedata
+?>

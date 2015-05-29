@@ -1,0 +1,81 @@
+.item {
+font-family:verdana;
+font-size:10pt;
+font-weight:bold;
+color:#1111AA;
+}
+.menu {
+font-family:verdana;
+font-size:11pt;
+color:#FF5555;
+text-decoration:underline;  
+}
+
+.title {
+font-family:verdana;
+font-size:12pt;
+color:#ff0000;
+}
+
+A.stdhref:link, A.stdhref:visited, A.stdhref:active 
+  { color:#7685FF;
+    text-decoration: none;  
+    font-family:verdana;
+    font-size:9pt;
+    font-weight:normal;
+  }
+A.stdhref:hover {color:#4957BB;
+    font-family:verdana;
+    font-size:9pt;
+    font-weight:normal;
+}
+
+A.menuhref:link, A.menuhref:visited, A.menuhref:active 
+  { color:#000000;
+    text-decoration: none;  
+    font-family:verdana;
+    font-size:11pt;
+    font-weight:normal;
+  }
+A.menuhref:hover {color:#666666;
+    font-family:verdana;
+    font-size:11pt;
+    font-weight:normal;
+}
+
+A.amenuhref:link, A.amenuhref:visited, A.amenuhref:active 
+  { color:#FF0000;
+    text-decoration: none;  
+    font-family:verdana;
+    font-size:11pt;
+    font-weight:bold;
+  }
+A.amenuhref:hover {
+    color:#AA3333;
+    font-family:verdana;
+    font-size:11pt;
+    font-weight:bold;
+}
+
+input.itext {
+    font-family:verdana;
+    font-size:9pt;
+    font-weight:normal;
+    width:60px;
+    height:20px;
+}
+
+input.stext {
+    font-family:verdana;
+    font-size:8pt;
+    font-weight:normal;
+    height:20px;
+}
+
+input.submit {
+    font-family:verdana;
+    font-size:8pt;
+    font-weight:normal;
+    height:22px;
+    width:70px;
+}

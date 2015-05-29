@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Demos :: AOSD.06</title>
+<link rel="stylesheet" href="../styles.css" type="text/css">
+</head>
+<body
+   bgcolor="White"
+   text="Black"
+   link="Blue"
+   vlink="Purple"
+   alink="Red"
+   style="margin-left:0; margin-top:0;">
+ 
+
+
+
+
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+  <!-- Page Header -->
+  <tr>
+    <td colspan="3" align="left" bgcolor="#D7E6BF"><table border="0" cellspacing="0" cellpadding="0" style="background-image: url(../img/banner_top.gif); background-repeat: no-repeat;">
+        <tr>
+          <td height="91" valign="bottom" align="left"><img src="../img/shim.gif" alt="">
+                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+              <tr>
+                <td width="126"><img src="../img/spacer126.gif" alt=""></td>
+                <td valign="top"><img src="../img/shim.gif" width="20" height="21" alt=""></td>
+                <td width="10" class="headerTab"><img src="../img/spacer10.gif" alt=""></td>
+                <td height="21"><img src="../img/spacer10.gif" alt=""></td><td height="21"><img src="../img/tab_left.gif" alt=""></td><td height="21" align="center" style="background-image: url(../img/tab.gif)" class="headerTabSelected" nowrap>AOSD Conference</td>
+<td height="21"><img src="../img/tab_right.gif" alt=""></td>              </tr>
+            </table>
+                      </td>
+              </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td align="left" valign="bottom" height="0" colspan="3"><img src="../img/banner_bottom.gif" alt=""></td>
+  </tr>
+  <!-- End Page Header -->
+  <tr>
+    <td bgcolor="#E9EFD9" align="left" valign="top" width="124">  <table border="0" cellspacing="0" cellpadding="5" width="124">
+<tr><td align="left" class="subnavTab"><a href="../index.html" class="subnavLink">AOSD.06</a></td></tr>
+<tr><td align="left" class="subnavTab"><a href="../registration.html" class="subnavLink">Registration</a></td></tr>
+<tr><td align="left" class="subnavTab"><a href="../program/" class="subnavLink">Program</a></td></tr>
+<tr><td align="left" class="subnavTab"><a href="../students/" class="subnavLink">Student Extravaganza</a></td></tr>
+<tr><td align="left" class="subnavTab"><a href="../publicity/" class="subnavLink">Promote AOSD.06</a></td></tr>
+<tr><td align="left" class="subnavTab"><a href="../local/" class="subnavLink">Local Information</a></td></tr>
+<tr><td align="left" class="subnavTab"><a href="../cfc/" class="subnavLink">Call For Contributions</a></td></tr>
+<tr><td align="left" class="subnavTab"><a href="../organization.html" class="subnavLink">Organization</a></td></tr>
+<tr><td align="left" class="subnavTab"><a href="../../" class="subnavLink">Past Conferences</a></td></tr>
+            </table>
+                </td>
+    <td align="right" valign="top" width="100%">&nbsp;<br>
+      <table border="0" cellspacing="20" cellpadding="0" width="100%">
+        <tr>
+          <td align="left" valign="top"><!-- Page Content goes here -->
+            <!--
+==================================================
+END HEADER
+==================================================
+-->
+            
+
+<a href="index.html"><b>demos</b></a>
+
+<h2>D5: PROSE - A middleware platform for dynamic adaptation</h2>
+
+<p>
+Angela Nicoar&atilde;, <i>Swiss Federal Institute of Technology Z&uuml;rich</i><br>
+Gustavo Alonso, <i>Swiss Federal Institute of Technology Z&uuml;rich</i><br>
+</p>
+
+<p>
+Wednesday, March 17, 11:30<br>
+Thursday, March 18, 12:00
+</p>
+
+<p>PROSE (PROgrammable extenSions of sErvices), an open source project 
+(<a href="http://prose.ethz.ch/" target="_blank">http://prose.ethz.ch/</a>), 
+is an adaptive middleware platform based on Java for 
+dynamic AOP which allows aspects to be woven, unwoven, or replaced at run time. 
+Woven into a program, an aspect may change several units of functionality. 
+Aspects are expressed in the same source language as the application (Java). 
+PROSE provides middleware tools that allow run time monitoring of remote 
+aspects. The PROSE workbench for weaving, unweaving and querying aspects is a 
+monitoring tool which displays information about what aspects are currently 
+inserted in the system, what join-points belong to each aspect, and what the 
+join-points of the system are. Embedded into an Eclipse plug-in, this tool is 
+also used to developing and running PROSE applications from Eclipse and allows 
+run time monitoring of remote aspects, and provides a creation wizard that helps 
+to create PROSE aspects.</p>
+
+<p>In this demonstration we present PROSE and its associated middleware tools. We 
+show the flexibility of PROSE and how it has been embedded into Eclipse, and 
+present a variety of examples of run time adaptation. In the first part of the 
+demonstration we show how to modify the behavior of a running application by 
+dynamically weaving an aspect that identifies places of interest in the 
+application. After each weaving operation, we show that the running application 
+has been adapted and we use the PROSE middleware tools to graphically display 
+the join-points matched by the woven aspect. In the second part of the 
+demonstration we show how easy is to create aspects that modify a program at run 
+time using the creation wizard of the PROSE Development Tools for Eclipse. When 
+an aspect is created, the user can select the PROSE crosscut types and 
+pointcutters from a list. Then the code template for a PROSE aspect that defines 
+an advice method and a poincut method will be generated. The aspects are then 
+woven remotely into different VMs. After the weaving operation, we show that the 
+running application has been adapted. In case of two running applications, we 
+show that the aspects can be cut and pasted between distinct VMs using the PROSE 
+workbench and also can be moved between distinct VMs by drag and drop using the 
+PROSE plug-in for Eclipse. We also show how to insert and withdraw aspects 
+transactionally. We start a transaction and then weave and unweave aspects 
+into/from different VMs.</p>
+
+<p>Aspect insertions and withdrawals won't be activated until the transaction is 
+committed. The transaction can also be aborted, leaving the application as if no 
+insertion or withdrawal ever took place.</p>
+
+
+            <!--
+==================================================
+START FOOTER
+==================================================
+-->
+            <br>
+&nbsp; <br>
+&nbsp;
+            <hr size="1">
+            Edited by the <a href="../organization.html">AOSD Conference Committee</a>.&nbsp; Send comments to: webmaster<img src="../img/z.gif" border="0" alt="@">aosd.net            <br>
+&nbsp; <br>
+&nbsp; </td>
+          <td valign="top">          </td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+</body></html>

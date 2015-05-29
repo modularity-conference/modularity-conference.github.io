@@ -1,0 +1,31 @@
+<p>
+<table class="entry" width="600">
+<tr>
+ <td class="head">Activities</td>
+</tr>
+<tr>
+ <td class="body">
+  <font<? if ($e["activity"]===true) echo " class=\"error\""; ?>>Please select one of the following:</font><br>
+  <ul>
+<?
+echo "   <table border=\"0\" cellspacing=\"0\">\n";
+echo "   <tr>\n";
+echo "    <td><input type=\"radio\" name=\"f[activity]\" value=\"conference\"";
+if ($f["activity"]=="conference") echo " checked";
+echo "></td>\n";
+echo "    <td style=\"vertical-align:bottom\">Conference</td>\n";
+# (includes workshop registration &amp; banquet; a student registration does not include the banquet)</td>\n";
+echo "   </tr>\n";
+echo "   <tr>\n";
+echo "    <td><input type=\"radio\" name=\"f[activity]\" value=\"tutonly\"";
+if ($f["activity"]=="tutonly") echo " checked";
+echo "></td>\n";
+echo "    <td style=\"vertical-align:bottom\">Tutorials Only</td>\n";
+echo "   </tr>\n";
+echo "   </table>\n";
+?>
+  </ul>
+ </td>
+</tr>
+</table>
+

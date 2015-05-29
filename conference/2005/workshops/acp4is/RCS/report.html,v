@@ -1,0 +1,28 @@
+head	1.1;
+access;
+symbols;
+locks
+	lorenz:1.1; strict;
+comment	@# @;
+
+
+1.1
+date	2004.11.25.15.36.55;	author lorenz;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@<h2>The 4th AOSD Workshop on Aspects, Components, and Patterns for
+Infrastructure Software (ACP4IS)</h2>
+
+Coming soon...
+@

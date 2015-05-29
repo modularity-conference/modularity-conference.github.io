@@ -1,0 +1,330 @@
+<!-- Generated Start -->
+<html>
+<head>
+<title>ACP4IS: Overview</title>
+<meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<meta name="generator" content="WebJinn/1.0">
+<LINK href='styles.css' rel=STYLESHEET type=text/css>
+
+</style>
+<script type="text/javascript" src="scripts/countdown_expanded.js" defer="defer"></script>
+</head>
+<body 
+   bgcolor="White"
+   text="Black"
+   link="Blue"
+   vlink="Purple"
+   alink="Red"
+   style="margin-left:0; 
+   margin-right:0;
+   xbackground-color:#9999FF;
+   margin-top:0;xbackground-image:url(img/background.gif);">
+
+<!-- start of page table -->
+
+<table width="100%" hight="100%" border="0" cellspacing="0" cellpadding="0">
+<!-- start of banner row -->
+<tr class="bannar">
+
+<!-- start of corner cells -->
+<td align="right" width="150" valign="middle" class="corner">
+<center>
+<h1><font class="corner"><font face="courier">ACP.4.IS:</font></h1>
+</center> </td xlign="right">
+<td align="right" width="15">&nbsp;&nbsp;</td align="right">
+<!-- end of corner cells -->
+
+<!-- start of banner -->
+<td width="90%" valign="middle">
+<h1><span style="font:20px Arial"><b><font color="#FFFFFF">
+&nbsp;&nbsp;&nbsp;Overview</font></b></h1>
+</td align="right"><!-- end of banner -->
+</tr><!-- end of banner row -->
+<tr class="bannar">
+<td class="corner">&nbsp;</td>
+<td>&nbsp;</td>
+<!--start tabs -->
+<td wrap>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" rules="none" frame="vsides">
+<tr>
+ <td width="1"><img src="img/spacer10.gif" alt=""></td>
+ <td valign="top"><img src="img/shim.gif" width="5" height="25" alt=""></td>
+ <td width="1" class="headerTab"><img src="img/spacer10.gif" alt=""></td>
+ <td class="headerTab" width="1"></td> 
+
+<td class="headerTab" width="10">|</td>
+
+
+
+ <td class="headerTab" nowrap><a href="http://aosd.net/2005/" class="headerLink">&nbsp;&nbsp;
+AOSD.05
+&nbsp;&nbsp;</a></td>
+
+<td class="headerTab" width="10">|</td>
+
+
+  <td width="1" bgcolor="#000000"><img src="img/shim.gif" alt=""></td>
+   <td class="headerTabSelected" nowrap>&nbsp;&nbsp;
+<a nohref="index.html"></a>
+    ACP4IS
+-<font size="-2">Overview</font>
+   &nbsp;&nbsp;</td>
+  <td width="1" bgcolor="#000000"><img src="img/shim.gif" alt=""></td>
+
+
+<td class="headerTab" width="10">|</td>
+
+
+
+ <td class="headerTab" nowrap><a href="http://aosd.net/2005/workshops/" class="headerLink">&nbsp;&nbsp;
+Other Workshops
+&nbsp;&nbsp;</a></td>
+
+<td class="headerTab" width="10">|</td>
+
+
+<td width="100%" class="headerTab" align="right"><a notarget="_blank" href="" class="printLink"><img src="img/printer.gif" border="0" align="top" alt="Printer Friendly"></a>&nbsp;&nbsp;&nbsp;</td>
+
+</tr>
+<!--
+<tr><td colspan="9" height="1" bgcolor="#000000"><img src="img/shim.gif" alt=""><
+/td><td height="1" bgcolor="#FFFFFF"><img src="img/shim.gif" alt=""></td><td colspan="17" height="1" bgcolor="#00O000"><img src="img/shim.gif" alt=""></td></tr>
+-->
+</table>
+</td></tr>
+
+
+<tr><!-- start of sidebar/body row -->
+<!-- start of sidebar cells -->
+<td align="right" width="150" valign="top" class="sidebar">
+<!-- start of sidebar table -->
+<table width="100%" hight="100%" border="0" cellspacing="0" cellpadding="3"
+       bgcolor="#ffffff">
+
+<tr><td align="right" class="subnavTabSelected">ACP4IS</td></tr>
+<tr><td align="right" class="subnavTabSelected"><img="img/subnav_line.gif" border="0" alt=""></td></tr>
+
+<!--start menuitem -->
+
+<tr><td class="headerTab" nowrap align="right">
+<img src="img/subnav_line.gif" border="0" alt="">
+<tr><td class="headerTab" nowrap align="right">
+<b><font color="#000000">
+Workshop
+</font></b>
+</td align="right"></tr>
+
+
+<tr><td align="right" class="subsubnavTabSelected">Home</td></tr>
+
+
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="cfp.shtml" class="subsubnavLink">Call for Papers</a>
+</td></tr>
+
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="submit.shtml" class="subsubnavLink">Authors' Instructions</a>
+</td></tr>
+
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="papers.shtml" class="subsubnavLink">Accepted Papers</a>
+</td></tr>
+
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="schedule.shtml" class="subsubnavLink">Workshop Schedule</a>
+</td></tr>
+
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="discussion.shtml" class="subsubnavLink">Discussion Groups</a>
+</td></tr>
+
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="report.shtml" class="subsubnavLink">Workshop Report</a>
+</td></tr>
+
+
+<tr><td class="headerTab">&nbsp;</td></tr>
+
+<tr><td class="headerTab" nowrap align="right">
+<img src="img/subnav_line.gif" border="0" alt="">
+<tr><td class="headerTab" nowrap align="right">
+<b><font color="#000000">
+Organization
+</font></b>
+</td align="right"></tr>
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="pc.shtml" class="subsubnavLink">Program Committee</a>
+</td></tr>
+
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="oc.shtml" class="subsubnavLink">Organizing Committee</a>
+</td></tr>
+
+
+<tr><td class="headerTab">&nbsp;</td></tr>
+
+<tr><td class="headerTab" nowrap align="right">
+<img src="img/subnav_line.gif" border="0" alt="">
+<tr><td class="headerTab" nowrap align="right">
+<b><font color="#000000">
+Past Meetings
+</font></b>
+</td align="right"></tr>
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="past/acp4is04/" class="subsubnavLink">ACP4IS 2004</a>
+</td></tr>
+
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="past/acp4is03/" class="subsubnavLink">ACP4IS 2003</a>
+</td></tr>
+
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="past/acp4is02/" class="subsubnavLink">ACP4IS 2002</a>
+</td></tr>
+
+
+<tr><td class="headerTab">&nbsp;</td></tr>
+
+<tr><td class="headerTab" nowrap align="right">
+<img src="img/subnav_line.gif" border="0" alt="">
+<tr><td class="headerTab" nowrap align="right">
+<b><font color="#000000">
+Email Us
+</font></b>
+</td align="right"></tr>
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="mailto:acp4is@aosd.info" class="subsubnavLink">Yvonne Coady</a>
+</td></tr>
+
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="submit.shtml" class="subsubnavLink">Submit</a>
+</td></tr>
+
+
+
+
+<tr><td align="right" class="subsubnavTab">
+<a href="http://edit.aosd.info" class="subsubnavLink">(edit page)</a>
+</td></tr>
+
+
+<tr><td class="headerTab">&nbsp;</td></tr>
+
+
+</table><!-- end of sidebar table -->
+</td align="right">
+<td align="right" width="15">&nbsp;&nbsp;</td align="right"><!--spacer-->
+<!-- end of sidebar cell -->
+<!-- start of body cell -->
+<td valign="top" width="90%" class="body"><br>
+
+   <table border="0" cellspacing="20" cellpadding="0" width="100%">
+   <tr>
+   <td align="left" valign="top">
+<!-- Generated End -->
+<!--#include virtual="index.html" -->
+<!-- Generated Start -->
+<a name="dates">
+<h2>Important Dates</h2>
+Submission Deadline was January 13, 2005 (closed)<br>
+<!--Notification of Acceptance was February 3, 2005 <br>-->
+<!--AOSD Early Registration Deadline: February 20, 2005<br>-->
+Camera-Ready Copy (CRC Deadline) Due: February 17, 2005<br> 
+Last day for hotel discount rate: March 1, 2005 (extended)<br>
+Workshop: <b>March 14, 2005</b><br>
+</td align="right"><!-- end of body cell -->
+</tr><!-- end of sidebar/body row -->
+</table><!-- end of page table -->
+
+
+</td align="right"><!-- end of body cell -->
+</tr><!-- end of sidebar/body row -->
+
+<tr>
+<td>&nbsp;
+<font size="-2">$Revision: 1.24 $</font>
+</td><td>&nbsp;</td>
+
+<td>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+
+<!-- <td width="150">&nbsp;&nbsp;&nbsp;</td> -->
+  
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://acp4is.aosd.info" class="headerLink">&nbsp;&nbsp;ACP4IS&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://dawis.informatik.uni-essen.de/events/AOM_AOSD2005/" class="headerLink">&nbsp;&nbsp;AOM&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a 
+nref="http://www.cs.iastate.edu/~leavens/FOAL/index-2005.shtml" href="http://foal.aosd.info" class="headerLink">&nbsp;&nbsp;FOAL&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://homepages.cwi.nl/~tourwe/late.html" class="headerLink">&nbsp;&nbsp;LATE&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://aosd.net/2005/workshops/daw/" class="headerLink">&nbsp;&nbsp;DAW&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|<td> 
+  <td class="headerTab" nowrap><a href="http://trese.cs.utwente.nl/early-aspects-AOSD2005/" class="headerLink">&nbsp;&nbsp;EA&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://www.daimi.au.dk/~eernst/splat05/" class="headerLink">&nbsp;&nbsp;SPLAT&nbsp;&nbsp;</a></td>
+
+ <td class="headerTab" width="10">|</td> 
+  <td class="headerTab" nowrap><a href="http://www.cs.colostate.edu/~rta/wtaop/" class="headerLink">&nbsp;&nbsp;WTAOP&nbsp;&nbsp;</a></td>
+ <td class="headerTab" width="10">|</td> 
+
+</tr>
+</table>
+
+</td align="right"><!-- end of body cell -->
+</tr><!-- end of sidebar/body row -->
+</table><!-- end of page table -->
+
+
+</body>
+</html>
+<!-- Generated End -->

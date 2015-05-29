@@ -1,0 +1,57 @@
+#aosdsurvey_parseError{
+    color:#aa0000;
+}
+
+.aosdsurvey_dataGroup{
+    margin:0.5em;
+    padding:10px;
+    width:800px;
+    background:#f6f6f6;
+    border-width:1px;
+    border-style:dotted;
+    border-color:#aaaaaa;
+}
+
+.aosdsurvey_dataElem{
+    margin:1em 10px;
+}
+
+.aosdsurvey_legend_question_number{
+    float:left;
+    font-weight:bold;
+    margin-right:2em;
+    margin-top:1em;
+}
+
+.aosdsurvey_legend_shortcut{
+    float:left;
+    margin-right:1em;
+}
+
+.aosdsurvey_dataElem_number{
+    float:left;
+    font-weight:bold;
+    margin-bottom:0.5em;
+}
+
+.aosdsurvey_dataElem_shortcut{
+    float:left;
+    margin-left:2em;
+}
+
+.aosdsurvey_dataElem_question{
+    display:inline;
+    margin-left:1em;
+    margin-bottom:1em;
+    padding-top:1em;
+    font-weight:bold;
+}
+
+.aosdsurvey_dataElem_weight{
+   clear:both;
+    padding-left:10px;
+}
+
+#aosdsurvey_submitResetButtons{
+    margin:20px;
+}

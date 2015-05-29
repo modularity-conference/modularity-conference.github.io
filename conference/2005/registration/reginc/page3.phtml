@@ -1,0 +1,47 @@
+<?
+
+# if one of the following pages are requested, then test if entered data of first page is valid
+if ($fsubmitbutton!=$page3continue && $fsubmitbutton!=$page3previous) {
+
+	# to not interfer with the checks above (depending on infos if other errors occured) check addi.-banq. indepently
+	if ($f["banquetadd"]<0 || $f["banquetadd"]>30 ) {		# check if valid integer format and in acceptable range
+		$e["banquetadd"]	=true;
+	} # if
+	
+} # if
+
+if ($stopoutput==false && (count($e)>0 || $fsubmitbutton==$page3continue || $fsubmitbutton==$page3previous)) {
+
+	$submitvalueprevious	=$page2previous;
+	$submitvaluecontinue	=$page5continue;
+	$stopoutput		=true;					# prevent further pages to be outputted!
+
+	if (count($e)>0) {
+		echo "<table width=\"600\">\n";
+		echo "<tr>\n";
+		echo " <td align=\"center\"><font class=\"error\">";
+		if ($e["numap"]===true) {				# output banquet error indepently from hotel error
+			echo "Please fill in the number of accompanying persons for which you are buying lunch tickets.<br>\n";
+		} # if
+		elseif ($e["nolunch"]===true) {				# output banquet error indepently from hotel error
+			echo "Please select which days the accompanying person(s) requires lunch tickets.<br>\n";
+		} # if
+		elseif ($e["banquetadd"]===true) {				# output banquet error indepently from hotel error
+			echo "Please fill in the amount of additional banquet tickets!<br>\n";
+		} # if
+		echo "</font></td>\n";
+		echo "</tr>\n";
+		echo "</table>\n";
+		echo "<br>\n";
+	} # if
+
+
+#	include("reginc/accperson.phtml");
+	include("reginc/banquet.phtml");
+	include("reginc/specialneeds.phtml");
+
+	$footertext	="Please press &quot;".htmlentities($submitvaluecontinue)."&quot; to proceed.\n".
+			 "If necessary, you will be able to modify your registration data before submitting.\n";
+} # if
+
+?>

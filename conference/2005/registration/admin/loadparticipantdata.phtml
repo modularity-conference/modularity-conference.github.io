@@ -1,0 +1,69 @@
+<?
+function loadparticipantdata ($participantid) {
+	global	$db;
+
+	$result	=$db->query("SELECT * FROM participant WHERE id=$participantid");
+# Show a error message that the participant was not found!!!
+	if ($result->numrows()<=0) return;
+
+	$row=$result->fetchhash();
+	$f["id"]		=$row["id"];
+	$f["activity"]		=$row["activity"];
+	$f["regtype"]		=$row["regtype"];
+	$f["fname"]		=$row["fname"];
+	$f["lname"]		=$row["lname"];
+	$f["title"]		=$row["title"];
+	$f["affiliation"]	=$row["affiliation"];
+	$f["address"]		=$row["address"];
+	$f["city"]		=$row["city"];
+	$f["postalcode"]	=$row["postalcode"];
+	$f["country"]		=$row["country"];
+	$f["email"]		=$row["email"];
+	$f["phone"]		=$row["phone"];
+	$f["fax"]		=$row["fax"];
+	$f["specialneeds"]	=$row["specialneeds"];
+	$f["totalprice"]	=$row["totalprice"];
+	$f["oldtotalprice"]	=$row["totalprice"];			# for checking if price has changed after modify!
+	$f["paymentmethod"]	=$row["paymentmethod"];
+	$f["cardholder"]	=$row["cardholder"];
+	$f["cardnumber"]	=$row["cardnumber"];
+	$f["cardvalidmonth"]	=$row["cardvalidmonth"];
+	$f["cardvalidyear"]	=$row["cardvalidyear"];
+	$f["cardverification"]	=$row["cardverification"];
+	$f["regdate"]		=$row["regdate"];
+	$f["reservationtime"]	=$row["reservationtime"];
+	$f["banquet"]		=$row["banquet"];
+	$f["banquetadd"]	=$row["banquetadd"];
+	$f["apspecialneeds"]	=$row["apspecialneeds"];
+	$f["accommodation"]	=$row["accommodation"];
+	$f["hotel"]		=$row["hotel"];
+	$f["roommate"]		=$row["roommate"];
+	$f["arrival"]		=$row["arrival"];
+	$f["departure"]		=$row["departure"];
+	$f["paymentreceived"]=$row["paymentreceived"];
+
+	# load tutorial data of the participant
+	$sql			="SELECT * FROM part_tutorial WHERE participantid=".$f["id"];
+	$result			=$db->query($sql);
+	while ($row=$result->fetchhash()) {
+		$f["tutorial(".$row["tutorialid"].")"]	=1;
+	} # while
+
+	# load tutorial data of the participant
+	$sql			="SELECT * FROM part_lunch WHERE participantid=".$f["id"];
+	$result			=$db->query($sql);
+	while ($row=$result->fetchhash()) {
+		$idx = "lunch".strtotime($row["lunchdate"]);
+		$f[$idx]=$row["quantity"];
+	} # while
+
+	# load role data of the participant
+	$sql			="SELECT * FROM part_role WHERE participantid=".$f["id"];
+	$result			=$db->query($sql);
+	while ($row=$result->fetchhash()) {
+		$f["role(".$row["roleid"].")"]		=1;
+	} # while
+
+	return $f;
+} # loadparticipantdata
+?>

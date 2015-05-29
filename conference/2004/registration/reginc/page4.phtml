@@ -1,0 +1,63 @@
+<?
+
+# if one of the following pages are requested, then test if entered data of first page is valid
+if ($fsubmitbutton!=$page4continue && $fsubmitbutton!=$page4previous) {
+	# check if the given accommodation type is valid
+	if (in_array($f["accommodation"],$accommodations)!=true) $e["accommodation"]=true;
+
+	# take a look if the date variables have a valid value, just check if a hotel room was booked
+	if ($f["accommodation"]!="none") {
+		if (in_array($f["arrival"],$arrivaldates)!=true) $e["arrival"]=true;
+		if (in_array($f["departure"],$departuredates)!=true) $e["departure"]=true;
+		if (@count($e)==0 && strtotime($f["departure"])<strtotime($f["arrival"])) $e["dateillogical"]=true;
+		if (@count($e)==0 && strtotime($f["departure"])==strtotime($f["arrival"])) $e["datesimilar"]=true;
+	} # if
+
+} # if
+
+if ($stopoutput==false && (count($e)>0 || $fsubmitbutton==$page4continue || $fsubmitbutton==$page4previous)) {
+
+	$submitvalueprevious	=$page3previous;
+	$submitvaluecontinue	=$page5continue;
+	$stopoutput		=true;					# prevent further pages to be outputted!
+
+	if (count($e)>0) {
+		echo "<table width=\"600\">\n";
+		echo "<tr>\n";
+		echo " <td align=\"center\"><font class=\"error\">";
+		if ($e["dateillogical"]===true) {
+			echo "The arrival date is after the departure date!";
+		}
+		elseif ($e["datesimilar"]===true) {
+			echo "A hotel is just necessary if you stay overnight!";
+		}
+		elseif ($e["accommodation"]===true) {
+			echo "Please select your form of accommodation!\n";
+		}
+		elseif ($e["arrival"]===true || $e["departure"]===true) {
+			echo "Please fill out the highlighted fields!";
+		} # if
+		echo "</font></td>\n";
+		echo "</tr>\n";
+		echo "</table>\n";
+		echo "<br>\n";
+	} # if
+
+
+	if ($f["regtype"] == "student" || $f["regtype"] == "volunteer") {
+		include("reginc/studentaccomodation.phtml");
+		include("reginc/hotel.phtml");	
+	}
+	elseif ($f["regtype"] == "epsrc") {
+		include("reginc/studentaccomodation.phtml");
+	}
+	else {
+		include("reginc/hotel.phtml");
+		include("reginc/studentaccomodation.phtml");	
+	}
+
+	$footertext	="Please press &quot;".htmlentities($submitvaluecontinue)."&quot; to proceed.\n".
+			 "If necessary, you will be able to modify your registration data before submitting.\n";
+} # if
+
+?>

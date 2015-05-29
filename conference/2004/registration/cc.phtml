@@ -1,0 +1,360 @@
+<?
+
+#	Based on Melvyn Myers program. Rewritten in PHP by Wojciech Tryc
+#	Many thanks to Joe Ghaby joseph@kanatek.ca for help in debugging.
+#	Person to blame wojtek@tryc.on.ca. I am not responsible for any loss
+#	or demage which may be effect of using this program.
+#
+# 17.10.98 auf PHP3 portiert (Victor Burwitz)
+# 23.10.98 aus reg_replace -> ereg_replace,  reg_match -> ereg
+#          returns geaendert
+
+function CC ($card,$card_no) {
+	# Remove spaces and dashes in the Card Number
+	$card_no	=ereg_replace(" ","",$card_no);
+	$card_no	=ereg_replace("-","",$card_no);	
+	$length		=strlen($card_no);
+
+	# Check for illegal characters in the Card Number
+#	$res		=ereg("^\([0-9]*\)$", $card_no);		# das Orginal ist wohl nicht korrekt fuer PHP3 (keine Ahnung wieso PHP2 das gefressen hat)
+	$res		=ereg("^[0-9]*$", $card_no);
+
+        if ($res==0):							# Kartennummer ist ungueltig wenn sie nicht nur aus einer Zahl, " " und - besteht
+		return 0;
+                exit;
+	else:
+		if($card=="visa" && $length==13):
+			$cc0 = substr($card_no,0,1);
+			SetType($cc0,"integer");
+			$cc1 = substr($card_no,1,1);
+			SetType($cc1,"integer");
+			$cc2 = substr($card_no,2,1);
+			SetType($cc2,"integer");
+			$cc3 = substr($card_no,3,1);
+			SetType($cc3,"integer");
+			$cc4 = substr($card_no,4,1);
+			SetType($cc4,"integer");
+			$cc5 = substr($card_no,5,1);
+			SetType($cc5,"integer");
+			$cc6 = substr($card_no,6,1);
+			SetType($cc6,"integer");
+			$cc7 = substr($card_no,7,1);
+			SetType($cc7,"integer");
+			$cc8 = substr($card_no,8,1);
+			SetType($cc8,"integer");
+			$cc9 = substr($card_no,9,1);
+			SetType($cc9,"integer");
+			$cc10 = substr($card_no,10,1);
+			SetType($cc10,"integer");
+			$cc11 = substr($card_no,11,1);
+			SetType($cc11,"integer");
+			$cc12 = substr($card_no,12,1);	
+			SetType($cc12,"integer");
+
+			$cc1a = $cc1 * 2;
+			$cc3a = $cc3 * 2;
+			$cc5a = $cc5 * 2;
+			$cc7a = $cc7 * 2;
+			$cc9a = $cc9 * 2;
+			$cc11a = $cc11 * 2;
+
+			if($cc1a >= 10):
+				$cc1b = substr($cc1a,0,1);
+				SetType($cc1b,"integer");
+				$cc1c = substr($cc1a,1,1);
+				SetType($cc1c,"integer");
+				$cc1 = $cc1b+$cc1c;
+			else:
+				$cc1 = $cc1a;
+			endif;
+			if($cc3a >= 10):
+				$cc3b = substr($cc3a,0,1);
+				SetType($cc3b,"integer");
+                                $cc3c = substr($cc3a,1,1);
+				SetType($cc3c,"integer");
+                                $cc3 = $cc3b+$cc3c;
+			else:
+				$cc3 = $cc3a;
+			endif;
+			if($cc5a >= 10):
+                                $cc5b = substr($cc5a,0,1);
+				SetType($cc5b,"integer");
+                                $cc5c = substr($cc5a,1,1);
+				SetType($cc5c,"integer");
+                                $cc5 = $cc5b+$cc5c;
+                        else:
+                                $cc5 = $cc5a;
+                        endif;
+			if($cc7a >= 10):
+                                $cc7b = substr($cc7a,0,1);
+				SetType($cc7b,"integer");
+                                $cc7c = substr($cc7a,1,1);
+				SetType($cc7c,"integer");
+                                $cc7 = $cc7b+$cc7c;
+                        else:
+                                $cc7 = $cc7a;
+                        endif;
+			if($cc9a >= 10):
+                                $cc9b = substr($cc9a,0,1);
+				SetType($cc9b,"integer");
+                                $cc9c = substr($cc9a,1,1);
+				SetType($cc9c,"integer");
+                                $cc9 = $cc9b+$cc9c;
+                        else:
+                                $cc9 = $cc9a;
+                        endif;
+			if($cc11a >= 10):
+                                $cc11b = substr($cc11a,0,1);
+				SetType($cc11b,"integer");
+                                $cc11c = substr($cc11a,1,1);
+				SetType($cc11c,"integer");
+                                $cc11 = $cc11b+$cc11c;
+                        else:
+                                $cc11 = $cc11a;
+                        endif;
+			$val = $cc0+$cc1+$cc2+$cc3+$cc4+$cc5+$cc6+$cc7+$cc8+$cc9+$cc10+$cc11+$cc12;
+			if(substr($val,1,1) != 0):
+				return 0;
+                		exit;
+			endif;
+
+		elseif(($card=="visa" && $length==16) || ($card=="mastercard" && $length==16)):
+                        $cc0 = substr($card_no,0,1);
+			SetType($cc0,"integer");
+                        $cc1 = substr($card_no,1,1);
+			SetType($cc1,"integer");
+                        $cc2 = substr($card_no,2,1);
+			SetType($cc2,"integer");
+                        $cc3 = substr($card_no,3,1);
+			SetType($cc3,"integer");
+                        $cc4 = substr($card_no,4,1);
+			SetType($cc4,"integer");
+                        $cc5 = substr($card_no,5,1);
+			SetType($cc5,"integer");
+                        $cc6 = substr($card_no,6,1);
+			SetType($cc6,"integer");
+                        $cc7 = substr($card_no,7,1);
+			SetType($cc7,"integer");
+                        $cc8 = substr($card_no,8,1);
+			SetType($cc8,"integer");
+                        $cc9 = substr($card_no,9,1);
+			SetType($cc9,"integer");
+                        $cc10 = substr($card_no,10,1);
+			SetType($cc10,"integer");
+                        $cc11 = substr($card_no,11,1);
+			SetType($cc11,"integer");
+                        $cc12 = substr($card_no,12,1);
+			SetType($cc12,"integer");
+			$cc13 = substr($card_no,13,1);
+			SetType($cc13,"integer");
+			$cc14 = substr($card_no,14,1);
+			SetType($cc14,"integer");
+			$cc15 = substr($card_no,15,1);
+			SetType($cc15,"integer");
+
+				
+			$cc0a = $cc0 * 2;
+                        $cc2a = $cc2 * 2;
+                        $cc4a = $cc4 * 2;
+                        $cc6a = $cc6 * 2;
+                        $cc8a = $cc8 * 2;
+                        $cc10a = $cc10 * 2;
+			$cc12a = $cc12 * 2;
+			$cc14a = $cc14 * 2;
+
+			if($cc0a >= 10):
+                                $cc0b = substr($cc0a,0,1);
+				SetType($cc0b,"integer");
+                                $cc0c = substr($cc0a,1,1);
+				SetType($cc0c,"integer");
+                                $cc0 = $cc0b+$cc0c;
+                        else:
+                                $cc0 = $cc0a;
+                        endif;
+			if($cc2a >= 10):
+                                $cc2b = substr($cc2a,0,1);
+				SetType($cc2b,"integer");
+                                $cc2c = substr($cc2a,1,1);
+				SetType($cc2c,"integer");
+                                $cc2 = $cc2b+$cc2c;
+                        else:
+                                $cc2 = $cc2a;
+                        endif;
+			if($cc4a >= 10):
+                                $cc4b = substr($cc4a,0,1);
+				SetType($cc4b,"integer");
+                                $cc4c = substr($cc4a,1,1);
+				SetType($cc4c,"integer");
+                                $cc4 = $cc4b+$cc4c;
+                        else:
+                                $cc4 = $cc4a;
+                        endif;
+			if($cc6a >= 10):
+                                $cc6b = substr($cc6a,0,1);
+				SetType($cc6b,"integer");
+                                $cc6c = substr($cc6a,1,1);
+				SetType($cc6c,"integer");
+                                $cc6 = $cc6b+$cc6c;
+                        else:
+                                $cc6 = $cc6a;
+                        endif;
+			if($cc8a >= 10):
+                                $cc8b = substr($cc8a,0,1);
+				SetType($cc8b,"integer");
+                                $cc8c = substr($cc8a,1,1);
+				SetType($cc8c,"integer");
+                                $cc8 = $cc8b+$cc8c;
+                        else:
+                                $cc8 = $cc8a;
+                        endif;
+			if($cc10a >= 10):
+                                $cc10b = substr($cc10a,0,1);
+				 SetType($cc10b,"integer");
+                                $cc10c = substr($cc10a,1,1);
+				 SetType($cc10c,"integer");
+                                $cc10 = $cc10b+$cc10c;
+                        else:
+                                $cc10 = $cc10a;
+                        endif;
+			if($cc12a >= 10):
+                                $cc12b = substr($cc12a,0,1);
+				SetType($cc12b,"integer");
+                                $cc12c = substr($cc12a,1,1);
+				SetType($cc12c,"integer");
+                                $cc12 = $cc12b+$cc12c;
+                        else:
+                                $cc12 = $cc12a;
+                        endif;
+			if($cc14a >= 10):
+                                $cc14b = substr($cc14a,0,1);
+				SetType($cc14b,"integer");
+                                $cc14c = substr($cc14a,1,1);
+				SetType($cc14c,"integer");
+                                $cc14 = $cc14b+$cc14c;
+                        else:
+                                $cc14 = $cc14a;
+                        endif;
+			$val = $cc0+$cc1+$cc2+$cc3+$cc4+$cc5+$cc6+$cc7+$cc8+$cc9+$cc10+$cc11+$cc12+$cc13+$cc14+$cc15;
+                        if(substr($val,1,1) != 0):
+				return 0;
+				exit; 
+                        endif;
+		elseif($card=="amex" && $length==15):
+                        $cc0 = substr($card_no,0,1);
+			SetType($cc0,"integer");
+                        $cc1 = substr($card_no,1,1);
+			SetType($cc1,"integer");
+                        $cc2 = substr($card_no,2,1);
+			SetType($cc2,"integer");
+                        $cc3 = substr($card_no,3,1);
+			SetType($cc3,"integer");
+                        $cc4 = substr($card_no,4,1);
+			SetType($cc4,"integer");
+                        $cc5 = substr($card_no,5,1);
+			SetType($cc5,"integer");
+                        $cc6 = substr($card_no,6,1);
+			SetType($cc6,"integer");
+                        $cc7 = substr($card_no,7,1);
+			SetType($cc7,"integer");
+                        $cc8 = substr($card_no,8,1);
+			SetType($cc8,"integer");
+                        $cc9 = substr($card_no,9,1);
+			SetType($cc9,"integer");
+                        $cc10 = substr($card_no,10,1);
+			SetType($cc10,"integer");
+                        $cc11 = substr($card_no,11,1);
+			SetType($cc11,"integer");
+                        $cc12 = substr($card_no,12,1);
+			SetType($cc12,"integer");
+			$cc13 = substr($card_no,13,1);
+			SetType($cc13,"integer");
+			$cc14 = substr($card_no,14,1);
+			SetType($cc14,"integer");
+
+                        $cc1a = $cc1 * 2;
+                        $cc3a = $cc3 * 2;
+                        $cc5a = $cc5 * 2;
+                        $cc7a = $cc7 * 2;
+                        $cc9a = $cc9 * 2;
+                        $cc11a = $cc11 * 2;
+			$cc13a = $cc13 * 2;
+
+			if($cc1a >= 10):
+                                $cc1b = substr($cc1a,0,1);
+				SetType($cc1b,"integer");
+                                $cc1c = substr($cc1a,1,1);
+				SetType($cc1c,"integer");
+                                $cc1 = $cc1b+$cc1c;
+                        else:
+                                $cc1 = $cc1a;
+                        endif;
+                        if($cc3a >= 10):
+                                $cc3b = substr($cc3a,0,1);
+				SetType($cc3b,"integer");
+                                $cc3c = substr($cc3a,1,1);
+				SetType($cc3c,"integer");
+                                $cc3 = $cc3b+$cc3c;
+                        else:
+                                $cc3 = $cc3a;
+                        endif;
+                        if($cc5a >= 10):
+                                $cc5b = substr($cc5a,0,1);
+				SetType($cc5b,"integer");
+                                $cc5c = substr($cc5a,1,1);
+				SetType($cc5c,"integer");
+                                $cc5 = $cc5b+$cc5c;
+                        else:
+                                $cc5 = $cc5a;
+                        endif;
+
+			if($cc7a >= 10):
+                                $cc7b = substr($cc7a,0,1);
+				SetType($cc7b,"integer");
+			        $cc7c = substr($cc7a,1,1);
+				SetType($cc7c,"integer");
+                                $cc7 = $cc7b+$cc7c;
+                        else:
+                                $cc7 = $cc7a;
+                        endif;
+                        if($cc9a >= 10):
+                                $cc9b = substr($cc9a,0,1);
+				SetType($cc9b,"integer");
+                                $cc9c = substr($cc9a,1,1);
+				SetType($cc9c,"integer");
+                                $cc9 = $cc9b+$cc9c;
+                        else:
+                                $cc9 = $cc9a;
+                        endif;
+                        if($cc11a >= 10):
+                                $cc11b = substr($cc11a,0,1);
+				SetType($cc11b,"integer");
+                                $cc11c = substr($cc11a,1,1);
+				SetType($cc11c,"integer");
+                                $cc11 = $cc11b+$cc11c;
+                        else:
+                                $cc11 = $cc11a;
+                        endif;
+			if($cc13a >= 10):
+                                $cc13b = substr($cc13a,0,1);
+				SetType($cc13b,"integer");
+                                $cc13c = substr($cc13a,1,1);
+				SetType($cc13c,"integer");
+                                $cc13 = $cc13b+$cc13c;
+                        else:
+                                $cc13 = $cc13a;
+                        endif;
+			 $val = $cc0+$cc1+$cc2+$cc3+$cc4+$cc5+$cc6+$cc7+$cc8+$cc9+$cc10+$cc11+$cc12+$cc13+$cc14;
+                        if(substr($val,1,1)!=0):
+				return 0;
+				exit;
+                        endif;
+		else:
+			return 0;
+                	exit;
+		endif;
+	endif;
+
+	return 1;
+	exit;
+} # CC
+?>

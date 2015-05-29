@@ -1,0 +1,49 @@
+<?
+$banquet		=0;
+if ( $f["regtype"]=="regular" || $f["regtype"]=="comp" || $f["regtype"]=="volunteer") {	# find out if banquet is included
+	$banquet	=1;
+} # if
+?>
+
+<p>
+<table class="entry" width="600">
+<tr>
+ <td class="head"><? if ($banquet==1) echo "Additional "; ?>Conference Banquet Ticket</td>
+</tr>
+<tr>
+ <td class="body">
+<?
+
+		echo "  The Conference Banquet takes place on ".date($dateformatban,strtotime($banquetdate))."<br>\n";
+
+		if ($banquet==1) {					# tell user if banquet is already included
+			echo $regtypename[$f["regtype"]]." registration includes <b>1</b> Banquet ticket.\n";
+			echo "However you can buy an additional ticket if needed.\n";
+#			echo "  You can also book additional banquet tickets later.\n";
+		}
+		else {
+			echo $regtypename[$f["regtype"]]." registration <b>does not</b> include a Banquet ticket."
+				." However, you can buy a ticket for yourself.  An additional ticket"
+				." may be purchased for an accompanying person.\n";
+#			echo "  You can also book additional banquet tickets later.\n";
+		} # if
+?>
+
+  <p>
+  <center>
+  <select name="f[banquetadd]">
+<option value="0"<? if ($f["banquetadd"]==0) echo " selected";?>>0</option>
+<option value="1"<? if ($f["banquetadd"]==1) echo " selected";?>>1</option>
+<option value="2"<? if ($f["banquetadd"]==2) echo " selected";?>>2</option>
+</select>
+  
+   <font<? if ($e["banquetadd"]===true) echo " class=\"error\""; ?>>
+    <? if ($banquet==1) echo "Additional c"; else echo "C"; ?>onference banquet ticket(s)
+    <? echo price($banquetprice); ?>
+   </font>
+  </center>
+
+  <p>
+ </td>
+</tr>
+</table>

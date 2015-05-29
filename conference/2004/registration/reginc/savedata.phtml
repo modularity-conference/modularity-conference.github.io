@@ -1,0 +1,51 @@
+<?
+
+function savedata ($partid,$totalprice) {				# save the registration data in the DB
+	global	$db, $f, $hotel1rooms, $timestamp, $reservationtime, $tutorials, $banquet, $lunchdates;
+
+	$regdate	=date("Y-m-d H:i:s", $timestamp);
+
+	# One entry per each selected tutorial, since the routine looks if the existing tutorials are selected, no false IDs can be saved
+	# the use of the $tutorials array prevents the storing if tutorials are not possible, since then the array will be empty
+	$result	=$db->query("SELECT * FROM tutorial");
+	while ($row=$result->fetchhash()) {
+		if (strlen($tutorials[$row["id"]])>0) {
+			$sql	="INSERT INTO part_tutorial (participantid,tutorialid) VALUES ($partid,".$row["id"].")";
+			$db->query($sql);
+		} # if
+	} # while
+
+	foreach ($lunchdates as $lunchdate) {
+		$idx = "lunch".strtotime($lunchdate);
+		$sql	="INSERT INTO part_lunch (participantid,lunchdate,quantity) VALUES ($partid,'".$db->quote($lunchdate)."',".$db->quote($f[$idx]).")";
+		$db->query($sql);
+	}
+
+
+	$hotel	="none";						# if no single or double room booked, no hotel is reserved
+
+	# insert in participant table
+	$sql   ="INSERT INTO participant (id,activity,title,fname,lname,affiliation,address,city,".
+		"postalcode,country,email,phone,fax,specialneeds,".
+		"paymentmethod,cardholder,cardnumber,cardvalidmonth,cardvalidyear,cardverification,".
+		"regdate,reservationtime,regtype,banquet,banquetadd,apspecialneeds,".
+		"accommodation,hotel,roommate,arrival,departure,totalprice) ".
+		"VALUES ($partid,'".$db->quote($f["activity"])."','".$db->quote($f["title"])."',".
+		"'".$db->quote($f["fname"])."','".$db->quote($f["lname"])."',".
+		"'".$db->quote($f["affiliation"])."','".$db->quote($f["address"])."',".
+		"'".$db->quote($f["city"])."','".$db->quote($f["postalcode"])."','".$db->quote($f["country"])."',".
+		"'".$db->quote($f["email"])."','".$db->quote($f["phone"])."','".$db->quote($f["fax"])."',".
+		"'".$db->quote($f["specialneeds"])."',".
+		"'".$db->quote($f["paymentmethod"])."','".$db->quote($f["cardholder"])."','".$db->quote($f["cardnumber"])."',".
+		"'".$db->quote($f["cardvalidmonth"])."','".$db->quote($f["cardvalidyear"])."','".$db->quote($f["cardverification"])."',".
+		"'".$db->quote($regdate)."','".$db->quote($reservationtime)."','".$db->quote($f["regtype"])."',".
+		"'".$db->quote($banquet)."','".$db->quote($f["banquetadd"])."','".$db->quote($f["apspecialneeds"])."',".
+		"'".$db->quote($f["accommodation"])."','".$db->quote($hotel)."','".$db->quote($f["roommate"])."',".
+		"'".$db->quote($f["arrival"])."','".$db->quote($f["departure"])."',".
+		$db->quote(sprintf("%1.2f",$totalprice)).")";
+
+	$result	=$db->query($sql);
+	if (!$result) die("ERROR: Database error: ".$db->geterrorstr());
+} # savedata
+
+?>

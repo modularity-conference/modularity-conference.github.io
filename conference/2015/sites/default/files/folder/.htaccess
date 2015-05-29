@@ -1,0 +1,4 @@
+AuthUserFile /.htpasswd 
+AuthName "Please Log In" 
+AuthType Basic
+Require valid-user

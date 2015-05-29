@@ -1,0 +1,24 @@
+<?php
+
+if ($_SERVER["SERVER_PORT"]==80) {
+	
+	$httpsurl = "https://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
+?>
+<html>
+<head>
+<meta http-equiv="Refresh" CONTENT="5; URL=<?php echo $httpsurl; ?>">
+</head>
+<body>
+This site can only be accessed using https. Click 
+<a href="<?php echo $httpsurl; ?>">here</a> 
+to continue or wait 5 seconds and you will be redirected automatically. 
+<?php echo $_SERVER["SERVER_PORT"]; ?>
+</body>
+</html>
+
+<?php
+
+   exit;
+}
+
+?>
