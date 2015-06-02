@@ -73,10 +73,11 @@ Papers submitted to the **Modularity Visions** track are examined
 as scientific research proposals discussing compelling
 preliminary results or worked-out prototypes or proposals for sound
 future experimental or analytical assessments and interpretation
-of data.  <!-- The use of worked-out prototypes to support new
-ideas is strongly encouraged. --> The scope of Modularity Visions
-is broad and open to submissions from all areas of computer
-science.
+of data.
+<!-- The use of worked-out prototypes to support new
+ideas is strongly encouraged. -->
+The scope of Modularity Visions is broad and open to submissions from all areas
+of computer science.
 
 ### Submissions, Selection Process, and Proceedings
 
