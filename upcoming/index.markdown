@@ -5,7 +5,7 @@ featured: The preliminary Call for Papers for Modularity 2016 is available
 
 ---
 
-University of Málaga, Spain \\
+University of Málaga, Spain \\
 March 14--18, 2016 \\
 _(Dates to be finalized)_ \\
 <http://2016.modularity.info/>
@@ -65,16 +65,18 @@ problem formulations, novelty and sophistication of proposed solutions, clarity
 and significance of contributions, and correct characterization of work in
 relation to existing knowledge.
 
-Papers submitted to the Research Results track should present research results
-supported by proper design and execution of experimental or analytical
+Papers submitted to the **Research Results** track should present research
+results supported by proper design and execution of experimental or analytical
 assessments and sound interpretation of data.
 
-Papers submitted to the Modularity Visions track are examined as scientific
-research proposals discussing compelling preliminary results, proposals for
-sound future experimental or analytical assessments and interpretation of data.
-The use of worked-out prototypes to support new ideas is strongly encouraged.
-The scope of Modularity Visions is broad and open to submissions from all areas
-of computer science.
+Papers submitted to the **Modularity Visions** track are examined
+as scientific research proposals discussing compelling
+preliminary results or worked-out prototypes or proposals for sound
+future experimental or analytical assessments and interpretation
+of data.  <!-- The use of worked-out prototypes to support new
+ideas is strongly encouraged. --> The scope of Modularity Visions
+is broad and open to submissions from all areas of computer
+science.
 
 ### Submissions, Selection Process, and Proceedings
 
