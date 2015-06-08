@@ -18,7 +18,7 @@ Past editions of Modularity/AOSD:
     Linux Kernel Device Drivers_ by Leonardo  Passos, Jesús  Padilla, Thorsten
     Berger, Sven  Apel, Krzysztof  Czarnecki, and Marco  Valente
   * Most influential paper award: _Mylar: A Degree-of-interest Model for IDEs_ by
-    Mik Kersten, and Gail C. Murphy (AOSD 2005)
+    Mik Kersten and Gail C. Murphy (AOSD 2005)
   * Proceedings:
     [ACM Digital Library](http://dl.acm.org/citation.cfm?id=2724525)
   * Companion:
