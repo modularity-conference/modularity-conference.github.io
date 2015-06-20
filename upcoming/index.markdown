@@ -130,7 +130,7 @@ the ACM Digital Library.
  * cost-benefit models of modularity mechanisms and techniques
  * usability of modularity mechanisms
  * modularity supported by tools, such as view extraction, visualization, recommendation, and refactoring tools
- * multi-dimensional separation of concerns such as aspect-, feature-, and context-oriented programmings
+ * multi-dimensional separation of concerns such as aspect-, feature-, and context-oriented programming
 
 ### Important Dates
 
