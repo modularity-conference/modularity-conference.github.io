@@ -167,10 +167,45 @@ Modularity 2016 early registration
 
 #### Research Results
 
-_(To be finalized)_
+_(In formation)_
 
+Peter D. Mosses, Swansea University (<"http://www.cs.swansea.ac.uk/%7Ecspdm/">)
+
+<a href="https://cs.uwaterloo.ca/%7Ejmatlee/">Jo Atlee</a>, University of Waterloo
+
+Salva Trujillo, IK4-IKERLAN
+
+<a href="http://gray.cs.ua.edu">Jeff Gray</a>, University of Alabama
+
+<a href="http://www.onekin.org/content/oscar-diaz">Oscar Diaz</a>, University of the Basque Country
+
+<a href="http://www.infosun.fim.uni-passau.de/spl/people-nsiegmund.php">Norbert Siegmund</a>, University of Passau
+
+<a href="http://www.guidosalvaneschi.com">Guido Salvaneschi</a>, Technical University of Darmstadt
+
+<a href="http://smaragd.org">Yannis Smaragdakis</a>, University of Athens
+
+<a href="http://people.cs.vt.edu/%7Etilevich/">Eli Tilevich</a>, Virginia Tech
+
+<a href="http://www.inrialpes.fr/pop-art/people/fradet">Pascal Fradet</a>, NRIA Grenoble
+
+<a href="http://www.cs.iastate.edu/%7Ehridesh/">Hridesh Rajan</a>, Iowa State University
+
+<a href="http://www.csg.ci.i.u-tokyo.ac.jp/%7Echiba/">Shigeru Chiba</a>, The University of Tokyo
+
+<a href="http://www.inf.ucv.cl/%7Eifigueroa">Ismael Figueroa</a>, Pontificia Universidad Católica de Valparaíso
+
+<a href="http://www.research.lancs.ac.uk/portal/en/people/awais-rashid">Awais Rashid</a>, Lancaster University, UK
+
+<a href="http://www.steffen-zschaler.de/">Steffen Zschaler</a>, King's College London
+
+<a href="http://softlang.wikidot.com/rlaemmel:home">Ralf Lämmel, </a>University of Koblenz-Landau
+
+<a href="http://www.upb.de/cs/engels.html">Gregor Engels</a>, University of Paderborn
+
+<a href="http://i.cs.hku.hk/%7Ebruno/">Bruno Oliveira, </a>The University of Hong Kong
 
 #### Modularity Visions
 
-_(To be finalized)_
+_(In formation)_
 
