@@ -169,41 +169,41 @@ Modularity 2016 early registration
 
 _(In formation)_
 
-Peter D. Mosses, Swansea University (<"http://www.cs.swansea.ac.uk/%7Ecspdm/">)
+[Peter D. Mosses](http://www.cs.swansea.ac.uk/%7Ecspdm/), Swansea University
 
-<a href="https://cs.uwaterloo.ca/%7Ejmatlee/">Jo Atlee</a>, University of Waterloo
+[Jo Atlee](https://cs.uwaterloo.ca/%7Ejmatlee/), University of Waterloo
 
 Salva Trujillo, IK4-IKERLAN
 
-<a href="http://gray.cs.ua.edu">Jeff Gray</a>, University of Alabama
+[Jeff Gray](http://gray.cs.ua.edu), University of Alabama
 
-<a href="http://www.onekin.org/content/oscar-diaz">Oscar Diaz</a>, University of the Basque Country
+[Oscar Diaz](http://www.onekin.org/content/oscar-diaz), University of the Basque Country
 
-<a href="http://www.infosun.fim.uni-passau.de/spl/people-nsiegmund.php">Norbert Siegmund</a>, University of Passau
+[Norbert Siegmund](http://www.infosun.fim.uni-passau.de/spl/people-nsiegmund.php), University of Passau
 
-<a href="http://www.guidosalvaneschi.com">Guido Salvaneschi</a>, Technical University of Darmstadt
+[Guido Salvaneschi](http://www.guidosalvaneschi.com), Technical University of Darmstadt
 
-<a href="http://smaragd.org">Yannis Smaragdakis</a>, University of Athens
+[Yannis Smaragdakis](http://smaragd.org), University of Athens
 
-<a href="http://people.cs.vt.edu/%7Etilevich/">Eli Tilevich</a>, Virginia Tech
+[Eli Tilevich](http://people.cs.vt.edu/%7Etilevich/), Virginia Tech
 
-<a href="http://www.inrialpes.fr/pop-art/people/fradet">Pascal Fradet</a>, NRIA Grenoble
+[Pascal Fradet](http://www.inrialpes.fr/pop-art/people/fradet), NRIA Grenoble
 
-<a href="http://www.cs.iastate.edu/%7Ehridesh/">Hridesh Rajan</a>, Iowa State University
+[Hridesh Rajan](http://www.cs.iastate.edu/%7Ehridesh/), Iowa State University
 
-<a href="http://www.csg.ci.i.u-tokyo.ac.jp/%7Echiba/">Shigeru Chiba</a>, The University of Tokyo
+[Shigeru Chiba](http://www.csg.ci.i.u-tokyo.ac.jp/%7Echiba/), The University of Tokyo
 
-<a href="http://www.inf.ucv.cl/%7Eifigueroa">Ismael Figueroa</a>, Pontificia Universidad Católica de Valparaíso
+[Ismael Figueroa](http://www.inf.ucv.cl/%7Eifigueroa), Pontificia Universidad Católica de Valparaíso
 
-<a href="http://www.research.lancs.ac.uk/portal/en/people/awais-rashid">Awais Rashid</a>, Lancaster University, UK
+[Awais Rashid](http://www.research.lancs.ac.uk/portal/en/people/awais-rashid), Lancaster University, UK
 
-<a href="http://www.steffen-zschaler.de/">Steffen Zschaler</a>, King's College London
+[Steffen Zschaler](http://www.steffen-zschaler.de/), King's College London
 
-<a href="http://softlang.wikidot.com/rlaemmel:home">Ralf Lämmel, </a>University of Koblenz-Landau
+[Ralf Lämmel](http://softlang.wikidot.com/rlaemmel:home), University of Koblenz-Landau
 
-<a href="http://www.upb.de/cs/engels.html">Gregor Engels</a>, University of Paderborn
+[Gregor Engels](http://www.upb.de/cs/engels.html), University of Paderborn
 
-<a href="http://i.cs.hku.hk/%7Ebruno/">Bruno Oliveira, </a>The University of Hong Kong
+[Bruno Oliveira](http://i.cs.hku.hk/%7Ebruno/), The University of Hong Kong
 
 #### Modularity Visions
 
