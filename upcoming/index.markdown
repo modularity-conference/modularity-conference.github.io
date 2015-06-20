@@ -172,7 +172,7 @@ Modularity 2016 early registration
 #### Modularity Visions
 
 [Krzysztof Czarnecki](http://gsd.uwaterloo.ca/kczarnec/), University of Waterloo, Canada \\
-(mailto:kczarnec@gsd.uwaterloo.ca)
+[e-mail](mailto:kczarnec@gsd.uwaterloo.ca)
 
 
 
