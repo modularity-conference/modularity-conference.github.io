@@ -116,8 +116,21 @@ the ACM Digital Library.
 
 ### Topics of Interest
 
-_(To be finalized)_
-
+ * new modularity mechanisms in programming, modeling, and domain-specific languages
+ * evaluation of modularity mechanisms in case studies
+ * understanding modularity in the context of development processes, collaboration, and organizational aspects
+ * role of modularity in the evolution of software systems
+ * measuring modularity
+ * modular re-engineering of legacy code 
+ * domain analysis
+ * foundations of modular paradigms for (automated) software construction
+ * module (feature) interactions 
+ * novel module verification and testing techniques
+ * mining software repositories to develop theories related to modularity
+ * cost-benefit models of modularity mechanisms and techniques
+ * usability of modularity mechanisms
+ * modularity supported by tools, such as view extraction, visualization, recommendation, and refactoring tools
+ * multi-dimensional separation of concerns such as aspect-, feature-, and context-oriented programmings
 
 ### Important Dates
 
