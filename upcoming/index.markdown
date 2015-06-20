@@ -166,13 +166,13 @@ Modularity 2016 early registration
 
 #### Research Results
 
-[Don Batory](mailto:batory@cs.utexas.edu), The University of Texas at Austin, USA  \\
-<http://www.cs.utexas.edu/~dsb/>
+[Don Batory](http://www.cs.utexas.edu/~dsb/), The University of Texas at Austin, USA  \\
+[e-mail](mailto:batory@cs.utexas.edu)
 
 #### Modularity Visions
 
-[Krzysztof Czarnecki](mailto:kczarnec@gsd.uwaterloo.ca), University of Waterloo, Canada \\
-<http://gsd.uwaterloo.ca/kczarnec/>
+[Krzysztof Czarnecki](http://gsd.uwaterloo.ca/kczarnec/), University of Waterloo, Canada \\
+(mailto:kczarnec@gsd.uwaterloo.ca)
 
 
 
