@@ -71,6 +71,12 @@
   affiliation: École des Mines de Nantes, France
   term: 2016
 
+- name: Peter Thiemann
+  contact: http://www2.informatik.uni-freiburg.de/~thiemann/
+  affiliation: University of Freiburg, Germany (SIGPLAN) 
+  term:
+  extra: (SIGPLAN observer)
+
 - name: Eelco Visser
   contact: http://eelcovisser.org
   affiliation: Delft University of Technology, The Netherlands
