@@ -205,11 +205,11 @@ _(In formation)_
 
  * [Thorsten Berger](http://gsd.uwaterloo.ca/tberger/), Chalmers University of Technology, Sweden
  * [Claus Brabrand](http://www.itu.dk/people/brabrand/), IT University of Copenhagen, Denmark
- * [Richard P. Gabriel](http://dreamsongs.com), IBM Research Almaden, US
- * [Christian Kaestner](http://www.cs.cmu.edu/~ckaestne/), Carnegie Mellon University, US
+ * [Richard P. Gabriel](http://dreamsongs.com), IBM Research Almaden, USA
+ * [Christian Kaestner](http://www.cs.cmu.edu/~ckaestne/), Carnegie Mellon University, USA
  * [Gail Murphy](http://www.cs.ubc.ca/~murphy/), University of British Columbia, Canada
  * [Sarah Nadi](http://www.stg.tu-darmstadt.de/staff/sarah_nadi/sarah_nadi.en.jsp), Technical University of Darmstadt, Germany
- * [Yoshiki Ohshima](http://vpri.org/html/team_bios/yoshiki.htm), SAP Labs & Viewpoints Research Institute, US
+ * [Yoshiki Ohshima](http://vpri.org/html/team_bios/yoshiki.htm), SAP Labs & Viewpoints Research Institute, USA
  * [Klaus Ostermann](http://ps.informatik.uni-tuebingen.de/team/ostermann/), University of Tuebingen, Germany
  * [Richard Paige](http://www-users.cs.york.ac.uk/~paige/), University of York, UK
  * [Andrzej Wasowski](http://www.itu.dk/people/wasowski/), IT University of Copenhagen, Denmark
