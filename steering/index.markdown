@@ -4,7 +4,6 @@ menutitle: Steering Committee
 short: AOSA
 responsible: yes
 order: 900
-
 ---
 
 The Aspect-Oriented Software Association (AOSA) is a non-profit organization whose
