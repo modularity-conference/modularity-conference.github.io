@@ -6,7 +6,7 @@ featured: The preliminary Call for Papers for Modularity 2016 is available
 ---
 
 University of Málaga, Spain \\
-March 14--18, 2016 \\
+March 14--17, 2016 \\
 _(Dates to be finalized)_ \\
 <http://2016.modularity.info/>
 
@@ -45,17 +45,17 @@ the following:
  * program state visualization in debuggers
  * performance improvements in compiler algorithms
 
-The 2016 edition of the Modularity conference (formerly known as AOSD) sets out
-to advance our understanding of these issues and the expressive power of new
+The 2016 edition of the Modularity conference (formerly AOSD) sets out to
+advance our understanding of these issues and the expressive power of new
 and known techniques.
 
 
 ### Research Results and Modularity Visions
 
 Modularity 2016 invites papers for its Research Results and Modularity Visions
-tracks presenting compelling insights into modularity in information systems,
-including its nature, forms, mechanisms, consequences, limits, costs, and
-benefits.
+tracks presenting new research and compelling insights into modularity in
+information systems, including its nature, forms, mechanisms, consequences,
+limits, costs, and benefits.
 
 Proceedings will appear in the ACM Digital Library.
 
