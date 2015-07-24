@@ -89,9 +89,9 @@ will evaluate each contributed paper based on its relevance, significance,
 clarity, length, and originality.
 
 Papers are to be submitted electronically at
-<http://cyberchairpro.borbala.net/modularitypapers/submit/> for Research
-Results and <http://cyberchairpro.borbala.net/modularityvisionspapers/submit/>
-for Modularity Visions in PDF format. Submissions must be in the ACM format
+<http://cyberchairpro.borbala.net/modularitypapers/submit/> for **Research
+Results** and <http://cyberchairpro.borbala.net/modularityvisionspapers/submit/>
+for **Modularity Visions** in PDF format. Submissions must be in the ACM format
 (see <http://www.sigplan.org/Resources/Author/>, 10 point font) and not exceed
 12 pages for regular papers and 4 pages for short papers. Short papers need to
 be labelled as such.
@@ -111,7 +111,7 @@ will remain under submission until the authors receive notification of
 acceptance or rejection.
 
 All submitted papers are peer reviewed. Accepted papers will be published in
-the ACM Digital Library.
+the **ACM Digital Library**.
 
 
 ### Topics of Interest
