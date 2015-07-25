@@ -195,7 +195,7 @@ Modularity 2016 early registration
  * [Peter D. Mosses](http://www.cs.swansea.ac.uk/%7Ecspdm/), Swansea University, UK
  * [James Noble](http://homepages.ecs.vuw.ac.nz/%7Ekjx/), Victoria University of Wellington, New Zealand
  * [Jacques Noy&eacute;](http://www.emn.fr/noye/), École des Mines de Nantes, France
- * [Bruno Oliveira](http://i.cs.hku.hk/%7Ebruno), The University of Hong Kong
+ * [Bruno C. d. S. Oliveira](http://i.cs.hku.hk/%7Ebruno), The University of Hong Kong
  * [Hridesh Rajan](http://www.cs.iastate.edu/%7Ehridesh/), Iowa State University, USA
  * [Awais Rashid](http://www.research.lancs.ac.uk/portal/en/people/awais-rashid), Lancaster University, UK
  * [Julia Rubin](http://people.csail.mit.edu/mjulia/), Massachusetts Institute of Technology, USA
