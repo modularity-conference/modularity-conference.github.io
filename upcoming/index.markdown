@@ -180,7 +180,7 @@ Modularity 2016 early registration
 
 #### Research Results
 
- * [Mehmet Aksit](http://www.utwente.nl/ewi/trese/people/Aksit/), University of Twente, The Netherlands
+ * [Mehmet Akşit](http://www.utwente.nl/ewi/trese/people/Aksit/), University of Twente, The Netherlands
  * [Jo Atlee](https://cs.uwaterloo.ca/%7Ejmatlee/), University of Waterloo, Canada
  * [Walter Cazzola](http://cazzola.di.unimi.it/), Università degli Studi di Milano, Italy
  * [Shigeru Chiba](http://www.csg.ci.i.u-tokyo.ac.jp/%7Echiba/site/), The University of Tokyo, Japan
