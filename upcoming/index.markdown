@@ -184,7 +184,7 @@ Modularity 2016 early registration
  * [Jo Atlee](https://cs.uwaterloo.ca/%7Ejmatlee/), University of Waterloo, Canada
  * [Walter Cazzola](http://cazzola.di.unimi.it/), Università degli Studi di Milano, Italy
  * [Shigeru Chiba](http://www.csg.ci.i.u-tokyo.ac.jp/%7Echiba/site/), The University of Tokyo, Japan
- * [Oscar Diaz](http://www.onekin.org/content/oscar-diaz), University of the Basque Country, Spain
+ * [Oscar Díaz](http://www.onekin.org/content/oscar-diaz), University of the Basque Country, Spain
  * [Gregor Engels](http://www.upb.de/cs/engels.html), University of Paderborn, Germany
  * [Ismael Figueroa](http://www.inf.ucv.cl/%7Eifigueroa), Pontificia Universidad Católica de Valparaiso, Chile
  * [Pascal Fradet](http://www.inrialpes.fr/pop-art/people/fradet), Inria Rhône-Alpes, France
