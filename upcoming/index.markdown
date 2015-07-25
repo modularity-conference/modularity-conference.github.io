@@ -180,26 +180,31 @@ Modularity 2016 early registration
 
 #### Research Results
 
-_(In formation)_
-
- * [Peter D. Mosses](http://www.cs.swansea.ac.uk/%7Ecspdm/), Swansea University, UK
+ * [Mehmet Aksit](http://www.utwente.nl/ewi/trese/people/Aksit/), University of Twente, The Netherlands
  * [Jo Atlee](https://cs.uwaterloo.ca/%7Ejmatlee/), University of Waterloo, Canada
- * Salva Trujillo, IK4-IKERLAN, Spain
- * [Jeff Gray](http://gray.cs.ua.edu), University of Alabama, USA
+ * [Walter Cazzola](http://cazzola.di.unimi.it/), Università degli Studi di Milano, Italy
+ * [Shigeru Chiba](http://www.csg.ci.i.u-tokyo.ac.jp/%7Echiba/site/), The University of Tokyo, Japan
  * [Oscar Diaz](http://www.onekin.org/content/oscar-diaz), University of the Basque Country, Spain
- * [Norbert Siegmund](http://www.infosun.fim.uni-passau.de/spl/people-nsiegmund.php), University of Passau, Germany
- * [Guido Salvaneschi](http://www.guidosalvaneschi.com), Technical University of Darmstadt, Germany
- * [Yannis Smaragdakis](http://smaragd.org), University of Athens, Greece
- * [Eli Tilevich](http://people.cs.vt.edu/%7Etilevich/), Virginia Tech, USA
- * [Pascal Fradet](http://www.inrialpes.fr/pop-art/people/fradet), Inria Grenoble, France
- * [Hridesh Rajan](http://www.cs.iastate.edu/%7Ehridesh/), Iowa State University, USA
- * [Shigeru Chiba](http://www.csg.ci.i.u-tokyo.ac.jp/%7Echiba/), The University of Tokyo, Japan
- * [Ismael Figueroa](http://www.inf.ucv.cl/%7Eifigueroa), Pontificia Universidad Católica de Valparaíso, Chile
- * [Awais Rashid](http://www.research.lancs.ac.uk/portal/en/people/awais-rashid), Lancaster University, UK
- * [Steffen Zschaler](http://www.steffen-zschaler.de/), King's College London, UK
- * [Ralf Lämmel](http://softlang.wikidot.com/rlaemmel:home), University of Koblenz-Landau, Germany
  * [Gregor Engels](http://www.upb.de/cs/engels.html), University of Paderborn, Germany
- * [Bruno Oliveira](http://i.cs.hku.hk/%7Ebruno/), The University of Hong Kong
+ * [Ismael Figueroa](http://www.inf.ucv.cl/%7Eifigueroa), Pontificia Universidad Católica de Valparaiso, Chile
+ * [Pascal Fradet](http://www.inrialpes.fr/pop-art/people/fradet), Inria Rhône-Alpes, France
+ * [Jesús J. García Molina ](http://dis.um.es/%7Ejmolina/), Catedrático Escuela Universitaria, Spain
+ * [Jeff Gray](http://gray.cs.ua.edu/), University of Alabama, USA
+ * [George Heineman](http://www.cs.wpi.edu/%7Eheineman), Worcester Polytechnic Institute, USA
+ * [Ralf L&auml;mmel](http://softlang.wikidot.com/rlaemmel:home), University of Koblenz-Landau, Germany
+ * [Peter D. Mosses](http://www.cs.swansea.ac.uk/%7Ecspdm/), Swansea University, UK
+ * [James Noble](http://homepages.ecs.vuw.ac.nz/%7Ekjx/), Victoria University of Wellington, New Zealand
+ * [Jacques Noy&eacute;](http://www.emn.fr/noye/), École des Mines de Nantes, France
+ * [Bruno Oliveira](http://i.cs.hku.hk/%7Ebruno), The University of Hong Kong
+ * [Hridesh Rajan](http://www.cs.iastate.edu/%7Ehridesh/), Iowa State University, USA
+ * [Awais Rashid](http://www.research.lancs.ac.uk/portal/en/people/awais-rashid), Lancaster University, UK
+ * [Julia Rubin](http://people.csail.mit.edu/mjulia/), Massachusetts Institute of Technology, USA
+ * [Guido Salvaneschi](http://www.guidosalvaneschi.com/), Technical University of Darmstadt, Germany
+ * [Norbert Siegmund](http://www.infosun.fim.uni-passau.de/spl/people-nsiegmund.php), University of Passau, Germany
+ * [Yannis Smaragdakis](http://smaragd.org/), University of Athens, Greece
+ * [Eli Tilevich](http://people.cs.vt.edu/%7Etilevich/), Virginia Tech, USA
+ * Salva Trujillo, IK4-IKERLAN, Spain
+ * [Steffen Zschaler](http://www.steffen-zschaler.de/), King's College London, UK
 
 #### Modularity Visions
 
