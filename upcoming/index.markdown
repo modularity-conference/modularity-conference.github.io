@@ -8,6 +8,8 @@ University of Málaga, Spain \\
 March 14--17, 2016 \\
 <http://2016.modularity.info/>
 
+In cooperation with ACM [SIGPLAN](http://www.sigplan.org/) and [SIGSOFT](http://www.sigsoft.org/)
+
 Call for Papers
 ----------------
 
