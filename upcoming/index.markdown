@@ -2,14 +2,11 @@
 title: Modularity 2016
 order: 120
 featured: The preliminary Call for Papers for Modularity 2016 is available
-
 ---
 
 University of Málaga, Spain \\
 March 14--17, 2016 \\
-_(Dates to be finalized)_ \\
 <http://2016.modularity.info/>
-
 
 Call for Papers
 ----------------
@@ -48,7 +45,6 @@ the following:
 The 2016 edition of the Modularity conference (formerly AOSD) sets out to
 advance our understanding of these issues and the expressive power of new
 and known techniques.
-
 
 ### Research Results and Modularity Visions
 
@@ -113,7 +109,6 @@ acceptance or rejection.
 All submitted papers are peer reviewed. Accepted papers will be published in
 the **ACM Digital Library**.
 
-
 ### Topics of Interest
 
  * new modularity mechanisms in programming, modeling, and domain-specific languages
@@ -133,9 +128,6 @@ the **ACM Digital Library**.
  * multi-dimensional separation of concerns such as aspect-, feature-, and context-oriented programming
 
 ### Important Dates
-
-
-_(To be finalized)_
 
 Abstracts (recommended)
 : October 30, 2015 (Fri)
@@ -173,8 +165,6 @@ Modularity 2016 early registration
 
  * [Krzysztof Czarnecki](http://gsd.uwaterloo.ca/kczarnec/), University of Waterloo, Canada
 ([e-mail](mailto:kczarnec@gsd.uwaterloo.ca))
-
-
 
 ### Program Committees
 
@@ -218,4 +208,3 @@ Modularity 2016 early registration
  * [Klaus Ostermann](http://ps.informatik.uni-tuebingen.de/team/ostermann/), University of Tuebingen, Germany
  * [Richard Paige](http://www-users.cs.york.ac.uk/~paige/), University of York, UK
  * [Andrzej Wasowski](http://www.itu.dk/people/wasowski/), IT University of Copenhagen, Denmark
-
