@@ -1,7 +1,7 @@
 ---
 title: Modularity 2016
 order: 120
-featured: The preliminary Call for Papers for Modularity 2016 is available
+featured: The Call for Papers for Modularity 2016 is available
 ---
 
 University of Málaga, Spain \\
