@@ -10,6 +10,7 @@ March 14--17, 2016 \\
 
 In cooperation with [ACM](http://www.acm.org/) [SIGPLAN](http://www.sigplan.org/) and [SIGSOFT](http://www.sigsoft.org/)
 
+{%comment%}
 <!--
 
 Call for Papers
@@ -154,10 +155,6 @@ Camera ready versions due
 Modularity 2016 early registration
 : _(To be finalized)_ 
 
-{%comment%}
-<!--??? ONE MONTH PRIOR TO CONFERENCE ??? -->
-{%endcomment%}
-
 ### Program Committee Chairs
 
 #### Research Results
@@ -214,3 +211,4 @@ Modularity 2016 early registration
  * [Andrzej Wasowski](http://www.itu.dk/people/wasowski/), IT University of Copenhagen, Denmark
 
 -->
+{%endcomment%}
