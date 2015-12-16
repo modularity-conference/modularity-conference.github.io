@@ -1,7 +1,7 @@
 ---
 title: Modularity 2016
 order: 120
-featured: [2016.modularity.info](http://2016.modularity.info/)
+featured: The Call for Papers for Modularity 2016 is available
 ---
 
 University of Málaga, Spain \\
@@ -9,9 +9,6 @@ March 14--17, 2016 \\
 <http://2016.modularity.info/>
 
 In cooperation with [ACM](http://www.acm.org/) [SIGPLAN](http://www.sigplan.org/) and [SIGSOFT](http://www.sigsoft.org/)
-
-{%comment%}
-<!--
 
 Call for Papers
 ----------------
@@ -155,6 +152,10 @@ Camera ready versions due
 Modularity 2016 early registration
 : _(To be finalized)_ 
 
+{%comment%}
+<!--??? ONE MONTH PRIOR TO CONFERENCE ??? -->
+{%endcomment%}
+
 ### Program Committee Chairs
 
 #### Research Results
@@ -209,6 +210,3 @@ Modularity 2016 early registration
  * [Klaus Ostermann](http://ps.informatik.uni-tuebingen.de/team/ostermann/), University of Tuebingen, Germany
  * [Richard Paige](http://www-users.cs.york.ac.uk/~paige/), University of York, UK
  * [Andrzej Wasowski](http://www.itu.dk/people/wasowski/), IT University of Copenhagen, Denmark
-
--->
-{%endcomment%}
