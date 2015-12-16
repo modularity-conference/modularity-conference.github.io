@@ -166,5 +166,7 @@ Past editions of Modularity/AOSD:
   * Keynote speakers: Michael Jackson and Linda Northrop
   * Proceedings:
     [ACM Digital Library](http://portal.acm.org/toc.cfm?id=508386)
+  * Internet Archive:
+    [Way Back Machine](https://web.archive.org/web/20151214083112/http://trese.cs.utwente.nl/aosd2002/)
 
 _Note: Mirgation in progress_
