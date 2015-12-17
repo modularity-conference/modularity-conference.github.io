@@ -159,7 +159,7 @@ Past editions of Modularity/AOSD:
   * Proceedings:
     [ACM Digital Library](http://portal.acm.org/toc.cfm?id=643603)
 
-### [AOSD 2002](http://trese.cs.utwente.nl/aosd2002/)
+### [AOSD 2002](2002)
   * Enschede, The Netherlands, April 22--26, 2002
   * General chair: Harold Ossher
   * Program chair: Gregor Kiczales
