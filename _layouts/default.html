@@ -59,15 +59,19 @@
                         {% capture liclass %}{{ liclass }} featured{% endcapture %}
                       {% endif %}
                       <li class="{{ liclass }}">
+                      {% if menuitem.external %}
+                        {% assign murl = menuitem.external %}
+                      {% else %}
                         {% assign murl = menuitem.url|remove:'index.html' %}
-                        <a href="{{murl}}">
-                          {% if menuitem.short %}
-                            {{menuitem.short }}
-                          {% elsif menuitem.menutitle %}
-                            {{menuitem.menutitle }}
-                          {% else %}
-                            {{menuitem.title}}
-                          {% endif %}
+                      {% endif %}
+                      <a href="{{murl}}">
+                        {% if menuitem.short %}
+                          {{menuitem.short }}
+                        {% elsif menuitem.menutitle %}
+                          {{menuitem.menutitle }}
+                        {% else %}
+                          {{menuitem.title}}
+                        {% endif %}
                       </a></li>
                     {% endfor %}
                   </ul>
@@ -89,7 +93,11 @@
                     {% capture liclass %}{{ liclass }} featured{% endcapture %}
                   {% endif %}
                   <li class="{{ liclass }}">
-                  {% assign murl = menuitem.url|remove:'index.html' %}
+                  {% if menuitem.external %}
+                    {% assign murl = menuitem.external %}
+                  {% else %}
+                    {% assign murl = menuitem.url|remove:'index.html' %}
+                  {% endif %}
                   <a href="{{murl}}">
                     {% if menuitem.menutitle %}
                     {{menuitem.menutitle}}
@@ -106,19 +114,27 @@
           </header>
         </div>
         <div class="col-lg-9 col-md-12">
-          {% assign fpages = pages | group_by: 'featured' | sort: "name" | shift %}
-          {% if fpages | size > 0 %}
-              <div class="well">
-                {% for feature in pages %}
-                    {% if feature.featured %}
-                <a href="{{ feature.url | remove: "index.html" }}">
-                  <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-                  &nbsp;{{ feature.featured }}
-                </a><br>
-                    {% endif %}
-                {% endfor %}
-              </div>
-           {% endif %}
+          {% assign featured_seen = false %}
+          {% for feature in pages %}
+              {% if feature.featured %}
+                {% unless featured_seen %}
+          <div class="well">
+                  {% assign featured_seen = true %}
+                {% endunless %}
+                {% if feature.external %}
+                  {% assign murl = feature.external %}
+                {% else %}
+                  {% assign murl = feature.url | remove: "index.html" %}
+                {% endif %}
+            <a href="{{ murl }}">
+              <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+              &nbsp;{{ feature.featured }}
+            </a><br>
+              {% endif %}
+            {% endfor %}
+            {% if featured_seen %}
+          </div>
+            {% endif %}
           <section>
             <h1>{{page.title}}</h1>
             {% include submenu.html %}

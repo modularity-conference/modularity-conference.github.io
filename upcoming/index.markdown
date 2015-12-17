@@ -1,11 +1,12 @@
 ---
 title: Modularity 2016
 order: 120
-featured: The Call for Papers for Modularity 2016 is available
+featured: Modularity 2016 will be held in Málaga, Spain, March 14–17, 2016
+external: http://2016.modularity.info/
 ---
 
 University of Málaga, Spain \\
-March 14--17, 2016 \\
+March 14–17, 2016 \\
 <http://2016.modularity.info/>
 
 In cooperation with [ACM](http://www.acm.org/) [SIGPLAN](http://www.sigplan.org/) and [SIGSOFT](http://www.sigsoft.org/)
