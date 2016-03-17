@@ -19,6 +19,11 @@
   affiliation: University of Waterloo, Canada
   term: 2019
 
+- name: Theo D’Hondt
+  contact: http://soft.vub.ac.be/~tjdhondt/HTM.dir/homepage.htm
+  affiliation: Vrije Universiteit Brussel, Belgium
+  term: 2019
+
 - name: Erik Ernst
   contact: http://www.daimi.au.dk/~eernst/
   affiliation: Google, Denmark
@@ -28,6 +33,11 @@
   contact: http://www.lcc.uma.es/~lff/
   affiliation: Universidad de Málaga, Spain
   term: 2019
+
+- name: Richard P. Gabriel
+  contact: http://www.dreamsongs.com/
+  affiliation: IBM
+  term: 2018
 
 - name: Sudipto Ghosh
   contact: http://www.cs.colostate.edu/~ghosh/
@@ -43,12 +53,17 @@
 - name: Jörg Kienzle
   contact: http://www.cs.mcgill.ca/~joerg/
   affiliation: McGill University, Canada
-  term: 2016
+  term: 2017
 
 - name: Gary T. Leavens
   contact: http://www.eecs.ucf.edu/~leavens/homepage.html
   affiliation: University of Central Florida, USA
   term: 2018
+
+- name: Cristina Videira Lopes
+  contact: https://www.ics.uci.edu/~lopes/
+  affiliation: University of California Irvine, USA
+  term: 2019
 
 - name: David H. Lorenz
   contact: http://www.openu.ac.il/home/lorenz/
@@ -58,12 +73,12 @@
 - name: Hidehiko Masuhara
   contact: http://prg.is.titech.ac.jp/people/masuhara/
   affiliation: Tokyo Institute of Technology, Japan
-  term: 2016
+  term: 2017
 
 - name: Mario Südholt
   contact: http://www.emn.fr/z-info/sudholt/
   affiliation: École des Mines de Nantes, France
-  term: 2016
+  term: 2017
 
 - name: Peter Thiemann
   contact: http://www2.informatik.uni-freiburg.de/~thiemann/
@@ -79,5 +94,5 @@
 - name: Steffen Zschaler
   contact: http://www.steffen-zschaler.de/
   affiliation: King’s College London, UK
-  term: 2016
+  term: 2017
   extra: (Secretary/Treasurer)
