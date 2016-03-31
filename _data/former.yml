@@ -1,6 +1,6 @@
 - firstname: Jeremy
   lastname: Gibbons
-  function: Observer for ACM SIGPLAN
+  function: ACM SIGPLAN Observer
 - firstname: Gregor
   lastname: Kiczales
   term: 2008
@@ -96,10 +96,13 @@
   term: 2015
 - firstname: Chandra
   lastname: Krintz
-  function: Observer for ACM SIGPLAN
+  function: ACM SIGPLAN Observer
 - firstname: Graham
   lastname: Hutton
-  function: Observer for ACM SIGPLAN
+  function: ACM SIGPLAN Observer
 - firstname: Kathleen
   lastname: Fisher
-  function: Observer for ACM SIGPLAN
+  function: ACM SIGPLAN Observer
+- firstname: William
+  lastname: Griswold
+  function: ACM SIGSOFT Observer

@@ -14,6 +14,12 @@
   affiliation: University of Lugano, Switzerland
   term: 2017
 
+- name: Jane Cleland-Huang
+  contact: http://re.cs.depaul.edu/pages/ClelandHuang.html
+  affiliation: DePaul University, Chicago, USA (ACM SIGSOFT)
+  term:
+  extra: (ACM SIGSOFT observer)
+
 - name: Krzysztof Czarnecki
   contact: http://gsd.uwaterloo.ca/kczarnec
   affiliation: University of Waterloo, Canada
@@ -43,12 +49,6 @@
   contact: http://www.cs.colostate.edu/~ghosh/
   affiliation: Colorado State University, USA
   term: 2018
-
-- name: William Griswold
-  contact: http://cseweb.ucsd.edu/~wgg/
-  affiliation: University of California at San Diego, USA
-  term:
-  extra: (SIGSOFT observer)
 
 - name: Jörg Kienzle
   contact: http://www.cs.mcgill.ca/~joerg/
@@ -82,9 +82,9 @@
 
 - name: Peter Thiemann
   contact: http://www2.informatik.uni-freiburg.de/~thiemann/
-  affiliation: University of Freiburg, Germany (SIGPLAN) 
+  affiliation: University of Freiburg, Germany (ACM SIGPLAN) 
   term:
-  extra: (SIGPLAN observer)
+  extra: (ACM SIGPLAN observer)
 
 - name: Eelco Visser
   contact: http://eelcovisser.org
