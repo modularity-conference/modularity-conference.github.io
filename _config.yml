@@ -9,7 +9,7 @@ baseurl: /
 # lsi: false
 
 # Build settings
-highlighter: pygments
+highlighter: rouge
 markdown: kramdown
 
 gems:
