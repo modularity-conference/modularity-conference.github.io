@@ -9,7 +9,7 @@ Past editions of Modularity/AOSD:
 
 ### [MODULARITY 2016](2016)
   * University of Malaga, Málaga, Spain, March 14--17, 2016
-  * General chairs: Lidia Fuentes
+  * General chair: Lidia Fuentes
   * Program chairs: Don Batory (Research Results) and Krzysztof Czarnecki
     (Modularity Visions)
   * Keynote speakers: Sven Apel, Alan Borning, Cristina Videira Lopes, Gang Tan
