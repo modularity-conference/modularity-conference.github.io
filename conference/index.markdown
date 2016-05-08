@@ -7,6 +7,24 @@ order: 700
 
 Past editions of Modularity/AOSD:
 
+### [MODULARITY 2016](2016)
+  * University of Malaga, Málaga, Spain, March 14--17, 2016
+  * General chairs: Lidia Fuentes
+  * Program chairs: Don Batory (Research Results) and Krzysztof Czarnecki
+    (Modularity Visions)
+  * Keynote speakers: Sven Apel, Alan Borning, Cristina Videira Lopes, Gang Tan
+    (MASS), and Sasa Misailovic (MASS)
+  * Best research paper award: _The Expression Problem, Trivially!_ by Yanlin
+    Wang and Bruno C. d. S. Oliveira
+  * Best visions paper award: _Modular Architecture for Code and Metadata
+    Sharing_ by Tomas Tauber and Bruno C. d. S. Oliveira
+  * Most influential paper award: _A Join Point for Loops in AspectJ_ by
+    Bruno Harbulot and John R. Gurd (AOSD 2006)
+  * Proceedings:
+    [ACM Digital Library](http://dl.acm.org/citation.cfm?id=2889443)
+  * Companion:
+    [ACM Digital Library](http://dl.acm.org/citation.cfm?id=2892664)
+
 ### [MODULARITY 2015](2015)
   * Colorado State University, Fort Collins, Colorado, USA, March 16--19, 2015
   * General chairs: Robert France and Sudipto Ghosh
