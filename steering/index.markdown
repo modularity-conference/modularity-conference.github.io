@@ -35,6 +35,4 @@ The members of the AOSA Steering Committee are:
     _({{ member.function }})_{% endif %}
 {%endcomment %}
 
-
-*[AOSA]: Aspect-Oriented Software Association
 *[AOSD]: Aspect-Oriented Software Development
