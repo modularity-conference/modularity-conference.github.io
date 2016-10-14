@@ -5,7 +5,7 @@ order: 800
 
 ---
 
-The [Art, Science, and Engineering of Programming journal](http://programming-journal.org) is a fully refereed, open access, free, electronic journal. It welcomes papers on the art of programming, broadly construed.
+The [Art, Science, and Engineering of Programming journal](http://programming-journal.org) is a fully refereed, open access, free, electronic journal.
 
 <!--
 
