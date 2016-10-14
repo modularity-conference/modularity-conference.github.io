@@ -1,7 +1,7 @@
 ---
 title: Modularity 2017
 order: 120
-featured: Modularity Symposium 2017 will be held in Brussels, Belgium, April 4 2017
+featured: Modularity Symposium 2017 will be co-located with ‹Programming› 2017 in Brussels, Belgium, April 4 2017
 external: http://2017.programmingconference.org/track/modularity-2017-talks
 ---
 
