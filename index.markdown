@@ -24,5 +24,5 @@ techniques for complexity management during the creation of software is
 abstraction. Novel concepts and abstraction mechanisms are a focus point for
 improvements in the support for modularity.
 
-The scope of this conference covers all perspectives on software systems in all
+The scope of this event covers all perspectives on software systems in all
 their life-cycle phases.
