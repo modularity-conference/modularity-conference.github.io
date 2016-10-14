@@ -7,7 +7,7 @@ order: 900
 ---
 
 AOSA is a non-profit organization whose mission is to be the primary sponsor for the 
-_[‹Programming› Conference](http://programming-conference.org)_ and the _Modularity Conference/Symposium (formerly Conference on Aspect-Oriented Software Development/AOSD)_.
+_[‹Programming› Conference](http://programming-conference.org)_ and the _Modularity Symposium (formerly Modularity Conference/MODULARITY and the Conference on Aspect-Oriented Software Development/AOSD)_.
 
 The members of the AOSA Steering Committee are:
 
