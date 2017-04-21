@@ -25,7 +25,8 @@
   </head>
   <body>
     {% assign home = site.pages | where:'menutitle', 'About' | first %}
-    {% assign responsible = site.pages | where:'responsible', true | first %}
+    {% assign responsibleurl = "http://aosa-inc.org/steering/" %}
+    {% assign responsibleshort = "AOSA" %}
     {% assign pages = site.pages | where: 'name', 'index.markdown' | sort:"order" %}
     <div class="container">
       <div class="row">
@@ -144,9 +145,9 @@
         </div>
       </div>
       <footer>
-      <p>© 2002–{{ 'now' | date: '%Y'}} <a href="{{ responsible.url }}">
-      {% if responsible.short %}{{ responsible.short }}
-      {% else %}{{ responsible.title}}
+      <p>© 2002–{{ 'now' | date: '%Y'}} <a href="{{ responsibleurl }}">
+      {% if responsibleshort %}{{ responsibleshort }}
+      {% else %}{{ responsibletitle}}
       {% endif %}
       </a></p>
       </footer>
