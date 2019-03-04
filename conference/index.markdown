@@ -7,6 +7,15 @@ order: 700
 
 Past editions of Modularity/AOSD:
 
+### [Modularity Symposium 2017](https://2017.programming-conference.org/track/modularity-2017-talks)
+  * Co-located with ‹Programming› 2017, April 3--6, 2017
+  * Vrije Universiteit Brussel, Belgium
+  * _One-day symposium invited talks_
+  * Invited speakers: Mira Mezini, Lodewijk Bergmans, Mario Südholt, 
+    Bedir Tekinerdogan, Uwe Aßmann, Shmuel Katz, Stéphane Ducasse,
+    Jörg Kienzle
+  * _no procceedings_
+ 
 ### [MODULARITY 2016](http://2016.modularity.info/)
   * University of Malaga, Málaga, Spain, March 14--17, 2016
   * General chair: Lidia Fuentes
